@@ -1,0 +1,14 @@
+version: "3"
+
+services:
+    frontend:
+        build:
+            context: ../
+            dockerfile: infra/Dockerfile
+            args:
+              - API_ADDR=127.0.0.1
+        stdin_open: true
+        container_name: cogbench-fe
+        ports: 
+          - "3000:3000"
+          - "80:80"
