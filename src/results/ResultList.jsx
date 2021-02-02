@@ -1,10 +1,10 @@
 import {
-    BrowserRouter as Router,
+    //BrowserRouter as Router,
     Switch,
     Route,
     Link,
     useRouteMatch,
-    useParams
+    //useParams
 } from "react-router-dom";
 
 import ResultDetails from './ResultDetails.jsx'
