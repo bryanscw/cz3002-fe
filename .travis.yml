@@ -1,4 +1,3 @@
 os: linux
-language: java
-jdk: openjdk11
+language: javascript
 #script: npm install && npm test
