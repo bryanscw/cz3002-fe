@@ -1,0 +1,3 @@
+os: linux
+language: javascript
+#script: npm install && npm test
