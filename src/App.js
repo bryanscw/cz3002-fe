@@ -11,7 +11,11 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Link from '@material-ui/core/Link';
-import { BrowserRouter as Router, Route, Switch,useParams } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch,useParams, Link as RouterLink } from "react-router-dom";
+import AppRouter from './AppRouter.js'
+
+import store from './redux/store.js'
+import {Provider} from 'react-redux'
 
 import './App.css';
 import Game from './game/Game';
@@ -64,7 +68,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 const cards = [{name:'GAME',button:"START"},{name:'RESULT',button:'VIEW'},{name:'TOPIC',button:'MORE'}]
 
-export default function Album() {
+function Album() {
   const classes = useStyles();
 
   return (
@@ -89,35 +93,38 @@ export default function Album() {
             </Typography>
           </Container>
         </div>
-        <Container className={classes.cardGrid} maxWidth="md">
-          <Grid container  direction="row" justify="center" alignItems="center" spacing={4}>
-          {cards.map((card) => (
-              <Grid item key={card} xs={12} sm={6} md={4}>
-                <Card className={classes.card}>
-                  <CardContent className={classes.cardContent}>
-                    <Typography gutterBottom variant="h5" component="h2">
-                      {card.name}
-                    </Typography>
-                  </CardContent>
-                  <CardActions>
-                    <Button size="small" color="primary"  onClick={() => {window.location.href = `${card.name}`;}}>
-                    {card.button}
-                    </Button>
-                  </CardActions>
-                </Card>
-              </Grid>
-            ))}
-          </Grid>
-        </Container>
         <Router>
-        <div>
-            <Switch>
-            <Route path="/GAME"><Game /></Route>
-            <Route path="/RESULT"><ResultController userType={'doctor'}/></Route>
-            <Route path="/TOPIC"><Topic /></Route>
-            </Switch>
-        </div>
-      </Router>
+          <Container className={classes.cardGrid} maxWidth="md">
+            <Grid container  direction="row" justify="center" alignItems="center" spacing={4}>
+            {cards.map((card) => (
+                <Grid item key={card} xs={12} sm={6} md={4}>
+                  <Card className={classes.card}>
+                    <CardContent className={classes.cardContent}>
+                      <Typography gutterBottom variant="h5" component="h2">
+                        {card.name}
+                      </Typography>
+                    </CardContent>
+                    <CardActions>
+                      <RouterLink to={`/${card.name}`}>
+                        <Button assize="small" color="primary">
+                          {card.button}
+                        </Button>
+                      </RouterLink>
+                    </CardActions>
+                  </Card>
+                </Grid>
+              ))}
+            </Grid>
+          </Container>
+          <div>
+              <Switch>
+              <Route path="/game"><Game /></Route>
+              <Route path="/result"><ResultController path="/result"/></Route>
+              <Route path="/topic"><Topic /></Route>
+              </Switch>
+          </div>
+          {/* <AppRouter/> */}
+        </Router>
       </main>
       {/* Footer */}
       <footer className={classes.footer}>
@@ -134,4 +141,12 @@ export default function Album() {
 function Topic() {
   let { topicId } = useParams();
   return <h3>Requested topic ID: {topicId}</h3>;
+}
+
+export default function App() {
+  return (
+    <Provider store={store}>
+        <Album/>
+    </Provider>
+  )
 }
