@@ -7,8 +7,11 @@ import {
   useRouteMatch,
   useParams
 } from "react-router-dom";
-import Buttons from '@material-ui/core/Button';
+//import Buttons from '@material-ui/core/Button';
 import ResultController from './results/ResultController.jsx';
+import Login from './login/Login.js';
+import NewAccount from './systemadmin/NewAccount.js';
+
 
 export default function App() {
   return (
@@ -19,7 +22,16 @@ export default function App() {
             <Link to="/">Home</Link>
           </li>
           <li>
+            <Link to="/login">Login</Link>
+          </li>
+          <li>
+            <Link to="/newaccount">NewAccount</Link>
+          </li>
+          <li>
             <Link to="/results">Results</Link>
+          </li>
+          <li>
+            <Link to="/topics">Topics</Link>
           </li>
           <li>
             <Link to="/topics">Topics</Link>
@@ -29,6 +41,12 @@ export default function App() {
         <Switch>
           <Route path="/results">
             <ResultController userType={'doctor'}/>
+          </Route>
+          <Route path="/login">
+            <Login />
+          </Route>
+          <Route path="/newaccount">
+            <NewAccount />
           </Route>
           <Route path="/topics">
             <Topics />
@@ -55,6 +73,8 @@ function Home() {
         </div>
     )
 }
+
+
 
 function Topics() {
     let match = useRouteMatch();
