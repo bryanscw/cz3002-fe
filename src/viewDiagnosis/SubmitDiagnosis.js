@@ -1,11 +1,12 @@
-
-import './Diagnosis.css';
 import React, { Component } from "react";
-import Button from "@material-ui/core/Button";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { createDiagnosis } from "../redux/ducks/diagnosis";
+import { Button, CssBaseline, TextField, Container } from "@material-ui/core";
 //import { Link } from "react-router-dom";
 //import "./SystemAdmin.css";
 
-import diagnosis from "../redux/ducks/diagnosis";
+//import {createDiagnosis} from "../redux/ducks/diagnosis";
 
 class SubmitDiagnosis extends Component {
   constructor(props) {
@@ -58,15 +59,9 @@ class SubmitDiagnosis extends Component {
   handleSubmit(event) {
     console.log("form was submitted");
     event.preventDefault();
-
-    console.log(this.state);
-
-    diagnosis
-      .createDiagnosis(this.state)
-      .then(() => {
-       // this.props.history.push("/login");
-      })
-      .catch((error) => console.log(error));
+    this.props.createDiagnosis(this.state);
+      
+   
   }
 
   render(){
@@ -98,6 +93,15 @@ class SubmitDiagnosis extends Component {
   );
 }
 }
+SubmitDiagnosis.propTypes = {
+  /** An action creator for authenticating login */
+  createDiagnosis: PropTypes.func.isRequired
+};
 
-export default SubmitDiagnosis;
+const dispatchers = {
+  createDiagnosis
+};
+
+export default connect(() => ({}), dispatchers)(SubmitDiagnosis);
+//export default SubmitDiagnosis;
 //https://www.digitalocean.com/community/tutorials/how-to-build-forms-in-react#prerequisites

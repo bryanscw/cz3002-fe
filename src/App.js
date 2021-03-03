@@ -8,13 +8,19 @@ import {
   useParams
 } from "react-router-dom";
 //import Buttons from '@material-ui/core/Button';
+import { Provider } from "react-redux";
+import store from "./redux/store";
+
 import ResultController from './results/ResultController.jsx';
 import Login from './login/Login.js';
 //import NewAccount from './systemadmin/NewAccount.js';
 import DiagnosisController from './viewDiagnosis/DiagnosisController.jsx';
 
 export default function App() {
+  
   return (
+    <Provider store={store}>
+  
     <Router>
       <div>
         <ul>
@@ -60,6 +66,7 @@ export default function App() {
         </Switch>
       </div>
     </Router>
+    </Provider>
   );
 }
 
