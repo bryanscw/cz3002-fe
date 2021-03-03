@@ -9,7 +9,7 @@ import {
 } from "react-router-dom";
 
 import DiagnosisDetailDoc from './DiagnosisDetailDoc.jsx'
-import SubmitDiagnosis from './SubmitDiagnosis.jsx'
+import SubmitDiagnosis from './SubmitDiagnosis.js'
 
 export default function ViewDiagnosisDoc(props){
     // receives resultHistory - list of past test performances,

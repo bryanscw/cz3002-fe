@@ -10,8 +10,8 @@ import {
 //import Buttons from '@material-ui/core/Button';
 import ResultController from './results/ResultController.jsx';
 import Login from './login/Login.js';
-import NewAccount from './systemadmin/NewAccount.js';
-
+//import NewAccount from './systemadmin/NewAccount.js';
+import DiagnosisController from './viewDiagnosis/DiagnosisController.jsx';
 
 export default function App() {
   return (
@@ -31,6 +31,9 @@ export default function App() {
             <Link to="/results">Results</Link>
           </li>
           <li>
+            <Link to="/viewDiagnosis">Diagnosis</Link>
+          </li>
+          <li>
             <Link to="/topics">Topics</Link>
           </li>
           <li>
@@ -45,8 +48,8 @@ export default function App() {
           <Route path="/login">
             <Login />
           </Route>
-          <Route path="/newaccount">
-            <NewAccount />
+          <Route path="/viewDiagnosis">
+            <DiagnosisController userType={'doctor'}/>
           </Route>
           <Route path="/topics">
             <Topics />
