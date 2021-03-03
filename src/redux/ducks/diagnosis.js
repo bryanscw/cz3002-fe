@@ -1,5 +1,4 @@
 import axios from 'axios';
-
 import { createApiReducer, createApiAction, STATUSES, METHODS } from './apiHelper';
 import { API_URL } from '../../utils/constants';
 import { displayError } from './errors';
@@ -18,12 +17,12 @@ export const createDiagnosis = diagnosis => (dispatch, getState) => {
   return (
       axios
       .post(
-          `${API_URL}/diagnosis/create/${result.id}`,
-          result,
+          `${API_URL}/diagnosis/create/1`,
+          diagnosis,
           getTokenConfig(getState)
       )
       .then(res => {
-        dispatch(createApiAction(ENTITY_NAME, STATUSES.SUCCESS, METHODS.CREATE, result.id));
+        dispatch(createApiAction(ENTITY_NAME, STATUSES.SUCCESS, METHODS.CREATE, res.data));
       })
       .catch(err => {
         displayError("Unable to create diagonosis")(dispatch);
@@ -57,11 +56,11 @@ export const updateDiagnosis = diagnosis =>  (dispatch, getState) => {
   return (
       axios
       .get(
-          `${API_URL}/update/${result.id}`,
+          `${API_URL}/update/1`,
           getTokenConfig(getState)
       )
       .then(res => {
-        dispatch(createApiAction(ENTITY_NAME, STATUSES.SUCCESS, METHODS.UPDATE, result.id));
+        dispatch(createApiAction(ENTITY_NAME, STATUSES.SUCCESS, METHODS.UPDATE, res.data));
       })
       .catch(err => {
         displayError("Unable to update diagnosis")(dispatch);
