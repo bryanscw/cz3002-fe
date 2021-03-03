@@ -15,6 +15,10 @@ import ResultController from './results/ResultController.jsx';
 import Login from './login/Login.js';
 //import NewAccount from './systemadmin/NewAccount.js';
 import DiagnosisController from './viewDiagnosis/DiagnosisController.jsx';
+//import ResultController from './results/ResultController.jsx';
+//import Login from './login/Login.js';
+import NewAccount from './systemadmin/NewAccount.js';
+
 
 export default function App() {
   
@@ -45,6 +49,9 @@ export default function App() {
           <li>
             <Link to="/topics">Topics</Link>
           </li>
+          <li>
+            <Link to="/topics">Topics</Link>
+          </li>
         </ul>
 
         <Switch>
@@ -56,6 +63,9 @@ export default function App() {
           </Route>
           <Route path="/viewDiagnosis">
             <DiagnosisController userType={'doctor'}/>
+            </Route>
+          <Route path="/newaccount">
+            <NewAccount />
           </Route>
           <Route path="/topics">
             <Topics />
