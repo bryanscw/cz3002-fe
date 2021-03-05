@@ -16,11 +16,27 @@ const diagnosisReducer = createApiReducer(ENTITY_NAME, "id");
 export default diagnosisReducer;
 
 // OPERATIONS
+export const fetchDiagnosis = (diagnosis) => (dispatch, getState) => {
+  dispatch(createApiAction(ENTITY_NAME, STATUSES.REQUEST, METHODS.LIST));
+
+  return axios
+    .post(`${API_URL}/diagnosis/1`, diagnosis, getTokenConfig(getState))
+    .then((res) => {
+      dispatch(
+        createApiAction(ENTITY_NAME, STATUSES.SUCCESS, METHODS.LIST, res.data)
+      );
+    })
+    .catch((err) => {
+      displayError("Unable to get diagonosis")(dispatch);
+      dispatch(createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.LIST));
+    });
+};
+
 export const createDiagnosis = (diagnosis) => (dispatch, getState) => {
   dispatch(createApiAction(ENTITY_NAME, STATUSES.REQUEST, METHODS.CREATE));
 
   return axios
-    .post(`${API_URL}/diagnosis/create/1`, diagnosis, getTokenConfig(getState))
+    .post(`${API_URL}/diagnosis/create/${diagnosis.resultId}`, diagnosis, getTokenConfig(getState))
     .then((res) => {
       dispatch(
         createApiAction(ENTITY_NAME, STATUSES.SUCCESS, METHODS.CREATE, res.data)
@@ -55,9 +71,9 @@ export const deleteDiagnosis = (diagnosis) => (dispatch, getState) => {
 
 export const updateDiagnosis = (diagnosis) => (dispatch, getState) => {
   dispatch(createApiAction(ENTITY_NAME, STATUSES.REQUEST, METHODS.UPDATE));
-
+console.log(diagnosis);
   return axios
-    .get(`${API_URL}/update/1`, getTokenConfig(getState))
+    .post(`${API_URL}/update/${diagnosis.id}`,diagnosis, getTokenConfig(getState))
     .then((res) => {
       dispatch(
         createApiAction(ENTITY_NAME, STATUSES.SUCCESS, METHODS.UPDATE, res.data)

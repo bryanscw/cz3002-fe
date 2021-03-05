@@ -14,10 +14,11 @@ import store from "./redux/store";
 import ResultController from './results/ResultController.jsx';
 import Login from './login/Login.js';
 //import NewAccount from './systemadmin/NewAccount.js';
-import DiagnosisController from './viewDiagnosis/DiagnosisController.jsx';
-//import ResultController from './results/ResultController.jsx';
-//import Login from './login/Login.js';
+import ViewDiagnosisDoc from './viewDiagnosis/ViewDiagnosisDoc.js';
+
 import NewAccount from './systemadmin/NewAccount.js';
+import SubmitDiagnosis from './viewDiagnosis/SubmitDiagnosis.js'
+import editDiagnosis from './viewDiagnosis/editDiagnosis.js'
 
 
 export default function App() {
@@ -62,7 +63,7 @@ export default function App() {
             <Login />
           </Route>
           <Route path="/viewDiagnosis">
-            <DiagnosisController userType={'doctor'}/>
+            <ViewDiagnosisDoc/>
             </Route>
           <Route path="/newaccount">
             <NewAccount />
@@ -70,6 +71,8 @@ export default function App() {
           <Route path="/topics">
             <Topics />
           </Route>
+          <Route path= "/SubmitDiagnosis" component={SubmitDiagnosis}></Route>
+                <Route path= "/editDiagnosis/:id" component={editDiagnosis}></Route>
           <Route path="/">
             <Home />
           </Route>

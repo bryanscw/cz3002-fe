@@ -4,10 +4,8 @@ import { connect } from "react-redux";
 import { createDiagnosis } from "../redux/ducks/diagnosis";
 import { Button, CssBaseline, TextField, Container } from "@material-ui/core";
 //import { Link } from "react-router-dom";
-//import "./SystemAdmin.css";
-
 //import {createDiagnosis} from "../redux/ducks/diagnosis";
-
+import "./Diagnosis.css";
 class SubmitDiagnosis extends Component {
   constructor(props) {
     super(props);
@@ -15,12 +13,12 @@ class SubmitDiagnosis extends Component {
     this.state = {
       // id: this.props.match.params.id,
       //username: null,
-      id : 1,
+      id : 0,
       createdBy : null,
       createdDate : null,
       lastModifiedBy : null,
       lastModifiedDate : null,
-      result : null,
+      resultId : this.props.match.params.resultId,
       doctor : null,
       label : null,
       description : null
@@ -59,8 +57,16 @@ class SubmitDiagnosis extends Component {
   handleSubmit(event) {
     console.log("form was submitted");
     event.preventDefault();
+    let doctor = localStorage.getItem("doctor");
+    this.setState({
+      doctor:doctor,
+      createdDate:new Date(),
+      createdBy:doctor
+    })
+    console.log(this.state);
+
     this.props.createDiagnosis(this.state);
-      
+    this.props.history.push("/ViewDiagnosisDoc");
    
   }
 
