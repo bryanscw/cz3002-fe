@@ -2,29 +2,63 @@ import React, { useState } from "react";
 import Button from "@material-ui/core/Button";
 import { FormGroup, FormControl, FormLabel } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
+//import { useDispatch } from "react-redux";
 import "./Login.css";
-import users from "../redux/ducks/users";
-
-
+import { authenticateLogin } from '../redux/ducks/auth';
 
 export default function Login() {
+
+
+  
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const history = useHistory();
+  //const dispatch = useDispatch();
+
 
   function validateForm() {
     return email.length > 0 && password.length > 0;
   }
- 
+
   async function handleSubmit(event) {
     event.preventDefault();
+     // this.setState({submitted:true});
     try {
-      await users.login(email, password);
+      await (authenticateLogin({username: email, password: password}));
       history.push("/App");
     } catch (e) {
       alert(e.message);
     }
   }
+ 
+//   function handleSubmit(username,password) {
+//     return dispatch => {
+//       //dispatch(({ username }));
+
+//       authenticateLogin.login(username, password)
+//           .then(
+//               user => { 
+//                   dispatch(authenticateLogin({username: email, password: password}));
+//                   history.push('/App');
+//               },
+//               error => {
+//                 alert();
+//               }
+//           );
+//   };
+ 
+// }
+
+//     return dispatch =>{
+//      event.preventDefault();
+//     try {
+//       dispatch(authenticateLogin({username: email, password: password}));
+//       history.push("/App");
+//     } catch (e) {
+//       alert(e.message);
+//     }
+//   }
+// }
 
   return (
     <div className="main">
