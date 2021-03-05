@@ -3,7 +3,7 @@ import { Button, CssBaseline, TextField, Container } from "@material-ui/core";
 import { authenticateLogin } from "../redux/ducks/auth";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import "./Login.css";
+//import "./Login.css";
 
 class LoginPage extends Component {
   state = {
@@ -30,7 +30,7 @@ render() {
       <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className="login-form">
-        <h3>Login</h3>
+        <h1>Login</h1>
         <form
           noValidate
           onSubmit={this.handleSubmit}
@@ -48,7 +48,7 @@ render() {
             name="username"
             autoComplete="username"
             autoFocus
-            style={{height:25, width:200, marginLeft:55}}
+            //style={{height:25, width:200, marginLeft:55}}
           />
           <TextField
             data-testid="passwordField"
@@ -63,7 +63,7 @@ render() {
             type="password"
             id="password"
             autoComplete="current-password"
-            style={{height:25, width:200, marginLeft:55}}
+            //style={{height:25, width:200, marginLeft:55}}
           />
           <Button
             data-testid="loginButton"
@@ -71,7 +71,7 @@ render() {
             fullWidth
             variant="contained"
             color="secondary"
-            style={{ marginLeft: 120, marginTop: 10 }}
+            style={{  marginTop: 20 }}
           >Login</Button>
         
         </form>
