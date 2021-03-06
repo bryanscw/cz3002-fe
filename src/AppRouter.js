@@ -10,7 +10,7 @@ import {
   selectUser,
   selectRefreshToken
 } from "./redux/ducks/auth";
-import LoginPage from './login/Login copy2.js';
+import LoginPage from './login/Login.js';
 import ResultController from './results/ResultController.jsx';
 import NewAccount from './systemadmin/NewAccount.js';
 
@@ -27,8 +27,8 @@ class AppRouter extends Component {
       <Route key="LoginPage" path="/login" exact component={LoginPage} />,
       <Route key="NewAccount" path="/newaccount" exact component={NewAccount} />,
       <Route key="Topics" path="/topics" exact component={Topics} />,
-      <Route key="Home" path="/" exact component={Home} />,
-      <Redirect key="LoginRedirect" from="/" exact to="/newaccount" />,
+      //<Route key="Home" path="/" exact component={Home} />,
+      <Redirect key="LoginRedirect" from="/" exact to="/login" />,
 
       <Route key="ResultController" path="/results" exact component={ResultController} />,
       
