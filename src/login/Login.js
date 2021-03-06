@@ -1,10 +1,9 @@
 import React, { Component } from "react";
-import { Button, CssBaseline, TextField, Container } from "@material-ui/core";
+import { Button, CssBaseline, TextField, Container, Typography } from "@material-ui/core";
 import { authenticateLogin } from "../redux/ducks/auth";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import ResultController from '../results/ResultController.jsx';
-import {Route} from "react-router-dom";
+
 
 //import "./Login.css";
 
@@ -25,7 +24,7 @@ class LoginPage extends Component {
 
     try {
       this.props.authenticateLogin(this.state);
-      this.props.history.push('/results');
+      this.props.history.push('/systemadmin');
     } catch (e) {
       alert(e.message);
     }
@@ -35,14 +34,13 @@ class LoginPage extends Component {
 render() {
   const { username, password } = this.state;
   
-  <Route key="ResultController" path="/results" exact component={ResultController} />
-
-  return (
+   return (
     <div className="main" data-test="loginContainer">
-      <Container component="main" maxWidth="xs">
+      <Container component="main" maxWidth="xs" align="center"  style={{  marginTop: 150 }} >
       <CssBaseline />
       <div className="login-form">
-        <h3>Login</h3>
+      <Typography variant="h3" style={{  marginBottom: 20 }}>Login</Typography>
+       
         <form
           noValidate
           onSubmit={this.handleSubmit}

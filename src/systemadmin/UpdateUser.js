@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { createUser } from "../redux/ducks/users";
+import { updateUser } from "../redux/ducks/users";
 import { Button, CssBaseline, TextField, Container, Typography } from "@material-ui/core";
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 
 
-class NewAccount extends Component {
+class UpdateUser extends Component {
   constructor(props) {
     super(props);
 
@@ -37,9 +37,9 @@ class NewAccount extends Component {
       );
   }
 
-  createData = () => {
+  updateData = () => {
     console.log(this.state);
-    this.props.createUser(this.state);
+    this.props.updateUser(this.state);
 
   }
 
@@ -50,14 +50,14 @@ class NewAccount extends Component {
     const { email, role, name, dob, gender } = this.state;
 
     return (
-      <div className="main" data-test="newuserContainer">
-      <Container component="main" maxWidth="xs" align="center"  style={{  marginTop: 130 }} >
-         <CssBaseline />
-         <div className="newuser-form">
-         <Typography variant="h3" style={{  marginBottom: 20 }}>Create User</Typography>
-                  <form
+      <div className="main" data-test="updateContainer">
+   <Container component="main" maxWidth="xs" align="center"  style={{  marginTop: 130 }} >
+      <CssBaseline />
+      <div className="update-form">
+      <Typography variant="h3" style={{  marginBottom: 20 }}>Update User</Typography>
+            <form
               noValidate
-              onSubmit={this.createData}
+              onSubmit={this.updateData}
             >
               <TextField
                 data-testid="emailField"
@@ -126,7 +126,6 @@ class NewAccount extends Component {
                 variant="outlined"
                 margin="normal"
                 fullWidth
-                required
                 name="gender"
                 label="Gender"
                 type="gender"
@@ -135,13 +134,13 @@ class NewAccount extends Component {
               //style={{height:25, width:200, marginLeft:55}}
               />
               <Button
-                data-testid="createUserButton"
+                data-testid="loginButton"
                 type="submit"
                 fullWidth
                 variant="contained"
                 color="secondary"
                 style={{ marginTop: 20, height: 50 }}
-              >Create!</Button>
+              >Update!</Button>
 
             </form>
           </div>
@@ -152,13 +151,13 @@ class NewAccount extends Component {
 
 
 }
-NewAccount.propTypes = {
+UpdateUser.propTypes = {
   /** An action creator for authenticating login */
-  createUser: PropTypes.func.isRequired
+  updateUser: PropTypes.func.isRequired
 };
 
 const dispatchers = {
-  createUser
+  updateUser
 };
 
-export default connect(() => ({}), dispatchers)(NewAccount);
+export default connect(() => ({}), dispatchers)(UpdateUser);

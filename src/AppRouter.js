@@ -13,6 +13,8 @@ import {
 import LoginPage from './login/Login.js';
 import ResultController from './results/ResultController.jsx';
 import NewAccount from './systemadmin/NewAccount.js';
+import UpdateUser from './systemadmin/UpdateUser.js';
+import SystemAdmin from './systemadmin/SystemAdmin.js';
 
 /** This component handles the routing for the app */
 class AppRouter extends Component {
@@ -27,6 +29,9 @@ class AppRouter extends Component {
       <Route key="LoginPage" path="/login" exact component={LoginPage} />,
       <Redirect key="LoginRedirect" from="/" exact to="/login" />,
       <Route key="NewAccount" path="/newaccount" exact component={NewAccount} />,
+      <Route key="UpdateUser" path="/updateuser" exact component={UpdateUser} />,
+      
+      <Route key="SystemAdmin" path="/systemadmin" exact component={SystemAdmin} />,
       <Route key="Topics" path="/topics" exact component={Topics} />,
       //<Route key="Home" path="/" exact component={Home} />,
    
@@ -48,6 +53,12 @@ class AppRouter extends Component {
           </Route>
           <Route path="/newaccount">
             <NewAccount />
+          </Route>
+          <Route path="/systemadmin">
+            <SystemAdmin />
+          </Route>
+          <Route path="/updateuser">
+            <UpdateUser />
           </Route>
           <Route path="/topics">
             <Topics />
@@ -73,6 +84,9 @@ function Home() {
           </li>
           <li>
             <Link to="/newaccount">NewAccount</Link>
+          </li>
+          <li>
+            <Link to="/updateuser">UpdateUser</Link>
           </li>
           <li>
             <Link to="/results">Results</Link>
