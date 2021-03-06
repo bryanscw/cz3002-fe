@@ -25,12 +25,12 @@ class AppRouter extends Component {
   render() {
     let routes = [
       <Route key="LoginPage" path="/login" exact component={LoginPage} />,
+      <Redirect key="LoginRedirect" from="/" exact to="/login" />,
       <Route key="NewAccount" path="/newaccount" exact component={NewAccount} />,
       <Route key="Topics" path="/topics" exact component={Topics} />,
       //<Route key="Home" path="/" exact component={Home} />,
-      <Redirect key="LoginRedirect" from="/" exact to="/login" />,
-
-      <Route key="ResultController" path="/results" exact component={ResultController} />,
+   
+     <Route key="ResultController" path="/results" exact component={ResultController} />,
       
     ];
 
