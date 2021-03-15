@@ -29,11 +29,11 @@ export default function (state = initialState, action) {
       const { access_token, refresh_token, expires_in } = action.payload;
 
       const currentTime = getCurrentTime();
-
       localStorage.setItem("access_token", access_token);
       localStorage.setItem("refresh_token", refresh_token);
       localStorage.setItem("expires_in", expires_in);
       localStorage.setItem("time_token_acquired", currentTime);
+   
 
       return {
         ...state,
