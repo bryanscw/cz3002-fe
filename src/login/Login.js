@@ -51,7 +51,7 @@ class LoginPage extends Component {
     e.preventDefault();
     try {   
       this.props.authenticateLogin(this.state);
-      window.alert(this.state);
+      console.log(this.state);
       localStorage.setItem("role", (this.state));
       this.checkrole();
     }

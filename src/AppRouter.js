@@ -22,7 +22,7 @@ import Main from "./Main.js";
 class AppRouter extends Component {
     componentDidMount() {
         const { refresh_token, refreshTokenLogin } = this.props;
- 
+
         if (refresh_token) refreshTokenLogin(refresh_token);
     }
 
@@ -57,17 +57,17 @@ function Topic() {
 
 AppRouter.propTypes = {
     refresh_token: PropTypes.string,
-    // userLoading: PropTypes.bool.isRequired,
-    // userFailed: PropTypes.bool,
-    // user: PropTypes.object,
+    userLoading: PropTypes.bool.isRequired,
+    userFailed: PropTypes.bool,
+    user: PropTypes.object,
     refreshTokenLogin: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => ({
-    // userLoading: selectUserLoading(state),
-    // userFailed: selectUserFailed(state),
-    // user: selectUser(state),
-     refresh_token: selectRefreshToken(state)
+    userLoading: selectUserLoading(state),
+    userFailed: selectUserFailed(state),
+    user: selectUser(state),
+    refresh_token: selectRefreshToken(state)
 });
 
 const dispatchers = {
