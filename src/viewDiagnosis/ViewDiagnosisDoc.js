@@ -7,15 +7,15 @@ import {
     useParams
 } from "react-router-dom";
 import React, { Component } from "react";
-import Button from "@material-ui/core/Button";
 import { Link as RouterLink } from "react-router-dom";
 import "./Diagnosis.css";
 import {fetchDiagnosis} from "../redux/ducks/diagnosis";
 import {deleteDiagnosis} from "../redux/ducks/diagnosis";
 import { withRouter } from "react-router-dom";
-
+import Moment from 'moment';
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import { Button , Paper, Form, Typography } from "@material-ui/core";
 // const history = useHistory();
 class ViewDiagnosisDoc extends Component {
   constructor(props) {
@@ -23,7 +23,7 @@ class ViewDiagnosisDoc extends Component {
     this.state = {
       // id: this.props.match.params.id,
       //username: null,
-    
+     id :null,
       createdBy : null,
       createdDate : null,
       lastModifiedBy : null,
@@ -39,98 +39,132 @@ class ViewDiagnosisDoc extends Component {
   }
   
   componentDidMount(){
-    this.props.fetchDiagnosis(this.state).then(data =>{
-      if(data){
+    this.props.fetchDiagnosis(this.state).then(resp =>{
+      if(resp){
+        let data = resp.data;
         this.setState({
+          
           id:data.id,
           createdBy: data['createdBy'],
-        createdDate: data['createdDate'],
+        createdDate: Moment(data['createdDate']).format('DD-MM-YYYY'),
         lastModifiedBy: data['lastModifiedBy'],
-        lastModifiedDate: data['lastModifiedDate'],
+        lastModifiedDate: Moment(data['lastModifiedDate']).format('DD-MM-YYYY'),
         doctor: data['doctor'],
         label: data['label'],
         description: data['description'], 
+
       });
+      this.forceUpdate();
+     
       }else {
-        this.setState({id:2,
-          createdBy: 0,
-        createdDate: 0,
-        lastModifiedBy: 0,
-        lastModifiedDate: 0,
-        doctor: 0,
-        label: 0,
-        description: 0, 
+       // this.forceUpdate();
+       
+        this.setState({
+          id:null,
+          createdBy: "not available " ,
+        createdDate: "not available ",
+        lastModifiedBy: "not available ",
+        lastModifiedDate: "not available ",
+        doctor: "not available ",
+        label: "not available ",
+        description: "not available ", 
       });
       this.forceUpdate();
       }
-     
-    }) //disable button for edit if user logs in ,disable submit if there exits data , if no data display no data found (edit form).
+     // this.forceUpdate();
+      
+    }) 
   }
 
+ 
   deleteData = () =>{
 
+  //  window.location.reload(false);
+    
     this.props.deleteDiagnosis(this.state)
-    this.props.history.push("/ViewDiagnosisDoc");
-
+    this.setState({id :null});
+   // this.forceUpdate();
+    //this.props.history.push("/viewDiagnosis");
+    window.location.reload();
+  // window.location.reload(false);
+  
   }
   goPage = (page) => {
     this.props.history.push(page);
   }
 
+  getDate = (date) => {
+    return date.split(' ')[0]
+   }
+
  
   render() {
 
      console.log(this.state);
-    //  let isDoctor = localStorage.getItem("role") == "doctor";
+  //   const role = getUser().role
+  //const role = fetchMe().role
+   //  let role= getUser.role;
+   //console.log(role);
+  // let isDoctor = role== "ROLE_DOCTOR";
     let isDoctor = true;
+  
+    let isDiagnosisExist =  this.state.id;
      return (
          //    let match = useRouteMatch();
         <Router>
           <div className="wrapper">
                 <h1>Diagnosis</h1>
               
-                <form>
-                  <fieldset>
+                <form >
+                <Paper style={{ padding: 16 }}>
+                  
                       <label>
-                          <p>CreatedBy:</p>
-                          <div>{this.state.createdBy}</div>
+                          <p>CreatedBy :  {this.state.createdBy}</p>
+                        
                       </label>
                       <label>
-                          <p>Date:</p>
-                          <div >{this.state.createdDate}</div>
+                          <p>CreatedDate :{this.state.createdDate}</p>
+                        
                       </label>
                       <label>
-                          <p>Category : </p>
-                          <div value={this.state['label']} ></div>
+                          <p>Category :   {this.state.label}  </p>
                       </label>
                       <label>
-                          <p>Comments :</p>
-                          <div value={this.state['description']} ></div>
+                          <p>Comments :   {this.state.description} </p>
+                         
                       </label>
                       <label>
-                          <p>last modified by:</p>
-                          <div value={this.state['lastModifiedBy']} ></div>
+                          <p>last modified by:{this.state.lastModifiedBy} </p>
+                      
                       </label>
                       <label>
-                          <p>last modified date:</p>
-                          <div value={this.state['lastModifiedDate']} ></div>
+                          <p>last modified date:{this.state.lastModifiedDate}</p>
+                       
                       </label>
-                  </fieldset>
+                 
+                  </Paper>
                 </form>
               </div>
                   <div>
             <ul>
             {isDoctor ? 
             <div>
-             <button onClick={() => this.goPage("/SubmitDiagnosis")}>Submit NEW Diagnosis</button>
-             <button onClick={() => this.goPage(`/editDiagnosis/${this.state.id}`)}>edit Diagnosis</button>
-             <button onClick={() => this.deleteData()}> Delete</button>
+             {!isDiagnosisExist ?
+                 <Button variant="contained" color="primary" onClick={() => this.goPage("/SubmitDiagnosis")}>Submit New Diagnosis</Button>
+                :null}
+            
+                 {isDiagnosisExist ?
+                   <div><Button variant="contained" color="primary" onClick={() => this.goPage(`/editDiagnosis/1`)}>edit Diagnosis</Button>
+                   <Button variant="contained" color="primary" onClick={() => this.deleteData()}> Delete</Button></div>
+                   :null}
              </div>
             : null}
             
             </ul>
             {/* <Switch>
-               
+                {!isDiagnosisExist ?
+                <button onClick={() => this.goPage("/SubmitDiagnosis")}>Submit NEW Diagnosis</button>
+              :null}
             </Switch> */}
         </div>
                     

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { updateDiagnosis } from "../redux/ducks/diagnosis";
-import { Button, CssBaseline, TextField, Container } from "@material-ui/core";
+import { Button, Select, Paper, Container } from "@material-ui/core";
 //import { Link } from "react-router-dom";
 //import {createDiagnosis} from "../redux/ducks/diagnosis";
 import "./Diagnosis.css";
@@ -10,10 +10,14 @@ class editDiagnosis extends Component {
   constructor(props) {
     super(props);
 
+    var today = new Date(),
+    date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+
     this.state = {
       id: this.props.match.params.id,
       //username: null,
-      // id : 1,
+     // id : 1,
+      //id:null,
       createdBy : null,
       createdDate : null,
       lastModifiedBy : null,
@@ -42,18 +46,12 @@ class editDiagnosis extends Component {
   }
 
   updateData = () => {
-    /*delete this.state.user
-    var itemdetails = this.state
-    var updates = {}
-    updates['/items/'] = itemdetails
-    //  updated
-    this.setState({snackbar: true})
-
-    return users.database().ref().update(updates)*/
+    
     let doctor = localStorage.getItem("doctor");
     console.log(this.state);
 
     this.props.updateDiagnosis(this.state);
+    this.props.history.push("/viewDiagnosis");
       
   }
 
@@ -66,24 +64,26 @@ class editDiagnosis extends Component {
     <div className="wrapper">
       <h1>Diagnosis</h1>
      
-        <fieldset>
+        <Paper style={{ padding: 16 }}> 
            
 
             <label>
                 <p>Category : </p>
-                <select name="label"  onChange={this.handleInputChange("label")}>
+                <Select name="label"  onChange={this.handleInputChange("label")}>
                     <option value="">--Please choose an option--</option>
                     <option value="moderate">moderate</option>
                     <option value="High">High</option>
                     <option value="Low">Low</option>
-                </select>
+                </Select>
             </label>
             <label>
                 <p>Comments :</p>
                 <textarea name="description"  onChange={this.handleInputChange("description")} />
             </label>
-        </fieldset>
-       <button disabled={!this.validateForm()} onClick={() => this.updateData()}>Submit</button>
+        </Paper>
+        <p>
+          <Button variant="contained" color="primary" disabled={!this.validateForm()} onClick={() => this.updateData()}>Submit</Button>
+        </p>
     </div>
   );
 }

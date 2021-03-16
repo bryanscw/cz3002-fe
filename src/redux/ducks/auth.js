@@ -39,6 +39,8 @@ export default function (state = initialState, action) {
       localStorage.setItem("expires_in", expires_in);
       localStorage.setItem("time_token_acquired", currentTime);
 
+      
+
       return {
         ...state,
         access_token: access_token,
@@ -126,6 +128,7 @@ export function fetchMeFailureAction() {
 
 // OPERATIONS
 export const authenticateLogin = userData => dispatch => {
+
   var formdata = new FormData();
   formdata.append("username", userData.username);
   formdata.append("password", userData.password);

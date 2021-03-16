@@ -2,18 +2,20 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { createDiagnosis } from "../redux/ducks/diagnosis";
-import { Button, CssBaseline, TextField, Container } from "@material-ui/core";
+
+import { Button, Select, Paper, Container } from "@material-ui/core";
 //import { Link } from "react-router-dom";
 //import {createDiagnosis} from "../redux/ducks/diagnosis";
 import "./Diagnosis.css";
 class SubmitDiagnosis extends Component {
   constructor(props) {
     super(props);
-
+    var today = new Date(),
+    date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
     this.state = {
-      // id: this.props.match.params.id,
+     // id: this.props.match.params.id,
       //username: null,
-      id : 0,
+      id : 1,
       createdBy : null,
       createdDate : null,
       lastModifiedBy : null,
@@ -66,7 +68,8 @@ class SubmitDiagnosis extends Component {
     console.log(this.state);
 
     this.props.createDiagnosis(this.state);
-    this.props.history.push("/ViewDiagnosisDoc");
+    this.props.history.push("/viewDiagnosis");
+    window.location.reload(false);
    
   }
 
@@ -76,24 +79,25 @@ class SubmitDiagnosis extends Component {
       <h1>Diagnosis</h1>
      
       <form onSubmit={this.handleSubmit}>
-        <fieldset>
-           
-
-            <label>
-                <p>Category : </p>
-                <select name="label"  onChange={this.handleInputChange}>
-                    <option value="">--Please choose an option--</option>
-                    <option value="moderate">moderate</option>
-                    <option value="High">High</option>
-                    <option value="Low">Low</option>
-                </select>
-            </label>
-            <label>
-                <p>Comments :</p>
-                <textarea name="description"  onChange={this.handleInputChange} />
-            </label>
-        </fieldset>
-       <button type="submit"  disabled={!this.validateForm()}>Submit</button>
+        <Paper style={{ padding: 16 }}>
+              <label>
+                  <p>Category : </p>
+                  <Select  name="label"  onChange={this.handleInputChange}>
+                      <option value="">--Please choose an option--</option>
+                      <option value="moderate">moderate</option>
+                      <option value="High">High</option>
+                      <option value="Low">Low</option>
+                  </Select>
+              </label>
+              <label>
+                  <p>Comments :</p>
+                  <textarea name="description"  onChange={this.handleInputChange} />
+              </label>
+        
+        </Paper>
+        <p>
+          <Button variant="contained" color="primary" type="submit"  disabled={!this.validateForm()}>Submit</Button>
+        </p>
       </form>
     </div>
   );

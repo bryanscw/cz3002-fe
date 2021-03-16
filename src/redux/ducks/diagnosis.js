@@ -9,6 +9,7 @@ import { API_URL } from "../../utils/constants";
 import { displayError } from "./errors";
 import { getTokenConfig } from "./authHelper";
 
+
 const ENTITY_NAME = "diagnosis";
 
 // REDUCER
@@ -18,13 +19,16 @@ export default diagnosisReducer;
 // OPERATIONS
 export const fetchDiagnosis = (diagnosis) => (dispatch, getState) => {
   dispatch(createApiAction(ENTITY_NAME, STATUSES.REQUEST, METHODS.LIST));
-
+let access_token = localStorage.getItem("access_token");
   return axios
-    .post(`${API_URL}/diagnosis/1`, diagnosis, getTokenConfig(getState))
+    .post(`${API_URL}/diagnosis/1`, {}, getTokenConfig(getState))
+    // .post(`${API_URL}/users/me/`, {},
+    // getTokenConfig)
     .then((res) => {
       dispatch(
         createApiAction(ENTITY_NAME, STATUSES.SUCCESS, METHODS.LIST, res.data)
       );
+      return res;
     })
     .catch((err) => {
       displayError("Unable to get diagonosis")(dispatch);
@@ -34,9 +38,11 @@ export const fetchDiagnosis = (diagnosis) => (dispatch, getState) => {
 
 export const createDiagnosis = (diagnosis) => (dispatch, getState) => {
   dispatch(createApiAction(ENTITY_NAME, STATUSES.REQUEST, METHODS.CREATE));
-
+  diagnosis.id = null;
+  diagnosis.createdDate = null;
   return axios
-    .post(`${API_URL}/diagnosis/create/${diagnosis.resultId}`, diagnosis, getTokenConfig(getState))
+    // .post(`${API_URL}/diagnosis/create/${diagnosis.resultId}`, diagnosis, getTokenConfig(getState))
+    .post(`${API_URL}/diagnosis/create/1`, diagnosis, getTokenConfig(getState))
     .then((res) => {
       dispatch(
         createApiAction(ENTITY_NAME, STATUSES.SUCCESS, METHODS.CREATE, res.data)
@@ -52,7 +58,7 @@ export const deleteDiagnosis = (diagnosis) => (dispatch, getState) => {
   dispatch(createApiAction(ENTITY_NAME, STATUSES.REQUEST, METHODS.DELETE));
 
   return axios
-    .delete(`${API_URL}/diagnosis/${diagnosis.id}`, getTokenConfig(getState))
+    .delete(`${API_URL}/diagnosis/delete/${diagnosis.id}`, getTokenConfig(getState))
     .then((res) => {
       dispatch(
         createApiAction(
@@ -73,7 +79,7 @@ export const updateDiagnosis = (diagnosis) => (dispatch, getState) => {
   dispatch(createApiAction(ENTITY_NAME, STATUSES.REQUEST, METHODS.UPDATE));
 console.log(diagnosis);
   return axios
-    .post(`${API_URL}/update/${diagnosis.id}`,diagnosis, getTokenConfig(getState))
+    .post(`${API_URL}/diagnosis/update/${diagnosis.id}`,diagnosis, getTokenConfig(getState))
     .then((res) => {
       dispatch(
         createApiAction(ENTITY_NAME, STATUSES.SUCCESS, METHODS.UPDATE, res.data)
