@@ -1,28 +1,28 @@
 import React, { Component } from "react";
 import { Button, CssBaseline, TextField, Container, Typography } from "@material-ui/core";
+
 import { authenticateLogin, fetchMe } from "../redux/ducks/auth";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-//import { getRoles } from "@testing-library/dom";
-
-
-//import "./Login.css";
 
 
 class LoginPage extends Component {
 
+
   state = {
     username: "",
     password: "",
-    doctor: null,
-    user: null,
-    admin: null
+    // role: null,
+    // user: null,
+    // admin: null
   };
 
 
-  handleInputChange = input => e => {
-    this.setState({ [input]: e.target.value })
-  }
+  handleChange = (e) => {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  };
 
   validateForm() {
     if (
@@ -39,13 +39,36 @@ class LoginPage extends Component {
       );
   };
 
-  checkrole() {
-   let a = localStorage.getItem("role");
-    console.log(a);
-    if (a === "ROLE_ADMIN") 
-      return this.props.history.push('/systemadmin');
-    else return this.props.history.push('/main');
-  };
+  // fetchUser(){
+  //   let user = this.props.fetchMe(this.state);
+  //   let a = localStorage.fetchMe("role");
+
+
+  // };
+
+
+  // redirectTo() {
+  //   switch (user.role) {
+  //     case USER_ROLE.ADMIN:
+  //       return this.props.history.push('/systemadmin');
+  //       break;
+  //     case USER_ROLE.patient:
+  //       return this.props.history.push('/main');
+  //       break;
+  //     case USER_ROLE.doctor:
+  //       return this.props.history.push('/main');
+  //       break;
+  //     default:
+  //       return this.props.history.push('/main');
+  //       break;
+
+  //   }
+  // };
+
+  //   if (a === "ROLE_ADMIN") {
+  //     return this.props.history.push('/systemadmin'); }
+  //   else { return this.props.history.push('/main'); }
+  // };
 
   handleSubmit = (e) => {
     e.preventDefault();
@@ -59,7 +82,6 @@ class LoginPage extends Component {
       alert("Invalid Credentials");
     }
   };
-
   render() {
     const { username, password } = this.state;
 
@@ -73,7 +95,7 @@ class LoginPage extends Component {
             <form>
               <TextField
                 data-testid="usernameField"
-                onChange={this.handleInputChange("username")}
+                onChange={this.handleChange}
                 defaultValue={username}
                 variant="outlined"
                 margin="normal"
@@ -88,7 +110,7 @@ class LoginPage extends Component {
               />
               <TextField
                 data-testid="passwordField"
-                onChange={this.handleInputChange("password")}
+                onChange={this.handleChange}
                 defaultValue={password}
                 variant="outlined"
                 margin="normal"
@@ -122,15 +144,15 @@ class LoginPage extends Component {
 LoginPage.propTypes = {
   /** An action creator for authenticating login */
   authenticateLogin: PropTypes.func.isRequired,
-  fetchMe: PropTypes.func.isRequired
+  fetchMe: PropTypes.func.isRequired,
+
   /** An object used for styling */
 };
+
 
 const dispatchers = {
   authenticateLogin,
   fetchMe
 };
 
-
-
-export default connect(() => ({}), dispatchers)(LoginPage);
+export default connect(() => dispatchers)(LoginPage);

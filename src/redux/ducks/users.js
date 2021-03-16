@@ -16,11 +16,11 @@ const usersReducer = createApiReducer(ENTITY_NAME, "email");
 export default usersReducer;
 
 // OPERATIONS
-export const fetchUser = (users) => (dispatch, getState) => {
+export const fetchUser = (user) => (dispatch, getState) => {
   dispatch(createApiAction(ENTITY_NAME, STATUSES.REQUEST, METHODS.RETRIEVE));
 
   return axios
-    .post(`${API_URL}/users/1`, users, getTokenConfig(getState))
+    .post(`${API_URL}/users/${user.email}`, user, getTokenConfig(getState))
     .then((res) => {
       dispatch(
         createApiAction(ENTITY_NAME, STATUSES.SUCCESS, METHODS.RETRIEVE, res.data)
