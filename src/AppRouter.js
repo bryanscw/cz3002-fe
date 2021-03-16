@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { BrowserRouter, Switch, Route, Redirect, useParams } from "react-router-dom";
 import { connect } from "react-redux";
+
 import {
     refreshTokenLogin,
     selectUserLoading,
@@ -17,7 +18,6 @@ import SystemAdmin from './systemadmin/SystemAdmin.js';
 import Login from './login/Login.js';
 import Main from "./Main.js";
 
-
 /** This component handles the routing for the app */
 class AppRouter extends Component {
     componentDidMount() {
@@ -26,26 +26,7 @@ class AppRouter extends Component {
         if (refresh_token) refreshTokenLogin(refresh_token);
     }
 
-    // redirectTo() {
-    //     switch (user.role) {
-    //         case USER_ROLE.ADMIN:
-    //             return this.props.history.push('/systemadmin');
-    //             break;
-    //         case USER_ROLE.patient:
-    //             return this.props.history.push('/main');
-    //             break;
-    //         case USER_ROLE.doctor:
-    //             return this.props.history.push('/main');
-    //             break;
-    //         default:
-    //             return this.props.history.push('/main');
-    //             break;
-
-    //     }
-    // };
-
     render() {
-
         let routes = [
             <Route key="LoginPage" path="/LOGIN" exact component={Login} />,
             <Redirect key="LoginRedirect" from="/" exact to="/LOGIN" />,
@@ -56,14 +37,13 @@ class AppRouter extends Component {
             <Route key="RESULT" path="/RESULT" exact component={ResultController} />,
             <Route key="GAME" path="/GAME" exact component={Game} />,
             <Route key="MAIN" path="/MAIN" exact component={Main} />,
-        ];
+            ];
 
         return (
             <BrowserRouter>
                 <Switch>
                     {routes}
                     <Redirect from="/" to="/not-found" />
-
                 </Switch>
             </BrowserRouter >
         );
@@ -73,7 +53,7 @@ class AppRouter extends Component {
 function Topic() {
     let { topicId } = useParams();
     return <h3>Requested topic ID: {topicId}</h3>;
-}
+  }
 
 AppRouter.propTypes = {
     refresh_token: PropTypes.string,
@@ -82,14 +62,6 @@ AppRouter.propTypes = {
     user: PropTypes.object,
     refreshTokenLogin: PropTypes.func.isRequired
 };
-
-// const {
-//     userLoading,
-//     userFailed,
-//     user,
-//     refresh_token
-// } = this.props;
-
 
 const mapStateToProps = (state) => ({
     userLoading: selectUserLoading(state),
