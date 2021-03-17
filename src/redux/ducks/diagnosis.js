@@ -17,23 +17,26 @@ const diagnosisReducer = createApiReducer(ENTITY_NAME, "id");
 export default diagnosisReducer;
 
 // OPERATIONS
-export const fetchDiagnosis = (diagnosis) => (dispatch, getState) => {
-  dispatch(createApiAction(ENTITY_NAME, STATUSES.REQUEST, METHODS.LIST));
-let access_token = localStorage.getItem("access_token");
-  return axios
+export const fetchDiagnosis = () => (dispatch, getState) => {
+  dispatch(createApiAction(ENTITY_NAME, STATUSES.REQUEST, METHODS.RETRIEVE));
+//let access_token = localStorage.getItem("access_token");
+  return (
+     axios
     .post(`${API_URL}/diagnosis/1`, {}, getTokenConfig(getState))
-    // .post(`${API_URL}/users/me/`, {},
-    // getTokenConfig)
     .then((res) => {
       dispatch(
-        createApiAction(ENTITY_NAME, STATUSES.SUCCESS, METHODS.LIST, res.data)
+        createApiAction(ENTITY_NAME, STATUSES.SUCCESS, METHODS.RETRIEVE, res.data)
       );
-      return res;
+      // return res
     })
     .catch((err) => {
       displayError("Unable to get diagonosis")(dispatch);
-      dispatch(createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.LIST));
-    });
+      dispatch(createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.RETRIEVE));
+    })
+    
+  );
+
+    
 };
 
 export const createDiagnosis = (diagnosis) => (dispatch, getState) => {
@@ -77,7 +80,7 @@ export const deleteDiagnosis = (diagnosis) => (dispatch, getState) => {
 
 export const updateDiagnosis = (diagnosis) => (dispatch, getState) => {
   dispatch(createApiAction(ENTITY_NAME, STATUSES.REQUEST, METHODS.UPDATE));
-console.log(diagnosis);
+
   return axios
     .post(`${API_URL}/diagnosis/update/${diagnosis.id}`,diagnosis, getTokenConfig(getState))
     .then((res) => {
@@ -90,3 +93,7 @@ console.log(diagnosis);
       dispatch(createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.UPDATE));
     });
 };
+export const selectDiagnosisLoading = state => state.diagnosisReducer.isLoading[METHODS.RETRIEVE] === true;
+export const selectDiagnosisFailed = state => state.diagnosisReducer.isLoading[METHODS.RETRIEVE] === false && state.diagnosisReducer.hasFailed[METHODS.RETRIEVE] === true;
+export const selectDiagnosis = state => state.diagnosisReducer.item;
+

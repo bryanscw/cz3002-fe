@@ -15,7 +15,7 @@ class SubmitDiagnosis extends Component {
     this.state = {
      // id: this.props.match.params.id,
       //username: null,
-      id : 1,
+      id : null,
       createdBy : null,
       createdDate : null,
       lastModifiedBy : null,
