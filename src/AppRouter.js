@@ -15,15 +15,18 @@ import ResultController from './results/ResultController.jsx';
 import NewAccount from './systemadmin/NewAccount.js';
 import UpdateUser from './systemadmin/UpdateUser.js';
 import SystemAdmin from './systemadmin/SystemAdmin.js';
+import ViewDiagnosisDoc from './viewDiagnosis/ViewDiagnosisDoc.js';
+import SubmitDiagnosis from './viewDiagnosis/SubmitDiagnosis.js'
+import editDiagnosis from './viewDiagnosis/editDiagnosis.js'
 import Login from './login/Login.js';
 import Main from "./Main.js";
 
 /** This component handles the routing for the app */
 class AppRouter extends Component {
     componentDidMount() {
-        const { refresh_token, refreshTokenLogin } = this.props;
+        // const { refresh_token, refreshTokenLogin } = this.props;
 
-        if (refresh_token) refreshTokenLogin(refresh_token);
+        // if (refresh_token) refreshTokenLogin(refresh_token);
     }
 
     render() {
@@ -33,8 +36,11 @@ class AppRouter extends Component {
             <Route key="NewAccount" path="/NEWACCOUNT" exact component={NewAccount} />,
             <Route key="UpdateUser" path="/UPDATEUSER" exact component={UpdateUser} />,
             <Route key="SystemAdmin" path="/SYSTEMADMIN" exact component={SystemAdmin} />,
+            <Route key="ViewDiagnosisDoc" path="/viewDiagnosis" exact component={ViewDiagnosisDoc} />,
+            <Route key="SubmitDiagnosis" path="/SubmitDiagnosis" exact component={SubmitDiagnosis} />,
+            <Route key="editDiagnosis" path="/editDiagnosis/:id" exact component={editDiagnosis} />,
             <Route key="Topics" path="/TOPIC" exact component={Topic} />,
-            <Route key="RESULT" path="/RESULT" exact component={ResultController} />,
+            <Route key="ResultController" path="/result" exact component={ResultController} />,
             <Route key="GAME" path="/GAME" exact component={Game} />,
             <Route key="MAIN" path="/MAIN" exact component={Main} />,
             ];
