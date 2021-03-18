@@ -1,17 +1,15 @@
 import React, { Component } from "react";
 import { Button, CssBaseline, TextField, Container, Typography } from "@material-ui/core";
-import { authenticateLogin } from "../redux/ducks/auth";
+import {
+  fetchMe,
+  selectUser,
+  selectUserLoading,
+  selectUserFailed,
+  authenticateLogin
+} from "../redux/ducks/auth";
+import { Redirect } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-<<<<<<< HEAD
-//import { getRoles } from "@testing-library/dom";
-=======
->>>>>>> origin/ry-view-diagnosis
-
-
-//import "./Login.css";
-
-<<<<<<< HEAD
 
 class LoginPage extends Component {
   constructor(props) {
@@ -21,35 +19,35 @@ class LoginPage extends Component {
       username: "",
       password: ""
     };
-  }
-=======
-//import "./Login.css";
 
- 
-class LoginPage extends Component {
-  state = {
-    username: "",
-    password: "",
-   };
->>>>>>> origin/ry-view-diagnosis
+  }
   handleChange = (e) => {
     this.setState({
       [e.target.name]: e.target.value
     });
   };
-<<<<<<< HEAD
 
+  calcRedirect = (userRole) => {
+    //this.props.fetchMe(this.state)
+    if (userRole === 'admin') {
+      return <Redirect from={this.props.path} to={`${this.props.path}/systemadmin`} />
+    } else {
+      return <Redirect from={this.props.path} to={`${this.props.path}/main`} />
+    }
+  }
 
   handleSubmit = (e) => {
+    const { role } = this.props.user;
     e.preventDefault();
     try {
-    this.setState({ username: "", password: "" });
-    const { username, password } = this.state;
-    this.props.login(this.state);
-    this.props.history.push('/main');
-  } catch (e) {
-    alert(e.message);
-  }
+      this.setState({ username: "", password: "" });
+      const { username, password } = this.state;
+      this.props.login(this.state);
+      this.props.history.push('/main');
+
+    } catch (e) {
+      alert(e.message);
+    }
   };
   //  var a = localStorage.fetchMe("role");
   //   console.log(this.state);
@@ -64,6 +62,7 @@ class LoginPage extends Component {
 
 
   render() {
+
     return (
       <div className="main" data-test="loginContainer">
         <Container component="main" maxWidth="xs" align="center" style={{ marginTop: 150 }} >
@@ -121,102 +120,34 @@ class LoginPage extends Component {
           </div>
         </Container>
       </div>
-=======
-  
-    
-  handleSubmit = (e) => {
-
-    try {
-      this.props.authenticateLogin(this.state);
-      console.log(this.state);
-   
-      this.props.history.push('/viewDiagnosis');
-    } catch (e) {
-      alert(e.message);
-    }
-    
-   };
-
-render() {
-  const { username, password } = this.state;
-  
-   return (
-    <div className="main" data-test="loginContainer">
-      <Container component="main" maxWidth="xs" align="center"  style={{  marginTop: 150 }} >
-      <CssBaseline />
-      <div className="login-form">
-      <Typography variant="h3" style={{  marginBottom: 20 }}>Login</Typography>
-       
-        <form
-          noValidate
-          onSubmit={this.handleSubmit}
-        >
-          <TextField
-            data-testid="usernameField"
-            onChange={this.handleChange}
-            defaultValue={username}
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="username"
-            label="Username"
-            name="username"
-            autoComplete="username"
-            autoFocus
-            //style={{height:25, width:200, marginLeft:55}}
-          />
-          <TextField
-            data-testid="passwordField"
-            onChange={this.handleChange}
-            defaultValue={password}
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            name="password"
-            label="Password"
-            type="password"
-            id="password"
-            autoComplete="current-password"
-            //style={{height:25, width:200, marginLeft:55}}
-          />
-          <Button
-            data-testid="loginButton"
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="secondary"
-            style={{  marginTop: 20 }}
-          >Login</Button>
-        
-        </form>
-      </div>
-      </Container>
-    </div>
->>>>>>> origin/ry-view-diagnosis
     );
   }
 
 }
 LoginPage.propTypes = {
   /** An action creator for authenticating login */
-<<<<<<< HEAD
   authenticateLogin: PropTypes.func.isRequired,
-  fetchMeSuccessAction:PropTypes.func.isRequired,
-  fetchMeRequestAction:PropTypes.func.isRequired,
-  // fetchMe:PropTypes.func.isRequired
+  fetchMeSuccessAction: PropTypes.func.isRequired,
+  fetchMeRequestAction: PropTypes.func.isRequired,
+  userFailed: PropTypes.bool,
+  user: PropTypes.object.isRequired,
+  fetchMe: PropTypes.func.isRequired
   /** An object used for styling */
 };
 
 const dispatch = {
-  authenticateLogin
+  authenticateLogin,
+  fetchMe
 };
+
+
 
 const mapStateToProps = state => {
   return {
     fetchMeSuccessAction: state.fetchMeSuccessAction,
-    fetchMeRequestAction: state.fetchMeRequestAction
+    fetchMeRequestAction: state.fetchMeRequestAction,
+
+    user: selectUser(state)
   };
 };
 
@@ -229,16 +160,3 @@ const mapDispatchToProps = dispatch => {
 // export { connectedLoginPage as LoginPage }; 
 export default connect(mapStateToProps,
   mapDispatchToProps)(LoginPage);
-=======
-  authenticateLogin: PropTypes.func.isRequired
-  /** An object used for styling */
-};
-
-const dispatchers = {
-  authenticateLogin
-};
-
-
-
-export default connect(() => ({}), dispatchers)(LoginPage);
->>>>>>> origin/ry-view-diagnosis

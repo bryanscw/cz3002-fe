@@ -32,21 +32,26 @@ export const fetchUser = (user) => (dispatch, getState) => {
     });
 };
 
-export const createUser = (users) => (dispatch, getState) => {
+export const createUser = user => (dispatch, getState) => {
   dispatch(createApiAction(ENTITY_NAME, STATUSES.REQUEST, METHODS.CREATE));
 
-  return axios
-    .post(`${API_URL}/user/create/`, users, getTokenConfig(getState))
-    .then((res) => {
-      dispatch(
-        createApiAction(ENTITY_NAME, STATUSES.SUCCESS, METHODS.CREATE, res.data)
-      );
-    })
-    .catch((err) => {
-      displayError("Unable to create user")(dispatch);
-      dispatch(createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.CREATE));
-    });
+  return (
+      axios
+      .post(
+          `${API_URL}/users/create`,
+          user,
+          getTokenConfig(getState)
+      )
+      .then(res => {
+        dispatch(createApiAction(ENTITY_NAME, STATUSES.SUCCESS, METHODS.CREATE, res.data));
+      })
+      .catch(err => {
+        displayError("Unable to create user")(dispatch);
+        dispatch(createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.CREATE));
+      })
+  );
 };
+
 export const updateUser = (user) => (dispatch, getState) => {
   dispatch(createApiAction(ENTITY_NAME, STATUSES.REQUEST, METHODS.UPDATE));
 console.log(user);

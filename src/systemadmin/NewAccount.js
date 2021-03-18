@@ -132,7 +132,7 @@ render() {
               type="date"
               fullWidth
               required
-              defaultValue="YYY-MM-DD"
+              //defaultValue="yyyy-MM-dd"
               name="dob"
               InputLabelProps={{
                 shrink: true,

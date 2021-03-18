@@ -15,7 +15,7 @@ import { BrowserRouter as Router, Route, Switch, useParams } from "react-router-
 
 import './App.css';
 import Game from './game/Game';
-import ResultController from './results/ResultController.jsx';
+import ResultList from './results/ResultList.jsx';
 import NewAccount from './systemadmin/NewAccount.js';
 import UpdateUser from './systemadmin/UpdateUser.js';
 import SystemAdmin from './systemadmin/SystemAdmin.js';
@@ -66,7 +66,7 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(6),
   },
 }));
-const cards = [{ name: 'GAME', button: "START" }, { name: 'RESULT', button: 'VIEW' }, { name: 'TOPIC', button: 'MORE' }]
+const cards = [{ name: 'GAME', button: "START" }, { name: 'ResultList', button: 'VIEW' }, { name: 'TOPIC', button: 'MORE' }]
 
 export default function Album() {
   const classes = useStyles();
@@ -121,7 +121,7 @@ export default function Album() {
               <Route path="/UPDATEUSER"><UpdateUser userType={'admin'} /></Route>
               <Route path="/GAME"><Game /></Route>
               <Route path="/SYSTEMADMIN"><SystemAdmin userType={'admin'} /></Route>
-              <Route path="/RESULT"><ResultController userType={'doctor'} /></Route>
+              <Route path="/ResultList"><ResultList  /></Route>
               <Route path="/TOPIC"><Topic /></Route>
             </Switch>
           </div>

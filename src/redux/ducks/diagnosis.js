@@ -9,6 +9,7 @@ import { API_URL } from "../../utils/constants";
 import { displayError } from "./errors";
 import { getTokenConfig } from "./authHelper";
 
+
 const ENTITY_NAME = "diagnosis";
 
 // REDUCER
@@ -95,4 +96,3 @@ export const updateDiagnosis = (diagnosis) => (dispatch, getState) => {
 export const selectDiagnosisLoading = state => state.diagnosisReducer.isLoading[METHODS.RETRIEVE] === true;
 export const selectDiagnosisFailed = state => state.diagnosisReducer.isLoading[METHODS.RETRIEVE] === false && state.diagnosisReducer.hasFailed[METHODS.RETRIEVE] === true;
 export const selectDiagnosis = state => state.diagnosisReducer.item;
-

@@ -76,7 +76,8 @@ export const listUserResults = () => (dispatch, getState) => {
     return (
         axios
         .post(
-            `${API_URL}/result/me`,
+            `${API_URL}/result/me/`,
+            {},
             getTokenConfig(getState)
         )
         .then(res => {
@@ -95,7 +96,7 @@ export const getLatestResult = () => (dispatch, getState) => {
     return (
         axios
         .post(
-            `${API_URL}/result/latest`,
+            `${API_URL}/result/latest/`,
             getTokenConfig(getState)
         )
         .then(res => {

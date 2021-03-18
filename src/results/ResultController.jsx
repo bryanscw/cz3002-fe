@@ -1,54 +1,67 @@
-import React from 'react'
+import React, { Component } from "react";
 import ResultList from './ResultList.jsx'
 import DoctorResult from './DoctorResult.jsx'
+import PatientResult from './PatientResult'
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link,
+    useRouteMatch,
+    useParams,
+    Redirect
+} from "react-router-dom";
+import {
+    fetchMe,
+    selectUser,
+    selectUserLoading,
+    selectUserFailed
+} from '../redux/ducks/auth.js'
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import store from '../redux/store.js'
 
-export default function ResultController(props){
-    console.log(props.userType)
-    if (props.userType === 'patient'){
-        // result history data fetch to be implemented
-        return <ResultList resultHistory={getMockResultHistory()}/>
-    } else {
-        //WIP
-        return <DoctorResult patientList={getMockPatientList()}/>
+class ResultController extends Component {
+    componentDidMount = () => {
+        this.props.fetchMe(this.state)
+    }
+    calcRedirect = (userRole) => {
+        if (userRole === 'doctor') {
+            return <Redirect from={this.props.path} to={`${this.props.path}/doctor`} />
+        } else {
+            return <Redirect from={this.props.path} to={`${this.props.path}/patient`} />
+        }
+    }
+    render = () => {
+        const {role} = this.props.user
+        return (
+            <div>
+                {this.calcRedirect(role)}
+                <Route path={`${this.props.path}/doctor`}>
+                    <DoctorResult path={`${this.props.path}/doctor`}/>
+                </Route>
+                <Route path={`${this.props.path}/patient`}>
+                    <PatientResult/>
+                </Route>
+            </div>
+        )
     }
 }
 
-function getMockResultHistory(){
-    //hard coded mock data, temporary
-    return [
-        {
-            accuracy: 0.0,
-            createdBy: 'string',
-            createdDate: new Date(),
-            id: 0,
-            lastModifiedBy: 'string',
-            lastModifiedDate: new Date(),
-            time: 0,
-            user: null
-        },
-        {
-            accuracy: 0.0,
-            createdBy: 'string',
-            createdDate: new Date(),
-            id: 1,
-            lastModifiedBy: 'string',
-            lastModifiedDate: new Date(),
-            time: 0,
-            user: null
-        }
-    ]
-}
+ResultController.propTypes = {
+    userLoading: PropTypes.bool.isRequired,
+    userFailed: PropTypes.bool,
+    user: PropTypes.object.isRequired,
+};
 
-function getMockPatientList(){
-    const resultHistory = getMockResultHistory()
-    return [
-        {
-            id: 0,
-            resultHistory: resultHistory
-        },
-        {
-            id: 1,
-            resultHistory: resultHistory
-        }
-    ]
-}
+const mapStateToProps = state => ({
+    userLoading: selectUserLoading(state),
+    userFailed: selectUserFailed(state),
+    user: selectUser(state),
+});
+
+const dispatchers = {
+    fetchMe
+};
+
+export default connect(mapStateToProps, dispatchers)(ResultController);

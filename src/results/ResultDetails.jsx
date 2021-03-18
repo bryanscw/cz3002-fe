@@ -5,16 +5,18 @@ import {
 export default function ResultDetails(props) {
     // receives as prop resultHistory- a list which contains resultDetail objects,
     // including attributes: time, test mode, completion time, error rate
-    let {resultDetailsId} = useParams()
-    let resultDetails = props.resultHistory[resultDetailsId]
+    const {resultDetailsId} = useParams()
+    const resultDetails = props.resultHistory.find(rd => {return rd.id.toString() === resultDetailsId.toString()})
     return (
         // temporary, we're not sure yet what data we will get actually
         // no test mode coming from back end yet, default it to null
         <ul>
-            <li>Test id: {resultDetailsId}</li>
-            <li>Start time: {resultDetails.createdDate.toString()}</li>
-            <li>Completion time: {new Date(resultDetails.createdDate + resultDetails.time).toString()}</li>
-            <li>Error rate: {1-resultDetails.accuracy}</li>
+            <li>Result id: {resultDetailsId}</li>
+            <li>Created by: {resultDetails.createdBy}</li>
+            <li>Created date: {resultDetails.createdDate}</li>
+            <li>Last modified by: {resultDetails.lastModifiedBy}</li>
+            <li>Last modified date: {resultDetails.lastModifiedDate}</li>
+            <li>Time: {resultDetails.time}</li>
         </ul>
     )
 }
