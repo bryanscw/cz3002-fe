@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Button } from "@material-ui/core";
 import MaterialTable from 'material-table';
 import { deleteUser, listUsers, createUser, updateUser } from "../redux/ducks/users";
 import {
@@ -13,10 +14,17 @@ import Loader from 'react-loader-spinner';
 class SystemAdmin extends Component {
     
   componentDidMount() {
-      this.props.listUsers();
-  }
+      this.props.listUsers();     
+        }
+
+        handleSubmit = e  => {
+           
+            this.props.history.push('/newaccount');
+         
+          };
 
   render() {
+    console.log(this.state);
       const {
           usersLoading,
           users,
@@ -29,13 +37,21 @@ class SystemAdmin extends Component {
           return <Loader />;
 
       return (
-          <div className="container" data-test="adminTable">
-              <MaterialTable 
+            <div className="container" data-test="adminTable" style={{ height: 400, width: '100%' }}>
+                <MaterialTable 
                   title="User"
                   columns={[
                       {
                           title: 'Name',
                           field: 'name',
+                          cellStyle: {
+                            width: 20,
+                            maxWidth: 20
+                          },
+                          headerStyle: {
+                            width:20,
+                            maxWidth: 20
+                          }
                       },
                       {
                           title: 'Email',
@@ -56,7 +72,7 @@ class SystemAdmin extends Component {
                       }
                   ]}
                   data={users}
-                  options={{}}
+                  options = {{}}
                   editable={{
                       onRowAdd: newData =>
                           new Promise((resolve, reject) => {
@@ -75,9 +91,12 @@ class SystemAdmin extends Component {
                           }),
                   }}
               />
+              <Button variant="contained" color="primary" onClick={this.handleSubmit}>New Account</Button>
+                
           </div>
       )
-  }
+  
+}
 }
 
 SystemAdmin.propTypes = {

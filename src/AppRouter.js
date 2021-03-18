@@ -12,6 +12,8 @@ import {
 } from "./redux/ducks/auth";
 import Game from './game/Game';
 import ResultController from './results/ResultController.jsx';
+
+import ResultList from './results/ResultController.jsx';
 import NewAccount from './systemadmin/NewAccount.js';
 import UpdateUser from './systemadmin/UpdateUser.js';
 import SystemAdmin from './systemadmin/SystemAdmin.js';
@@ -42,6 +44,7 @@ class AppRouter extends Component {
             <Route key="Topics" path="/TOPIC" exact component={Topic} />,
             <Route key="ResultController" path="/result" exact component={ResultController} />,
             <Route key="GAME" path="/GAME" exact component={Game} />,
+            <Route key="ResultList" path="/resultlist" exact component={ResultList} />,
             <Route key="MAIN" path="/MAIN" exact component={Main} />,
             ];
 

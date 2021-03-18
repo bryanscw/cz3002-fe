@@ -47,10 +47,9 @@ validateForm() {
 createData (event){
   console.log("form was submitted");
   event.preventDefault();
-  
-  console.log(this.state);
   this.props.createUser(this.state);
-  this.props.history.push("/systemadmin");
+  // this.props.history.push("/Systemadmin");
+  // window.location.reload(false);
 }
 
 handleInputChange(event) {
@@ -63,7 +62,8 @@ handleInputChange(event) {
 }
 
 render() {
-   return (
+  return (  
+
     <div className="main" data-test="newuserContainer">
       <Container component="main" maxWidth="xs" align="center" style={{ marginTop: 130 }} >
         <CssBaseline />
@@ -166,8 +166,9 @@ render() {
         </div>
       </Container>
     </div>
+ 
   );
-}
+              }
 
 
 }

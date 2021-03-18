@@ -11,6 +11,7 @@
     "@testing-library/user-event": "^12.6.2",
     "axios": "^0.21.1",
     "material-table": "^1.69.2",
+    "moment": "^2.29.1",
     "react": "^17.0.1",
     "react-bootstrap-validation": "^0.1.11",
     "react-date-picker": "^8.0.7",
