@@ -3,11 +3,15 @@ import { Button, CssBaseline, TextField, Container, Typography } from "@material
 import { authenticateLogin } from "../redux/ducks/auth";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+<<<<<<< HEAD
 //import { getRoles } from "@testing-library/dom";
+=======
+>>>>>>> origin/ry-view-diagnosis
 
 
 //import "./Login.css";
 
+<<<<<<< HEAD
 
 class LoginPage extends Component {
   constructor(props) {
@@ -18,11 +22,22 @@ class LoginPage extends Component {
       password: ""
     };
   }
+=======
+//import "./Login.css";
+
+ 
+class LoginPage extends Component {
+  state = {
+    username: "",
+    password: "",
+   };
+>>>>>>> origin/ry-view-diagnosis
   handleChange = (e) => {
     this.setState({
       [e.target.name]: e.target.value
     });
   };
+<<<<<<< HEAD
 
 
   handleSubmit = (e) => {
@@ -106,12 +121,87 @@ class LoginPage extends Component {
           </div>
         </Container>
       </div>
+=======
+  
+    
+  handleSubmit = (e) => {
+
+    try {
+      this.props.authenticateLogin(this.state);
+      console.log(this.state);
+   
+      this.props.history.push('/viewDiagnosis');
+    } catch (e) {
+      alert(e.message);
+    }
+    
+   };
+
+render() {
+  const { username, password } = this.state;
+  
+   return (
+    <div className="main" data-test="loginContainer">
+      <Container component="main" maxWidth="xs" align="center"  style={{  marginTop: 150 }} >
+      <CssBaseline />
+      <div className="login-form">
+      <Typography variant="h3" style={{  marginBottom: 20 }}>Login</Typography>
+       
+        <form
+          noValidate
+          onSubmit={this.handleSubmit}
+        >
+          <TextField
+            data-testid="usernameField"
+            onChange={this.handleChange}
+            defaultValue={username}
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            id="username"
+            label="Username"
+            name="username"
+            autoComplete="username"
+            autoFocus
+            //style={{height:25, width:200, marginLeft:55}}
+          />
+          <TextField
+            data-testid="passwordField"
+            onChange={this.handleChange}
+            defaultValue={password}
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            name="password"
+            label="Password"
+            type="password"
+            id="password"
+            autoComplete="current-password"
+            //style={{height:25, width:200, marginLeft:55}}
+          />
+          <Button
+            data-testid="loginButton"
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="secondary"
+            style={{  marginTop: 20 }}
+          >Login</Button>
+        
+        </form>
+      </div>
+      </Container>
+    </div>
+>>>>>>> origin/ry-view-diagnosis
     );
   }
 
 }
 LoginPage.propTypes = {
   /** An action creator for authenticating login */
+<<<<<<< HEAD
   authenticateLogin: PropTypes.func.isRequired,
   fetchMeSuccessAction:PropTypes.func.isRequired,
   fetchMeRequestAction:PropTypes.func.isRequired,
@@ -139,3 +229,16 @@ const mapDispatchToProps = dispatch => {
 // export { connectedLoginPage as LoginPage }; 
 export default connect(mapStateToProps,
   mapDispatchToProps)(LoginPage);
+=======
+  authenticateLogin: PropTypes.func.isRequired
+  /** An object used for styling */
+};
+
+const dispatchers = {
+  authenticateLogin
+};
+
+
+
+export default connect(() => ({}), dispatchers)(LoginPage);
+>>>>>>> origin/ry-view-diagnosis
