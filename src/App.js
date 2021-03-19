@@ -12,7 +12,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Link from '@material-ui/core/Link';
 import { BrowserRouter as Router, Route, Switch,useParams, Link as RouterLink } from "react-router-dom";
-import AppRouter from './AppRouter.js'
 
 import store from './redux/store.js'
 import {Provider} from 'react-redux'
