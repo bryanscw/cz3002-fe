@@ -1,25 +1,20 @@
 import React, { Component } from "react";
-import ResultList from './ResultList.jsx'
 import DoctorResult from './DoctorResult.jsx'
 import PatientResult from './PatientResult'
 import {
     BrowserRouter as Router,
     Switch,
     Route,
-    Link,
-    useRouteMatch,
-    useParams,
     Redirect
 } from "react-router-dom";
 import {
     fetchMe,
     selectUser,
     selectUserLoading,
-    selectUserFailed, FETCH_ME_REQUEST
+    selectUserFailed
 } from '../redux/ducks/auth.js'
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import store from '../redux/store.js'
 
 class ResultController extends Component {
     componentDidMount = () => {

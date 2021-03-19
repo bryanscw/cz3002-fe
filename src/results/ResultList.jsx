@@ -1,10 +1,8 @@
 import {
-    //BrowserRouter as Router,
     Switch,
     Route,
     Link,
     useRouteMatch,
-    //useParams
 } from "react-router-dom";
 import {
     List,
@@ -47,37 +45,3 @@ export default function ResultList(props){
         </MuiThemeProvider>
     );
 }
-
-
-// return (
-//     <div className="container" data-test="resultTable">
-//         <MaterialTable 
-//             title="Title here"
-//             columns={[
-//                 {
-//                     title: 'Name',
-//                     field: 'name',
-//                 },
-//                 {
-//                     title: 'Email',
-//                     field: 'email',
-//                 },
-//                 {
-//                     title: 'Role',
-//                     field: 'role',
-//                     lookup: {
-//                         ROLE_DOCTOR: "ROLE_DOCTOR",
-//                         ROLE_PATIENT: "ROLE_PATIENT",
-//                         ROLE_ADMIN:"ROLE_ADMIN",
-//                     },
-//                 },
-//                 {
-//                     title: 'Password',
-//                     field: 'pass',
-//                 }
-//             ]}
-//             data={results}
-//             options={{}}
-//         />
-//     </div>
-// )
