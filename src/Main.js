@@ -11,15 +11,14 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Link from '@material-ui/core/Link';
-import { BrowserRouter as Router, Route, Switch, useParams } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch,useParams, Link as RouterLink } from "react-router-dom";
+
+import store from './redux/store.js'
+import {Provider} from 'react-redux'
 
 import './App.css';
 import Game from './game/Game';
-import ResultList from './results/ResultList.jsx';
-import NewAccount from './systemadmin/NewAccount.js';
-import UpdateUser from './systemadmin/UpdateUser.js';
-import SystemAdmin from './systemadmin/SystemAdmin.js';
-import Login from './login/Login.js';
+import ResultController from './results/ResultController.jsx';
 
 function Copyright() {
   return (
@@ -66,9 +65,19 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(6),
   },
 }));
-const cards = [{ name: 'GAME', button: "START" }, { name: 'ResultList', button: 'VIEW' }, { name: 'TOPIC', button: 'MORE' }]
+const cards = [
+    {name:'GAME',
+     button:'START',
+     link: 'game'},
+    {name:'RESULT',
+     button:'VIEW',
+     link: 'result'},
+    {name:'TOPIC',
+     button:'MORE',
+     link:'topic'}
+    ]
 
-export default function Album() {
+function Album() {
   const classes = useStyles();
 
   return (
@@ -89,48 +98,47 @@ export default function Album() {
               Trail Making Test
             </Typography>
             <Typography variant="h5" align="center" color="textSecondary" paragraph>
-              Trail Making Test is a simple neuropsychological test of cognitive processes, including attention, visual search and scanning, and psychomotor speed.
+            Trail Making Test is a simple neuropsychological test of cognitive processes, including attention, visual search and scanning, and psychomotor speed. 
             </Typography>
           </Container>
         </div>
-        <Container className={classes.cardGrid} maxWidth="md">
-          <Grid container direction="row" justify="center" alignItems="center" spacing={4}>
-            {cards.map((card) => (
-              <Grid item key={card} xs={12} sm={6} md={4}>
-                <Card className={classes.card}>
-                  <CardContent className={classes.cardContent}>
-                    <Typography gutterBottom variant="h5" component="h2">
-                      {card.name}
-                    </Typography>
-                  </CardContent>
-                  <CardActions>
-                    <Button size="small" color="primary" onClick={() => { window.location.href = `${card.name}`; }}>
-                      {card.button}
-                    </Button>
-                  </CardActions>
-                </Card>
-              </Grid>
-            ))}
-          </Grid>
-        </Container>
         <Router>
+          <Container className={classes.cardGrid} maxWidth="md">
+            <Grid container  direction="row" justify="center" alignItems="center" spacing={4}>
+            {cards.map((card) => (
+                <Grid item key={card} xs={12} sm={6} md={4}>
+                  <Card className={classes.card}>
+                    <CardContent className={classes.cardContent}>
+                      <Typography gutterBottom variant="h5" component="h2">
+                        {card.name}
+                      </Typography>
+                    </CardContent>
+                    <CardActions>
+                      <RouterLink to={`/${card.link}`}>
+                        <Button assize="small" color="primary">
+                          {card.button}
+                        </Button>
+                      </RouterLink>
+                    </CardActions>
+                  </Card>
+                </Grid>
+              ))}
+            </Grid>
+          </Container>
           <div>
-            <Switch>
-              <Route path="/LOGINPAGE"><Login /></Route>
-              <Route path="/NEWACCOUNT"><NewAccount userType={'admin'} /></Route>
-              <Route path="/UPDATEUSER"><UpdateUser userType={'admin'} /></Route>
-              <Route path="/GAME"><Game /></Route>
-              <Route path="/SYSTEMADMIN"><SystemAdmin userType={'admin'} /></Route>
-              <Route path="/ResultList"><ResultList  /></Route>
-              <Route path="/TOPIC"><Topic /></Route>
-            </Switch>
+              <Switch>
+              <Route path="/game" component={Game}/>
+              <Route path="/result" component={ResultController}/>
+              <Route path="/topic" component={Topic}/>
+              </Switch>
           </div>
+          {/* <AppRouter/> */}
         </Router>
       </main>
       {/* Footer */}
       <footer className={classes.footer}>
         <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
-          This is a school project for CZ3002.
+          This is a school project for CZ3002. 
         </Typography>
         <Copyright />
       </footer>
@@ -142,4 +150,12 @@ export default function Album() {
 function Topic() {
   let { topicId } = useParams();
   return <h3>Requested topic ID: {topicId}</h3>;
+}
+
+export default function App() {
+  return (
+    <Provider store={store}>
+        <Album/>
+    </Provider>
+  )
 }

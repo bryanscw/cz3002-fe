@@ -17,7 +17,8 @@ class LoginPage extends Component {
 
     this.state = {
       username: "",
-      password: ""
+      password: "",
+      role:""
     };
 
   }
@@ -27,39 +28,28 @@ class LoginPage extends Component {
     });
   };
 
-  calcRedirect = (userRole) => {
-    //this.props.fetchMe(this.state)
-    if (userRole === 'admin') {
-      return <Redirect from={this.props.path} to={`${this.props.path}/systemadmin`} />
-    } else {
-      return <Redirect from={this.props.path} to={`${this.props.path}/main`} />
-    }
-  }
+  // calcRedirect = (e) => {
+  //   console.log(JSON.stringify(e));
+  //   if (e.role === "ROLE_ADMIN") {
+  //     this.props.history.push('/systemadmin');
+  //   } else {
+  //      this.props.history.push('/main');
+  //   }
+  // }
 
   handleSubmit = (e) => {
-    const { role } = this.props.user;
     e.preventDefault();
     try {
       this.setState({ username: "", password: "" });
       const { username, password } = this.state;
       this.props.login(this.state);
+      window.alert('LOGIN SUCCESS!')
       this.props.history.push('/main');
-
     } catch (e) {
+      window.alert('Invalid Credentials!')
       alert(e.message);
     }
   };
-  //  var a = localStorage.fetchMe("role");
-  //   console.log(this.state);
-  //   if(a==="ROLE_DOCTOR"){
-  //     this.props.history.push('/doctor');}
-  //     else if (a==="ROLE_ADMIN"){
-  //       this.props.history.push('/systemadmin');
-  //     }
-  //     else{
-  //       this.props.history.push('/user');
-  //     }
-
 
   render() {
 

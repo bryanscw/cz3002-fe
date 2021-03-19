@@ -3,11 +3,10 @@ import { Button } from "@material-ui/core";
 import MaterialTable from 'material-table';
 import { deleteUser, listUsers, createUser, updateUser } from "../redux/ducks/users";
 import {
-  selectUserLoading,
-  selectUserFailed,
-  selectUser
-
-} from "../redux/ducks/auth";
+  selectUsersLoading,
+  selectUsersFailed,
+  selectUsers
+} from "../redux/ducks/users";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Loader from 'react-loader-spinner';
@@ -28,6 +27,7 @@ import Remove from '@material-ui/icons/Remove';
 import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
+import { AirlineSeatLegroomExtra } from "@material-ui/icons";
 
 class SystemAdmin extends Component {
 
@@ -76,11 +76,22 @@ class SystemAdmin extends Component {
         <MaterialTable
           title="Users"
           icons={tableIcons}
+          font=""
           columns={[
 
             {
               title: 'Email',
               field: 'email',
+            }, 
+            {
+              title: 'Name',
+              field: 'name',
+              
+            },
+            {
+              title: 'Password',
+              field: 'pass',
+
             },
             {
               title: 'Role',
@@ -90,25 +101,8 @@ class SystemAdmin extends Component {
                 ROLE_PATIENT: "ROLE_PATIENT",
                 ROLE_ADMIN: "ROLE_ADMIN",
               },
-            }, 
-            {
-              title: 'Name',
-              field: 'name',
-              cellStyle: {
-                width: 20,
-                maxWidth: 20
-              },
-              headerStyle: {
-                width: 20,
-                maxWidth: 20
-              }
             },
-            {
-              title: 'Password',
-              field: 'pass',
-           
-            },
-            {
+           {
               title: 'Date of Birth',
               field: 'dob',
               type: "date",
@@ -116,10 +110,24 @@ class SystemAdmin extends Component {
             {
               title: 'Gender',
               field: 'gender',
+              lookup: {
+                FEMALE: "FEMALE",
+                MALE: "MALE",
+              },
             },
           ]}
           data={users}
-          options={{}}
+          options={{
+            
+            cellStyle: {
+              fontFamily: "Helvetica",
+              fontSize: 15,
+            },
+            headerStyle: {
+              backgroundColor: '#323ea8',
+              color: '#FFF',
+              fontSize: 17,
+            }}}
           editable={{
             onRowAdd: newData =>
               new Promise((resolve, reject) => {
@@ -163,9 +171,9 @@ SystemAdmin.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  userLoading: selectUserLoading(state),
-  userFailed: selectUserFailed(state),
-  user: selectUser(state)
+  usersLoading: selectUsersLoading(state),
+  usersFailed: selectUsersFailed(state),
+  users: selectUsers(state)
 });
 
 
