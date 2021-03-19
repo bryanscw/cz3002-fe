@@ -1,44 +1,4 @@
-// import {
-//     BrowserRouter as Router,
-//     Switch,
-//     Route,
-//     Link,
-//     useRouteMatch,
-//     useParams
-// } from "react-router-dom";
-
-// import PatientResult from './PatientResult'
-// export default function DoctorResult(props){
-//     let match = useRouteMatch();
-//     return (
-        
-//         <div>
-//             <ul>
-//                 {props.patientList.map(
-//                     (patient) => 
-//                     <Link key={patient.id.toString()} to={`${match.url}/patientDetails/${patient.id}`}>
-//                         <li>Patient id: {patient.id}</li>
-//                     </Link>
-//                 )}
-//             </ul>
-//             <Switch>
-//                 <Route path={`${match.path}/patientDetails/:patientId`}>
-//                     <PatientResult/>
-//                 </Route>
-//             </Switch>
-//         </div>
-//     )
-// }
-
 import React, { Component } from "react";
-import {
-    //BrowserRouter as Router,
-    Switch,
-    Route,
-    Link,
-    useRouteMatch,
-    //useParams
-} from "react-router-dom";
 import { 
     listUserResults,
     listAllResults,    
