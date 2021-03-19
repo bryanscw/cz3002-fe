@@ -15,7 +15,7 @@ import {
     fetchMe,
     selectUser,
     selectUserLoading,
-    selectUserFailed
+    selectUserFailed, FETCH_ME_REQUEST
 } from '../redux/ducks/auth.js'
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
@@ -23,27 +23,30 @@ import store from '../redux/store.js'
 
 class ResultController extends Component {
     componentDidMount = () => {
-        this.props.fetchMe(this.state)
+        this.props.fetchMe(localStorage.getItem('access_token'))
     }
     calcRedirect = (userRole) => {
-        if (userRole === 'doctor') {
-            return <Redirect from={this.props.path} to={`${this.props.path}/doctor`} />
+        if (userRole === 'ROLE_DOCTOR') {
+            return <Redirect from={this.props.location.pathname}
+                             to={`${this.props.location.pathname}/doctor`} />
         } else {
-            return <Redirect from={this.props.path} to={`${this.props.path}/patient`} />
+            return <Redirect from={this.props.location.pathname}
+                             to={`${this.props.location.pathname}/patient`} />
         }
     }
     render = () => {
         const {role} = this.props.user
         return (
-            <div>
+            <Router>
                 {this.calcRedirect(role)}
-                <Route path={`${this.props.path}/doctor`}>
-                    <DoctorResult path={`${this.props.path}/doctor`}/>
+                <Switch>
+                <Route path={`${this.props.location.pathname}/doctor`}
+                       component={{DoctorResult}}/>
+                <Route path={`${this.props.location.pathname}/patient`}
+                       component={PatientResult}>
                 </Route>
-                <Route path={`${this.props.path}/patient`}>
-                    <PatientResult/>
-                </Route>
-            </div>
+                </Switch>
+            </Router>
         )
     }
 }

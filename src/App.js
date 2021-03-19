@@ -66,7 +66,17 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(6),
   },
 }));
-const cards = [{name:'GAME',button:"START"},{name:'RESULT',button:'VIEW'},{name:'TOPIC',button:'MORE'}]
+const cards = [
+    {name:'GAME',
+     button:'START',
+     link: 'game'},
+    {name:'RESULT',
+     button:'VIEW',
+     link: 'result'},
+    {name:'TOPIC',
+     button:'MORE',
+     link:'topic'}
+    ]
 
 function Album() {
   const classes = useStyles();
@@ -105,7 +115,7 @@ function Album() {
                       </Typography>
                     </CardContent>
                     <CardActions>
-                      <RouterLink to={`/${card.name}`}>
+                      <RouterLink to={`/${card.link}`}>
                         <Button assize="small" color="primary">
                           {card.button}
                         </Button>
@@ -118,9 +128,9 @@ function Album() {
           </Container>
           <div>
               <Switch>
-              <Route path="/game"><Game /></Route>
-              <Route path="/result"><ResultController path="/result"/></Route>
-              <Route path="/topic"><Topic /></Route>
+              <Route path="/game" component={Game}/>
+              <Route path="/result" component={ResultController}/>
+              <Route path="/topic" component={Topic}/>
               </Switch>
           </div>
           {/* <AppRouter/> */}

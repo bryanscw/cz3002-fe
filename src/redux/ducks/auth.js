@@ -183,7 +183,7 @@ export const fetchMe = (access_token) => (dispatch) => {
       {},
       {
         headers: {
-          Authorization: `bearer ${'access_token'}`
+          Authorization: `bearer ${access_token}`
         }
       }
     )
