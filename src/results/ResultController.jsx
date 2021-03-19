@@ -41,7 +41,7 @@ class ResultController extends Component {
                 {this.calcRedirect(role)}
                 <Switch>
                 <Route path={`${this.props.location.pathname}/doctor`}
-                       component={{DoctorResult}}/>
+                       component={DoctorResult}/>
                 <Route path={`${this.props.location.pathname}/patient`}
                        component={PatientResult}>
                 </Route>
