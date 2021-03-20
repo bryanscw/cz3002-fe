@@ -7,9 +7,9 @@ RUN npm install npm@6 -g
 
 WORKDIR app
 
-#COPY app/react .
-#RUN npm install
-#RUN npm run build
+COPY . .
+RUN npm install
+RUN REACT_APP_API_ADDR=${API_ADDR} npm run build
 
 FROM nginx:latest
 COPY --from=build app/build /usr/share/nginx/html
