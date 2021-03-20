@@ -1,4 +1,6 @@
-export const API_URL = 'http://172.21.148.165:8080/cogbench/api';
+const API_ADDR = process.env.REACT_APP_API_ADDR;
+
+export const API_URL = `http://${API_ADDR}:8080/cogbench/api`;
 
 export const USER_ROLES = {
   PATIENT: 'ROLE_PATIENT',
