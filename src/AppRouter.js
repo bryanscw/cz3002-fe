@@ -25,25 +25,35 @@ class AppRouter extends Component {
     componentDidMount() { }
 
     render() {
-               
+
         let routes = [
             <Route key="LoginPage" path="/LOGIN" exact component={Login} />,
             <Redirect key="LoginRedirect" from="/" exact to="/LOGIN" />,
             <Route key="SystemAdmin" path="/SYSTEMADMIN" exact component={SystemAdmin} />,
-            <Route key="ViewDiagnosisDoc" path="/viewDiagnosis" exact component={ViewDiagnosisDoc} />,
-            <Route key="SubmitDiagnosis" path="/SubmitDiagnosis" exact component={SubmitDiagnosis} />,
-            <Route key="editDiagnosis" path="/editDiagnosis/:id" exact component={editDiagnosis} />,
+
             <Route key="Topics" path="/TOPIC" exact component={Topic} />,
             <Route key="GAME" path="/GAME" exact component={Game} />,
             <Route key="ResultController" path="/result" exact component={ResultController} />,
             <Route key="MAIN" path="/MAIN" exact component={Main} />,
             <Route key="LogoutPage" path="/logout" exact component={Logout} />,
+            <Route key="SubmitDiagnosis" path="/SubmitDiagnosis/:result" exact component={SubmitDiagnosis} />,
+            <Route key="editDiagnosis" path="/editDiagnosis/:result" exact component={editDiagnosis} />,
+            <Route key="ViewDiagnosisDoc" path="/viewDiagnosis/:id" exact component={ViewDiagnosisDoc} />,
         ];
         return (
             <BrowserRouter>
-                                <Switch>
-                {routes}
-                <Redirect from="/" to="/not-found" />
+                <Switch>
+                    {routes}
+                    <Redirect from="/" to="/not-found" />
+                    <Route path="/viewDiagnosis/:id">
+                        <ViewDiagnosisDoc />
+                    </Route>
+                    <Route path="/SubmitDiagnosis/:result" >
+                        <SubmitDiagnosis />
+                    </Route>
+                    <Route path="/editDiagnosis/:result">
+                        <editDiagnosis />
+                    </Route>
                 </Switch>
             </BrowserRouter >
         );

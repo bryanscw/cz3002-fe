@@ -1,3 +1,5 @@
 os: linux
-language: javascript
-#script: npm install && npm test
+language: node_js
+node_js:
+  - 15
+script: npm install && npm test

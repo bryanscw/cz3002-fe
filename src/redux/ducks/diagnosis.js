@@ -17,12 +17,12 @@ const diagnosisReducer = createApiReducer(ENTITY_NAME, "id");
 export default diagnosisReducer;
 
 // OPERATIONS
-export const fetchDiagnosis = () => (dispatch, getState) => {
+export const fetchDiagnosis = (diagnosis) => (dispatch, getState) => {
   dispatch(createApiAction(ENTITY_NAME, STATUSES.REQUEST, METHODS.RETRIEVE));
 //let access_token = localStorage.getItem("access_token");
   return (
      axios
-    .post(`${API_URL}/diagnosis/1`, {}, getTokenConfig(getState))
+    .post(`${API_URL}/diagnosis/${diagnosis.result}`, {}, getTokenConfig(getState))
     .then((res) => {
       dispatch(
         createApiAction(ENTITY_NAME, STATUSES.SUCCESS, METHODS.RETRIEVE, res.data)
@@ -41,11 +41,25 @@ export const fetchDiagnosis = () => (dispatch, getState) => {
 
 export const createDiagnosis = (diagnosis) => (dispatch, getState) => {
   dispatch(createApiAction(ENTITY_NAME, STATUSES.REQUEST, METHODS.CREATE));
-  diagnosis.id = null;
-  diagnosis.createdDate = null;
-  return axios
-    // .post(`${API_URL}/diagnosis/create/${diagnosis.resultId}`, diagnosis, getTokenConfig(getState))
-    .post(`${API_URL}/diagnosis/create/1`, diagnosis, getTokenConfig(getState))
+
+// console.log(diagnosis.resultId)
+  return( 
+    axios
+    .post(`${API_URL}/diagnosis/create/${diagnosis.result}`, 
+        diagnosis = {
+          "id" : null,
+          "createdBy" : null,
+          "createdDate" : null,
+          "lastModifiedBy" : null,
+          "lastModifiedDate" : null,
+          "result" : null,
+          "doctor" : null,
+          "label" : diagnosis.label,
+          "description" :diagnosis.description,
+        },
+    
+    getTokenConfig(getState))
+    
     .then((res) => {
       dispatch(
         createApiAction(ENTITY_NAME, STATUSES.SUCCESS, METHODS.CREATE, res.data)
@@ -54,7 +68,8 @@ export const createDiagnosis = (diagnosis) => (dispatch, getState) => {
     .catch((err) => {
       displayError("Unable to create diagonosis")(dispatch);
       dispatch(createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.CREATE));
-    });
+    })
+    );
 };
 
 export const deleteDiagnosis = (diagnosis) => (dispatch, getState) => {
@@ -72,6 +87,13 @@ export const deleteDiagnosis = (diagnosis) => (dispatch, getState) => {
         )
       );
     })
+    .then(res => {
+      if (res.data === true) {
+          dispatch(createApiAction(ENTITY_NAME, STATUSES.SUCCESS, METHODS.DELETE, diagnosis.id));
+      } else {
+          throw new Error("Unable to delete Diagnosis");
+      }
+  })
     .catch((err) => {
       displayError("Unable to delete diagnosis")(dispatch);
       dispatch(createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.DELETE));
@@ -82,7 +104,20 @@ export const updateDiagnosis = (diagnosis) => (dispatch, getState) => {
   dispatch(createApiAction(ENTITY_NAME, STATUSES.REQUEST, METHODS.UPDATE));
 
   return axios
-    .post(`${API_URL}/diagnosis/update/${diagnosis.id}`,diagnosis, getTokenConfig(getState))
+    .post(`${API_URL}/diagnosis/update/${diagnosis.result}`,
+        diagnosis = {
+          "id" : null,
+          "createdBy" : null,
+          "createdDate" : null,
+          "lastModifiedBy" : null,
+          "lastModifiedDate" : null,
+          "result" : null,
+          "doctor" : null,
+          "label" : diagnosis.label,
+          "description" :diagnosis.description,
+        },
+
+    getTokenConfig(getState))
     .then((res) => {
       dispatch(
         createApiAction(ENTITY_NAME, STATUSES.SUCCESS, METHODS.UPDATE, res.data)

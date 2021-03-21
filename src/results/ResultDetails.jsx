@@ -1,6 +1,7 @@
 import {
-    useParams
+    useParams, Router
 } from "react-router-dom";
+
 
 export default function ResultDetails(props) {
     // receives as prop resultHistory- a list which contains resultDetail objects,
@@ -17,6 +18,7 @@ export default function ResultDetails(props) {
             <li>Last modified by: {resultDetails.lastModifiedBy}</li>
             <li>Last modified date: {resultDetails.lastModifiedDate}</li>
             <li>Time: {resultDetails.time}</li>
+          
         </ul>
-    )
-}
+    );
+    }

@@ -2,16 +2,18 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { createDiagnosis } from "../redux/ducks/diagnosis";
-
-import { Button, Select, Paper, Container } from "@material-ui/core";
+import { faPlusCircle} from '@fortawesome/free-solid-svg-icons';
+import { Button, Select, Paper, TextField,Typography } from "@material-ui/core";
 //import { Link } from "react-router-dom";
 //import {createDiagnosis} from "../redux/ducks/diagnosis";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 import "./Diagnosis.css";
+
 class SubmitDiagnosis extends Component {
   constructor(props) {
     super(props);
-    var today = new Date(),
-    date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+
     this.state = {
      // id: this.props.match.params.id,
       //username: null,
@@ -20,17 +22,18 @@ class SubmitDiagnosis extends Component {
       createdDate : null,
       lastModifiedBy : null,
       lastModifiedDate : null,
-      resultId : this.props.match.params.resultId,
+      result : this.props.match.params.result,
       doctor : null,
       label : null,
       description : null
       
     };
-
+  console.log(this.state)
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+ 
   validateForm() {
     if (
       this.state.label == null ||
@@ -56,48 +59,69 @@ class SubmitDiagnosis extends Component {
     });
   }
 
-  handleSubmit(event) {
-    console.log("form was submitted");
-    event.preventDefault();
-    let doctor = localStorage.getItem("doctor");
-    this.setState({
-      doctor:doctor,
-      createdDate:new Date(),
-      createdBy:doctor
-    })
-    console.log(this.state);
-
+  handleSubmit( ) {
+    // console.log("form was submitted");
+    // event.preventDefault();
+    // let doctor = localStorage.getItem("doctor");
+    // this.setState({
+    //   doctor:doctor,
+    //   createdDate:new Date(),
+    //   createdBy:doctor
+    // })
+    // console.log(this.state);
+    // const resultId = this.props.match.params.result
+    //window.location.reload(false);
     this.props.createDiagnosis(this.state);
-    this.props.history.push("/viewDiagnosis");
-    window.location.reload(false);
+    this.props.history.push(`/viewDiagnosis/${this.state.result} `);
+    window.location.reload();
+    // 
    
   }
 
   render(){
     return(
     <div className="wrapper">
-      <h1>Diagnosis</h1>
+      <h1 style={{textAlign: "center"}}>Diagnosis</h1>
      
       <form onSubmit={this.handleSubmit}>
-        <Paper style={{ padding: 16 }}>
+        <Paper style={{ padding:50, justifyContent: "center",margin:"auto",width:500}}>
               <label>
-                  <p>Category : </p>
+                  <div><Typography style={{fontSize: 17}} >Category :  </Typography></div>
                   <Select  name="label"  onChange={this.handleInputChange}>
                       <option value="">--Please choose an option--</option>
-                      <option value="moderate">moderate</option>
+                      <option value="Moderate">Moderate</option>
                       <option value="High">High</option>
                       <option value="Low">Low</option>
                   </Select>
               </label>
               <label>
-                  <p>Comments :</p>
-                  <textarea name="description"  onChange={this.handleInputChange} />
-              </label>
+                  <div style={{ marginTop: 20 }}>
+                
+                  <TextField
+                      id="outlined-multiline-static"
+                      name="description"
+                      label="comments"
+                      style={{ width:500 }} 
+                      
+                      multiline
+                      rows={10}
+                     
         
+                      variant="filled"
+                      onChange={this.handleInputChange} 
+                    />
+                 </div>
+              </label>
+         <label>
+           <div style={{marginTop: 30,marginLeft:220}}>
+              <Button style={{ backgroundColor: 'transparent' }} type="submit"  disabled={!this.validateForm()}>
+                <FontAwesomeIcon icon={faPlusCircle} style={{color: "#115293"}} size="3x" />
+              </Button>
+         
+           </div>
+         </label>
         </Paper>
-        <p>
-          <Button variant="contained" color="primary" type="submit"  disabled={!this.validateForm()}>Submit</Button>
-        </p>
+
       </form>
     </div>
   );
@@ -113,5 +137,3 @@ const dispatchers = {
 };
 
 export default connect(() => ({}), dispatchers)(SubmitDiagnosis);
-//export default SubmitDiagnosis;
-//https://www.digitalocean.com/community/tutorials/how-to-build-forms-in-react#prerequisites

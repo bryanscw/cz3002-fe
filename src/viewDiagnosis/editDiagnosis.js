@@ -2,9 +2,12 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { updateDiagnosis } from "../redux/ducks/diagnosis";
-import { Button, Select, Paper, Container } from "@material-ui/core";
+import { Button, Select, Paper, TextField,Typography } from "@material-ui/core";
 //import { Link } from "react-router-dom";
 //import {createDiagnosis} from "../redux/ducks/diagnosis";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faPlusCircle} from '@fortawesome/free-solid-svg-icons';
+
 import "./Diagnosis.css";
 class editDiagnosis extends Component {
   constructor(props) {
@@ -14,7 +17,7 @@ class editDiagnosis extends Component {
     date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
 
     this.state = {
-      id: this.props.match.params.id,
+      id: null,
       //username: null,
      // id : 1,
       //id:null,
@@ -22,7 +25,7 @@ class editDiagnosis extends Component {
       createdDate : null,
       lastModifiedBy : null,
       lastModifiedDate : null,
-      result : null,
+      result : this.props.match.params.result,
       doctor : null,
       label : null,
       description : null
@@ -47,11 +50,12 @@ class editDiagnosis extends Component {
 
   updateData = () => {
     
-    let doctor = localStorage.getItem("doctor");
-    console.log(this.state);
+    // let doctor = localStorage.getItem("doctor");
+    // console.log(this.state);
 
     this.props.updateDiagnosis(this.state);
-    this.props.history.push("/viewDiagnosis");
+    this.props.history.push(`/viewDiagnosis/${this.state.result} `);
+    
       
   }
 
@@ -62,28 +66,43 @@ class editDiagnosis extends Component {
   render(){
     return(
     <div className="wrapper">
-      <h1>Diagnosis</h1>
+      <h1 style={{textAlign: "center"}}>Diagnosis</h1>
      
-        <Paper style={{ padding: 16 }}> 
+        <Paper style={{ padding:50, justifyContent: "center",margin:"auto",width:500}}> 
            
 
             <label>
-                <p>Category : </p>
+                <div><Typography style={{fontSize: 17}} >Category :  </Typography></div>
                 <Select name="label"  onChange={this.handleInputChange("label")}>
                     <option value="">--Please choose an option--</option>
-                    <option value="moderate">moderate</option>
+                    <option value="Moderate">Moderate</option>
                     <option value="High">High</option>
                     <option value="Low">Low</option>
                 </Select>
             </label>
             <label>
-                <p>Comments :</p>
-                <textarea name="description"  onChange={this.handleInputChange("description")} />
+                <div style={{ marginTop: 20 }}>
+                <TextField
+                      id="outlined-multiline-static"
+                      label="comments"
+                      name="description"
+                      style={{ width:500 }} 
+                      multiline
+                      rows={10}
+                      variant="filled"
+                      onChange={this.handleInputChange("description")}
+                    />
+                    </div>
+
+            </label>
+            <label>
+              <div style={{marginTop: 30,marginLeft:220}}>
+                <Button  style={{ backgroundColor: 'transparent' }} disabled={!this.validateForm()} onClick={() => this.updateData()}>
+                <FontAwesomeIcon icon={faPlusCircle} style={{color: "#115293"}} size = '3x' />
+                </Button>
+              </div>
             </label>
         </Paper>
-        <p>
-          <Button variant="contained" color="primary" disabled={!this.validateForm()} onClick={() => this.updateData()}>Submit</Button>
-        </p>
     </div>
   );
 }
