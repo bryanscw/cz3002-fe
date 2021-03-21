@@ -1,6 +1,7 @@
 import Link from '@material-ui/core/Link';
 import React, { Component } from 'react';
 import Game from './game/Game';
+import SystemAdmin from './systemadmin/SystemAdmin.js';
 import ResultController from './results/ResultController.jsx';
 import { BrowserRouter as Router, Route, Switch, Link as RouterLink } from "react-router-dom";
 import { Button, CssBaseline, AppBar, Toolbar, Grid, CardContent, CardActions, Card, Container, Typography } from "@material-ui/core";
@@ -105,7 +106,7 @@ class Header extends Component {
                               </Typography>
                         </CardContent>
                         <CardActions>
-                          <RouterLink to={`/login`}>
+                          <RouterLink to={`/systemadmin`}>
                             <Button assize="small" color="primary">
                               view
                                 </Button>
@@ -115,12 +116,20 @@ class Header extends Component {
                     </Grid>
 
                   </Grid>
+                  <Button
+                  data-testid="loginButton"
+                  type="submit"
+                  fullWidth                  
+                  variant="contained"
+                  color="secondary"
+                href="/logout"
+               style={{ marginLeft: 400,width:120, height:50, marginTop:30, marginBottom:30 }}
+                >Logout</Button>
+     
                 </Container>
                 <div>
-                  <Switch>
-                  <Route path="/game" component={Game} />
-                <Route path="/result" component={ResultController} />
-       
+                  <Switch>                 
+                <Route path="/systemadmin" component={SystemAdmin} />       
                   </Switch>
                 </div>
                 {/* <AppRouter/> */}
@@ -132,20 +141,12 @@ class Header extends Component {
                 This is a school project for CZ3002.
                 </Typography>
               <Copyright />
+              
+           
+           
             </footer>
             {/* End footer */}
 
-            <RouterLink to={`/Logout`}>
-            <Button
-                  data-testid="loginButton"
-                  type="submit"
-                  fullWidth
-                  
-                  variant="contained"
-                  color="secondary"
-                  style={{ marginLeft: 460,width:120, height:50, marginTop:30 }}
-                >Logout</Button>
-            </RouterLink>
           </React.Fragment>
 
         </Provider>
@@ -193,7 +194,7 @@ class Header extends Component {
                               </Typography>
                           </CardContent>
                           <CardActions>
-                            <RouterLink to={`/login`}>
+                            <RouterLink to={`/game`}>
                               <Button assize="small" color="primary">
                                 Start
                                 </Button>
@@ -211,7 +212,7 @@ class Header extends Component {
                               </Typography>
                         </CardContent>
                         <CardActions>
-                          <RouterLink to={`/login`}>
+                          <RouterLink to={`/result`}>
                             <Button assize="small" color="primary">
                               view
                                 </Button>
@@ -220,6 +221,15 @@ class Header extends Component {
                       </Card>
                     </Grid>
                   </Grid>
+                  <Button
+                  data-testid="loginButton"
+                  type="submit"
+                  fullWidth                  
+                  variant="contained"
+                  color="secondary"
+                href="/logout"
+               style={{ marginLeft: 400,width:120, height:50, marginTop:30, marginBottom:30 }}
+                >Logout</Button>
                 </Container>
                 <div>
                   <Switch>
@@ -231,25 +241,16 @@ class Header extends Component {
               </Router>
             </main>
             {/* Footer */}
-            <footer >
-              <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
+            <footer 
+            >
+              <Typography variant="subtitle1" align="center" color="textSecondary"  style={{ marginTop: 90 }} component="p">
                 This is a school project for CZ3002.
                       </Typography>
               <Copyright />
             </footer>
             {/* End footer */}
 
-            <RouterLink to={`/Logout`}>
-            <Button
-                  data-testid="loginButton"
-                  type="submit"
-                  fullWidth
-                  
-                  variant="contained"
-                  color="secondary"
-                  style={{ marginLeft: 460,width:120, height:50, marginTop:30 }}
-                >Logout</Button>
-            </RouterLink>
+           
 
 
           </React.Fragment>

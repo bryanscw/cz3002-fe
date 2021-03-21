@@ -43,15 +43,11 @@ height: 80vh;
         text-align: center;
       }
       
-      .container .btn:hover {
+      .dot:hover{
         background-color: black;
-        color: white;
+        color: red;
       }
-      .container .btn1:hover {
-        background-color: black;
-        color: white;
-      }
-
+   
       /* Generic padding */
 .main {
   text-align: center;
@@ -60,11 +56,12 @@ height: 80vh;
 
 /* Field params */
 .field {
-  height: 500px;
+  height: 527px;
+  width: 1190px;
   border: 2px solid black;
   position: relative;
   overflow-y: hidden;
-}
+  }
 
 /* Dot positioning */
 .dot {

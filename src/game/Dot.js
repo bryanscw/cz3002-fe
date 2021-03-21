@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Dot = (props) => {
-    const {color, x, y, size, index, onClick} = props;    
+    const {color, x, y, size, index, func,i} = props;    
     const dotStyle = {
         backgroundColor: color,
         height: `${size}px`,
@@ -14,8 +14,8 @@ const Dot = (props) => {
         <div 
             className="dot"
             style={dotStyle}
-            onClick={() => onClick(index)}
-        />
+            onClick={() => func(i)}
+        >{i}</div>
     );
 };
 

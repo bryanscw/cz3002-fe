@@ -11,8 +11,7 @@ import {
 } from "./redux/ducks/auth";
 import Game from './game/Game';
 import ResultController from './results/ResultController.jsx';
-import NewAccount from './systemadmin/NewAccount.js';
-import UpdateUser from './systemadmin/UpdateUser.js';
+
 import SystemAdmin from './systemadmin/SystemAdmin.js';
 import ViewDiagnosisDoc from './viewDiagnosis/ViewDiagnosisDoc.js';
 import SubmitDiagnosis from './viewDiagnosis/SubmitDiagnosis.js'
@@ -30,8 +29,6 @@ class AppRouter extends Component {
         let routes = [
             <Route key="LoginPage" path="/LOGIN" exact component={Login} />,
             <Redirect key="LoginRedirect" from="/" exact to="/LOGIN" />,
-            <Route key="NewAccount" path="/NEWACCOUNT" exact component={NewAccount} />,
-            <Route key="UpdateUser" path="/UPDATEUSER" exact component={UpdateUser} />,
             <Route key="SystemAdmin" path="/SYSTEMADMIN" exact component={SystemAdmin} />,
             <Route key="ViewDiagnosisDoc" path="/viewDiagnosis" exact component={ViewDiagnosisDoc} />,
             <Route key="SubmitDiagnosis" path="/SubmitDiagnosis" exact component={SubmitDiagnosis} />,
