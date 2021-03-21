@@ -18,6 +18,7 @@ import ViewDiagnosisDoc from './viewDiagnosis/ViewDiagnosisDoc.js';
 import SubmitDiagnosis from './viewDiagnosis/SubmitDiagnosis.js'
 import editDiagnosis from './viewDiagnosis/editDiagnosis.js'
 import Login from './login/Login.js';
+import Logout from './login/Logout.js';
 import Main from "./Main.js";
 
 /** This component handles the routing for the app */
@@ -39,6 +40,7 @@ class AppRouter extends Component {
             <Route key="GAME" path="/GAME" exact component={Game} />,
             <Route key="ResultController" path="/result" exact component={ResultController} />,
             <Route key="MAIN" path="/MAIN" exact component={Main} />,
+            <Route key="LogoutPage" path="/logout" exact component={Logout} />,
         ];
         return (
             <BrowserRouter>

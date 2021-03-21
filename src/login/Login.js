@@ -42,8 +42,7 @@ class LoginPage extends Component {
     try {
       this.setState({ username: "", password: "" });
       const { username, password } = this.state;
-      this.props.login(this.state);
-      window.alert('LOGIN SUCCESS!')
+      this.props.login(this.state);     
       this.props.history.push('/main');
     } catch (e) {
       window.alert('Invalid Credentials!')
