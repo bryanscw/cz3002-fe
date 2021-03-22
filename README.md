@@ -1,3 +1,6 @@
+# cz3002-fe
+[![Build Status](https://travis-ci.com/bryanscw/cz3002-fe.svg?token=WtBjbJiVVLc1zKyr5kpw&branch=main)](https://travis-ci.com/bryanscw/cz3002-fe)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
