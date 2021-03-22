@@ -1,7 +1,7 @@
 all: install test build deploy
 
 install:
-    npm install
+	npm install
 
 build:
 	cd infra && docker-compose build
