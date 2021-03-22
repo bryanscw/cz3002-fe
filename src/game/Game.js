@@ -1,11 +1,7 @@
 import React, { useState } from "react";
-import { createDot } from './util';
-import Control from './Control';
-import Score from './Score';
 import '../App.css';
 import Dot from './Dot';
 import Line from '../lines/line';
-import { render } from "@testing-library/react";
 import { COLORS, SIZES } from './constants';
 import ButtonGroup from '@material-ui/core/ButtonGroup'
 import Button from '@material-ui/core/Button'
@@ -13,14 +9,11 @@ import {connect} from 'react-redux'
 import {createResult} from '../redux/ducks/result'
 import {Component} from 'react'
 import PropTypes from "prop-types";
-import ReactDOM from 'react-dom'
 
 
 class Game extends Component{
   constructor(props){
     super(props);
-    var today = new Date(),
-    date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
     this.state= {
       id : null,
       createdBy : null,
@@ -44,6 +37,7 @@ class Game extends Component{
       },
     });
   }
+
   handleSubmit(event){
     console.log("Result has been submitted.");
     event.preventDefault();
@@ -52,7 +46,6 @@ class Game extends Component{
     console.log(localStorage.getItem("acessToken"));
     window.location.reload(false);
   }
-
 
   stat=true;
   time=0;
@@ -68,6 +61,7 @@ class Game extends Component{
   sizearray =[]
   //25 dots in total
   dotNum = 25;
+
   render(){
     return (
     <div className="main">
@@ -98,6 +92,7 @@ class Game extends Component{
       </div>
   );
   }
+
   random = () => {
     for (var i = 0; i < this.dotNum; i++) {
       const color = COLORS[Math.floor(Math.random() * COLORS.length)]
@@ -105,10 +100,12 @@ class Game extends Component{
       let x = Math.floor(Math.random() * 1200);
       let y = Math.floor(Math.random() * 450);
       var overlap = false;
+
       if(overlap === true){
         i--;
         continue;
       }
+
     for(var z = 0; z<this.valY.length; z++){
       //check for overlap
       if(Math.abs(y - this.valY[z])<40 && Math.abs(x- this.valX[z])<40){
@@ -137,75 +134,95 @@ class Game extends Component{
       this.valY.pop();
     }
   }
+
   click = (i) => {
     this.total=this.total+1;
+
     if (this.count===i){
       //alert("correct");
       this.count = this.count+1; 
     }
+
     else{
       console.log("count",this.count);
       alert("wrong");
       this.mistakes = this.mistakes+1;
     }
+
     this.forceUpdate();
   }
-renderdots = () => {
-if(!this.stat){
-  return null;
-}
-return (
-  <>{this.valX.map((x,index)=> (
-    <Dot color={this.colorarray[index]} x={x} y={this.valY[index]} size={this.sizearray[index]} func={this.click} i={index+1} ></Dot>
-  ))}
-  </>
-)
+
+  renderdots = () => {
+
+    if(!this.stat){
+      return null;
+    }
+
+    return (
+      <>{this.valX.map((x,index)=> (
+        <Dot color={this.colorarray[index]}
+             x={x}
+             y={this.valY[index]}
+             size={this.sizearray[index]}
+             func={this.click}
+             i={index+1} ></Dot>
+      ))}
+      </>)
+  }
+
+  startGame=()=> {
+      alert("Game starts!");
+      this.stat = true;
+
+      this.clearDots();
+      this.random();
+      this.renderdots();
+
+      this.time = 0;
+      this.count=1;
+      this.accuracy = 0;
+      this.mistakes = 0;
+      this.total = 0;
+
+      var starttime = {
+        "minute":new Date().getMinutes(),
+        "second":new Date().getSeconds()
+      }
+
+      this.start = starttime;
+      this.forceUpdate();
+  }
+
+  calculateResult = () => {
+    if(this.count != 26){
+      alert("You have not completed the test!")
+      return;
+    }
+
+    this.accuracy = parseFloat((this.total-this.mistakes)/this.total).toPrecision(2)*100;
+    this.setState({accuracy:this.accuracy});
+    this.count = 1;
+    this.total = 0;
+    this.mistakes = 0;
+
+    var Time = {
+      "Minute":new Date().getMinutes() - this.start.minute,
+      "Second":new Date().getSeconds() - this.start.second
+    }
+
+    var t = Time.Minute*60+Time.Second;
+
+    if(Time.Second<this.start.second){
+      Time.Minute = Time.Minute - 1;
+      Time.Second = Time.Second + 60;
+    }
+
+    this.time = t;
+    this.setState({time:t});
+    this.forceUpdate();
+  }
 }
 
-startGame=()=> {
-  alert("Game starts!");
-  this.stat = true;
-  this.clearDots();
-  this.random();
-  this.renderdots();
-  this.time = 0;
-  this.count=1;
-  this.accuracy = 0;
-  this.mistakes = 0;
-  this.total = 0;
-  var starttime = {
-    "minute":new Date().getMinutes(),
-    "second":new Date().getSeconds()
-  }
-  //setStart(starttime);
-  this.start = starttime;
-  this.forceUpdate();
-}
-
-calculateResult = () => {
-  if(this.count != 26){
-    alert("You have not completed the test!")
-    return;
-  }
-  this.accuracy = parseFloat((this.total-this.mistakes)/this.total).toPrecision(2)*100;
-  this.setState({accuracy:this.accuracy});
-  this.count = 1;
-  this.total = 0;
-  this.mistakes = 0;
-  var Time = {
-    "Minute":new Date().getMinutes() - this.start.minute,
-    "Second":new Date().getSeconds() - this.start.second
-  }
-  var t = Time.Minute*60+Time.Second;
-  if(Time.Second<this.start.second){
-    Time.Minute = Time.Minute - 1;
-    Time.Second = Time.Second + 60;
-  }
-  this.time = t;
-  this.setState({time:t});
-  this.forceUpdate();
-}
-}
 Game.propTypes = {
   /** An action creator for authenticating login */
   createResult: PropTypes.func.isRequired

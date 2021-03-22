@@ -18,7 +18,6 @@ export default function ResultDetails(props) {
             <li>Last modified by: {resultDetails.lastModifiedBy}</li>
             <li>Last modified date: {resultDetails.lastModifiedDate}</li>
             <li>Time: {resultDetails.time}</li>
-          
         </ul>
     );
     }

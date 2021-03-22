@@ -6,7 +6,7 @@ services:
             context: ../
             dockerfile: infra/Dockerfile
             args:
-              - API_ADDR=127.0.0.1
+              - API_ADDR=172.21.148.165
         stdin_open: true
         container_name: cogbench-fe
         ports: 
