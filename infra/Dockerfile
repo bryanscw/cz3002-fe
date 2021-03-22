@@ -2,8 +2,10 @@ FROM ubuntu:18.04 as build
 
 ARG API_ADDR
 RUN apt update -y
-RUN apt install nodejs npm -y
+RUN apt install curl nodejs npm -y
 RUN npm install npm@6 -g
+RUN npm install -g n
+RUN n 15
 
 WORKDIR app
 

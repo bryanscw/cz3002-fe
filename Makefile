@@ -1,4 +1,4 @@
-all: install test build deploy
+all: clean test build deploy
 
 install:
 	npm install
@@ -11,3 +11,9 @@ test:
 
 deploy:
 	cd infra && docker-compose up -d
+
+clean:
+	cd infra && docker-compose down
+
+restart:
+	cd infra && docker-compose down && docker-compose up -d
