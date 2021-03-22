@@ -1,5 +1,4 @@
-all:
-	test build deploy
+all: test build deploy
 
 build:
 	cd infra && docker-compose build
