@@ -1,5 +1,5 @@
 import {
-    useParams, Router
+    useParams, Link
 } from "react-router-dom";
 
 
@@ -8,8 +8,6 @@ export default function ResultDetails(props) {
     // including attributes: time, test mode, completion time, error rate
     const {resultDetailsId} = useParams()
     const resultDetails = props.resultHistory.find(rd => {return rd.id.toString() === resultDetailsId.toString()})
-    
-    console.log(resultDetails)
     return (
         <ul>
             <li>Result id: {resultDetailsId}</li>
@@ -19,6 +17,12 @@ export default function ResultDetails(props) {
             <li>Last modified date: {resultDetails.lastModifiedDate}</li>
             <li>Time: {resultDetails.time}</li>
             <li>Accuracy: {resultDetails.accuracy}</li>
+            <Link to={`/viewDiagnosis/${resultDetailsId}`}>
+                <button>
+                    Diagnosis
+                </button>
+            </Link>
+            
         </ul>
     );
     }
