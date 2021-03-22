@@ -1,4 +1,3 @@
-// ACTIONS
 export const STATUSES = {
   REQUEST: 'REQUEST',
   SUCCESS: 'SUCCESS',

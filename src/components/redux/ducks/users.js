@@ -1,9 +1,13 @@
-import axios from 'axios';
-
-import { createApiReducer, createApiAction, STATUSES, METHODS } from './apiHelper';
-import { API_URL } from '../../utils/constants';
-import { displayError } from './errors';
-import { getTokenConfig } from './authHelper';
+import axios from "axios";
+import {
+  createApiReducer,
+  createApiAction,
+  STATUSES,
+  METHODS
+} from "./apiHelper";
+import { API_URL } from "../../utils/constants";
+import { displayError } from "./errors";
+import { getTokenConfig } from "./authHelper";
 
 const ENTITY_NAME = 'users';
 
@@ -12,6 +16,7 @@ const usersReducer = createApiReducer(ENTITY_NAME, "email");
 export default usersReducer;
 
 // OPERATIONS
+
 export const createUser = user => (dispatch, getState) => {
   dispatch(createApiAction(ENTITY_NAME, STATUSES.REQUEST, METHODS.CREATE));
 
@@ -80,7 +85,7 @@ export const listUsers = () => (dispatch, getState) => {
           `${API_URL}/users/`,
           getTokenConfig(getState)
       )
-      .then(res => {
+      .then((res) => {
         dispatch(createApiAction(ENTITY_NAME, STATUSES.SUCCESS, METHODS.LIST, res.data));
       })
       .catch(err => {
