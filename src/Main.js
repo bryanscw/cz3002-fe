@@ -1,8 +1,8 @@
 import Link from '@material-ui/core/Link';
 import React, { Component } from 'react';
-import Game from './game/Game';
-import SystemAdmin from './systemadmin/SystemAdmin.js';
-import ResultController from './results/ResultController.jsx';
+import Game from './components/game/Game';
+import SystemAdmin from './components/systemadmin/SystemAdmin.js';
+import ResultController from './components/results/ResultController.jsx';
 import { BrowserRouter as Router, Route, Switch, Link as RouterLink } from "react-router-dom";
 import { Button, CssBaseline, AppBar, Toolbar, Grid, CardContent, CardActions, Card, Container, Typography } from "@material-ui/core";
 import { withStyles } from '@material-ui/styles';
@@ -12,10 +12,10 @@ import {
   selectUser,
   selectUserLoading,
   selectUserFailed
-} from './redux/ducks/auth.js'
+} from './components/redux/ducks/auth.js'
 import { connect } from "react-redux";
 
-import store from './redux/store.js'
+import store from './components/redux/store.js'
 
 //../redux/ducks/diagnosis
 import { Provider } from 'react-redux'

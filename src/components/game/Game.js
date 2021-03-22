@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import '../App.css';
+import React from "react";
+import '../../App.css';
 import Dot from './Dot';
-import Line from '../lines/line';
-import { COLORS, SIZES } from './constants';
+import Line from './line';
+import { COLORS, SIZES } from '../utils/constants';
 import ButtonGroup from '@material-ui/core/ButtonGroup'
 import Button from '@material-ui/core/Button'
 import {connect} from 'react-redux'

@@ -8,16 +8,16 @@ import {
     selectUserFailed,
     selectUser,
     selectRefreshToken
-} from "./redux/ducks/auth";
-import Game from './game/Game';
-import ResultController from './results/ResultController.jsx';
+} from "./components/redux/ducks/auth";
+import Game from './components/game/Game';
+import ResultController from './components/results/ResultController.jsx';
 
-import SystemAdmin from './systemadmin/SystemAdmin.js';
-import ViewDiagnosisDoc from './viewDiagnosis/ViewDiagnosisDoc.js';
-import SubmitDiagnosis from './viewDiagnosis/SubmitDiagnosis.js'
-import editDiagnosis from './viewDiagnosis/editDiagnosis.js'
-import Login from './login/Login.js';
-import Logout from './login/Logout.js';
+import SystemAdmin from './components/systemadmin/SystemAdmin.js';
+import ViewDiagnosisDoc from './components/diagnosis/ViewDiagnosisDoc.js';
+import SubmitDiagnosis from './components/diagnosis/SubmitDiagnosis.js'
+import editDiagnosis from './components/diagnosis/editDiagnosis.js'
+import Login from './components/login/Login.js';
+import Logout from './components/login/Logout.js';
 import Main from "./Main.js";
 
 /** This component handles the routing for the app */
