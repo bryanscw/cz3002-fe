@@ -1,5 +1,5 @@
 import {
-    useParams, Router
+    useParams, Link
 } from "react-router-dom";
 
 
@@ -9,8 +9,6 @@ export default function ResultDetails(props) {
     const {resultDetailsId} = useParams()
     const resultDetails = props.resultHistory.find(rd => {return rd.id.toString() === resultDetailsId.toString()})
     return (
-        // temporary, we're not sure yet what data we will get actually
-        // no test mode coming from back end yet, default it to null
         <ul>
             <li>Result id: {resultDetailsId}</li>
             <li>Created by: {resultDetails.createdBy}</li>
@@ -18,6 +16,13 @@ export default function ResultDetails(props) {
             <li>Last modified by: {resultDetails.lastModifiedBy}</li>
             <li>Last modified date: {resultDetails.lastModifiedDate}</li>
             <li>Time: {resultDetails.time}</li>
+            <li>Accuracy: {resultDetails.accuracy}</li>
+            <Link to={`/viewDiagnosis/${resultDetailsId}`}>
+                <button>
+                    Diagnosis
+                </button>
+            </Link>
+            
         </ul>
     );
     }
