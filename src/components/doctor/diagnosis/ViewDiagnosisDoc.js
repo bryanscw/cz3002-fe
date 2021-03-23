@@ -2,14 +2,14 @@ import {BrowserRouter as Router} from "react-router-dom";
 import React, { Component } from "react";
 
 import "./Diagnosis.css";
-import {fetchDiagnosis, selectDiagnosis, selectDiagnosisFailed, selectDiagnosisLoading} from "../../redux/ducks/diagnosis";
+import {fetchDiagnosis, selectDiagnosis, selectDiagnosisFailed, selectDiagnosisLoading} from "../../../redux/ducks/diagnosis";
 import {
   fetchMe,
   selectUser,
   selectUserLoading,
   selectUserFailed
-} from '../../redux/ducks/auth.js'
-import {deleteDiagnosis} from "../../redux/ducks/diagnosis";
+} from '../../../redux/ducks/auth.js'
+import {deleteDiagnosis} from "../../../redux/ducks/diagnosis";
 
 import Moment from 'moment';
 import PropTypes from "prop-types";

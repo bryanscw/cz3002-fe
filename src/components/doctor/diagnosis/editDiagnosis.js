@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { updateDiagnosis } from "../../redux/ducks/diagnosis";
+import { updateDiagnosis } from "../../../redux/ducks/diagnosis";
 import { Button, Select, Paper, TextField,Typography } from "@material-ui/core";
 //import { Link } from "react-router-dom";
 //import {createDiagnosis} from "../redux/ducks/diagnosis";

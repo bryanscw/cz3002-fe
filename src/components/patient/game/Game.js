@@ -2,11 +2,11 @@ import React from "react";
 import './App.css';
 import Dot from './Dot';
 import Line from './line';
-import { COLORS, SIZES } from '../../utils/constants';
+import { COLORS, SIZES } from '../../../utils/constants';
 import ButtonGroup from '@material-ui/core/ButtonGroup'
 import Button from '@material-ui/core/Button'
 import {connect} from 'react-redux'
-import {createResult} from '../../redux/ducks/result'
+import {createResult} from '../../../redux/ducks/result'
 import {Component} from 'react'
 import PropTypes from "prop-types";
 

@@ -1,4 +1,4 @@
-import { COLORS, SIZES } from '../../utils/constants';
+import { COLORS, SIZES } from '../../../utils/constants';
 import Dot from './Dot'
 
 export const createDot = (i,click) => {

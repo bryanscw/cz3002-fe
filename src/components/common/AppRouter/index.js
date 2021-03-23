@@ -18,6 +18,8 @@ import Header from "../../common/Header";
 import Footer from "../../common/Footer";
 import {USER_ROLES} from "../../../utils/constants";
 import accountsRoutes from "../../accounts/accountsRoutes";
+import doctorRoutes from "../../doctor/doctorRoutes";
+import patientRoutes from "../../patient/patientRoutes";
 
 /** This component handles the routing for the app */
 class AppRouter extends Component {
@@ -56,11 +58,11 @@ class AppRouter extends Component {
         break;
 
       case USER_ROLES.DOCTOR:
-        // routes = routes.concat(doctorRoutes);
+        routes = routes.concat(doctorRoutes);
         break;
 
       case USER_ROLES.PATIENT:
-        // routes = routes.concat(patientRoutes);
+        routes = routes.concat(patientRoutes);
         break;
 
       default:
