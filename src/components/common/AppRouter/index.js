@@ -9,17 +9,11 @@ import {
   selectUserFailed,
   selectUserLoading
 } from "../../../redux/ducks/auth";
-import Game from '../../game/Game';
-import ResultController from '../../results/ResultController.jsx';
 import Errors from '../Errors';
 import Loader from 'react-loader-spinner';
-import SystemAdmin from '../../systemadmin/SystemAdmin.js';
-import ViewDiagnosisDoc from '../../diagnosis/ViewDiagnosisDoc.js';
-import SubmitDiagnosis from '../../diagnosis/SubmitDiagnosis.js';
-import editDiagnosis from '../../diagnosis/editDiagnosis.js';
-import Login from '../../accounts/Login.js';
-import Logout from '../../accounts/Logout.js';
-import Main from "../../../Main.js";
+import NotFoundPage from "../NotFoundPage";
+import LogoutPage from "../../accounts/LogoutPage";
+import LoginPage from "../../accounts/LoginPage";
 
 /** This component handles the routing for the app */
 class Index extends Component {
@@ -47,21 +41,8 @@ class Index extends Component {
     }
 
     let routes = [
-      <Route key="Login" path="/login" exact component={Login}/>,
+      <Route key="Login" path="/login" exact component={LoginPage}/>,
       <Redirect key="LoginRedirect" from="/" exact to="/login"/>,
-      <Route key="SystemAdmin" path="/admin" exact component={SystemAdmin}/>,
-
-      <Route key="Game" path="/game" exact component={Game}/>,
-      <Route key="ResultController" path="/result" exact
-             component={ResultController}/>,
-      <Route key="Main" path="/main" exact component={Main}/>,
-      <Route key="Logout" path="/logout" exact component={Logout}/>,
-      <Route key="SubmitDiagnosis" path="/SubmitDiagnosis/:result" exact
-             component={SubmitDiagnosis}/>,
-      <Route key="editDiagnosis" path="/editDiagnosis/:result" exact
-             component={editDiagnosis}/>,
-      <Route key="ViewDiagnosisDoc" path="/viewDiagnosis/:id" exact
-             component={ViewDiagnosisDoc}/>,
     ];
 
     if (!userFailed && user && Object.keys(user).length !== 0
@@ -79,17 +60,21 @@ class Index extends Component {
         <BrowserRouter>
           <Errors/>
           <Switch>
+            <Route
+                path="/not-found"
+                exact
+                component={NotFoundPage}
+            />
+            <Route
+                path="/logout"
+                exact
+                component={LogoutPage}
+            />
             {routes}
-            <Redirect from="/" to="/not-found"/>
-            <Route path="/viewDiagnosis/:id">
-              <ViewDiagnosisDoc/>
-            </Route>
-            <Route path="/SubmitDiagnosis/:result">
-              <SubmitDiagnosis/>
-            </Route>
-            <Route path="/editDiagnosis/:result">
-              <editDiagnosis/>
-            </Route>
+            <Redirect
+                from="/"
+                to="/not-found"
+            />
           </Switch>
         </BrowserRouter>
     );
