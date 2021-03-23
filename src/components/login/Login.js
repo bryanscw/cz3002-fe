@@ -6,7 +6,7 @@ import {
   TextField,
   Typography
 } from "@material-ui/core";
-import {authenticateLogin, fetchMe, selectUser} from "../../redux/ducks/auth";
+import {authenticateLogin} from "../../redux/ducks/auth";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 
@@ -105,32 +105,12 @@ class LoginPage extends Component {
 
 LoginPage.propTypes = {
   /** An action creator for authenticating login */
-  authenticateLogin: PropTypes.func.isRequired,
-  // fetchMeSuccessAction: PropTypes.func.isRequired,
-  // fetchMeRequestAction: PropTypes.func.isRequired,
-  // userFailed: PropTypes.bool,
-  // user: PropTypes.object.isRequired,
-  // fetchMe: PropTypes.func.isRequired
+  authenticateLogin: PropTypes.func.isRequired
   /** An object used for styling */
 };
 
 const dispatchers = {
   authenticateLogin
 };
-
-// const mapStateToProps = state => {
-//   return {
-//     fetchMeSuccessAction: state.fetchMeSuccessAction,
-//     fetchMeRequestAction: state.fetchMeRequestAction,
-//
-//     user: selectUser(state)
-//   };
-// };
-
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     login: data => dispatch(authenticateLogin(data))
-//   };
-// };
 
 export default connect(({}), dispatchers)(LoginPage);
