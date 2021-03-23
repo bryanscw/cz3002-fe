@@ -1,12 +1,6 @@
 import React, {Component} from "react";
 import PropTypes from "prop-types";
-import {
-  BrowserRouter,
-  Redirect,
-  Route,
-  Switch,
-  useParams
-} from "react-router-dom";
+import {BrowserRouter, Redirect, Route, Switch} from "react-router-dom";
 import {connect} from "react-redux";
 import {
   refreshTokenLogin,
@@ -14,22 +8,21 @@ import {
   selectUser,
   selectUserFailed,
   selectUserLoading
-} from "./redux/ducks/auth";
-import Game from './components/game/Game';
-import ResultController from './components/results/ResultController.jsx';
-
-import Errors from './components/common/Errors';
+} from "../../../redux/ducks/auth";
+import Game from '../../game/Game';
+import ResultController from '../../results/ResultController.jsx';
+import Errors from '../Errors';
 import Loader from 'react-loader-spinner';
-import SystemAdmin from './components/systemadmin/SystemAdmin.js';
-import ViewDiagnosisDoc from './components/diagnosis/ViewDiagnosisDoc.js';
-import SubmitDiagnosis from './components/diagnosis/SubmitDiagnosis.js';
-import editDiagnosis from './components/diagnosis/editDiagnosis.js';
-import Login from './components/accounts/Login.js';
-import Logout from './components/accounts/Logout.js';
-import Main from "./Main.js";
+import SystemAdmin from '../../systemadmin/SystemAdmin.js';
+import ViewDiagnosisDoc from '../../diagnosis/ViewDiagnosisDoc.js';
+import SubmitDiagnosis from '../../diagnosis/SubmitDiagnosis.js';
+import editDiagnosis from '../../diagnosis/editDiagnosis.js';
+import Login from '../../accounts/Login.js';
+import Logout from '../../accounts/Logout.js';
+import Main from "../../../Main.js";
 
 /** This component handles the routing for the app */
-class AppRouter extends Component {
+class Index extends Component {
   componentDidMount() {
     const {
       refresh_token,
@@ -84,7 +77,7 @@ class AppRouter extends Component {
 
     return (
         <BrowserRouter>
-          <Errors />
+          <Errors/>
           <Switch>
             {routes}
             <Redirect from="/" to="/not-found"/>
@@ -104,7 +97,7 @@ class AppRouter extends Component {
 
 }
 
-AppRouter.propTypes = {
+Index.propTypes = {
   refresh_token: PropTypes.string,
   userLoading: PropTypes.bool.isRequired,
   userFailed: PropTypes.bool,
@@ -123,4 +116,4 @@ const dispatchers = {
   refreshTokenLogin
 };
 
-export default connect(mapStateToProps, dispatchers)(AppRouter);
+export default connect(mapStateToProps, dispatchers)(Index);
