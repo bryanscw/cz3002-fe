@@ -28,6 +28,10 @@ class LoginPage extends Component {
   }
 
   render() {
+    const {
+      username,
+      password,
+    } = this.state;
 
     return (
         <div className="main" data-test="loginContainer">
