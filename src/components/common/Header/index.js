@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom';
 import {selectUser} from "../../../redux/ducks/auth";
-import {AppBar, CssBaseline, Toolbar, Typography} from "@material-ui/core";
+import {AppBar, Toolbar, Typography} from "@material-ui/core";
 
 /**
  * This component displays the header of the web application.
@@ -30,15 +30,15 @@ export class Header extends Component {
     );
 
     return (
-      <AppBar position="relative">
-        <Toolbar>
-          <Typography variant="h6" color="inherit" align="center" noWrap>
-            TRAIL MAKING TEST
-          </Typography>
-        </Toolbar>
-        {user && Object.keys(user).length !== 0 ? authLinks : guestLinks}
-      </AppBar>
-  )
+        <AppBar position="relative">
+          <Toolbar>
+            <Typography variant="h6" color="inherit" align="center" noWrap>
+              TRAIL MAKING TEST
+            </Typography>
+          </Toolbar>
+          {user && Object.keys(user).length !== 0 ? authLinks : guestLinks}
+        </AppBar>
+    )
   }
 }
 
