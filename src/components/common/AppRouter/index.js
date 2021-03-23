@@ -17,7 +17,7 @@ import LoginPage from "../../accounts/LoginPage";
 import Header from "../../../Main";
 
 /** This component handles the routing for the app */
-class Index extends Component {
+class AppRouter extends Component {
   componentDidMount() {
     const {
       refresh_token,

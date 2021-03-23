@@ -29,7 +29,7 @@ import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
 
-class Index extends Component {
+class AdminPage extends Component {
 
   componentDidMount() {
     this.props.listUsers();

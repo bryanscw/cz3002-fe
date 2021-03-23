@@ -6,7 +6,7 @@ import {logout} from '../../../redux/ducks/auth';
 /**
  * This component displays the logout page for user.
  */
-export class Index extends Component {
+export class LogoutPage extends Component {
   componentDidMount() {
     this.props.logout();
   }

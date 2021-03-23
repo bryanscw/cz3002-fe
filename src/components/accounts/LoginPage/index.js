@@ -10,7 +10,7 @@ import {authenticateLogin} from "../../../redux/ducks/auth";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 
-class Index extends Component {
+class LoginPage extends Component {
   state = {
     username: "",
     password: "",
