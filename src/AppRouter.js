@@ -102,11 +102,6 @@ class AppRouter extends Component {
 
 }
 
-function Topic() {
-  let {topicId} = useParams();
-  return <h3>Requested topic ID: {topicId}</h3>;
-}
-
 AppRouter.propTypes = {
   refresh_token: PropTypes.string,
   userLoading: PropTypes.bool.isRequired,

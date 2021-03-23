@@ -24,7 +24,11 @@ class LoginPage extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    this.props.authenticateLogin(this.state);
+    try {
+      this.props.authenticateLogin(this.state);
+    } catch (e) {
+      alert("Yo, this is wrong");
+    }
   }
 
   render() {
