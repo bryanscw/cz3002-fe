@@ -51,24 +51,7 @@ class AppRouter extends Component {
       <Redirect key="LoginRedirect" from="/" exact to="/login"/>,
     ];
 
-    switch (user.role) {
-      case USER_ROLES.ADMIN:
-        routes = routes.concat(accountsRoutes);
-        console.log(routes);
-        break;
-
-      case USER_ROLES.DOCTOR:
-        routes = routes.concat(doctorRoutes);
-        break;
-
-      case USER_ROLES.PATIENT:
-        routes = routes.concat(patientRoutes);
-        break;
-
-      default:
-        break;
-    }
-
+    // Check if a valid user is logged in
     if (!userFailed && user && Object.keys(user).length !== 0
         && user.constructor === Object) {
       routes = [
@@ -78,6 +61,24 @@ class AppRouter extends Component {
             to="/"
         />
       ]
+
+      switch (user.role) {
+        case USER_ROLES.ADMIN:
+          routes = routes.concat(accountsRoutes);
+          console.log(routes);
+          break;
+
+        case USER_ROLES.DOCTOR:
+          routes = routes.concat(doctorRoutes);
+          break;
+
+        case USER_ROLES.PATIENT:
+          routes = routes.concat(patientRoutes);
+          break;
+
+        default:
+          break;
+      }
     }
 
     return (
