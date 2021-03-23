@@ -1,5 +1,6 @@
-import React from 'react';
-import {Link} from 'react-router-dom';
+import React from "react";
+import {Link} from "react-router-dom";
+import {Typography} from "@material-ui/core";
 
 /**
  * This component displays the header of the web application.
@@ -7,12 +8,12 @@ import {Link} from 'react-router-dom';
 export default function NotFoundPage() {
   return (
       <Typography variant="body2" color="textSecondary" align="center">
-        {'Copyright © '}
+        {"Copyright © "}
         <Link color="inherit" href="https://material-ui.com/">
           QWERTY
-        </Link>{' '}
+        </Link>{" "}
         {new Date().getFullYear()}
-        {'.'}
+        {"."}
       </Typography>
   );
 }
