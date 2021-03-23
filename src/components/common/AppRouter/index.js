@@ -59,6 +59,7 @@ class Index extends Component {
     return (
         <BrowserRouter>
           <Errors/>
+          <Header />
           <Switch>
             <Route
                 path="/not-found"
