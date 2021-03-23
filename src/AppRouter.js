@@ -18,6 +18,7 @@ import {
 import Game from './components/game/Game';
 import ResultController from './components/results/ResultController.jsx';
 
+import Errors from './components/common/Errors';
 import Loader from 'react-loader-spinner';
 import SystemAdmin from './components/systemadmin/SystemAdmin.js';
 import ViewDiagnosisDoc from './components/diagnosis/ViewDiagnosisDoc.js';
@@ -83,6 +84,7 @@ class AppRouter extends Component {
 
     return (
         <BrowserRouter>
+          <Errors />
           <Switch>
             {routes}
             <Redirect from="/" to="/not-found"/>
