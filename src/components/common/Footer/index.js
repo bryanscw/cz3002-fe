@@ -2,7 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 
 /**
- * This component displays the header of the web application.
+ * This component displays the footer of the web application.
  */
 export default function NotFoundPage() {
   return (
