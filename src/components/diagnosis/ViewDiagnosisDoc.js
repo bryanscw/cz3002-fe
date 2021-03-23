@@ -46,7 +46,7 @@ class ViewDiagnosisDoc extends Component {
   deleteData = () =>{
 
     this.props.deleteDiagnosis(this.props.diagnosis)
-    this.props.history.push("/Login");
+    this.props.history.push("/main");
    // window.location.reload();
 
   
