@@ -35,4 +35,4 @@ export class LogoutPage extends Component {
   }
 }
 
-export default connect(null, {logout})(Index)
+export default connect(null, {logout})(LogoutPage)

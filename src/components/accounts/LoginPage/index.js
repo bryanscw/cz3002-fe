@@ -103,4 +103,4 @@ const dispatchers = {
   authenticateLogin
 };
 
-export default connect(() => ({}), dispatchers)(Index);
+export default connect(() => ({}), dispatchers)(LoginPage);

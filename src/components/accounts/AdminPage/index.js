@@ -187,4 +187,4 @@ const dispatchers = {
   listUsers,
 };
 
-export default connect(mapStateToProps, dispatchers)(Index);
+export default connect(mapStateToProps, dispatchers)(AdminPage);
