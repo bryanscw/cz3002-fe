@@ -6,7 +6,7 @@ import AdminPage from './AdminPage';
 const AccountsRouter = [
   <Route
       key="AdminPage"
-      path="/"
+      path="/admin"
       exact
       component={AdminPage}
   />,
