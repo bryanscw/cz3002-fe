@@ -16,6 +16,7 @@ import LogoutPage from "../../accounts/LogoutPage";
 import LoginPage from "../../accounts/LoginPage";
 import Header from "../../../Main";
 import accountsRoutes from "../../accounts/accountsRoutes";
+import {USER_ROLES} from "../../../utils/constants";
 
 /** This component handles the routing for the app */
 class AppRouter extends Component {
