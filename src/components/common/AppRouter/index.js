@@ -1,127 +1,85 @@
-import React, {Component} from "react";
-import PropTypes from "prop-types";
-import {BrowserRouter, Redirect, Route, Switch} from "react-router-dom";
-import {connect} from "react-redux";
-import {
-  refreshTokenLogin,
-  selectRefreshToken,
-  selectUser,
-  selectUserFailed,
-  selectUserLoading
-} from "../../../redux/ducks/auth";
-import Errors from '../Errors';
-import Loader from 'react-loader-spinner';
-import NotFoundPage from "../NotFoundPage";
-import LogoutPage from "../../accounts/LogoutPage";
-import LoginPage from "../../accounts/LoginPage";
-import Header from "../../common/Header";
-import Footer from "../../common/Footer";
-import accountsRoutes from "../../accounts/accountsRoutes";
-import {USER_ROLES} from "../../../utils/constants";
+import Link from "components/Link";
+import {useRouter} from "next/router";
 
-/** This component handles the routing for the app */
-class AppRouter extends Component {
-  componentDidMount() {
-    const {
-      refresh_token,
-      refreshTokenLogin
-    } = this.props;
+import {makeStyles} from "@material-ui/core/styles";
 
-    if (refresh_token) {
-      refreshTokenLogin(refresh_token);
-    }
-  }
+import {Container, Grid, Typography} from "@material-ui/core";
 
-  render() {
-    const {
-      userLoading,
-      userFailed,
-      user,
-      refresh_token
-    } = this.props;
+import {routes} from "data/routes";
+import Social from "components/Social";
 
-    if (userLoading && refresh_token) {
-      return <Loader/>;
-    }
+const useStyles = makeStyles((theme) => ({
+  footer: {
+    backgroundColor: theme.palette.primary.main,
+    width: `100%`,
+    position: "relative",
+    overflow: "hidden",
+    marginTop: "6em",
+    padding: "2em 0 ",
+  },
+  link: {
+    fontSize: "1.25em",
+    color: "#fff",
+    "&:hover": {
+      color: theme.palette.info.main,
+    },
+  },
+  copylight: {
+    color: "#fff",
+    fontSize: "1em",
+    "&:hover": {
+      color: theme.palette.info.main,
+    },
+  },
+}));
 
-    let routes = [
-      <Route key="Login" path="/login" exact component={LoginPage}/>,
-      <Redirect key="LoginRedirect" from="/" exact to="/login"/>,
-    ];
-
-    switch (user.role) {
-      case USER_ROLES.ADMIN:
-        routes = routes.concat(accountsRoutes);
-        break;
-
-      case USER_ROLES.DOCTOR:
-        // routes = routes.concat(doctorRoutes);
-        break;
-
-      case USER_ROLES.PATIENT:
-        // routes = routes.concat(patientRoutes);
-        break;
-
-      default:
-        break;
-    }
-
-    if (!userFailed && user && Object.keys(user).length !== 0
-        && user.constructor === Object) {
-      routes = [
-        <Redirect
-            key="LoginRedirect"
-            from="/login"
-            to="/"
-        />
-      ]
-    }
-
-    return (
-        <BrowserRouter>
-          <Errors/>
-          <Header/>
-          <Switch>
-            <Route
-                path="/not-found"
-                exact
-                component={NotFoundPage}
-            />
-            <Route
-                path="/logout"
-                exact
-                component={LogoutPage}
-            />
-            {routes}
-            <Redirect
-                from="/"
-                to="/not-found"
-            />
-          </Switch>
-          <Footer/>
-        </BrowserRouter>
-    );
-  }
-
-}
-
-AppRouter.propTypes = {
-  refresh_token: PropTypes.string,
-  userLoading: PropTypes.bool.isRequired,
-  userFailed: PropTypes.bool,
-  user: PropTypes.object,
-  refreshTokenLogin: PropTypes.func.isRequired
+const Footer = () => {
+  const classes = useStyles();
+  const path = routes;
+  const router = useRouter();
+  return (
+      <footer className={classes.footer}>
+        <Container maxWidth="lg">
+          <Grid container spacing={3} justify="center">
+            {path.map(({name, link}) => (
+                <Grid item key={link}>
+                  <Link href={link}>
+                    <Typography
+                        className={classes.link}
+                        style={{
+                          fontWeight: router.pathname === link && "bold",
+                          borderBottom:
+                              router.pathname === link && "1px solid #757ce8",
+                        }}
+                    >
+                      {name}
+                    </Typography>
+                  </Link>
+                </Grid>
+            ))}
+          </Grid>
+          <Grid container direction="column" style={{margin: "1.2em 0"}}>
+            <Social/>
+          </Grid>
+          <Grid
+              item
+              container
+              component={"a"}
+              target="_blank"
+              rel="noreferrer noopener"
+              href="https://satoruakiyama.com"
+              justify="center"
+              style={{
+                textDecoration: "none",
+              }}
+          >
+            <Typography className={classes.copylight}>
+              &copy;QWERTY
+            </Typography>
+          </Grid>
+        </Container>
+      </footer>
+  );
 };
 
-const mapStateToProps = (state) => ({
-  userLoading: selectUserLoading(state),
-  userFailed: selectUserFailed(state),
-  user: selectUser(state),
-  refresh_token: selectRefreshToken(state)
-});
-
-const dispatchers = {
-  refreshTokenLogin
-};
-
-export default connect(mapStateToProps, dispatchers)(AppRouter);
+export default Footer;
