@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom';
 import {selectUser} from "../../../redux/ducks/auth";
+import {AppBar, CssBaseline, Toolbar, Typography} from "@material-ui/core";
 
 /**
  * This component displays the header of the web application.
@@ -26,25 +27,18 @@ export class Header extends Component {
             <Link className="nav-link" to="/login">Login</Link>
           </li>
         </ul>
-    )
+    );
 
     return (
-        <nav className="navbar navbar-expand-md navbar-light bg-light">
-          <div className="container">
-            <Link className="navbar-brand" to="/">Trail Making Test</Link>
-            <button className="navbar-toggler" type="button"
-                    data-toggle="collapse" data-target="#navbarSupportedContent"
-                    aria-controls="navbarSupportedContent" aria-expanded="false"
-                    aria-label="Toggle navigation">
-              <span className="navbar-toggler-icon"></span>
-            </button>
-            <div className="collapse navbar-collapse"
-                 id="navbarSupportedContent">
-              {user && Object.keys(user).length !== 0 ? authLinks : guestLinks}
-            </div>
-          </div>
-        </nav>
-    )
+      <AppBar position="relative">
+        <Toolbar>
+          <Typography variant="h6" color="inherit" align="center" noWrap>
+            TRAIL MAKING TEST
+          </Typography>
+        </Toolbar>
+        {user && Object.keys(user).length !== 0 ? authLinks : guestLinks}
+      </AppBar>
+  )
   }
 }
 
