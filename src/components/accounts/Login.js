@@ -12,8 +12,8 @@ import {connect} from "react-redux";
 
 class LoginPage extends Component {
   state = {
-    username: '',
-    password: '',
+    username: "",
+    password: "",
   }
 
   handleChange = e => {

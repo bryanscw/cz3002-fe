@@ -23,8 +23,8 @@ import SystemAdmin from './components/systemadmin/SystemAdmin.js';
 import ViewDiagnosisDoc from './components/diagnosis/ViewDiagnosisDoc.js';
 import SubmitDiagnosis from './components/diagnosis/SubmitDiagnosis.js';
 import editDiagnosis from './components/diagnosis/editDiagnosis.js';
-import Login from './components/login/Login.js';
-import Logout from './components/login/Logout.js';
+import Login from './components/accounts/Login.js';
+import Logout from './components/accounts/Logout.js';
 import Main from "./Main.js";
 
 /** This component handles the routing for the app */
