@@ -1,16 +1,17 @@
-import React, { Component } from "react";
-import { Button } from "@material-ui/core";
+import React, {Component, forwardRef} from "react";
 import MaterialTable from 'material-table';
-import { deleteUser, listUsers, createUser, updateUser } from "../../redux/ducks/users";
 import {
-  selectUsersLoading,
+  createUser,
+  deleteUser,
+  listUsers,
+  selectUsers,
   selectUsersFailed,
-  selectUsers
+  selectUsersLoading,
+  updateUser
 } from "../../redux/ducks/users";
 import PropTypes from "prop-types";
-import { connect } from "react-redux";
+import {connect} from "react-redux";
 import Loader from 'react-loader-spinner';
-import { forwardRef } from 'react';
 
 import AddBox from '@material-ui/icons/AddBox';
 import ArrowUpward from '@material-ui/icons/ArrowUpward';
@@ -27,14 +28,12 @@ import Remove from '@material-ui/icons/Remove';
 import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
-import { AirlineSeatLegroomExtra } from "@material-ui/icons";
 
 class SystemAdmin extends Component {
 
   componentDidMount() {
     this.props.listUsers();
   }
-
 
   render() {
     const {
@@ -45,109 +44,114 @@ class SystemAdmin extends Component {
       deleteUser
     } = this.props;
 
-
-
-
     const tableIcons = {
-      Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
-      Check: forwardRef((props, ref) => <Check {...props} ref={ref} />),
-      Clear: forwardRef((props, ref) => <Clear {...props} ref={ref} />),
-      Delete: forwardRef((props, ref) => <DeleteOutline {...props} ref={ref} />),
-      DetailPanel: forwardRef((props, ref) => <ChevronRight {...props} ref={ref} />),
-      Edit: forwardRef((props, ref) => <Edit {...props} ref={ref} />),
-      Export: forwardRef((props, ref) => <SaveAlt {...props} ref={ref} />),
-      Filter: forwardRef((props, ref) => <FilterList {...props} ref={ref} />),
-      FirstPage: forwardRef((props, ref) => <FirstPage {...props} ref={ref} />),
-      LastPage: forwardRef((props, ref) => <LastPage {...props} ref={ref} />),
-      NextPage: forwardRef((props, ref) => <ChevronRight {...props} ref={ref} />),
-      PreviousPage: forwardRef((props, ref) => <ChevronLeft {...props} ref={ref} />),
-      ResetSearch: forwardRef((props, ref) => <Clear {...props} ref={ref} />),
-      Search: forwardRef((props, ref) => <Search {...props} ref={ref} />),
-      SortArrow: forwardRef((props, ref) => <ArrowUpward {...props} ref={ref} />),
-      ThirdStateCheck: forwardRef((props, ref) => <Remove {...props} ref={ref} />),
-      ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
+      Add: forwardRef((props, ref) => <AddBox {...props} ref={ref}/>),
+      Check: forwardRef((props, ref) => <Check {...props} ref={ref}/>),
+      Clear: forwardRef((props, ref) => <Clear {...props} ref={ref}/>),
+      Delete: forwardRef((props, ref) => <DeleteOutline {...props} ref={ref}/>),
+      DetailPanel: forwardRef(
+          (props, ref) => <ChevronRight {...props} ref={ref}/>),
+      Edit: forwardRef((props, ref) => <Edit {...props} ref={ref}/>),
+      Export: forwardRef((props, ref) => <SaveAlt {...props} ref={ref}/>),
+      Filter: forwardRef((props, ref) => <FilterList {...props} ref={ref}/>),
+      FirstPage: forwardRef((props, ref) => <FirstPage {...props} ref={ref}/>),
+      LastPage: forwardRef((props, ref) => <LastPage {...props} ref={ref}/>),
+      NextPage: forwardRef(
+          (props, ref) => <ChevronRight {...props} ref={ref}/>),
+      PreviousPage: forwardRef(
+          (props, ref) => <ChevronLeft {...props} ref={ref}/>),
+      ResetSearch: forwardRef((props, ref) => <Clear {...props} ref={ref}/>),
+      Search: forwardRef((props, ref) => <Search {...props} ref={ref}/>),
+      SortArrow: forwardRef(
+          (props, ref) => <ArrowUpward {...props} ref={ref}/>),
+      ThirdStateCheck: forwardRef(
+          (props, ref) => <Remove {...props} ref={ref}/>),
+      ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref}/>)
     };
 
-    if (usersLoading)
-      return <Loader />;
+    if (usersLoading) {
+      return <Loader/>;
+    }
 
     return (
-      <div className="container" data-test="adminTable" style={{ height: 400, width: '100%' }}>
-        <MaterialTable
-          title="Users"
-          icons={tableIcons}
-          font=""
-          columns={[
+        <div className="container" data-test="adminTable"
+             style={{height: 400, width: '100%'}}>
+          <MaterialTable
+              title="Users"
+              icons={tableIcons}
+              font=""
+              columns={[
 
-            {
-              title: 'Email',
-              field: 'email',
-            }, 
-            {
-              title: 'Name',
-              field: 'name',
-              
-            },
-            {
-              title: 'Password',
-              field: 'pass',
+                {
+                  title: 'Email',
+                  field: 'email',
+                },
+                {
+                  title: 'Name',
+                  field: 'name',
 
-            },
-            {
-              title: 'Role',
-              field: 'role',
-              lookup: {
-                ROLE_DOCTOR: "ROLE_DOCTOR",
-                ROLE_PATIENT: "ROLE_PATIENT",
-                ROLE_ADMIN: "ROLE_ADMIN",
-              },
-            },
-           {
-              title: 'Date of Birth',
-              field: 'dob',
-              type: "date",
-            },
-            {
-              title: 'Gender',
-              field: 'gender',
-              lookup: {
-                FEMALE: "FEMALE",
-                MALE: "MALE",
-              },
-            },
-          ]}
-          data={users}
-          options={{
-            
-            cellStyle: {
-              fontFamily: "Helvetica",
-              fontSize: 15,
-            },
-            headerStyle: {
-              backgroundColor: '#323ea8',
-              color: '#FFF',
-              fontSize: 17,
-            }}}
-          editable={{
-            onRowAdd: newData =>
-              new Promise((resolve, reject) => {
-                createUser(newData)
-                  .then(this.setState(users, () => resolve()))
-              }),
-            onRowUpdate: (newData, oldData) =>
-              new Promise((resolve, reject) => {
-                updateUser(newData, oldData)
-                  .then(this.setState(users, () => resolve()))
-              }),
-            onRowDelete: oldData =>
-              new Promise((resolve, reject) => {
-                deleteUser(oldData)
-                  .then(this.setState(users, () => resolve()))
-              }),
-          }}
-        />
+                },
+                {
+                  title: 'Password',
+                  field: 'pass',
 
-      </div>
+                },
+                {
+                  title: 'Role',
+                  field: 'role',
+                  lookup: {
+                    ROLE_DOCTOR: "ROLE_DOCTOR",
+                    ROLE_PATIENT: "ROLE_PATIENT",
+                    ROLE_ADMIN: "ROLE_ADMIN",
+                  },
+                },
+                {
+                  title: 'Date of Birth',
+                  field: 'dob',
+                  type: "date",
+                },
+                {
+                  title: 'Gender',
+                  field: 'gender',
+                  lookup: {
+                    FEMALE: "FEMALE",
+                    MALE: "MALE",
+                  },
+                },
+              ]}
+              data={users}
+              options={{
+
+                cellStyle: {
+                  fontFamily: "Helvetica",
+                  fontSize: 15,
+                },
+                headerStyle: {
+                  backgroundColor: '#323ea8',
+                  color: '#FFF',
+                  fontSize: 17,
+                }
+              }}
+              editable={{
+                onRowAdd: newData =>
+                    new Promise((resolve, reject) => {
+                      createUser(newData)
+                      .then(this.setState(users, () => resolve()))
+                    }),
+                onRowUpdate: (newData, oldData) =>
+                    new Promise((resolve, reject) => {
+                      updateUser(newData, oldData)
+                      .then(this.setState(users, () => resolve()))
+                    }),
+                onRowDelete: oldData =>
+                    new Promise((resolve, reject) => {
+                      deleteUser(oldData)
+                      .then(this.setState(users, () => resolve()))
+                    }),
+              }}
+          />
+
+        </div>
     )
 
   }
@@ -175,7 +179,6 @@ const mapStateToProps = (state) => ({
   usersFailed: selectUsersFailed(state),
   users: selectUsers(state)
 });
-
 
 const dispatchers = {
   createUser,
