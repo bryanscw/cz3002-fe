@@ -102,7 +102,7 @@ class AppRouter extends Component {
 
 }
 
-Index.propTypes = {
+AppRouter.propTypes = {
   refresh_token: PropTypes.string,
   userLoading: PropTypes.bool.isRequired,
   userFailed: PropTypes.bool,
@@ -121,4 +121,4 @@ const dispatchers = {
   refreshTokenLogin
 };
 
-export default connect(mapStateToProps, dispatchers)(Index);
+export default connect(mapStateToProps, dispatchers)(AppRouter);
