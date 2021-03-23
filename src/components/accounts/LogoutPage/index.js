@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Button, Container, CssBaseline, Typography} from "@material-ui/core";
-import {logout} from '../../redux/ducks/auth';
+import {logout} from '../../../redux/ducks/auth';
 
 /**
  * This component displays the logout page for user.
  */
-export class LogoutPage extends Component {
+export class Index extends Component {
   componentDidMount() {
     this.props.logout();
   }
@@ -35,4 +35,4 @@ export class LogoutPage extends Component {
   }
 }
 
-export default connect(null, {logout})(LogoutPage)
+export default connect(null, {logout})(Index)

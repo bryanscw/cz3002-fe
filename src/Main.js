@@ -1,7 +1,7 @@
 import Link from '@material-ui/core/Link';
 import React, {Component} from 'react';
 import Game from './components/game/Game';
-import SystemAdmin from './components/systemadmin/SystemAdmin.js';
+import SystemAdmin from './components/accounts/AdminPage';
 import ResultController from './components/results/ResultController.jsx';
 import {
   BrowserRouter as Router,

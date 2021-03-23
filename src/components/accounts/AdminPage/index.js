@@ -8,7 +8,7 @@ import {
   selectUsersFailed,
   selectUsersLoading,
   updateUser
-} from "../../redux/ducks/users";
+} from "../../../redux/ducks/users";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import Loader from 'react-loader-spinner';
@@ -29,7 +29,7 @@ import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
 
-class SystemAdmin extends Component {
+class Index extends Component {
 
   componentDidMount() {
     this.props.listUsers();
@@ -157,7 +157,7 @@ class SystemAdmin extends Component {
   }
 }
 
-SystemAdmin.propTypes = {
+Index.propTypes = {
   /** A boolean to determine if the users are still being loaded by the `listUsers` action creator (true: still loading, false: fully loaded) */
   usersLoading: PropTypes.bool.isRequired,
   /** A boolean to determine if the users failed to be loaded by the `listUsers` action creator (true: still loading or failed to load, false: successful load) */
@@ -187,4 +187,4 @@ const dispatchers = {
   listUsers,
 };
 
-export default connect(mapStateToProps, dispatchers)(SystemAdmin);
+export default connect(mapStateToProps, dispatchers)(Index);

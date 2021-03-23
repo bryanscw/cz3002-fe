@@ -6,11 +6,11 @@ import {
   TextField,
   Typography
 } from "@material-ui/core";
-import {authenticateLogin} from "../../redux/ducks/auth";
+import {authenticateLogin} from "../../../redux/ducks/auth";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 
-class LoginPage extends Component {
+class Index extends Component {
   state = {
     username: "",
     password: "",
@@ -24,11 +24,7 @@ class LoginPage extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    try {
-      this.props.authenticateLogin(this.state);
-    } catch (e) {
-      alert("Yo, this is wrong");
-    }
+    this.props.authenticateLogin(this.state);
   }
 
   render() {
@@ -97,7 +93,7 @@ class LoginPage extends Component {
 
 }
 
-LoginPage.propTypes = {
+Index.propTypes = {
   /** An action creator for authenticating login */
   authenticateLogin: PropTypes.func.isRequired
   /** An object used for styling */
@@ -107,4 +103,4 @@ const dispatchers = {
   authenticateLogin
 };
 
-export default connect(() => ({}), dispatchers)(LoginPage);
+export default connect(() => ({}), dispatchers)(Index);
