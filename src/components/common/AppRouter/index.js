@@ -97,6 +97,7 @@ class AppRouter extends Component {
                 to="/not-found"
             />
           </Switch>
+          {/*<Footer/>*/}
         </BrowserRouter>
     );
   }
