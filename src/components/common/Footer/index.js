@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import {Typography} from "@material-ui/core";
 
 /**
  * This component displays the footer of the web application.
