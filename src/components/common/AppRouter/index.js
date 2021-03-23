@@ -14,6 +14,7 @@ import Loader from 'react-loader-spinner';
 import NotFoundPage from "../NotFoundPage";
 import LogoutPage from "../../accounts/LogoutPage";
 import LoginPage from "../../accounts/LoginPage";
+import Header from "../../../Main";
 
 /** This component handles the routing for the app */
 class Index extends Component {
