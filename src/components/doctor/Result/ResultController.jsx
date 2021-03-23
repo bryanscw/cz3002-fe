@@ -12,7 +12,7 @@ import {
     selectUser,
     selectUserLoading,
     selectUserFailed
-} from '../redux/ducks/auth.js'
+} from '../../../redux/ducks/auth.js'
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 

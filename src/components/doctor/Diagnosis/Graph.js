@@ -11,7 +11,7 @@ import {
   selectGraphFailed,
   selectGraph
 
-} from '../redux/ducks/graph.js'
+} from '../../../redux/ducks/graph.js'
 
 class Graph extends Component {
   constructor(props) {
