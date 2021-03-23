@@ -1,18 +1,18 @@
 import React from "react";
 import {Route} from "react-router-dom";
-import ViewDiagnosisDoc from "./diagnosis/ViewDiagnosisDoc";
-import DoctorResult from "./results/DoctorResult";
+import ViewDiagnosisDoc from "./Diagnosis/ViewDiagnosisDoc";
+import DoctorResult from "./Result/DoctorResult";
 
 const DoctorRouter = [
   <Route
-      key="ViewDiagnosis"
+      key="ViewResults"
       path="/"
-      component={ViewDiagnosisDoc}
+      component={DoctorResult}
   />,
   <Route
-      key="ViewResults"
-      path="/view-results"
-      component={DoctorResult}
+      key="ViewDiagnosis"
+      path="/view-diagnosis/:resultId"
+      component={ViewDiagnosisDoc}
   />,
 ]
 
