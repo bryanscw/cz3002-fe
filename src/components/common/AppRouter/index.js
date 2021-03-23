@@ -14,7 +14,8 @@ import Loader from 'react-loader-spinner';
 import NotFoundPage from "../NotFoundPage";
 import LogoutPage from "../../accounts/LogoutPage";
 import LoginPage from "../../accounts/LoginPage";
-import Header from "../../../Main";
+import Header from "../../common/Header";
+import Footer from "../../common/Footer";
 import accountsRoutes from "../../accounts/accountsRoutes";
 import {USER_ROLES} from "../../../utils/constants";
 
@@ -97,7 +98,7 @@ class AppRouter extends Component {
                 to="/not-found"
             />
           </Switch>
-          {/*<Footer/>*/}
+          <Footer/>
         </BrowserRouter>
     );
   }
