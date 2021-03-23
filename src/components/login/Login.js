@@ -133,4 +133,4 @@ const dispatch = {
 //   };
 // };
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);
+export default connect(mapStateToProps, dispatchers)(LoginPage);
