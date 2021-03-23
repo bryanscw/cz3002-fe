@@ -16,8 +16,8 @@ import LogoutPage from "../../accounts/LogoutPage";
 import LoginPage from "../../accounts/LoginPage";
 import Header from "../../common/Header";
 import Footer from "../../common/Footer";
-import accountsRoutes from "../../accounts/accountsRoutes";
 import {USER_ROLES} from "../../../utils/constants";
+import accountsRoutes from "../../accounts/accountsRoutes";
 
 /** This component handles the routing for the app */
 class AppRouter extends Component {
@@ -52,6 +52,7 @@ class AppRouter extends Component {
     switch (user.role) {
       case USER_ROLES.ADMIN:
         routes = routes.concat(accountsRoutes);
+        console.log(routes);
         break;
 
       case USER_ROLES.DOCTOR:
