@@ -47,13 +47,7 @@ function Copyright() {
 class Header extends Component {
   render = () => {
 
-    if (!this.props.userLoading && !this.props.userFailed) {
-      const role = this.props.user.role
-      console.log(role)
-      localStorage.setItem("role", role)
-    }
-
-    if (localStorage.getItem("role") === "ROLE_ADMIN") {
+    if (this.props.user.role === "ROLE_ADMIN") {
       return (
           <Provider store={store}>
 
@@ -150,10 +144,10 @@ class Header extends Component {
 
       )
 
-    } else if (localStorage.getItem("role") === "ROLE_DOCTOR"
-        || localStorage.getItem("role") === "ROLE_PATIENT") {
+    } else if (this.props.user.role === "ROLE_DOCTOR"
+        || this.props.user.role === "ROLE_PATIENT") {
 
-      let isPatient = localStorage.getItem("role") === "ROLE_PATIENT";
+      let isPatient = this.props.user.role === "ROLE_PATIENT";
       return (
           <Provider store={store}>
 
