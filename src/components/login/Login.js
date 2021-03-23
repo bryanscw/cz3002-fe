@@ -11,35 +11,21 @@ import PropTypes from "prop-types";
 import {connect} from "react-redux";
 
 class LoginPage extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      username: "",
-      password: "",
-    };
-
+  state = {
+    username: '',
+    password: '',
   }
 
-  handleChange = (e) => {
+  handleChange = e => {
     this.setState({
       [e.target.name]: e.target.value
     });
   };
 
-  handleSubmit = (e) => {
+  handleSubmit = e => {
     e.preventDefault();
     this.props.authenticateLogin(this.state);
-    // try {
-    //   this.setState({username: "", password: ""});
-    //   const {username, password} = this.state;
-    //   this.props.authenticateLogin(this.state);
-    //   this.props.history.push('/main');
-    // } catch (e) {
-    //   window.alert('Invalid Credentials!')
-    //   alert(e.message);
-    // }
-  };
+  }
 
   render() {
 
