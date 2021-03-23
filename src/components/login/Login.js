@@ -114,7 +114,7 @@ LoginPage.propTypes = {
   /** An object used for styling */
 };
 
-const dispatch = {
+const dispatchers = {
   authenticateLogin
 };
 
