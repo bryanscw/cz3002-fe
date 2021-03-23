@@ -1,4 +1,4 @@
-import {BrowserRouter as Router} from "react-router-dom";
+import {BrowserRouter as Router, Redirect} from "react-router-dom";
 import React, {Component} from "react";
 
 import "./Diagnosis.css";
@@ -30,34 +30,22 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import Graph from './Graph.js'
 
-// const history = useHistory();
-
 class ViewDiagnosisDoc extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      // id: this.props.match.params.id,
-      //username: null,
-
       result: this.props.match.params.id
-
     };
   }
 
   componentDidMount() {
 
     this.props.fetchDiagnosis(this.state)
-    //this.props.fetchMe(this.state)
-
   }
 
   deleteData = () => {
-
     this.props.deleteDiagnosis(this.props.diagnosis)
-    this.props.history.push("/Login");
-    // window.location.reload();
-
   }
 
   goPage = (page) => {
@@ -78,8 +66,8 @@ class ViewDiagnosisDoc extends Component {
       return (
           <loader/>
       )
-    } else if (diagnosisFailed || ! diagnosis) {
-      return <Redirect to="/not-found" />;
+    } else if (diagnosisFailed || !diagnosis) {
+      return <Redirect to="/not-found"/>;
     } else {
       const cat = diagnosis.label;
 
@@ -211,27 +199,25 @@ class ViewDiagnosisDoc extends Component {
 
                   </label>
                   <label>
-                    {isDoctor ?
-                        <div style={{marginTop: 30, marginLeft: 300}}>
-                          <div><FontAwesomeIcon icon={faEdit}
-                                                style={{color: "#115293"}}
-                                                size='2x' variant="contained"
-                                                color="primary"
-                                                onClick={() => this.goPage(
-                                                    `/editDiagnosis/${this.state.result}`)}/>
-                            <FontAwesomeIcon icon={faTrashAlt} style={{
-                              marginLeft: 100,
-                              color: "#115293"
-                            }} size='2x' variant="contained" color="primary"
-                                             onClick={() => {
-                                               if (window.confirm(
-                                                   'Are you sure you wish to delete this item?')) {
-                                                 this.deleteData()
-                                               }
-                                             }}/>
-                          </div>
-                        </div>
-                        : null}
+                    <div style={{marginTop: 30, marginLeft: 300}}>
+                      <div><FontAwesomeIcon icon={faEdit}
+                                            style={{color: "#115293"}}
+                                            size='2x' variant="contained"
+                                            color="primary"
+                                            onClick={() => this.goPage(
+                                                `/editDiagnosis/${this.state.result}`)}/>
+                        <FontAwesomeIcon icon={faTrashAlt} style={{
+                          marginLeft: 100,
+                          color: "#115293"
+                        }} size='2x' variant="contained" color="primary"
+                                         onClick={() => {
+                                           if (window.confirm(
+                                               'Are you sure you wish to delete this item?')) {
+                                             this.deleteData()
+                                           }
+                                         }}/>
+                      </div>
+                    </div>
                   </label>
                 </Paper>
               </form>
