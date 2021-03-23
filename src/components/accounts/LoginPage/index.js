@@ -93,7 +93,7 @@ class LoginPage extends Component {
 
 }
 
-Index.propTypes = {
+LoginPage.propTypes = {
   /** An action creator for authenticating login */
   authenticateLogin: PropTypes.func.isRequired
   /** An object used for styling */

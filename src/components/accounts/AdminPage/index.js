@@ -157,7 +157,7 @@ class AdminPage extends Component {
   }
 }
 
-Index.propTypes = {
+AdminPage.propTypes = {
   /** A boolean to determine if the users are still being loaded by the `listUsers` action creator (true: still loading, false: fully loaded) */
   usersLoading: PropTypes.bool.isRequired,
   /** A boolean to determine if the users failed to be loaded by the `listUsers` action creator (true: still loading or failed to load, false: successful load) */
