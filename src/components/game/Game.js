@@ -1,5 +1,5 @@
 import React from "react";
-import '../../App.css';
+import './App.css';
 import Dot from './Dot';
 import Line from './line';
 import { COLORS, SIZES } from '../../utils/constants';
