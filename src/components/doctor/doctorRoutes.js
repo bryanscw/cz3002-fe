@@ -11,7 +11,7 @@ const DoctorRouter = [
   />,
   <Route
       key="ViewResults"
-      path="/"
+      path="/view-results"
       component={DoctorResult}
   />,
 ]
