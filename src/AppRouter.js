@@ -8,7 +8,7 @@ import {
     selectUserFailed,
     selectUser,
     selectRefreshToken
-} from "./components/redux/ducks/auth";
+} from "./redux/ducks/auth";
 import Game from './components/game/Game';
 import ResultController from './components/results/ResultController.jsx';
 
@@ -27,14 +27,13 @@ class AppRouter extends Component {
     render() {
 
         let routes = [
-            <Route key="LoginPage" path="/LOGIN" exact component={Login} />,
-            <Redirect key="LoginRedirect" from="/" exact to="/LOGIN" />,
-            <Route key="SystemAdmin" path="/SYSTEMADMIN" exact component={SystemAdmin} />,
+            <Route key="LoginPage" path="/login" exact component={Login} />,
+            <Redirect key="LoginRedirect" from="/" exact to="/login" />,
+            <Route key="SystemAdmin" path="/admin" exact component={SystemAdmin} />,
 
-            <Route key="Topics" path="/TOPIC" exact component={Topic} />,
-            <Route key="GAME" path="/GAME" exact component={Game} />,
+            <Route key="Game" path="/game" exact component={Game} />,
             <Route key="ResultController" path="/result" exact component={ResultController} />,
-            <Route key="MAIN" path="/MAIN" exact component={Main} />,
+            <Route key="Main" path="/main" exact component={Main} />,
             <Route key="LogoutPage" path="/logout" exact component={Logout} />,
             <Route key="SubmitDiagnosis" path="/SubmitDiagnosis/:result" exact component={SubmitDiagnosis} />,
             <Route key="editDiagnosis" path="/editDiagnosis/:result" exact component={editDiagnosis} />,

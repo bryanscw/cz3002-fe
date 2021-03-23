@@ -5,13 +5,13 @@ import {
     selectResultsLoading,
     selectResultsFailed,
     selectResults,
-} from '../redux/ducks/result'
+} from '../../redux/ducks/result'
 import {
     listUsers,
     selectUsers,
     selectUsersLoading,
     selectUsersFailed
-} from '../redux/ducks/users'
+} from '../../redux/ducks/users'
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import ResultList from './ResultList.jsx'

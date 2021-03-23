@@ -12,10 +12,10 @@ import {
   selectUser,
   selectUserLoading,
   selectUserFailed
-} from './components/redux/ducks/auth.js'
+} from './redux/ducks/auth.js'
 import { connect } from "react-redux";
 
-import store from './components/redux/store.js'
+import store from './redux/store.js'
 
 //../redux/ducks/diagnosis
 import { Provider } from 'react-redux'

@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import { Button } from "@material-ui/core";
 import MaterialTable from 'material-table';
-import { deleteUser, listUsers, createUser, updateUser } from "../redux/ducks/users";
+import { deleteUser, listUsers, createUser, updateUser } from "../../redux/ducks/users";
 import {
   selectUsersLoading,
   selectUsersFailed,
   selectUsers
-} from "../redux/ducks/users";
+} from "../../redux/ducks/users";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Loader from 'react-loader-spinner';

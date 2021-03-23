@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { createDiagnosis } from "../redux/ducks/diagnosis";
+import { createDiagnosis } from "../../redux/ducks/diagnosis";
 import { faPlusCircle} from '@fortawesome/free-solid-svg-icons';
 import { Button, Select, Paper, TextField,Typography } from "@material-ui/core";
 //import { Link } from "react-router-dom";

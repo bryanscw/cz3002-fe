@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Button, CssBaseline, TextField, Container, Typography } from "@material-ui/core";
-import {logout} from '../redux/ducks/auth';
+import {logout} from '../../redux/ducks/auth';
 import { BrowserRouter as Router, Route, Switch, Link as RouterLink } from "react-router-dom";
 /**
  * This component displays the logout page for user.

@@ -4,7 +4,7 @@ import {
     selectResultsLoading,
     selectResultsFailed,
     selectResults,
-} from '../redux/ducks/result'
+} from '../../redux/ducks/result'
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import ResultList from './ResultList.jsx'

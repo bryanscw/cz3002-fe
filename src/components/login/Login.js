@@ -6,7 +6,7 @@ import {
   selectUserLoading,
   selectUserFailed,
   authenticateLogin
-} from "../redux/ducks/auth";
+} from "../../redux/ducks/auth";
 import { Redirect } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
