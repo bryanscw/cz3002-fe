@@ -1,3 +1,5 @@
+//TODO: This should be removed
+
 // import Link from '@material-ui/core/Link';
 // import React, {Component} from 'react';
 // import Game from './components/game/Game';
