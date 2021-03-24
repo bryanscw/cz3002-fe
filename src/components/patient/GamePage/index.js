@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {withRouter, Link, Redirect} from 'react-router-dom';
+import {Redirect} from 'react-router-dom';
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {Alert, AlertTitle} from '@material-ui/lab';
@@ -21,9 +21,8 @@ class GamePage extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if(this.props.match.params.resultId !== nextProps.match.params.resultId) {
+    if (this.props.match.params.resultId !== nextProps.match.params.resultId) {
       this.resultId = parseInt(nextProps.match.params.resultId);
-      console.log(this.resultId);
     }
   }
 
@@ -46,13 +45,7 @@ class GamePage extends Component {
     let result = results.find(o => o.id === this.resultId);
 
     if (!result) {
-      return (
-          <div>
-            <Link to="/game/6">Test 6</Link>
-            <Link to="/game/2">Test 6</Link>
-          </div>
-      );
-      // return <Redirect to="/not-found"/>;
+      return <Redirect to="/not-found"/>;
     }
 
     // If test has been completed
@@ -73,6 +66,7 @@ class GamePage extends Component {
                       href={`/result/${result.id}`}>
                 View results
               </Button>
+              <Redirect to={`/result/${result.id}`}/>
             </Alert>
           </div>
       );
@@ -102,4 +96,4 @@ const dispatchers = {
   listUserResults
 };
 
-export default withRouter(connect(mapStateToProps, dispatchers)(GamePage));
+export default connect(mapStateToProps, dispatchers)(GamePage);
