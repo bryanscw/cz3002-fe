@@ -42,7 +42,7 @@ class GamePage extends Component {
     // }
 
     // If test has been completed
-    if (!result.time) {
+    if (result.time) {
       return (
           <div className="main">
             <Alert severity="success">
@@ -51,7 +51,7 @@ class GamePage extends Component {
               <Link to={`/result/${this.resultId}`}>
                 HERE
               </Link>
-              to view the results.
+               to view the results.
             </Alert>
           </div>
       );
