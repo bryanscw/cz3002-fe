@@ -13,7 +13,7 @@ import {Link, Redirect} from 'react-router-dom';
 import {selectUser} from "../../../redux/ducks/auth";
 import {CircularProgress, Typography} from "@material-ui/core";
 import {Alert, AlertTitle} from '@material-ui/lab';
-import BasicCard from "../../common/BasicCard";
+import ResultCard from "../../common/ResultCard";
 
 class ResultHomePage extends Component {
   componentDidMount() {
@@ -49,12 +49,14 @@ class ResultHomePage extends Component {
             results.length !== 0 ? (
                     results.map(
                         result =>
-                            <BasicCard
+                            <ResultCard
                                 key={result.id}
                                 editable={false}
                                 classes="mb-4"
                                 details={result}
-                                badge={result.accuracy && result.time ?  <span className="badge badge-success">Completed</span> : <span className="badge badge-secondary">Not Completed</span>}
+                                badge={result.accuracy && result.time ? <span
+                                        className="badge badge-success">Completed</span>
+                                    : <span className="badge badge-secondary">Not Completed</span>}
                                 link={`/results/${result.id}`}
                             />
                     )

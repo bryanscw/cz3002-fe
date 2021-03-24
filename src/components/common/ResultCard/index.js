@@ -1,12 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import {Link} from 'react-router-dom';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faEdit, faTrash} from '@fortawesome/free-solid-svg-icons';
 
 /**This component is used to display an item with a title and description */
-export default function BasicCard(props) {
+export default function ResultCard(props) {
   const {
     classes,
     result,
@@ -28,7 +25,7 @@ export default function BasicCard(props) {
   )
 }
 
-BasicCard.propTypes = {
+ResultCard.propTypes = {
   /** A string storing the html to be included in the component */
   classes: PropTypes.string,
   /** An object containing the item's title and description */
