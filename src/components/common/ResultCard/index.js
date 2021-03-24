@@ -17,9 +17,9 @@ export default function ResultCard(props) {
           <h3 className="card-title">
             Test id: {result.id} - {badge}
           </h3>
-          <p className="card-text">{result.numNodes}</p>
-          <p className="card-text">{result.accuracy}</p>
-          <p className="card-text">{result.time}</p>
+          <p className="card-text">Number of nodes: {result.numNodes}</p>
+          <p className="card-text">Accuracy: {result.accuracy}%</p>
+          <p className="card-text">Time taken: {result.time}%</p>
           <Link to={link}>More details...</Link>
         </div>
       </div>
