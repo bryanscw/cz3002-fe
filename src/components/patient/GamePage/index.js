@@ -37,6 +37,11 @@ class GamePage extends Component {
 
     // If no such result is found
     if (!result) {
+      return <Redirect to="/not-found"/>;
+    }
+
+    // If test has been completed
+    if (result.time) {
       return (
           <Switch>
             <Redirect from="/game/:id" to="/result/:id"/>
@@ -44,12 +49,6 @@ class GamePage extends Component {
             </Route>
           </Switch>
       );
-    }
-
-    // If test has been completed
-    if (result.time) {
-      this.props.history.push(`/result/${this.resultId}`);
-      // return <Redirect to={`/result/${this.resultId}`}/>;
     }
 
     return (
