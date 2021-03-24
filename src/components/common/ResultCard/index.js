@@ -15,7 +15,7 @@ export default function ResultCard(props) {
       <div className={`card${classes ? ` ${classes}` : ""}`}>
         <div className="card-body">
           <h3 className="card-title">
-            <Link to={link}>{title}</Link> {badge}
+            <Link to={link}>{result.id}</Link> {badge}
           </h3>
           <p className="card-text">{result.numNodes}</p>
           <p className="card-text">{result.accuracy}</p>
