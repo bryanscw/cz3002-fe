@@ -2,12 +2,12 @@ import React from "react";
 
 import Game from './Game';
 
- import './Test.css';
+import './Test.css';
 
 function Test() {
     return (
-          <Game />
-  );
+        <Game/>
+    );
 }
 
 export default Test;

@@ -1,19 +1,9 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import DoctorResult from './DoctorResult.jsx'
 import PatientResult from '../../patient/ResultHomePage/PatientResult'
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Redirect
-} from "react-router-dom";
-import {
-    fetchMe,
-    selectUser,
-    selectUserLoading,
-    selectUserFailed
-} from '../../../redux/ducks/auth.js'
-import { connect } from "react-redux";
+import {BrowserRouter as Router, Redirect, Route, Switch} from "react-router-dom";
+import {fetchMe, selectUser, selectUserFailed, selectUserLoading} from '../../../redux/ducks/auth.js'
+import {connect} from "react-redux";
 import PropTypes from "prop-types";
 
 class ResultController extends Component {
@@ -23,10 +13,10 @@ class ResultController extends Component {
     calcRedirect = (userRole) => {
         if (userRole === 'ROLE_DOCTOR') {
             return <Redirect from={this.props.location.pathname}
-                             to={`${this.props.location.pathname}/doctor`} />
+                             to={`${this.props.location.pathname}/doctor`}/>
         } else {
             return <Redirect from={this.props.location.pathname}
-                             to={`${this.props.location.pathname}/patient`} />
+                             to={`${this.props.location.pathname}/patient`}/>
         }
     }
     render = () => {
@@ -35,11 +25,11 @@ class ResultController extends Component {
             <Router>
                 {this.calcRedirect(role)}
                 <Switch>
-                <Route path={`${this.props.location.pathname}/doctor`}
-                       component={DoctorResult}/>
-                <Route path={`${this.props.location.pathname}/patient`}
-                       component={PatientResult}>
-                </Route>
+                    <Route path={`${this.props.location.pathname}/doctor`}
+                           component={DoctorResult}/>
+                    <Route path={`${this.props.location.pathname}/patient`}
+                           component={PatientResult}>
+                    </Route>
                 </Switch>
             </Router>
         )

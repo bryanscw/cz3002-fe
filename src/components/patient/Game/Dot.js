@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Dot = (props) => {
-    const {color, x, y, size, index, func,i} = props;
+    const {color, x, y, size, index, func, i} = props;
     const dotStyle = {
         backgroundColor: color,
         height: `${size}px`,
@@ -11,7 +11,7 @@ const Dot = (props) => {
     };
 
     return (
-        <div 
+        <div
             className="dot"
             style={dotStyle}
             onClick={() => func(i)}

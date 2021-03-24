@@ -1,23 +1,18 @@
-import React, { Component } from "react";
-import { 
-    listUserResults,
-    listAllResults,    
-    selectResultsLoading,
-    selectResultsFailed,
-    selectResults,
-} from '../../../redux/ducks/result'
+import React, {Component} from "react";
 import {
-    listUsers,
-    selectUsers,
-    selectUsersLoading,
-    selectUsersFailed
-} from '../../../redux/ducks/users'
-import { connect } from "react-redux";
+    listAllResults,
+    listUserResults,
+    selectResults,
+    selectResultsFailed,
+    selectResultsLoading,
+} from '../../../redux/ducks/result'
+import {listUsers, selectUsers, selectUsersFailed, selectUsersLoading} from '../../../redux/ducks/users'
+import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import ResultList from './ResultList.jsx'
 
 class DoctorResult extends Component {
-    componentDidMount(){
+    componentDidMount() {
         this.props.listAllResults(this.state)
     }
 

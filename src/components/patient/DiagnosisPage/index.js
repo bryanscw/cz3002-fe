@@ -1,33 +1,26 @@
 import React, {Component} from "react";
-import PropTypes from "prop-types";
 import {connect} from "react-redux";
 
 class DiagnosisPage extends Component {
 
-  componentDidMount() {
+    componentDidMount() {
 
-  }
+    }
 
-  render() {
+    render() {
 
-    return (
-        ""
-    );
-  }
-
-}
-
-DiagnosisPage.propType = {
+        return (
+            ""
+        );
+    }
 
 }
 
-const mapStateToProps = state => ({
+DiagnosisPage.propType = {}
 
-});
+const mapStateToProps = state => ({});
 
-const dispatchers = {
-
-};
+const dispatchers = {};
 
 
 export default connect(mapStateToProps, dispatchers)(DiagnosisPage);

@@ -1,13 +1,13 @@
-import {
-    useParams, Link
-} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 
 
 export default function ResultDetails(props) {
     // receives as prop resultHistory- a list which contains resultDetail objects,
     // including attributes: time, test mode, completion time, error rate
     const {resultDetailsId} = useParams()
-    const resultDetails = props.resultHistory.find(rd => {return rd.id.toString() === resultDetailsId.toString()})
+    const resultDetails = props.resultHistory.find(rd => {
+        return rd.id.toString() === resultDetailsId.toString()
+    })
     return (
         <ul>
             <li>Result id: {resultDetailsId}</li>
@@ -22,7 +22,7 @@ export default function ResultDetails(props) {
                     Diagnosis
                 </button>
             </Link>
-            
+
         </ul>
     );
-    }
+}

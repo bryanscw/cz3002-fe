@@ -1,32 +1,25 @@
 import React, {Component} from "react";
-import PropTypes from "prop-types";
 import {connect} from "react-redux";
 
 class GamePage extends Component {
 
-  componentDidMount() {
+    componentDidMount() {
 
-  }
+    }
 
-  render() {
+    render() {
 
-    return (
-      ""
-    );
-  }
-
-}
-
-GamePage.propType = {
+        return (
+            ""
+        );
+    }
 
 }
 
-const mapStateToProps = state => ({
+GamePage.propType = {}
 
-});
+const mapStateToProps = state => ({});
 
-const dispatchers = {
-
-};
+const dispatchers = {};
 
 export default connect(mapStateToProps, dispatchers)(GamePage);
