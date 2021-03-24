@@ -8,6 +8,7 @@ import {
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {CircularProgress} from "@material-ui/core";
+import {Redirect} from 'react-router-dom';
 
 class ResultPage extends Component {
 
