@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {Link, useHistory} from "react-router-dom";
+import {Alert, AlertTitle} from '@material-ui/lab';
 import {CircularProgress, CssBaseline} from "@material-ui/core";
 import {
   listUserResults,
