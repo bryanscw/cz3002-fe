@@ -19,6 +19,12 @@ class ResultPage extends Component {
     this.props.listUserResults(this.state);
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (this.props.match.params.resultId !== nextProps.match.params.resultId) {
+      this.resultId = parseInt(nextProps.match.params.resultId);
+    }
+  }
+
   render() {
     const {
       resultsLoading,
