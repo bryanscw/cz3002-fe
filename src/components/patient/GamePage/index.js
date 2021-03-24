@@ -17,6 +17,7 @@ class GamePage extends Component {
   componentDidMount() {
     this.resultId = parseInt(this.props.match.params.resultId);
     this.props.listUserResults(this.state);
+    console.log("Hello");
   }
 
   render() {
