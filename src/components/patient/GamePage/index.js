@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {Redirect} from 'react-router-dom';
+import {Link, Redirect} from 'react-router-dom';
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {Alert, AlertTitle} from '@material-ui/lab';
@@ -41,7 +41,8 @@ class GamePage extends Component {
     let result = results.find(o => o.id === this.resultId);
 
     if (!result) {
-      return <Redirect from="/game/6" to="/game/2"/>;
+      return <Link to="/game/6"/>;
+      // return <Redirect to="/not-found"/>;
     }
 
     // If test has been completed
