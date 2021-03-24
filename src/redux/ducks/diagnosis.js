@@ -16,12 +16,12 @@ const diagnosisReducer = createApiReducer(ENTITY_NAME, "id");
 export default diagnosisReducer;
 
 // OPERATIONS
-export const fetchDiagnosis = (diagnosis) => (dispatch, getState) => {
+export const fetchDiagnosis = (resultId) => (dispatch, getState) => {
   dispatch(createApiAction(ENTITY_NAME, STATUSES.REQUEST, METHODS.RETRIEVE));
 //let access_token = localStorage.getItem("access_token");
   return (
       axios
-      .post(`${API_URL}/diagnosis/${diagnosis.result}`, {},
+      .post(`${API_URL}/diagnosis/${resultId}`, {},
           getTokenConfig(getState))
       .then((res) => {
         dispatch(
@@ -31,7 +31,7 @@ export const fetchDiagnosis = (diagnosis) => (dispatch, getState) => {
         // return res
       })
       .catch((err) => {
-        displayError("Unable to get diagonosis")(dispatch);
+        displayError("Unable to fetch diagnosis")(dispatch);
         dispatch(
             createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.RETRIEVE));
       })
