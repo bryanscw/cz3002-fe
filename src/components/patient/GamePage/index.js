@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import {Redirect, Route, Switch} from 'react-router-dom';
+import {Redirect, Route} from 'react-router-dom';
 import {CircularProgress, CssBaseline} from "@material-ui/core";
 import {
   listUserResults,
@@ -42,7 +42,11 @@ class GamePage extends Component {
 
     // If test has been completed
     if (result.time) {
-      return <Redirect push to={`/result/${this.resultId}`}/>;
+      return (
+          <Route path={`/game/${this.resultId}`} render={() => (
+              <Redirect to={`/result/${this.resultId}`}/>
+          )}/>
+      );
     }
 
     return (
