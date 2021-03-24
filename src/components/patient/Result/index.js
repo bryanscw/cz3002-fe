@@ -28,8 +28,6 @@ class Result extends Component {
       user
     } = this.props;
 
-    const classes = useStyles();
-
     if (resultsLoading) {
       return <CircularProgress/>;
     }
