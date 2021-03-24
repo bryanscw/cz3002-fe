@@ -5,8 +5,9 @@ import ResultPage from "./ResultPage";
 
 const PatientRouter = [
   <Route
-      key="ViewResults"
+      key="ResultHomePage"
       path="/"
+      exact
       component={ResultHomePage}
   />,
   <Route
