@@ -4,10 +4,10 @@ import {Link} from "react-router-dom";
 import {selectUser} from "../../../redux/ducks/auth";
 import {AppBar, Box, Toolbar, Typography} from "@material-ui/core";
 import {green, red} from "@material-ui/core/colors"
-import {makeStyles} from '@material-ui/core/styles';
+import {withStyles} from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button'
 
-const useStyles = makeStyles((theme) => ({
+const styles = theme => ({
   header: {
     "-webkit-text-fill-color": "#cccccc",
   },
@@ -29,17 +29,19 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: red[700],
     },
   }
-}));
+});
 
 /**
  * This component displays the header of the web application.
  */
 export class Header extends Component {
   render() {
-    const classes = useStyles();
-
     const {
       user
+    } = this.props;
+
+    const {
+      classes,
     } = this.props;
 
     const authLinks = (
@@ -78,4 +80,4 @@ const mapStateToProps = state => ({
   user: selectUser(state),
 });
 
-export default connect(mapStateToProps)(Header);
+export default connect(mapStateToProps)(withStyles(styles)(Header));
