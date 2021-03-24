@@ -17,7 +17,6 @@ class GamePage extends Component {
   componentDidMount() {
     this.resultId = parseInt(this.props.match.params.resultId);
     this.props.listUserResults(this.state);
-
   }
 
   render() {
@@ -54,7 +53,7 @@ class GamePage extends Component {
           <div className="main">
             <CssBaseline/>
             <Alert severity="success">
-              <AlertTitle>Success</AlertTitle>
+              <AlertTitle>Test Completed</AlertTitle>
               You have completed this test!
               <Button color="primary"
                       href={`/result/${result.id}`}>
