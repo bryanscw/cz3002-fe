@@ -13,7 +13,7 @@ export default function PendingTestCard(props) {
       <div className={`card${classes ? ` ${classes}` : ""}`}>
         <div className="card-body">
           <h3 className="card-title">
-            Test id: {result.id} - {badge}
+            Test id: {result.id}
           </h3>
           <p className="card-text">Number of nodes: {result.nodeNum}</p>
           <br/>
