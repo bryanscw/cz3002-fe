@@ -41,7 +41,7 @@ class GamePage extends Component {
     let result = results.find(o => o.id === this.resultId);
 
     if (!result) {
-      return <Link to="/game/6"/>;
+      return <Link to="/game/6">Test 6</Link>;
       // return <Redirect to="/not-found"/>;
     }
 
