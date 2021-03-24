@@ -27,7 +27,7 @@ class DoctorHomePage extends Component {
                   </Typography>
                 </CardContent>
                 <CardActions>
-                  <Button assize="small" color="primary" href="/create-test">
+                  <Button variant="contained" color="primary" href="/create-test">
                     Go
                   </Button>
                 </CardActions>
@@ -42,8 +42,7 @@ class DoctorHomePage extends Component {
                   </Typography>
                 </CardContent>
                 <CardActions>
-                  <Button assize="small" color="primary"
-                          href="/create-diagnosis">
+                  <Button variant="contained" color="primary" href="/create-diagnosis">
                     Go
                   </Button>
                 </CardActions>
