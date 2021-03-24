@@ -53,7 +53,7 @@ class ResultHomePage extends Component {
                                 key={result.id}
                                 editable={false}
                                 classes="mb-4"
-                                details={result}
+                                details={{ "title": result.id, "description": "Stuffs" }}
                                 link={`/results/${result.id}`}
                             />
                     )
