@@ -34,7 +34,7 @@ class DiagnosisPage extends Component {
     }
 
     return (
-        <div className="main">
+        <div className="container">
           <CssBaseline/>
           <p>{JSON.stringify(diagnosis)}</p>
         </div>

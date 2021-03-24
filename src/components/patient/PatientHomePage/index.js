@@ -11,7 +11,7 @@ import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import {Link, Redirect} from 'react-router-dom';
 import {selectUser} from "../../../redux/ducks/auth";
-import {CircularProgress, Typography} from "@material-ui/core";
+import {CircularProgress, CssBaseline, Typography} from "@material-ui/core";
 import {Alert, AlertTitle} from '@material-ui/lab';
 import ResultCard from "../ResultCard";
 import PendingTestCard from "../PendingTestCard";
@@ -55,6 +55,7 @@ class PatientHomePage extends Component {
 
     return (
         <div style={{marginTop: 70, marginBottom: 70}} className="container">
+          <CssBaseline/>
           <Typography variant="h1">Results for: {user.name}</Typography>
 
           <Link className="btn btn-light mb-2" to="/">
