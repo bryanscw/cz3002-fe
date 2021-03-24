@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import {Redirect, Route} from 'react-router-dom';
+import {Link, useHistory} from "react-router-dom";
 import {CircularProgress, CssBaseline} from "@material-ui/core";
 import {
   listUserResults,
@@ -9,6 +9,8 @@ import {
   selectResultsFailed,
   selectResultsLoading
 } from "../../../redux/ducks/result";
+
+const history = useHistory();
 
 class GamePage extends Component {
 
@@ -18,6 +20,11 @@ class GamePage extends Component {
   }
 
   render() {
+    function delayAndGo(e) {
+      e.preventDefault();
+      setTimeout(() => history.push(to), 2000);
+    }
+
     const {
       resultsLoading,
       resultsFailed,
@@ -42,7 +49,18 @@ class GamePage extends Component {
 
     // If test has been completed
     if (result.time) {
-      return <Redirect to="/"/>;
+      return (
+          <div className="main">
+            <Alert severity="success">
+              <AlertTitle>Success</AlertTitle>
+              You have completed this test! Click
+              <Link to={`/result/${this.resultId}`} onClick={delayAndGo}>
+                HERE
+              </Link>
+              to view the results.
+            </Alert>
+          </div>
+      );
     }
 
     return (
