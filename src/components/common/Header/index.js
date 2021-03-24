@@ -64,7 +64,7 @@ export class Header extends Component {
         <AppBar position="static">
           <Toolbar>
             <Typography style={{flex: 1}} variant="h6" color="inherit" noWrap>
-              <Link className="header" href="/home">TRAIL MAKING TEST</Link>
+              <Link className={classes.header} href="/home">TRAIL MAKING TEST</Link>
             </Typography>
             {user && Object.keys(user).length !== 0 ? authLinks : guestLinks}
           </Toolbar>
