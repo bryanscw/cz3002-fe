@@ -59,6 +59,9 @@ class GamePage extends Component {
                       href={`/result/${result.id}`}>
                 View results
               </Button>
+              <Link to="/game/1">Game 1</Link>
+              <Link to="/game/2">Game 2</Link>
+
               <Link to="/result/1">Result 1</Link>
               <Link to="/result/2">Result 2</Link>
             </Alert>
