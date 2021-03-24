@@ -6,12 +6,12 @@ import {
   selectResultsLoading
 } from "../../../redux/ducks/result";
 import {CircularProgress} from "@material-ui/core";
-import {Link, Redirect} from 'react-router-dom';
+import {Redirect} from 'react-router-dom';
+import {connect} from "react-redux";
 
 class ResultPage extends Component {
 
   componentDidMount() {
-    const resultId = parseInt(this.props.match.params.resultId);
     this.props.listUserResults(this.state);
   }
 
@@ -21,6 +21,8 @@ class ResultPage extends Component {
       resultsFailed,
       results,
     } = this.props;
+
+    const resultId = parseInt(this.props.match.params.topicId);
 
     if (resultsLoading) {
       return <CircularProgress/>;
