@@ -1,0 +1,11 @@
+.header{
+    -webkit-text-fill-color: #cccccc;
+}
+
+.login {
+    float: right;
+}
+
+.logout{
+    float: right;
+}
