@@ -1,5 +1,5 @@
 import React from "react";
-import {Route} from "react-router-dom";
+import {withRouter, Route} from "react-router-dom";
 import ResultHomePage from "./PatientHomePage";
 import ResultPage from "./ResultPage";
 import DiagnosisPage from "./DiagnosisPage";
@@ -28,7 +28,7 @@ const PatientRouter = [
       key="GamePage"
       path="/game/:resultId"
       exact
-      component={GamePage}
+      component={withRouter(GamePage)}
   />,
 
 ]
