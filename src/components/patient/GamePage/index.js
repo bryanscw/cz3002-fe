@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {Link, Redirect} from 'react-router-dom';
+import {withRouter, Link, Redirect} from 'react-router-dom';
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {Alert, AlertTitle} from '@material-ui/lab';
@@ -97,4 +97,4 @@ const dispatchers = {
   listUserResults
 };
 
-export default connect(mapStateToProps, dispatchers)(GamePage);
+export default withRouter(connect(mapStateToProps, dispatchers)(GamePage));
