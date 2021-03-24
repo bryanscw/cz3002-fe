@@ -47,11 +47,7 @@ class Result extends Component {
 
           {
             results.length !== 0 ? (
-                    <div className={classes.root}>
-                      <Paper className={classes.paper}>
-                        results.map(result => result.id)
-                      </Paper>
-                    </div>
+                  results.map(result => result.id)
                 )
                 :
                 (
