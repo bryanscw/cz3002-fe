@@ -5,7 +5,9 @@ import {
   selectResultsFailed,
   selectResultsLoading
 } from "../../../redux/ducks/result";
-import {CircularProgress, Typography} from "@material-ui/core";
+import PropTypes from "prop-types";
+import {connect} from "react-redux";
+import {CircularProgress} from "@material-ui/core";
 
 class ResultPage extends Component {
 
@@ -29,7 +31,7 @@ class ResultPage extends Component {
       return <Redirect to="/not-found"/>;
     }
 
-    return(
+    return (
         "Hello"
     );
   }
