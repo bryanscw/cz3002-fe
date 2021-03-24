@@ -15,9 +15,7 @@ export default function AboutPage() {
           </Typography>
           <Typography variant="h5" align="center"
                       color="textSecondary" paragraph>
-            Trail Making Test is a simple neuropsychological test of
-            cognitive processes, including attention, visual search
-            and scanning, and psychomotor speed.
+            Lorem ipsum
           </Typography>
 
         </Container>
