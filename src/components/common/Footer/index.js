@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import Link from '@material-ui/core/Link';
 import {Typography} from "@material-ui/core";
 import "./index.css";
 
@@ -10,7 +10,7 @@ export default function Footer() {
   return (
       <Typography className="footer" variant="body2" color="textSecondary" align="center">
         {'Copyright © '}
-        <Link color="inherit" to="/about">
+        <Link color="inherit" href="/about">
           QWERTY
         </Link>{' '}
         {new Date().getFullYear()}

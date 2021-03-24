@@ -1,5 +1,4 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
 import {CssBaseline} from "@material-ui/core";
 
 /**
@@ -11,7 +10,7 @@ export default function NotFoundPage() {
         <CssBaseline/>
         <h1>404 Not Found</h1>
         <p>Sorry, the page you are looking for can't be found.</p>
-        <Link className="btn btn-primary" to="/">Return to Home</Link>
+        <Link href="/">Return to Home</Link>
       </div>
   );
 }

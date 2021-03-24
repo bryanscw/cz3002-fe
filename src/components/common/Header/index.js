@@ -1,6 +1,5 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
-import {withRouter} from "react-router-dom";
 import Link from '@material-ui/core/Link';
 import {selectUser} from "../../../redux/ducks/auth";
 import {AppBar, Box, Toolbar, Typography} from "@material-ui/core";
