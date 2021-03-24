@@ -54,13 +54,33 @@ class ResultHomePage extends Component {
     );
 
     return (
-        <Typography variant="h1">Results for: {user.name}</Typography>
         <div className="container">
+          <Typography variant="h1">Results for: {user.name}</Typography>
+
           <Link className="btn btn-light mb-2" to="/">
             <FontAwesomeIcon icon={faChevronLeft}/> Back to Home
           </Link>
 
-
+          <Typography variant="subtitle1">Pending Tests</Typography>
+          {
+            pendingTests.length !== 0 ? (
+                    pendingTests.map(
+                        result =>
+                            <PendingTestCard
+                                key={result.id}
+                                classes="mb-4"
+                                result={result}
+                            />
+                    )
+                )
+                :
+                (
+                    <Alert severity="info">
+                      <AlertTitle>Info</AlertTitle>
+                      <strong>No</strong> pending test(s) found
+                    </Alert>
+                )
+          }
 
           <Typography variant="subtitle1">Completed Tests</Typography>
           <br/>
