@@ -37,9 +37,6 @@ class GamePage extends Component {
 
     let result = results.find(o => o.id === this.resultId);
 
-    console.log(this.resultId);
-    console.log(JSON.stringify(result));
-
     // If test has been completed
     if (!result.time) {
       return (
