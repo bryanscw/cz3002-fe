@@ -15,7 +15,7 @@ import {CircularProgress, Typography} from "@material-ui/core";
 import {Alert, AlertTitle} from '@material-ui/lab';
 import BasicCard from "../../common/BasicCard";
 
-class Result extends Component {
+class ResultHomePage extends Component {
   componentDidMount() {
     this.props.listUserResults(this.state)
   }
@@ -72,7 +72,7 @@ class Result extends Component {
   }
 }
 
-Result.propTypes = {
+ResultHomePage.propTypes = {
   /** An action creator */
   listUserResults: PropTypes.func.isRequired,
   /** A boolean to determine if the results are still being loaded (true: still loading, false: fully loaded) */
@@ -95,4 +95,4 @@ const dispatchers = {
   listUserResults
 };
 
-export default connect(mapStateToProps, dispatchers)(Result);
+export default connect(mapStateToProps, dispatchers)(ResultHomePage);
