@@ -16,6 +16,18 @@ const PatientRouter = [
       exact
       component={ResultPage}
   />,
+  <Route
+      key="DiagnosisPage"
+      path="/diagnosis/:resultId"
+      exact
+      component={DiagnosisPage}
+  />,
+  <Route
+      key="GamePage"
+      path="/game/:resultId"
+      exact
+      component={GamePage}
+  />,
 
 ]
 

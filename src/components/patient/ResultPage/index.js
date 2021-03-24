@@ -5,10 +5,8 @@ import {
   selectResultsFailed,
   selectResultsLoading
 } from "../../../redux/ducks/result";
-import PropTypes from "prop-types";
-import {connect} from "react-redux";
 import {CircularProgress} from "@material-ui/core";
-import {Redirect} from 'react-router-dom';
+import {Link, Redirect} from 'react-router-dom';
 
 class ResultPage extends Component {
 
@@ -32,8 +30,10 @@ class ResultPage extends Component {
       return <Redirect to="/not-found"/>;
     }
 
-    return (
-        "Hello"
+    let result = results.find(o => o.id === resultId);
+
+    return(
+        <p>{JSON.stringify(result)}</p>
     );
   }
 

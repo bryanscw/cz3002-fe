@@ -20,7 +20,6 @@ export default function ResultCard(props) {
           <p className="card-text">Accuracy: {result.accuracy}%</p>
           <p className="card-text">Time taken: {result.time} seconds</p>
           <Link to={`/results/${result.id}`}>More details...</Link>
-          <br/>
           <Link to={`/diagnosis/${result.id}`}>Diagnosis</Link>
         </div>
       </div>
