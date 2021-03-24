@@ -4,6 +4,9 @@ import {Container, CssBaseline, Typography} from "@material-ui/core";
 import {selectUser} from "../../../redux/ducks/auth";
 import Button from "@material-ui/core/Button";
 
+/**
+ * This component displays the home page of the web application.
+ */
 export class HomePage extends Component {
   render() {
     const {
