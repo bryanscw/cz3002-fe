@@ -14,7 +14,7 @@ import Button from '@material-ui/core/Button'
 
 class ResultPage extends Component {
 
-  componentWillReceiveProps() {
+  componentDidMount() {
     this.resultId = parseInt(this.props.match.params.resultId);
     this.props.listUserResults(this.state);
   }
