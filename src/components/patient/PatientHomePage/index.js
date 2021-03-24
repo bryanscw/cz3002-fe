@@ -54,7 +54,7 @@ class PatientHomePage extends Component {
     );
 
     return (
-        <div style={{marginTop: 70, marginBottom: 70}} className="container">
+        <div className="container">
           <Typography variant="h1">Results for: {user.name}</Typography>
 
           <Link className="btn btn-light mb-2" to="/">
