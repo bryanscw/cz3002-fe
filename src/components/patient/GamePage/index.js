@@ -13,9 +13,6 @@ import {
 } from "../../../redux/ducks/result";
 
 class GamePage extends Component {
-  constructor(props) {
-    super(props);
-  }
 
   componentDidMount() {
     this.resultId = parseInt(this.props.match.params.resultId);
@@ -45,6 +42,9 @@ class GamePage extends Component {
       return <Redirect from="/game/6" to="/game/2"/>;
     }
 
+    console.log(this.resultId);
+    console.log(JSON.stringify(this.props.results));
+    console.log(JSON.stringify(this.state));
     // If test has been completed
     if (!result.time) {
       return (
