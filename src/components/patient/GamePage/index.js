@@ -38,7 +38,7 @@ class GamePage extends Component {
     let result = results.find(o => o.id === this.resultId);
 
     if (!result) {
-      return <Redirect to="/game/2"/>;
+      this.props.history.push("/game/2");
     }
 
     // If test has been completed
