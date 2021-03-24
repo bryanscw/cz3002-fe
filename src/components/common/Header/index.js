@@ -2,7 +2,16 @@ import React, {Component} from "react";
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 import {selectUser} from "../../../redux/ducks/auth";
-import {AppBar, Toolbar, Typography} from "@material-ui/core";
+import {
+    AppBar,
+    Box,
+    Button,
+    withStyles,
+    Toolbar,
+    Typography
+} from "@material-ui/core";
+import { red, green } from "@material-ui/core/colors"
+import "./index.css";
 
 /**
  * This component displays the header of the web application.
@@ -13,31 +22,51 @@ export class Header extends Component {
       user
     } = this.props;
 
+    const LogoutButton = withStyles((theme) => ({
+        root: {
+            color: theme.palette.getContrastText(red[500]),
+            backgroundColor: red[500],
+            '&:hover': {
+                backgroundColor: red[700],
+            },
+        },
+    }))(Button);
+
+    const LoginButton = withStyles((theme) => ({
+        root: {
+            color: theme.palette.getContrastText(green[500]),
+            backgroundColor: green[500],
+            '&:hover': {
+                backgroundColor: green[700],
+            },
+        },
+    }))(Button);
+
     const authLinks = (
-        <ul className="navbar-nav ml-auto">
-          <li className="nav-item">
-            <Link className="nav-link" to="/logout">Logout</Link>
-          </li>
-        </ul>
+        <Box className="logout">
+            <LogoutButton size="small" component={ Link } to="/logout">
+                Logout
+            </LogoutButton>
+        </Box>
     );
 
     const guestLinks = (
-        <ul className="navbar-navml-auto">
-          <li className="nav-item">
-            <Link className="nav-link" to="/login">Login</Link>
-          </li>
-        </ul>
+            <LoginButton className="login" size="small" component={ Link } to="/login">
+                Login
+            </LoginButton>
     );
 
     return (
-        <AppBar position="relative">
-          <Toolbar>
-            <Typography variant="h6" color="inherit" align="center" noWrap>
-              TRAIL MAKING TEST
-            </Typography>
-          </Toolbar>
-          {user && Object.keys(user).length !== 0 ? authLinks : guestLinks}
-        </AppBar>
+            <AppBar>
+                <Toolbar>
+                    <Typography style={{flex: 1}} variant="h6" color="inherit" noWrap>
+                        <Link className="header" style={{textDecoration: "none"}} to="/">
+                                TRAIL MAKING TEST
+                        </Link>
+                    </Typography>
+                    {user && Object.keys(user).length !== 0 ? authLinks : guestLinks}
+                </Toolbar>
+            </AppBar>
     );
   }
 }
