@@ -65,7 +65,6 @@ class AppRouter extends Component {
       switch (user.role) {
         case USER_ROLES.ADMIN:
           routes = routes.concat(accountsRoutes);
-          console.log(routes);
           break;
 
         case USER_ROLES.DOCTOR:
