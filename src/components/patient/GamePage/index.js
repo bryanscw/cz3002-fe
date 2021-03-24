@@ -14,11 +14,11 @@ import {
 
 class GamePage extends Component {
 
-  componentWillReceiveProps() {
+  componentDidMount() {
     this.resultId = parseInt(this.props.match.params.resultId);
     this.props.listUserResults(this.state);
 
-    console.log(this.resultId);
+    console.log(this.resultId);π
     console.log(JSON.stringify(this.state));
   }
 
