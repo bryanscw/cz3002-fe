@@ -2,12 +2,13 @@ import React, {Component} from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {
-    listUserResults,
-    selectResults,
-    selectResultsFailed,
-    selectResultsLoading
+  listUserResults,
+  selectResults,
+  selectResultsFailed,
+  selectResultsLoading
 } from "../../../redux/ducks/result";
-import {CircularProgress} from "@material-ui/core";
+import {CircularProgress, CssBaseline} from "@material-ui/core";
+import Button from '@material-ui/core/Button'
 import {Redirect} from 'react-router-dom';
 
 class ResultPage extends Component {
@@ -35,13 +36,32 @@ class ResultPage extends Component {
 
     let result = results.find(o => o.id === this.resultId);
 
-    // If no such result is found or the test has not been completed
-    if (!result || !result.time) {
+    // If no such result is found
+    if (!result) {
       return <Redirect to="/not-found"/>;
     }
 
     return (
-        <p>{JSON.stringify(result)}</p>
+        <div className="container">
+          <CssBaseline/>
+          {
+            // Check if user has completed the test
+            result.time ? (
+                <p>{JSON.stringify(result)}</p>
+            ) : (
+                <Alert severity="error">
+                  <AlertTitle>Test not completed yet</AlertTitle>
+                  <p>No result available as test has <strong>not</strong> been
+                    completed yet.</p>
+                  <Button color="primary"
+                          href={`/game/${result.id}`}>
+                    Do Test
+                  </Button>
+                </Alert>
+            )
+          }
+
+        </div>
     );
   }
 
