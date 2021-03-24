@@ -36,6 +36,25 @@ class ResultHomePage extends Component {
       return <Redirect to="/not-found"/>;
     }
 
+    // Find tests that have been completed
+    let completedTests = results.filter(
+        function (el) {
+          // Completed tests will have a non-null time or accuracy
+          return el.time || el.accuracy;
+        }
+    );
+
+    // Find tests that have not been completed
+    let pendingTests = results.filter(
+        function (el) {
+          // Completed tests will have a non-null time or accuracy
+          return !el.time && !el.accuracy;
+        }
+    );
+
+    console.log(pendingTests);
+    console.log(completedTests);
+
     return (
         <div className="container">
           <Link className="btn btn-light mb-2" to="/">
@@ -47,7 +66,7 @@ class ResultHomePage extends Component {
 
           {
             results.length !== 0 ? (
-                    results.map(
+                    completedTests.map(
                         result =>
                             <ResultCard
                                 key={result.id}
