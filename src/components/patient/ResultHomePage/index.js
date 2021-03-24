@@ -60,26 +60,7 @@ class ResultHomePage extends Component {
             <FontAwesomeIcon icon={faChevronLeft}/> Back to Home
           </Link>
 
-          <Typography variant="subtitle1">Pending Tests</Typography>
-          {
-            pendingTests.length !== 0 ? (
-                    pendingTests.map(
-                        result =>
-                            <PendingTestCard
-                                key={result.id}
-                                classes="mb-4"
-                                result={result}
-                            />
-                    )
-                )
-                :
-                (
-                    <Alert severity="info">
-                      <AlertTitle>Info</AlertTitle>
-                      <strong>No</strong> pending test(s) found
-                    </Alert>
-                )
-          }
+
 
           <Typography variant="subtitle1">Completed Tests</Typography>
           <br/>
