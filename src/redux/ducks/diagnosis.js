@@ -12,7 +12,7 @@ import {getTokenConfig} from "./authHelper";
 const ENTITY_NAME = "diagnosis";
 
 // REDUCER
-const diagnosisReducer = createApiReducer(ENTITY_NAME, "id");
+const diagnosisReducer = createApiReducer(ENTITY_NAME);
 export default diagnosisReducer;
 
 // OPERATIONS

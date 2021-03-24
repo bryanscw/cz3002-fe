@@ -28,7 +28,7 @@ const PatientRouter = [
       key="GamePage"
       path="/game/:resultId"
       exact
-      component={withRouter(GamePage)}
+      component={GamePage}
   />,
 
 ]

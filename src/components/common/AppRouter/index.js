@@ -92,8 +92,8 @@ class AppRouter extends Component {
           <Errors/>
           <Header/>
           <Switch>
-            <Route key="Home" path="/home" exact component={HomePage}/>
-            <Route key="Home" path="/about" exact component={AboutPage}/>
+            <Route path="/home" exact component={HomePage}/>
+            <Route path="/about" exact component={AboutPage}/>
             <Route path="/not-found" exact component={NotFoundPage}/>
             <Route path="/logout" exact component={LogoutPage}/>
             {routes}

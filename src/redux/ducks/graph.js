@@ -9,10 +9,10 @@ import {API_URL} from "../../utils/constants";
 import {displayError} from "./errors";
 import {getTokenConfig} from "./authHelper";
 
-const ENTITY_NAME = "graph";
+const ENTITY_NAME = "result";
 
 // REDUCER
-const graphReducer = createApiReducer(ENTITY_NAME, "id");
+const graphReducer = createApiReducer(ENTITY_NAME);
 export default graphReducer;
 
 // OPERATIONS

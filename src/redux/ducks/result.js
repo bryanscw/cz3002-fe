@@ -13,7 +13,7 @@ import {getTokenConfig} from './authHelper';
 const ENTITY_NAME = 'results';
 
 // REDUCER
-const resultsReducer = createApiReducer(ENTITY_NAME, "id");
+const resultsReducer = createApiReducer(ENTITY_NAME);
 export default resultsReducer;
 
 // OPERATIONS
