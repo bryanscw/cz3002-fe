@@ -42,7 +42,13 @@ class GamePage extends Component {
     // }
 
     // If test has been completed
-    if (result.time) {
+    if (!result.time) {
+      return (
+          <div className="main">
+            <CssBaseline/>
+          </div>
+      );
+    } else {
       return (
           <div className="main">
             <CssBaseline/>
@@ -52,17 +58,11 @@ class GamePage extends Component {
               <Link to={`/result/${this.resultId}`}>
                 HERE
               </Link>
-               to view the results.
+              to view the results.
             </Alert>
           </div>
       );
     }
-
-    return (
-        <div className="main">
-          <CssBaseline/>
-        </div>
-    );
   }
 
 }
