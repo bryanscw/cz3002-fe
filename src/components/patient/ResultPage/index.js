@@ -30,13 +30,18 @@ class ResultPage extends Component {
       return <CircularProgress/>;
     }
 
+    // If failed to fetch results, redirect to not-found
     if (resultsFailed) {
       return <Redirect to="/not-found"/>;
     }
 
     let result = results.find(o => o.id === this.resultId);
-    console.log(this.resultId);
-    console.log(result);
+
+    // If no such result is found or the test has not been completed
+    if (!result || !result.time) {
+      return <Redirect to="/not-found"/>;
+    }
+
     return (
         <p>{JSON.stringify(result)}</p>
     );
