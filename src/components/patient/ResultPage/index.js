@@ -13,6 +13,7 @@ import {Redirect} from 'react-router-dom';
 class ResultPage extends Component {
 
   componentDidMount() {
+    this.resultId = parseInt(this.props.match.params.topicId);
     this.props.listUserResults(this.state);
   }
 
@@ -23,7 +24,7 @@ class ResultPage extends Component {
       results,
     } = this.props;
 
-    const resultId = parseInt(this.props.match.params.topicId);
+
 
     if (resultsLoading) {
       return <CircularProgress/>;
@@ -33,7 +34,7 @@ class ResultPage extends Component {
       return <Redirect to="/not-found"/>;
     }
 
-    let result = results.find(o => o.id === resultId);
+    let result = results.find(o => o.id === this.resultId);
     console.log(resultId);
     console.log(result);
     return (
