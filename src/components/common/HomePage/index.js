@@ -29,7 +29,9 @@ export class HomePage extends Component {
                 <Button variant="contained" color="primary" href="/">
                   To Dashboard
                 </Button>
-            ) : ({})
+            ) : (
+                <p></p>
+            )
           }
         </div>
     );
