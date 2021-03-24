@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import {Redirect} from 'react-router-dom';
+import {Redirect, Route, Switch} from 'react-router-dom';
 import {CircularProgress, CssBaseline} from "@material-ui/core";
 import {
   listUserResults,
@@ -37,7 +37,13 @@ class GamePage extends Component {
 
     // If no such result is found
     if (!result) {
-      return <Redirect to="/not-found"/>;
+      return (
+          <Switch>
+            <Redirect from="/game/:id" to="/result/:id"/>
+            <Route path="/result/:id">
+            </Route>
+          </Switch>
+      );
     }
 
     // If test has been completed
