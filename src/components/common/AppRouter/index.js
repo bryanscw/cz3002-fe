@@ -90,7 +90,7 @@ class AppRouter extends Component {
             <Route path="/not-found" exact component={NotFoundPage}/>
             <Route path="/logout" exact component={LogoutPage}/>
             {routes}
-            <Redirect from="/" to="/not-found"/>
+            {/*<Redirect from="/" to="/not-found"/>*/}
           </Switch>
           <Footer/>
         </BrowserRouter>
