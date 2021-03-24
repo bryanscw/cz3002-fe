@@ -36,9 +36,9 @@ class GamePage extends Component {
     let result = results.find(o => o.id === this.resultId);
 
     // If no such result is found
-    if (!result) {
-      return <Redirect to="/not-found"/>;
-    }
+    // if (!result) {
+    //   return <Redirect to="/not-found"/>;
+    // }
 
     // If test has been completed
     if (result.time) {
