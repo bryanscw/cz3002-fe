@@ -21,6 +21,7 @@ import doctorRoutes from "../../doctor/doctorRoutes";
 import patientRoutes from "../../patient/patientRoutes";
 import {CircularProgress} from "@material-ui/core";
 import HomePage from "../HomePage";
+import AboutPage from "../AboutPage";
 
 /** This component handles the routing for the app */
 class AppRouter extends Component {
@@ -87,7 +88,7 @@ class AppRouter extends Component {
           <Header/>
           <Switch>
             <Route key="Home" path="/home" exact component={HomePage}/>
-            <Route key="Home" path="/about" exact component={HomePage}/>
+            <Route key="Home" path="/about" exact component={AboutPage}/>
             <Route path="/not-found" exact component={NotFoundPage}/>
             <Route path="/logout" exact component={LogoutPage}/>
             {routes}
