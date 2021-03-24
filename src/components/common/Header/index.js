@@ -60,7 +60,7 @@ export class Header extends Component {
             <AppBar>
                 <Toolbar>
                     <Typography style={{flex: 1}} variant="h6" color="inherit" noWrap>
-                        <Link className="header" style={{textDecoration: "none"}} to="/">
+                        <Link className="header" style={{textDecoration: "none"}} to="/home">
                                 TRAIL MAKING TEST
                         </Link>
                     </Typography>
