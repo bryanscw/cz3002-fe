@@ -13,6 +13,7 @@ import {Link, Redirect} from 'react-router-dom';
 import {selectUser} from "../../../redux/ducks/auth";
 import {CircularProgress, Typography} from "@material-ui/core";
 import {Alert, AlertTitle} from '@material-ui/lab';
+import BasicCard from "../../common/BasicCard";
 
 class Result extends Component {
   componentDidMount() {
