@@ -5,6 +5,7 @@ import {
   selectResultsFailed,
   selectResultsLoading,
 } from "../../../redux/ducks/result"
+import {faChevronLeft} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
@@ -73,7 +74,7 @@ class Result extends Component {
             results.length !== 0 ?
                 <div className={classes.root}>
                   <Paper className={classes.paper}>
-                    results.map(results.map(result =>
+                    results.map(result =>
                     <Grid container spacing={2}>
                       <Grid item xs={12} sm container>
                         <Grid item xs container direction="column"
