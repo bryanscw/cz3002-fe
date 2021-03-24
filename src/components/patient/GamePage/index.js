@@ -58,6 +58,8 @@ class GamePage extends Component {
               <Button color="primary"
                       href={`/result/${result.id}`}>
                 View results
+                <Link to="/game/1">Game 1</Link>
+                <Link to="/game/2">Game 2</Link>
               </Button>
             </Alert>
           </div>
