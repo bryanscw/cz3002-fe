@@ -20,12 +20,6 @@ class GamePage extends Component {
 
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (this.props.match.params.resultId !== nextProps.match.params.resultId) {
-      this.resultId = parseInt(nextProps.match.params.resultId);
-    }
-  }
-
   render() {
     const {
       resultsLoading,
@@ -66,7 +60,6 @@ class GamePage extends Component {
                       href={`/result/${result.id}`}>
                 View results
               </Button>
-              <Link to={`/result/${result.id}`}>Do Something</Link>
             </Alert>
           </div>
       );
