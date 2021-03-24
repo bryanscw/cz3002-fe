@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
+import {Redirect} from 'react-router-dom';
 import {
   listUserResults,
   selectResults,
@@ -10,7 +11,7 @@ import {
 import {CircularProgress, CssBaseline} from "@material-ui/core";
 import {Alert, AlertTitle} from '@material-ui/lab';
 import Button from '@material-ui/core/Button'
-import {Redirect} from 'react-router-dom';
+
 
 class ResultPage extends Component {
 
