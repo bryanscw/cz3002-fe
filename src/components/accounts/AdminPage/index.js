@@ -11,7 +11,7 @@ import {
 } from "../../../redux/ducks/users";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import CircularProgress from "@material-ui/core";
+import {CircularProgress} from "@material-ui/core";
 import AddBox from "@material-ui/icons/AddBox";
 import ArrowUpward from "@material-ui/icons/ArrowUpward";
 import Check from "@material-ui/icons/Check";
