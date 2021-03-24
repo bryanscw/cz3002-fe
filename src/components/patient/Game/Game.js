@@ -43,7 +43,7 @@ class Game extends Component{
     event.preventDefault();
     this.props.createResult(this.state);
     this.props.history.push("/Game");
-    console.log(localStorage.getItem("acessToken"));
+    console.log(localStorage.getItem("accessToken"));
     window.location.reload(false);
   }
 

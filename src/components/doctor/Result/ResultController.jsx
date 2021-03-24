@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import DoctorResult from './DoctorResult.jsx'
-import PatientResult from './PatientResult'
+import PatientResult from '../../patient/ResultHomePage/PatientResult'
 import {
     BrowserRouter as Router,
     Switch,

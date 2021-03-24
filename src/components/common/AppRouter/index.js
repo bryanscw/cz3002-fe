@@ -10,7 +10,6 @@ import {
   selectUserLoading
 } from "../../../redux/ducks/auth";
 import Errors from '../Errors';
-import Loader from 'react-loader-spinner';
 import NotFoundPage from "../NotFoundPage";
 import LogoutPage from "../../accounts/LogoutPage";
 import LoginPage from "../../accounts/LoginPage";
@@ -20,6 +19,7 @@ import {USER_ROLES} from "../../../utils/constants";
 import accountsRoutes from "../../accounts/accountsRoutes";
 import doctorRoutes from "../../doctor/doctorRoutes";
 import patientRoutes from "../../patient/patientRoutes";
+import {CircularProgress} from "@material-ui/core";
 
 /** This component handles the routing for the app */
 class AppRouter extends Component {
@@ -43,7 +43,7 @@ class AppRouter extends Component {
     } = this.props;
 
     if (userLoading && refresh_token) {
-      return <Loader/>;
+      return <CircularProgress/>;
     }
 
     let routes = [
@@ -65,7 +65,6 @@ class AppRouter extends Component {
       switch (user.role) {
         case USER_ROLES.ADMIN:
           routes = routes.concat(accountsRoutes);
-          console.log(routes);
           break;
 
         case USER_ROLES.DOCTOR:

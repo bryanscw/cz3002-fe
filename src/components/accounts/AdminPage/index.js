@@ -1,5 +1,5 @@
 import React, {Component, forwardRef} from "react";
-import MaterialTable from 'material-table';
+import MaterialTable from "material-table";
 import {
   createUser,
   deleteUser,
@@ -11,23 +11,22 @@ import {
 } from "../../../redux/ducks/users";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import Loader from 'react-loader-spinner';
-
-import AddBox from '@material-ui/icons/AddBox';
-import ArrowUpward from '@material-ui/icons/ArrowUpward';
-import Check from '@material-ui/icons/Check';
-import ChevronLeft from '@material-ui/icons/ChevronLeft';
-import ChevronRight from '@material-ui/icons/ChevronRight';
-import Clear from '@material-ui/icons/Clear';
-import DeleteOutline from '@material-ui/icons/DeleteOutline';
-import Edit from '@material-ui/icons/Edit';
-import FilterList from '@material-ui/icons/FilterList';
-import FirstPage from '@material-ui/icons/FirstPage';
-import LastPage from '@material-ui/icons/LastPage';
-import Remove from '@material-ui/icons/Remove';
-import SaveAlt from '@material-ui/icons/SaveAlt';
-import Search from '@material-ui/icons/Search';
-import ViewColumn from '@material-ui/icons/ViewColumn';
+import {CircularProgress} from "@material-ui/core";
+import AddBox from "@material-ui/icons/AddBox";
+import ArrowUpward from "@material-ui/icons/ArrowUpward";
+import Check from "@material-ui/icons/Check";
+import ChevronLeft from "@material-ui/icons/ChevronLeft";
+import ChevronRight from "@material-ui/icons/ChevronRight";
+import Clear from "@material-ui/icons/Clear";
+import DeleteOutline from "@material-ui/icons/DeleteOutline";
+import Edit from "@material-ui/icons/Edit";
+import FilterList from "@material-ui/icons/FilterList";
+import FirstPage from "@material-ui/icons/FirstPage";
+import LastPage from "@material-ui/icons/LastPage";
+import Remove from "@material-ui/icons/Remove";
+import SaveAlt from "@material-ui/icons/SaveAlt";
+import Search from "@material-ui/icons/Search";
+import ViewColumn from "@material-ui/icons/ViewColumn";
 
 class AdminPage extends Component {
 
@@ -70,12 +69,12 @@ class AdminPage extends Component {
     };
 
     if (usersLoading) {
-      return <Loader/>;
+      return <CircularProgress/>;
     }
 
     return (
         <div className="container" data-test="adminTable"
-             style={{height: 400, width: '100%'}}>
+             style={{height: 400, width: "100%"}}>
           <MaterialTable
               title="Users"
               icons={tableIcons}
@@ -83,22 +82,22 @@ class AdminPage extends Component {
               columns={[
 
                 {
-                  title: 'Email',
-                  field: 'email',
+                  title: "Email",
+                  field: "email",
                 },
                 {
-                  title: 'Name',
-                  field: 'name',
+                  title: "Name",
+                  field: "name",
 
                 },
                 {
-                  title: 'Password',
-                  field: 'pass',
+                  title: "Password",
+                  field: "pass",
 
                 },
                 {
-                  title: 'Role',
-                  field: 'role',
+                  title: "Role",
+                  field: "role",
                   lookup: {
                     ROLE_DOCTOR: "ROLE_DOCTOR",
                     ROLE_PATIENT: "ROLE_PATIENT",
@@ -106,13 +105,13 @@ class AdminPage extends Component {
                   },
                 },
                 {
-                  title: 'Date of Birth',
-                  field: 'dob',
+                  title: "Date of Birth",
+                  field: "dob",
                   type: "date",
                 },
                 {
-                  title: 'Gender',
-                  field: 'gender',
+                  title: "Gender",
+                  field: "gender",
                   lookup: {
                     FEMALE: "FEMALE",
                     MALE: "MALE",
@@ -127,8 +126,8 @@ class AdminPage extends Component {
                   fontSize: 15,
                 },
                 headerStyle: {
-                  backgroundColor: '#323ea8',
-                  color: '#FFF',
+                  backgroundColor: "#323ea8",
+                  color: "#FFF",
                   fontSize: 17,
                 }
               }}
