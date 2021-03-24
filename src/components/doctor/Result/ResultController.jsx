@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import DoctorResult from './DoctorResult.jsx'
-import PatientResult from '../../patient/ResultHomePage/PatientResult'
+import PatientResult from '../../patient/PatientHomePage/PatientResult'
 import {
   BrowserRouter as Router,
   Redirect,

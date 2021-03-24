@@ -1,25 +1,23 @@
 import React from "react";
 import {Route} from "react-router-dom";
-import ViewDiagnosisDoc from "./Diagnosis/ViewDiagnosisDoc";
-import DoctorResult from "./Result/DoctorResult";
-import SubmitDiagnosis from "./Diagnosis/SubmitDiagnosis";
+import DoctorHomePage from "./DoctorHomePage";
 
 const DoctorRouter = [
   <Route
-      key="ViewResults"
+      key="DoctorHomePage"
       path="/"
-      component={DoctorResult}
+      component={DoctorHomePage}
   />,
-  <Route
-      key="ViewDiagnosis"
-      path="/view-diagnosis/:resultId"
-      component={ViewDiagnosisDoc}
-  />,
-  <Route
-      key="SubmitDiagnosis"
-      path="/submit-diagnosis/:resultId"
-      component={SubmitDiagnosis}
-  />,
+  // <Route
+  //     key="CreateTest"
+  //     path="/view-diagnosis/:resultId"
+  //     component={ViewDiagnosisDoc}
+  // />,
+  // <Route
+  //     key="CreateDiagnosis"
+  //     path="/submit-diagnosis/:resultId"
+  //     component={CreateDiagnosis}
+  // />,
 ]
 
 export default DoctorRouter;

@@ -13,10 +13,10 @@ import {Link, Redirect} from 'react-router-dom';
 import {selectUser} from "../../../redux/ducks/auth";
 import {CircularProgress, Typography} from "@material-ui/core";
 import {Alert, AlertTitle} from '@material-ui/lab';
-import ResultCard from "../../common/ResultCard";
-import PendingTestCard from "../../common/PendingTestCard";
+import ResultCard from "../ResultCard";
+import PendingTestCard from "../PendingTestCard";
 
-class ResultHomePage extends Component {
+class PatientHomePage extends Component {
   componentDidMount() {
     this.props.listUserResults(this.state)
   }
@@ -113,7 +113,7 @@ class ResultHomePage extends Component {
   }
 }
 
-ResultHomePage.propTypes = {
+PatientHomePage.propTypes = {
   /** An action creator */
   listUserResults: PropTypes.func.isRequired,
   /** A boolean to determine if the results are still being loaded (true: still loading, false: fully loaded) */
@@ -136,4 +136,4 @@ const dispatchers = {
   listUserResults
 };
 
-export default connect(mapStateToProps, dispatchers)(ResultHomePage);
+export default connect(mapStateToProps, dispatchers)(PatientHomePage);

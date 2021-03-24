@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux'
-import {Link} from 'react-router-dom';
+import React, {Component} from "react";
+import {connect} from "react-redux";
+import {Link} from "react-router-dom";
 import {selectUser} from "../../../redux/ducks/auth";
 import {AppBar, Toolbar, Typography} from "@material-ui/core";
 
@@ -38,7 +38,7 @@ export class Header extends Component {
           </Toolbar>
           {user && Object.keys(user).length !== 0 ? authLinks : guestLinks}
         </AppBar>
-    )
+    );
   }
 }
 
