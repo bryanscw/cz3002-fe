@@ -17,7 +17,10 @@ class GamePage extends Component {
   componentDidMount() {
     this.resultId = parseInt(this.props.match.params.resultId);
     this.props.listUserResults(this.state);
-    console.log("Hello");
+
+    console.log(this.resultId);
+    console.log(JSON.stringify(this.props.results));
+    console.log(JSON.stringify(this.state));
   }
 
   render() {
@@ -42,9 +45,6 @@ class GamePage extends Component {
       return <Redirect from="/game/6" to="/game/2"/>;
     }
 
-    console.log(this.resultId);
-    console.log(JSON.stringify(this.props.results));
-    console.log(JSON.stringify(this.state));
     // If test has been completed
     if (!result.time) {
       return (
