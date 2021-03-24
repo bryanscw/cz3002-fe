@@ -50,7 +50,6 @@ class AppRouter extends Component {
     let routes = [
       <Route key="Login" path="/login" exact component={LoginPage}/>,
       <Redirect key="LoginRedirect" from="/" exact to="/login"/>,
-      <Route key="Home" path="/home" exact component={HomePage}/>,
     ];
 
     // Check if a valid user is logged in
@@ -87,21 +86,11 @@ class AppRouter extends Component {
           <Errors/>
           <Header/>
           <Switch>
-            <Route
-                path="/not-found"
-                exact
-                component={NotFoundPage}
-            />
-            <Route
-                path="/logout"
-                exact
-                component={LogoutPage}
-            />
+            <Route key="Home" path="/home" exact component={HomePage}/>
+            <Route path="/not-found" exact component={NotFoundPage}/>
+            <Route path="/logout" exact component={LogoutPage}/>
             {routes}
-            <Redirect
-                from="/"
-                to="/not-found"
-            />
+            <Redirect from="/" to="/not-found"/>
           </Switch>
           <Footer/>
         </BrowserRouter>
