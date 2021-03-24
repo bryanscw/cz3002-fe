@@ -1,5 +1,4 @@
 import React, {Component} from "react";
-import PropTypes from "prop-types";
 import {connect} from "react-redux";
 
 class GamePage extends Component {
@@ -11,22 +10,16 @@ class GamePage extends Component {
   render() {
 
     return (
-      ""
+        ""
     );
   }
 
 }
 
-GamePage.propType = {
+GamePage.propType = {}
 
-}
+const mapStateToProps = state => ({});
 
-const mapStateToProps = state => ({
-
-});
-
-const dispatchers = {
-
-};
+const dispatchers = {};
 
 export default connect(mapStateToProps, dispatchers)(GamePage);

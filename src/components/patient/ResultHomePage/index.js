@@ -1,9 +1,9 @@
 import React, {Component} from "react";
 import {
-  listUserResults,
-  selectResults,
-  selectResultsFailed,
-  selectResultsLoading,
+    listUserResults,
+    selectResults,
+    selectResultsFailed,
+    selectResultsLoading,
 } from "../../../redux/ducks/result"
 import {faChevronLeft} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';

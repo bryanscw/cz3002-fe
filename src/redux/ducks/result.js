@@ -1,9 +1,14 @@
 import axios from 'axios';
 
-import { createApiReducer, createApiAction, STATUSES, METHODS } from './apiHelper';
-import { API_URL } from '../../utils/constants';
-import { displayError } from './errors';
-import { getTokenConfig } from './authHelper';
+import {
+  createApiAction,
+  createApiReducer,
+  METHODS,
+  STATUSES
+} from './apiHelper';
+import {API_URL} from '../../utils/constants';
+import {displayError} from './errors';
+import {getTokenConfig} from './authHelper';
 
 const ENTITY_NAME = 'results';
 
@@ -23,11 +28,13 @@ export const createResult = result => (dispatch, getState) => {
           getTokenConfig(getState)
       )
       .then(res => {
-        dispatch(createApiAction(ENTITY_NAME, STATUSES.SUCCESS, METHODS.CREATE, res.data));
+        dispatch(createApiAction(ENTITY_NAME, STATUSES.SUCCESS, METHODS.CREATE,
+            res.data));
       })
       .catch(err => {
         displayError("Unable to create result")(dispatch);
-        dispatch(createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.CREATE));
+        dispatch(
+            createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.CREATE));
       })
   );
 };
@@ -42,11 +49,13 @@ export const deleteResult = result => (dispatch, getState) => {
           getTokenConfig(getState),
       )
       .then(res => {
-        dispatch(createApiAction(ENTITY_NAME, STATUSES.SUCCESS, METHODS.DELETE, result.id));
+        dispatch(createApiAction(ENTITY_NAME, STATUSES.SUCCESS, METHODS.DELETE,
+            result.id));
       })
       .catch(err => {
         displayError("Unable to delete result")(dispatch);
-        dispatch(createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.DELETE));
+        dispatch(
+            createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.DELETE));
       })
   );
 };
@@ -61,7 +70,8 @@ export const listAllResults = () => (dispatch, getState) => {
           getTokenConfig(getState)
       )
       .then(res => {
-        dispatch(createApiAction(ENTITY_NAME, STATUSES.SUCCESS, METHODS.LIST, res.data));
+        dispatch(createApiAction(ENTITY_NAME, STATUSES.SUCCESS, METHODS.LIST,
+            res.data));
       })
       .catch(err => {
         displayError("Unable to list all results")(dispatch);
@@ -71,45 +81,51 @@ export const listAllResults = () => (dispatch, getState) => {
 };
 
 export const listUserResults = () => (dispatch, getState) => {
-    dispatch(createApiAction(ENTITY_NAME, STATUSES.REQUEST, METHODS.LIST));
-  
-    return (
-        axios
-        .post(
-            `${API_URL}/result/me/`,
-            {},
-            getTokenConfig(getState)
-        )
-        .then(res => {
-          dispatch(createApiAction(ENTITY_NAME, STATUSES.SUCCESS, METHODS.LIST, res.data));
-        })
-        .catch(err => {
-          displayError("Unable to list all user results")(dispatch);
-          dispatch(createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.LIST));
-        })
-    );
-  };
+  dispatch(createApiAction(ENTITY_NAME, STATUSES.REQUEST, METHODS.LIST));
+
+  return (
+      axios
+      .post(
+          `${API_URL}/result/me/`,
+          {},
+          getTokenConfig(getState)
+      )
+      .then(res => {
+        dispatch(createApiAction(ENTITY_NAME, STATUSES.SUCCESS, METHODS.LIST,
+            res.data));
+      })
+      .catch(err => {
+        displayError("Unable to list all user results")(dispatch);
+        dispatch(createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.LIST));
+      })
+  );
+};
 
 export const getLatestResult = () => (dispatch, getState) => {
-    dispatch(createApiAction(ENTITY_NAME, STATUSES.REQUEST, METHODS.RETRIEVE));
+  dispatch(createApiAction(ENTITY_NAME, STATUSES.REQUEST, METHODS.RETRIEVE));
 
-    return (
-        axios
-        .post(
-            `${API_URL}/result/latest/`,
-            getTokenConfig(getState)
-        )
-        .then(res => {
-            dispatch(createApiAction(ENTITY_NAME, STATUSES.SUCCESS, METHODS.RETRIEVE, res.data));
-        })
-        .catch(err => {
-            displayError("Unable to get latest user result")(dispatch);
-            dispatch(createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.RETRIEVE));
-        })
-    );
+  return (
+      axios
+      .post(
+          `${API_URL}/result/latest/`,
+          getTokenConfig(getState)
+      )
+      .then(res => {
+        dispatch(
+            createApiAction(ENTITY_NAME, STATUSES.SUCCESS, METHODS.RETRIEVE,
+                res.data));
+      })
+      .catch(err => {
+        displayError("Unable to get latest user result")(dispatch);
+        dispatch(
+            createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.RETRIEVE));
+      })
+  );
 };
 
 // SELECTORS
-export const selectResultsLoading = state => state.resultsReducer.isLoading[METHODS.LIST] === true;
-export const selectResultsFailed = state => state.resultsReducer.isLoading[METHODS.LIST] === false && state.resultsReducer.hasFailed[METHODS.LIST] === true;
+export const selectResultsLoading = state => state.resultsReducer.isLoading[METHODS.LIST]
+    === true;
+export const selectResultsFailed = state => state.resultsReducer.isLoading[METHODS.LIST]
+    === false && state.resultsReducer.hasFailed[METHODS.LIST] === true;
 export const selectResults = state => state.resultsReducer.items;

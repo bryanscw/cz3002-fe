@@ -1,54 +1,54 @@
-import React, { Component } from "react";
-import { 
-    listUserResults,
-    listAllResults,    
-    selectResultsLoading,
-    selectResultsFailed,
-    selectResults,
+import React, {Component} from "react";
+import {
+  listAllResults,
+  listUserResults,
+  selectResults,
+  selectResultsFailed,
+  selectResultsLoading,
 } from '../../../redux/ducks/result'
 import {
-    listUsers,
-    selectUsers,
-    selectUsersLoading,
-    selectUsersFailed
+  listUsers,
+  selectUsers,
+  selectUsersFailed,
+  selectUsersLoading
 } from '../../../redux/ducks/users'
-import { connect } from "react-redux";
+import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import ResultList from './ResultList.jsx'
 
 class DoctorResult extends Component {
-    componentDidMount(){
-        this.props.listAllResults(this.state)
-    }
+  componentDidMount() {
+    this.props.listAllResults(this.state)
+  }
 
-    render = () => {
-        console.log(this.props.results)
-        return <ResultList resultHistory={this.props.results}/>
-    }
+  render = () => {
+    console.log(this.props.results)
+    return <ResultList resultHistory={this.props.results}/>
+  }
 }
 
 DoctorResult.propTypes = {
-    listUserResults: PropTypes.func.isRequired,
-    listAllResults: PropTypes.func.isRequired,
-    listUsers: PropTypes.func.isRequired,
-    resultsLoading: PropTypes.bool.isRequired,
-    resultsFailed: PropTypes.bool,
-    results: PropTypes.array.isRequired,
+  listUserResults: PropTypes.func.isRequired,
+  listAllResults: PropTypes.func.isRequired,
+  listUsers: PropTypes.func.isRequired,
+  resultsLoading: PropTypes.bool.isRequired,
+  resultsFailed: PropTypes.bool,
+  results: PropTypes.array.isRequired,
 };
 
 const mapStateToProps = state => ({
-    resultsLoading: selectResultsLoading(state),
-    resultsFailed: selectResultsFailed(state),
-    results: selectResults(state),
-    usersLoading: selectUsersLoading(state),
-    usersFailed: selectUsersFailed(state),
-    users: selectUsers(state),
+  resultsLoading: selectResultsLoading(state),
+  resultsFailed: selectResultsFailed(state),
+  results: selectResults(state),
+  usersLoading: selectUsersLoading(state),
+  usersFailed: selectUsersFailed(state),
+  users: selectUsers(state),
 });
 
 const dispatchers = {
-    listUserResults,
-    listAllResults,
-    listUsers
+  listUserResults,
+  listAllResults,
+  listUsers
 };
 
 export default connect(mapStateToProps, dispatchers)(DoctorResult);

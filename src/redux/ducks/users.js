@@ -1,13 +1,13 @@
 import axios from "axios";
 import {
-  createApiReducer,
   createApiAction,
-  STATUSES,
-  METHODS
+  createApiReducer,
+  METHODS,
+  STATUSES
 } from "./apiHelper";
-import { API_URL } from "../../utils/constants";
-import { displayError } from "./errors";
-import { getTokenConfig } from "./authHelper";
+import {API_URL} from "../../utils/constants";
+import {displayError} from "./errors";
+import {getTokenConfig} from "./authHelper";
 
 const ENTITY_NAME = 'users';
 
@@ -28,11 +28,13 @@ export const createUser = user => (dispatch, getState) => {
           getTokenConfig(getState)
       )
       .then(res => {
-        dispatch(createApiAction(ENTITY_NAME, STATUSES.SUCCESS, METHODS.CREATE, res.data));
+        dispatch(createApiAction(ENTITY_NAME, STATUSES.SUCCESS, METHODS.CREATE,
+            res.data));
       })
       .catch(err => {
         displayError("Unable to create user")(dispatch);
-        dispatch(createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.CREATE));
+        dispatch(
+            createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.CREATE));
       })
   );
 };
@@ -48,11 +50,13 @@ export const updateUser = (newUser, oldUser) => (dispatch, getState) => {
           getTokenConfig(getState)
       )
       .then(res => {
-        dispatch(createApiAction(ENTITY_NAME, STATUSES.SUCCESS, METHODS.UPDATE, res.data));
+        dispatch(createApiAction(ENTITY_NAME, STATUSES.SUCCESS, METHODS.UPDATE,
+            res.data));
       })
       .catch(err => {
         displayError("Unable to update user")(dispatch);
-        dispatch(createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.UPDATE));
+        dispatch(
+            createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.UPDATE));
       })
   );
 };
@@ -67,11 +71,13 @@ export const deleteUser = user => (dispatch, getState) => {
           getTokenConfig(getState),
       )
       .then(res => {
-        dispatch(createApiAction(ENTITY_NAME, STATUSES.SUCCESS, METHODS.DELETE, user.email));
+        dispatch(createApiAction(ENTITY_NAME, STATUSES.SUCCESS, METHODS.DELETE,
+            user.email));
       })
       .catch(err => {
         displayError("Unable to delete user")(dispatch);
-        dispatch(createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.DELETE));
+        dispatch(
+            createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.DELETE));
       })
   );
 };
@@ -86,7 +92,8 @@ export const listUsers = () => (dispatch, getState) => {
           getTokenConfig(getState)
       )
       .then((res) => {
-        dispatch(createApiAction(ENTITY_NAME, STATUSES.SUCCESS, METHODS.LIST, res.data));
+        dispatch(createApiAction(ENTITY_NAME, STATUSES.SUCCESS, METHODS.LIST,
+            res.data));
       })
       .catch(err => {
         displayError("Unable to list users")(dispatch);
@@ -96,6 +103,8 @@ export const listUsers = () => (dispatch, getState) => {
 };
 
 // SELECTORS
-export const selectUsersLoading = state => state.usersReducer.isLoading[METHODS.LIST] === true;
-export const selectUsersFailed = state => state.usersReducer.isLoading[METHODS.LIST] === false && state.usersReducer.hasFailed[METHODS.LIST] === true;
+export const selectUsersLoading = state => state.usersReducer.isLoading[METHODS.LIST]
+    === true;
+export const selectUsersFailed = state => state.usersReducer.isLoading[METHODS.LIST]
+    === false && state.usersReducer.hasFailed[METHODS.LIST] === true;
 export const selectUsers = state => state.usersReducer.items;

@@ -74,7 +74,7 @@ class SubmitDiagnosis extends Component {
     this.props.createDiagnosis(this.state);
     this.props.history.push(`/viewDiagnosis/${this.state.result} `);
     window.location.reload();
-    // 
+    //
 
   }
 

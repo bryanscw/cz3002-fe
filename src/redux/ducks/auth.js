@@ -1,8 +1,8 @@
-import { API_URL } from "../../utils/constants";
+import {API_URL} from "../../utils/constants";
 import axios from "axios";
-import { displayError } from "./errors";
-import { getCurrentTime } from "../../utils/getCurrentTime";
-import { getTokenConfig } from "./authHelper";
+import {displayError} from "./errors";
+import {getCurrentTime} from "../../utils/getCurrentTime";
+import {getTokenConfig} from "./authHelper";
 
 // ACTION TYPES
 export const LOGIN = "LOGIN";
@@ -26,14 +26,13 @@ export default function (state = initialState, action) {
   switch (action.type) {
     case LOGIN:
       // Store refresh and access token in localStorage
-      const { access_token, refresh_token, expires_in } = action.payload;
+      const {access_token, refresh_token, expires_in} = action.payload;
 
       const currentTime = getCurrentTime();
       localStorage.setItem("access_token", access_token);
       localStorage.setItem("refresh_token", refresh_token);
       localStorage.setItem("expires_in", expires_in);
       localStorage.setItem("time_token_acquired", currentTime);
-   
 
       return {
         ...state,
@@ -127,19 +126,19 @@ export const authenticateLogin = userData => dispatch => {
   formdata.append("grant_type", "password");
 
   axios
-    .post(`${API_URL}/oauth/token`, formdata, {
-      headers: {
-        Authorization: `Basic ${btoa("my-client:my-secret")}`
-      }
-    })
-    .then((res) => {
-      fetchMe(res.data.access_token)(dispatch);
-      dispatch(loginAction(res.data));
-    })
-    .catch((err) => {
-      displayError("Unable to login")(dispatch);
-      dispatch(fetchMeFailureAction());
-    });
+  .post(`${API_URL}/oauth/token`, formdata, {
+    headers: {
+      Authorization: `Basic ${btoa("my-client:my-secret")}`
+    }
+  })
+  .then((res) => {
+    fetchMe(res.data.access_token)(dispatch);
+    dispatch(loginAction(res.data));
+  })
+  .catch((err) => {
+    displayError("Unable to login")(dispatch);
+    dispatch(fetchMeFailureAction());
+  });
 };
 
 export const refreshTokenLogin = () => (dispatch, getState) => {
@@ -148,37 +147,37 @@ export const refreshTokenLogin = () => (dispatch, getState) => {
   formdata.append("grant_type", "refresh_token");
 
   axios
-    .post(`${API_URL}/oauth/token`, formdata, {
-      headers: {
-        Authorization: `Basic ${btoa("my-client:my-secret")}`
-      }
-    })
-    .then((res) => {
-      fetchMe(res.data.access_token)(dispatch);
-      dispatch(loginAction(res.data));
-    })
-    .catch((err) => {
-      displayError("Unable to login")(dispatch);
-      dispatch(fetchMeFailureAction());
-    });
+  .post(`${API_URL}/oauth/token`, formdata, {
+    headers: {
+      Authorization: `Basic ${btoa("my-client:my-secret")}`
+    }
+  })
+  .then((res) => {
+    fetchMe(res.data.access_token)(dispatch);
+    dispatch(loginAction(res.data));
+  })
+  .catch((err) => {
+    displayError("Unable to login")(dispatch);
+    dispatch(fetchMeFailureAction());
+  });
 };
 
 export const logout = () => (dispatch, getState) => {
   axios
-    .delete(`${API_URL}/oauth/revoke`, getTokenConfig(getState))
-    .then(() => {
-      dispatch(logoutAction());
-    })
-    .catch((err) => {
-      displayError("Unable to logout")(dispatch);
-    });
+  .delete(`${API_URL}/oauth/revoke`, getTokenConfig(getState))
+  .then(() => {
+    dispatch(logoutAction());
+  })
+  .catch((err) => {
+    displayError("Unable to logout")(dispatch);
+  });
 };
 
 export const fetchMe = (access_token) => (dispatch) => {
   dispatch(fetchMeRequestAction());
 
   axios
-    .post(
+  .post(
       `${API_URL}/users/me/`,
       {},
       {
@@ -186,22 +185,22 @@ export const fetchMe = (access_token) => (dispatch) => {
           Authorization: `bearer ${access_token}`
         }
       }
-    )
-    .then((res) => {
-      dispatch(fetchMeSuccessAction(res.data));
-    })
-    .catch((err) => {
-      displayError("Unable to fetch current user information")(dispatch);
-      dispatch(fetchMeFailureAction());
-    });
+  )
+  .then((res) => {
+    dispatch(fetchMeSuccessAction(res.data));
+  })
+  .catch((err) => {
+    displayError("Unable to fetch current user information")(dispatch);
+    dispatch(fetchMeFailureAction());
+  });
 };
 
 // SELECTORS
 export const selectUserLoading = (state) =>
-  state.authReducer.userLoading === true;
+    state.authReducer.userLoading === true;
 export const selectUserFailed = (state) =>
-  state.authReducer.userLoading === false &&
-  state.authReducer.userFailed === true;
+    state.authReducer.userLoading === false &&
+    state.authReducer.userFailed === true;
 export const selectUser = (state) => state.authReducer.user;
 
 export const selectRefreshToken = (state) => state.authReducer.refresh_token;

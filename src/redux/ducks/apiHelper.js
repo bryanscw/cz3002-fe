@@ -20,7 +20,7 @@ export function createApiAction(entityName, status, method, payload) {
 }
 
 // REDUCER
-export function createApiReducer(entityName, id="id") {
+export function createApiReducer(entityName, id = "id") {
   const initialState = {
     isLoading: {
       [METHODS.CREATE]: true,
@@ -38,15 +38,18 @@ export function createApiReducer(entityName, id="id") {
     const actionTypePattern = /(.+)_(.+)_(.+)/;
     const match = action.type.match(actionTypePattern);
 
-    if (!match)
+    if (!match) {
       return state;
+    }
 
     const actionEntityName = match[1];
     const actionStatus = match[2];
     const actionMethod = match[3];
 
-    if (actionEntityName !== entityName.toUpperCase() || !Object.values(METHODS).includes(actionMethod))
+    if (actionEntityName !== entityName.toUpperCase() || !Object.values(
+        METHODS).includes(actionMethod)) {
       return state;
+    }
 
     switch (actionStatus) {
       case STATUSES.REQUEST:
@@ -91,7 +94,9 @@ export function createApiReducer(entityName, id="id") {
                 ...state.isLoading,
                 [actionMethod]: false
               },
-              items: state.items.map(item => (item[id] === action.payload[id]) ? action.payload : item),
+              items: state.items.map(
+                  item => (item[id] === action.payload[id]) ? action.payload
+                      : item),
               item: action.payload,
             }
 

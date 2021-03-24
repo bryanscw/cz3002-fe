@@ -7,7 +7,7 @@ const initialState = {
   errors: [],
 };
 
-export default function(state = initialState, action) {
+export default function (state = initialState, action) {
   switch (action.type) {
     case ERROR_DISPLAY:
       return {
@@ -19,13 +19,14 @@ export default function(state = initialState, action) {
       return {
         ...state,
         errors: state.errors.map(error => {
-          if (error.id === action.payload)
+          if (error.id === action.payload) {
             return {
               ...error,
               isVisible: false,
             };
-          else
+          } else {
             return error;
+          }
         }),
       }
 

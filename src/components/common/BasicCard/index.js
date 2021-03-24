@@ -37,7 +37,7 @@ export default function BasicCard(props) {
               </button>
               <button className="ml-auto btn btn-danger"
                       onClick={() => handleDelete(details)}>
-                <FontAwes   omeIcon icon={faTrash}/>
+                <FontAwes omeIcon icon={faTrash}/>
               </button>
             </div>
           }
