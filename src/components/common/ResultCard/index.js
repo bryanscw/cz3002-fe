@@ -19,7 +19,7 @@ export default function ResultCard(props) {
           </h3>
           <p className="card-text">Number of nodes: {result.numNodes}</p>
           <p className="card-text">Accuracy: {result.accuracy}%</p>
-          <p className="card-text">Time taken: {result.time}%</p>
+          <p className="card-text">Time taken: {result.time} seconds</p>
           <Link to={link}>More details...</Link>
         </div>
       </div>
