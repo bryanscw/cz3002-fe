@@ -40,10 +40,11 @@ class GamePage extends Component {
       return <Redirect to="/not-found"/>;
     }
 
-    // // If test has been completed
-    // if (result.time) {
-    //   return <Redirect to={`/result/${this.resultId}`}/>;
-    // }
+    // If test has been completed
+    if (result.time) {
+      alert(`/result/${this.resultId}`)
+      // return <Redirect to={`/result/${this.resultId}`}/>;
+    }
 
     return (
         <div className="main">
