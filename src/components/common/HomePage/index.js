@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
-import {Container, Typography} from "@material-ui/core";
+import {Container, CssBaseline, Typography} from "@material-ui/core";
 import {selectUser} from "../../../redux/ducks/auth";
 import Button from "@material-ui/core/Button";
 
@@ -12,6 +12,7 @@ export class HomePage extends Component {
 
     return (
         <div className="main">
+          <CssBaseline/>
           <Container component="main" maxWidth="sm">
             <Typography component="h1" variant="h2" align="center"
                         color="textPrimary" gutterBottom>
