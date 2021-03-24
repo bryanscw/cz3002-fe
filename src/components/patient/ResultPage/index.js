@@ -1,4 +1,6 @@
 import React, {Component} from "react";
+import PropTypes from "prop-types";
+import {connect} from "react-redux";
 import {
   listUserResults,
   selectResults,
@@ -7,7 +9,6 @@ import {
 } from "../../../redux/ducks/result";
 import {CircularProgress} from "@material-ui/core";
 import {Redirect} from 'react-router-dom';
-import {connect} from "react-redux";
 
 class ResultPage extends Component {
 
@@ -34,7 +35,7 @@ class ResultPage extends Component {
 
     let result = results.find(o => o.id === resultId);
 
-    return(
+    return (
         <p>{JSON.stringify(result)}</p>
     );
   }
