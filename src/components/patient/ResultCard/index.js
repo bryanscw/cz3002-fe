@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
+import Button from '@material-ui/core/Button'
 
 /**This component is used to display an item with a title and description */
 export default function ResultCard(props) {
@@ -19,9 +20,9 @@ export default function ResultCard(props) {
           <p className="card-text">Number of nodes: {result.nodeNum}</p>
           <p className="card-text">Accuracy: {result.accuracy}%</p>
           <p className="card-text">Time taken: {result.time} seconds</p>
-          <Link to={`/result/${result.id}`}>More details...</Link>
+          <Button href={`/result/${result.id}`}>More details...</Button>
           <br/>
-          <Link to={`/diagnosis/${result.id}`}>Diagnosis</Link>
+          <Button href={`/diagnosis/${result.id}`}>Diagnosis</Button>
         </div>
       </div>
   )
