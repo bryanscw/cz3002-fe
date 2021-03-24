@@ -18,8 +18,13 @@ class GamePage extends Component {
     this.resultId = parseInt(this.props.match.params.resultId);
     this.props.listUserResults(this.state);
 
-    console.log(this.resultId);
-    console.log(JSON.stringify(this.state));
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if(this.props.match.params.resultId !== nextProps.match.params.resultId) {
+      this.resultId = parseInt(nextProps.match.params.resultId);
+      console.log(this.resultId);
+    }
   }
 
   render() {
