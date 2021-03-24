@@ -4,6 +4,17 @@ import {connect} from "react-redux";
 
 class GamePage extends Component {
 
+  componentDidMount() {
+
+  }
+
+  render() {
+
+    return (
+      ""
+    );
+  }
+
 }
 
 GamePage.propType = {

@@ -4,6 +4,17 @@ import {connect} from "react-redux";
 
 class DiagnosisPage extends Component {
 
+  componentDidMount() {
+
+  }
+
+  render() {
+
+    return (
+        ""
+    );
+  }
+
 }
 
 DiagnosisPage.propType = {
