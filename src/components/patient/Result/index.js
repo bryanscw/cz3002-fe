@@ -10,11 +10,8 @@ import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import {Link, Redirect} from 'react-router-dom';
 import {selectUser} from "../../../redux/ducks/auth";
-import {
-  CircularProgress,
-  Typography
-} from "@material-ui/core";
-import { Alert, AlertTitle } from '@material-ui/lab';
+import {CircularProgress, Typography} from "@material-ui/core";
+import {Alert, AlertTitle} from '@material-ui/lab';
 import {makeStyles} from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
@@ -49,7 +46,8 @@ class Result extends Component {
     const {
       resultsLoading,
       resultsFailed,
-      results
+      results,
+      user
     } = this.props;
 
     const classes = useStyles();
@@ -75,10 +73,11 @@ class Result extends Component {
             results.length !== 0 ?
                 <div className={classes.root}>
                   <Paper className={classes.paper}>
-                    results.map(result =>
+                    results.map(results.map(result =>
                     <Grid container spacing={2}>
                       <Grid item xs={12} sm container>
-                        <Grid item xs container direction="column" spacing={2}>
+                        <Grid item xs container direction="column"
+                              spacing={2}>
                           <Grid item xs>
                             <Typography gutterBottom variant="subtitle1">
                               Result ID
@@ -88,15 +87,18 @@ class Result extends Component {
                               Full resolution 1920x1080 • JPEG
                             </Typography>*/}
 
-                            <Typography variant="body2" color="textSecondary">
+                            <Typography variant="body2"
+                                        color="textSecondary">
                               Number of nodes : {result.numNodes}
                             </Typography>
 
-                            <Typography variant="body2" color="textSecondary">
+                            <Typography variant="body2"
+                                        color="textSecondary">
                               Time taken : {result.time} seconds
                             </Typography>
 
-                            <Typography variant="body2" color="textSecondary">
+                            <Typography variant="body2"
+                                        color="textSecondary">
                               Accuracy : {result.accuracy}%
                             </Typography>
 
@@ -109,7 +111,8 @@ class Result extends Component {
                           </Grid>
                         </Grid>
                         <Grid item>
-                          <Typography variant="subtitle1">{result.id}</Typography>
+                          <Typography
+                              variant="subtitle1">{result.id}</Typography>
                         </Grid>
                       </Grid>
                     </Grid>
@@ -128,7 +131,7 @@ class Result extends Component {
   }
 }
 
-Index.propTypes = {
+Result.propTypes = {
   /** An action creator */
   listUserResults: PropTypes.func.isRequired,
   /** A boolean to determine if the results are still being loaded (true: still loading, false: fully loaded) */
