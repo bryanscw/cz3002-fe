@@ -1,4 +1,5 @@
 import React from 'react'
+import {Container, Typography} from "@material-ui/core"
 
 /**
  * This component displays a page when requested content is not found.
