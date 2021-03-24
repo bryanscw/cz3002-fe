@@ -13,6 +13,9 @@ import {
 } from "../../../redux/ducks/result";
 
 class GamePage extends Component {
+  constructor(props) {
+    super(props);
+  }
 
   componentDidMount() {
     this.resultId = parseInt(this.props.match.params.resultId);
