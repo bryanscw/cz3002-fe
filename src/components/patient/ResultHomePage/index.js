@@ -61,7 +61,7 @@ class ResultHomePage extends Component {
             <FontAwesomeIcon icon={faChevronLeft}/> Back to Home
           </Link>
 
-          <Typography variant="h2">Pending Tests</Typography>
+          <Typography variant="h2">Pending Test(s)</Typography>
           {
             pendingTests.length !== 0 ? (
                     pendingTests.map(
@@ -82,7 +82,7 @@ class ResultHomePage extends Component {
                 )
           }
 
-          <Typography variant="h2">Completed Tests</Typography>
+          <Typography variant="h2">Completed Test(s)</Typography>
           <br/>
 
           {
