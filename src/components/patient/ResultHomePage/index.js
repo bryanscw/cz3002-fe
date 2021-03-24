@@ -13,8 +13,8 @@ import {Link, Redirect} from 'react-router-dom';
 import {selectUser} from "../../../redux/ducks/auth";
 import {CircularProgress, Typography} from "@material-ui/core";
 import {Alert, AlertTitle} from '@material-ui/lab';
-import ResultCard from "../../common/ResultCard";
-import PendingTestCard from "../../common/PendingTestCard";
+import ResultCard from "../ResultCard";
+import PendingTestCard from "../PendingTestCard";
 
 class ResultHomePage extends Component {
   componentDidMount() {
