@@ -16,6 +16,7 @@ class DoctorHomePage extends Component {
 
     return (
         <Container maxWidth="md">
+          <CssBaseline/>
           <Grid container direction="row" justify="center"
                 alignItems="center" spacing={4}>
             <Grid item xs={12} sm={6} md={4}>
