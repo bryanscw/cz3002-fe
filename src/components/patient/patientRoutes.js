@@ -14,7 +14,7 @@ const PatientRouter = [
   />,
   <Route
       key="ResultPage"
-      path="/results/:resultId"
+      path="/result/:resultId"
       exact
       component={ResultPage}
   />,
