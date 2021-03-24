@@ -13,5 +13,5 @@ export default function NotFoundPage() {
         <p>Sorry, the page you are looking for can't be found.</p>
         <Link className="btn btn-primary" to="/">Return to Home</Link>
       </div>
-  )
+  );
 }

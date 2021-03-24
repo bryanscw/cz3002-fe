@@ -10,7 +10,7 @@ export default function Footer() {
   return (
       <Typography className="footer" variant="body2" color="textSecondary" align="center">
         {'Copyright © '}
-        <Link color="inherit" href="https://material-ui.com/">
+        <Link color="inherit" to="/about">
           QWERTY
         </Link>{' '}
         {new Date().getFullYear()}
