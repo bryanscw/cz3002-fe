@@ -14,6 +14,7 @@ import {selectUser} from "../../../redux/ducks/auth";
 import {CircularProgress, Typography} from "@material-ui/core";
 import {Alert, AlertTitle} from '@material-ui/lab';
 import ResultCard from "../../common/ResultCard";
+import PendingTestCard from "../../common/PendingTestCard";
 
 class ResultHomePage extends Component {
   componentDidMount() {
@@ -52,25 +53,43 @@ class ResultHomePage extends Component {
         }
     );
 
-    console.log(pendingTests);
-    console.log(completedTests);
-
     return (
+        <Typography variant="h1">Results for: {user.name}</Typography>
         <div className="container">
           <Link className="btn btn-light mb-2" to="/">
             <FontAwesomeIcon icon={faChevronLeft}/> Back to Home
           </Link>
 
-          <Typography variant="subtitle1">Results for: {user.name}</Typography>
+          <Typography variant="subtitle1">Pending Tests</Typography>
+          {
+            pendingTests.length !== 0 ? (
+                    pendingTests.map(
+                        result =>
+                            <PendingTestCard
+                                key={result.id}
+                                classes="mb-4"
+                                result={result}
+                            />
+                    )
+                )
+                :
+                (
+                    <Alert severity="info">
+                      <AlertTitle>Info</AlertTitle>
+                      <strong>No</strong> pending test(s) found
+                    </Alert>
+                )
+          }
+
+          <Typography variant="subtitle1">Completed Tests</Typography>
           <br/>
 
           {
-            results.length !== 0 ? (
+            completedTests.length !== 0 ? (
                     completedTests.map(
                         result =>
                             <ResultCard
                                 key={result.id}
-                                editable={false}
                                 classes="mb-4"
                                 result={result}
                                 badge={result.accuracy && result.time ? <span
@@ -83,7 +102,7 @@ class ResultHomePage extends Component {
                 (
                     <Alert severity="info">
                       <AlertTitle>Info</AlertTitle>
-                      <strong>No</strong> results found
+                      <strong>No</strong> result(s) found
                     </Alert>
                 )
           }
