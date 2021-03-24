@@ -11,19 +11,17 @@ export class HomePage extends Component {
     } = this.props;
 
     return (
-        <div>
-          <Container maxWidth="sm">
-            <Typography component="h1" variant="h2" align="center"
-                        color="textPrimary" gutterBottom>
-              Trail Making Test
-            </Typography>
-            <Typography variant="h5" align="center"
-                        color="textSecondary" paragraph>
-              Trail Making Test is a simple neuropsychological test of
-              cognitive processes, including attention, visual search
-              and scanning, and psychomotor speed.
-            </Typography>
-          </Container>
+        <Container maxWidth="sm">
+          <Typography component="h1" variant="h2" align="center"
+                      color="textPrimary" gutterBottom>
+            Trail Making Test
+          </Typography>
+          <Typography variant="h5" align="center"
+                      color="textSecondary" paragraph>
+            Trail Making Test is a simple neuropsychological test of
+            cognitive processes, including attention, visual search
+            and scanning, and psychomotor speed.
+          </Typography>
           {
             user && Object.keys(user).length !== 0 ? (
                 <Button variant="contained" color="primary" href="/">
@@ -33,7 +31,8 @@ export class HomePage extends Component {
                 <p></p>
             )
           }
-        </div>
+
+        </Container>
     );
   }
 
