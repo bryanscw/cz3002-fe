@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
+import {CssBaseline} from "@material-ui/core";
 
 class GamePage extends Component {
 
@@ -10,7 +11,9 @@ class GamePage extends Component {
   render() {
 
     return (
-        ""
+        <div className="main">
+          <CssBaseline/>
+        </div>
     );
   }
 
