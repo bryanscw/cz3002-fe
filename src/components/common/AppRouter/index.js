@@ -87,10 +87,10 @@ class AppRouter extends Component {
           <Header/>
           <Switch>
             <Route key="Home" path="/home" exact component={HomePage}/>
-            <Route path="/not-found" exact component={NotFoundPage}/>
+            {/*<Route path="/not-found" exact component={NotFoundPage}/>*/}
             <Route path="/logout" exact component={LogoutPage}/>
             {routes}
-            <Redirect from="/asd" to="/not-found"/>
+            {/*<Redirect from="/asd" to="/not-found"/>*/}
           </Switch>
           <Footer/>
         </BrowserRouter>

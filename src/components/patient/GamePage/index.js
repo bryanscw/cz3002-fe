@@ -45,6 +45,7 @@ class GamePage extends Component {
     if (result.time) {
       return (
           <div className="main">
+            <CssBaseline/>
             <Alert severity="success">
               <AlertTitle>Success</AlertTitle>
               You have completed this test! Click
