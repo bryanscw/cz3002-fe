@@ -12,7 +12,7 @@ export class HomePage extends Component {
 
     return (
         <div className="main">
-          <Container maxWidth="sm">
+          <Container component="main" maxWidth="sm">
             <Typography component="h1" variant="h2" align="center"
                         color="textPrimary" gutterBottom>
               Trail Making Test
