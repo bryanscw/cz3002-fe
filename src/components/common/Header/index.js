@@ -48,7 +48,7 @@ export class Header extends Component {
     const authLinks = (
         <Box className="logout">
           <Button className={classes.logoutButton} size="small" component={Link}
-                  to="/logout">
+                  href="/logout">
             Logout
           </Button>
         </Box>
@@ -56,7 +56,7 @@ export class Header extends Component {
 
     const guestLinks = (
         <Button className={classes.loginButton} size="small" component={Link}
-                to="/login">
+                href="/login">
           Login
         </Button>
     );
