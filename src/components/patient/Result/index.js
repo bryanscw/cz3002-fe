@@ -14,7 +14,6 @@ import {selectUser} from "../../../redux/ducks/auth";
 import {CircularProgress, Typography} from "@material-ui/core";
 import {Alert, AlertTitle} from '@material-ui/lab';
 import {makeStyles} from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 
 class Result extends Component {
@@ -71,60 +70,20 @@ class Result extends Component {
           <br/>
 
           {
-            results.length !== 0 ?
-                <div className={classes.root}>
-                  <Paper className={classes.paper}>
-                    results.map(result =>
-                    <Grid container spacing={2}>
-                      <Grid item xs={12} sm container>
-                        <Grid item xs container direction="column"
-                              spacing={2}>
-                          <Grid item xs>
-                            <Typography gutterBottom variant="subtitle1">
-                              Result ID
-                            </Typography>
-
-                            {/*<Typography variant="body2" gutterBottom>
-                              Full resolution 1920x1080 • JPEG
-                            </Typography>*/}
-
-                            <Typography variant="body2"
-                                        color="textSecondary">
-                              Number of nodes : {result.numNodes}
-                            </Typography>
-
-                            <Typography variant="body2"
-                                        color="textSecondary">
-                              Time taken : {result.time} seconds
-                            </Typography>
-
-                            <Typography variant="body2"
-                                        color="textSecondary">
-                              Accuracy : {result.accuracy}%
-                            </Typography>
-
-                          </Grid>
-                          <Grid item>
-                            <Typography variant="body2"
-                                        style={{cursor: 'pointer'}}>
-                              More details...
-                            </Typography>
-                          </Grid>
-                        </Grid>
-                        <Grid item>
-                          <Typography
-                              variant="subtitle1">{result.id}</Typography>
-                        </Grid>
-                      </Grid>
-                    </Grid>
-                    )
-                  </Paper>
-                </div>
+            results.length !== 0 ? (
+                    <div className={classes.root}>
+                      <Paper className={classes.paper}>
+                        results.map(result => result.id)
+                      </Paper>
+                    </div>
+                )
                 :
-                <Alert severity="info">
-                  <AlertTitle>Info</AlertTitle>
-                  <strong>No</strong> results found
-                </Alert>
+                (
+                    <Alert severity="info">
+                      <AlertTitle>Info</AlertTitle>
+                      <strong>No</strong> results found
+                    </Alert>
+                )
           }
 
         </div>
