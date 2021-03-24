@@ -66,7 +66,7 @@ class GamePage extends Component {
                       href={`/result/${result.id}`}>
                 View results
               </Button>
-              <Redirect to={`/result/${result.id}`}/>
+              {/*<Redirect to={`/result/${result.id}`}/>*/}
             </Alert>
           </div>
       );
