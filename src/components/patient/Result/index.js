@@ -13,7 +13,6 @@ import {Link, Redirect} from 'react-router-dom';
 import {selectUser} from "../../../redux/ducks/auth";
 import {CircularProgress, Typography} from "@material-ui/core";
 import {Alert, AlertTitle} from '@material-ui/lab';
-import Paper from '@material-ui/core/Paper';
 
 class Result extends Component {
   componentDidMount() {
@@ -47,7 +46,16 @@ class Result extends Component {
 
           {
             results.length !== 0 ? (
-                  results.map(result => result.id)
+                    results.map(
+                        result =>
+                            <BasicCard
+                                key={result.id}
+                                editable={false}
+                                classes="mb-4"
+                                details={result}
+                                link={`/results/${result.id}`}
+                            />
+                    )
                 )
                 :
                 (
