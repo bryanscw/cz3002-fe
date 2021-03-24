@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import {Link, useHistory} from "react-router-dom";
+import {Link} from "react-router-dom";
 import {Alert, AlertTitle} from '@material-ui/lab';
 import {CircularProgress, CssBaseline} from "@material-ui/core";
 import {
@@ -11,8 +11,6 @@ import {
   selectResultsLoading
 } from "../../../redux/ducks/result";
 
-const history = useHistory();
-
 class GamePage extends Component {
 
   componentDidMount() {
@@ -21,11 +19,6 @@ class GamePage extends Component {
   }
 
   render() {
-    function delayAndGo(e) {
-      e.preventDefault();
-      setTimeout(() => history.push(to), 2000);
-    }
-
     const {
       resultsLoading,
       resultsFailed,
@@ -36,17 +29,17 @@ class GamePage extends Component {
       return <CircularProgress/>;
     }
 
-    // If failed to fetch results, redirect to not-found
-    if (resultsFailed) {
-      return <Redirect to="/not-found"/>;
-    }
+    // // If failed to fetch results, redirect to not-found
+    // if (resultsFailed) {
+    //   return <Redirect to="/not-found"/>;
+    // }
 
     let result = results.find(o => o.id === this.resultId);
 
-    // If no such result is found
-    if (!result) {
-      return <Redirect to="/not-found"/>;
-    }
+    // // If no such result is found
+    // if (!result) {
+    //   return <Redirect to="/not-found"/>;
+    // }
 
     // If test has been completed
     if (result.time) {
@@ -55,7 +48,7 @@ class GamePage extends Component {
             <Alert severity="success">
               <AlertTitle>Success</AlertTitle>
               You have completed this test! Click
-              <Link to={`/result/${this.resultId}`} onClick={delayAndGo}>
+              <Link to={`/result/${this.resultId}`}>
                 HERE
               </Link>
               to view the results.
