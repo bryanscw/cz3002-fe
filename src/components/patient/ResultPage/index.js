@@ -13,7 +13,7 @@ import {Redirect} from 'react-router-dom';
 class ResultPage extends Component {
 
   componentDidMount() {
-    this.resultId = parseInt(this.props.match.params.topicId);
+    this.resultId = parseInt(this.props.match.params.resultId);
     this.props.listUserResults(this.state);
   }
 
