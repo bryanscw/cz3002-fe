@@ -1,0 +1,41 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+
+import {Link} from 'react-router-dom';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faEdit, faTrash} from '@fortawesome/free-solid-svg-icons';
+
+/**This component is used to display an item with a title and description */
+export default function BasicCard(props) {
+  const {
+    classes,
+    result,
+    badge,
+    link,
+  } = props;
+
+  return (
+      <div className={`card${classes ? ` ${classes}` : ""}`}>
+        <div className="card-body">
+          <h3 className="card-title">
+            <Link to={link}>{title}</Link> {badge}
+          </h3>
+          <p className="card-text">{result.numNodes}</p>
+          <p className="card-text">{result.accuracy}</p>
+          <p className="card-text">{result.time}</p>
+        </div>
+      </div>
+  )
+}
+
+BasicCard.propTypes = {
+  /** A string storing the html to be included in the component */
+  classes: PropTypes.string,
+  /** An object containing the item's title and description */
+  result: PropTypes.object.isRequired,
+  /** A badge for the component */
+  badge: PropTypes.oneOfType(
+      [PropTypes.string, PropTypes.func, PropTypes.element]),
+  /** A string storing a link for the item title */
+  link: PropTypes.string.isRequired,
+}

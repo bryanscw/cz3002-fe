@@ -53,7 +53,8 @@ class ResultHomePage extends Component {
                                 key={result.id}
                                 editable={false}
                                 classes="mb-4"
-                                details={{ "title": result.id, "description": "Stuffs" }}
+                                details={result}
+                                badge={result.accuracy && result.time ?  <span className="badge badge-success">Completed</span> : <span className="badge badge-secondary">Not Completed</span>}
                                 link={`/results/${result.id}`}
                             />
                     )
