@@ -57,7 +57,6 @@ class ResultHomePage extends Component {
                                 badge={result.accuracy && result.time ? <span
                                         className="badge badge-success">Completed</span>
                                     : <span className="badge badge-secondary">Not Completed</span>}
-                                link={`/results/${result.id}`}
                             />
                     )
                 )

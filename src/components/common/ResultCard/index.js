@@ -8,7 +8,6 @@ export default function ResultCard(props) {
     classes,
     result,
     badge,
-    link,
   } = props;
 
   return (
@@ -20,7 +19,8 @@ export default function ResultCard(props) {
           <p className="card-text">Number of nodes: {result.numNodes}</p>
           <p className="card-text">Accuracy: {result.accuracy}%</p>
           <p className="card-text">Time taken: {result.time} seconds</p>
-          <Link to={link}>More details...</Link>
+          <Link to={`/results/${result.id}`}>More details...</Link>
+          <Link to={`/diagnosis/`${result.id}}>Diagnosis</Link>
         </div>
       </div>
   )
@@ -34,6 +34,4 @@ ResultCard.propTypes = {
   /** A badge for the component */
   badge: PropTypes.oneOfType(
       [PropTypes.string, PropTypes.func, PropTypes.element]),
-  /** A string storing a link for the item title */
-  link: PropTypes.string.isRequired,
 }
