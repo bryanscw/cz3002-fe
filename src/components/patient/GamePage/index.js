@@ -28,10 +28,10 @@ class GamePage extends Component {
       return <CircularProgress/>;
     }
 
-    // If failed to fetch results, redirect to not-found
-    if (resultsFailed) {
-      return <Redirect to="/not-found"/>;
-    }
+    // // If failed to fetch results, redirect to not-found
+    // if (resultsFailed) {
+    //   return <Redirect to="/not-found"/>;
+    // }
 
     let result = results.find(o => o.id === this.resultId);
 
