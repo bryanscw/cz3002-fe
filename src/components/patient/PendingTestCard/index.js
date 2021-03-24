@@ -17,7 +17,7 @@ export default function PendingTestCard(props) {
           </h3>
           <p className="card-text">Number of nodes: {result.nodeNum}</p>
           <br/>
-          <Button color="primary" to={`/game/${result.id}`}>Do Test</Button>
+          <Button color="primary" href={`/game/${result.id}`}>Do Test</Button>
         </div>
       </div>
   )
