@@ -13,7 +13,6 @@ import {Link, Redirect} from 'react-router-dom';
 import {selectUser} from "../../../redux/ducks/auth";
 import {CircularProgress, Typography} from "@material-ui/core";
 import {Alert, AlertTitle} from '@material-ui/lab';
-import {makeStyles} from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 
 class Result extends Component {
@@ -22,27 +21,6 @@ class Result extends Component {
   }
 
   render() {
-    const useStyles = makeStyles((theme) => ({
-      root: {
-        flexGrow: 1,
-      },
-      paper: {
-        padding: theme.spacing(2),
-        margin: 'auto',
-        maxWidth: 500,
-      },
-      image: {
-        width: 128,
-        height: 128,
-      },
-      img: {
-        margin: 'auto',
-        display: 'block',
-        maxWidth: '100%',
-        maxHeight: '100%',
-      },
-    }));
-
     const {
       resultsLoading,
       resultsFailed,
