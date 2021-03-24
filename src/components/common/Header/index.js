@@ -10,7 +10,6 @@ import Button from '@material-ui/core/Button'
 const styles = theme => ({
   header: {
     "-webkit-text-fill-color": "#cccccc",
-    "text-decoration": "none",
   },
 
   loginButton: {
