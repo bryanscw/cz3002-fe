@@ -38,7 +38,7 @@ export class Header extends Component {
           </Toolbar>
           {user && Object.keys(user).length !== 0 ? authLinks : guestLinks}
         </AppBar>
-    )
+    );
   }
 }
 
