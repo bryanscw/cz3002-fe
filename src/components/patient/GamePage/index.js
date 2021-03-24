@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {Redirect} from 'react-router-dom';
-import {CssBaseline} from "@material-ui/core";
+import {CircularProgress, CssBaseline} from "@material-ui/core";
 import {
   listUserResults,
   selectResults,
