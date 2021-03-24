@@ -34,7 +34,8 @@ class ResultPage extends Component {
     }
 
     let result = results.find(o => o.id === resultId);
-
+    console.log(resultId);
+    console.log(result);
     return (
         <p>{JSON.stringify(result)}</p>
     );
