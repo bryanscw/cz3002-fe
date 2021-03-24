@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
-import {Link} from "react-router-dom";
+import Link from '@material-ui/core/Link';
 import {selectUser} from "../../../redux/ducks/auth";
 import {AppBar, Box, Toolbar, Typography} from "@material-ui/core";
 import {green, red} from "@material-ui/core/colors"
