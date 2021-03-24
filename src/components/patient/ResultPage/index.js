@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import {Link, Redirect} from 'react-router-dom';
+import {Redirect} from 'react-router-dom';
 import {
   listUserResults,
   selectResults,
@@ -11,7 +11,6 @@ import {
 import {CircularProgress, CssBaseline} from "@material-ui/core";
 import {Alert, AlertTitle} from '@material-ui/lab';
 import Button from '@material-ui/core/Button'
-
 
 class ResultPage extends Component {
 
@@ -49,11 +48,7 @@ class ResultPage extends Component {
           {
             // Check if user has completed the test
             result.time ? (
-                <div>
-                  <p>{JSON.stringify(result)}</p>
-                  <Link to="/result/6">Test 6</Link>
-                  <Link to="/result/2">Test 6</Link>
-                </div>
+                <p>{JSON.stringify(result)}</p>
             ) : (
                 <Alert severity="error">
                   <AlertTitle>Test not completed yet</AlertTitle>
