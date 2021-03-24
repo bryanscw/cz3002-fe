@@ -42,7 +42,8 @@ class GamePage extends Component {
 
     // If test has been completed
     if (result.time) {
-      return <Redirect to={`/result/${this.resultId}`}/>;
+      this.props.history.push(`/result/${this.resultId}`);
+      // return <Redirect to={`/result/${this.resultId}`}/>;
     }
 
     return (
