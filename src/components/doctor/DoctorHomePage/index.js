@@ -16,7 +16,7 @@ class DoctorHomePage extends Component {
   render() {
 
     return (
-        <Container style={{marginTop: 70, marginBottom: 70}} maxWidth="md">
+        <Container maxWidth="md">
           <CssBaseline/>
           <Grid container direction="row" justify="center"
                 alignItems="center" spacing={4}>

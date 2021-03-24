@@ -54,7 +54,7 @@ class PatientHomePage extends Component {
     );
 
     return (
-        <div style={{marginTop: 70, marginBottom: 70}} className="container">
+        <div className="container">
           <CssBaseline/>
           <Typography variant="h1">Results for: {user.name}</Typography>
 
