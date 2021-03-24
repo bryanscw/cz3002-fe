@@ -88,4 +88,4 @@ const dispatchers = {
   listUserResults
 };
 
-export default withRouter(connect(mapStateToProps, dispatchers)(GamePage));
+export default connect(mapStateToProps, dispatchers)(GamePage);

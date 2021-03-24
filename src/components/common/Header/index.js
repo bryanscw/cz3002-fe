@@ -79,4 +79,4 @@ const mapStateToProps = state => ({
   user: selectUser(state),
 });
 
-export default withRouter(connect(mapStateToProps)(withStyles(styles)(Header)));
+export default connect(mapStateToProps)(withStyles(styles)(Header));

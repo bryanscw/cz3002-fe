@@ -126,4 +126,4 @@ const dispatchers = {
   refreshTokenLogin
 };
 
-export default withRouter(connect(mapStateToProps, dispatchers)(AppRouter));
+export default connect(mapStateToProps, dispatchers)(AppRouter);
