@@ -20,6 +20,7 @@ import accountsRoutes from "../../accounts/accountsRoutes";
 import doctorRoutes from "../../doctor/doctorRoutes";
 import patientRoutes from "../../patient/patientRoutes";
 import {CircularProgress} from "@material-ui/core";
+import HomePage from "../HomePage";
 
 /** This component handles the routing for the app */
 class AppRouter extends Component {
