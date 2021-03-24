@@ -4,9 +4,9 @@ const API_ADDR = process.env.REACT_APP_API_ADDR;
 export const API_URL = 'http://172.21.148.165:8080/cogbench/api';
 
 export const USER_ROLES = {
-    PATIENT: "ROLE_PATIENT",
-    DOCTOR: "ROLE_DOCTOR",
-    ADMIN: "ROLE_ADMIN"
+  PATIENT: "ROLE_PATIENT",
+  DOCTOR: "ROLE_DOCTOR",
+  ADMIN: "ROLE_ADMIN"
 };
 
 export const CREATE = "CREATE";

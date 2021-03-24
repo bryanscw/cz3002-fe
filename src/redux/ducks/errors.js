@@ -4,66 +4,67 @@ const ERROR_CLOSE = 'ERROR_CLOSE';
 
 // REDUCER
 const initialState = {
-    errors: [],
+  errors: [],
 };
 
 export default function (state = initialState, action) {
-    switch (action.type) {
-        case ERROR_DISPLAY:
-            return {
-                ...state,
-                errors: [...state.errors, action.payload],
-            }
+  switch (action.type) {
+    case ERROR_DISPLAY:
+      return {
+        ...state,
+        errors: [...state.errors, action.payload],
+      }
 
-        case ERROR_CLOSE:
+    case ERROR_CLOSE:
+      return {
+        ...state,
+        errors: state.errors.map(error => {
+          if (error.id === action.payload) {
             return {
-                ...state,
-                errors: state.errors.map(error => {
-                    if (error.id === action.payload)
-                        return {
-                            ...error,
-                            isVisible: false,
-                        };
-                    else
-                        return error;
-                }),
-            }
+              ...error,
+              isVisible: false,
+            };
+          } else {
+            return error;
+          }
+        }),
+      }
 
-        default:
-            return state;
-    }
+    default:
+      return state;
+  }
 };
 
 // ACTION CREATORS
 function displayErrorAction(error) {
-    // Generate unique ID
-    return {
-        type: ERROR_DISPLAY,
-        payload: error,
-    }
+  // Generate unique ID
+  return {
+    type: ERROR_DISPLAY,
+    payload: error,
+  }
 }
 
 function closeErrorAction(id) {
-    return {
-        type: ERROR_CLOSE,
-        payload: id,
-    }
+  return {
+    type: ERROR_CLOSE,
+    payload: id,
+  }
 }
 
 // OPERATIONS
 export const displayError = errorMessage => dispatch => {
-    const uid = Date.now().toString(36) + Math.random().toString(36).substr(2);
+  const uid = Date.now().toString(36) + Math.random().toString(36).substr(2);
 
-    dispatch(displayErrorAction({
-        id: uid,
-        message: errorMessage,
-        isVisible: true,
-    }));
+  dispatch(displayErrorAction({
+    id: uid,
+    message: errorMessage,
+    isVisible: true,
+  }));
 
-    // Dismiss error alert after 3 seconds
-    setTimeout(() => {
-        dispatch(closeErrorAction(uid));
-    }, 3000);
+  // Dismiss error alert after 3 seconds
+  setTimeout(() => {
+    dispatch(closeErrorAction(uid));
+  }, 3000);
 };
 
 export const closeError = id => dispatch => dispatch(closeErrorAction(id));

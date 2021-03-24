@@ -5,11 +5,11 @@ import AppRouter from "../AppRouter";
 
 /** This component is the entrypoint of the react app */
 function App() {
-    return (
-        <Provider store={store}>
-            <AppRouter/>
-        </Provider>
-    );
+  return (
+      <Provider store={store}>
+        <AppRouter/>
+      </Provider>
+  );
 }
 
 export default App;

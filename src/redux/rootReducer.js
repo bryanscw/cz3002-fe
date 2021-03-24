@@ -8,10 +8,10 @@ import diagnosisReducer from './ducks/diagnosis';
 import graphReducer from './ducks/graph';
 
 export default combineReducers({
-    authReducer,
-    usersReducer,
-    errorsReducer,
-    resultsReducer,
-    diagnosisReducer,
-    graphReducer,
+  authReducer,
+  usersReducer,
+  errorsReducer,
+  resultsReducer,
+  diagnosisReducer,
+  graphReducer,
 });

@@ -3,16 +3,16 @@ import {connect} from "react-redux";
 
 class GamePage extends Component {
 
-    componentDidMount() {
+  componentDidMount() {
 
-    }
+  }
 
-    render() {
+  render() {
 
-        return (
-            ""
-        );
-    }
+    return (
+        ""
+    );
+  }
 
 }
 
