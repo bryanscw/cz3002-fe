@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import {Redirect} from 'react-router-dom';
+import {Link, Redirect} from 'react-router-dom';
 import {
   listUserResults,
   selectResults,
@@ -49,7 +49,11 @@ class ResultPage extends Component {
           {
             // Check if user has completed the test
             result.time ? (
-                <p>{JSON.stringify(result)}</p>
+                <div>
+                  <p>{JSON.stringify(result)}</p>
+                  <Link to="/result/6">Test 6</Link>
+                  <Link to="/result/2">Test 6</Link>
+                </div>
             ) : (
                 <Alert severity="error">
                   <AlertTitle>Test not completed yet</AlertTitle>
