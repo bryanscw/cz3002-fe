@@ -21,7 +21,7 @@ class Result extends Component {
     this.props.listUserResults(this.state)
   }
 
-  render = () => {
+  render() {
     const useStyles = makeStyles((theme) => ({
       root: {
         flexGrow: 1,

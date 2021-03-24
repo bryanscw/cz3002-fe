@@ -35,7 +35,7 @@ class AdminPage extends Component {
     this.props.listUsers();
   }
 
-  render = () => {
+  render() {
     const {
       usersLoading,
       users,
