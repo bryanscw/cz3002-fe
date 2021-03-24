@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {Redirect} from 'react-router-dom';
+import {Link, Redirect} from 'react-router-dom';
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {Alert, AlertTitle} from '@material-ui/lab';
@@ -66,7 +66,7 @@ class GamePage extends Component {
                       href={`/result/${result.id}`}>
                 View results
               </Button>
-              {/*<Redirect to={`/result/${result.id}`}/>*/}
+              <Link to={`/result/${result.id}`}/>
             </Alert>
           </div>
       );
