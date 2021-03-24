@@ -74,7 +74,7 @@ class AdminPage extends Component {
 
     return (
         <div className="container" data-test="adminTable"
-             style={{height: 400, width: "100%"}}>
+             style={{height: 400, width: "100%", marginTop: 70, marginBottom: 70}}>
           <MaterialTable
               title="Users"
               icons={tableIcons}
