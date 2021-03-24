@@ -1,9 +1,9 @@
 import React, {Component} from "react";
 import {
-    listUserResults,
-    selectResults,
-    selectResultsFailed,
-    selectResultsLoading,
+  listUserResults,
+  selectResults,
+  selectResultsFailed,
+  selectResultsLoading,
 } from "../../../redux/ducks/result"
 import {faChevronLeft} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
@@ -16,7 +16,7 @@ import {Alert, AlertTitle} from '@material-ui/lab';
 import ResultCard from "../ResultCard";
 import PendingTestCard from "../PendingTestCard";
 
-class ResultHomePage extends Component {
+class PatientHomePage extends Component {
   componentDidMount() {
     this.props.listUserResults(this.state)
   }
@@ -113,7 +113,7 @@ class ResultHomePage extends Component {
   }
 }
 
-ResultHomePage.propTypes = {
+PatientHomePage.propTypes = {
   /** An action creator */
   listUserResults: PropTypes.func.isRequired,
   /** A boolean to determine if the results are still being loaded (true: still loading, false: fully loaded) */
@@ -136,4 +136,4 @@ const dispatchers = {
   listUserResults
 };
 
-export default connect(mapStateToProps, dispatchers)(ResultHomePage);
+export default connect(mapStateToProps, dispatchers)(PatientHomePage);

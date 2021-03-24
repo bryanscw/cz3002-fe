@@ -1,6 +1,6 @@
 import React from "react";
 import {Route} from "react-router-dom";
-import ResultHomePage from "./ResultHomePage";
+import ResultHomePage from "./PatientHomePage";
 import ResultPage from "./ResultPage";
 import DiagnosisPage from "./DiagnosisPage";
 import GamePage from "./GamePage";
