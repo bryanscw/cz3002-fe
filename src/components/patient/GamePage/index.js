@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {withRouter, Redirect} from 'react-router-dom';
+import {Redirect, useParams} from 'react-router-dom';
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {Alert, AlertTitle} from '@material-ui/lab';
@@ -15,11 +15,11 @@ import {
 class GamePage extends Component {
 
   componentDidMount() {
-    this.resultId = parseInt(this.props.match.params.resultId);
+    let {resultId} = useParams();
+    this.resultId = resultId;
     this.props.listUserResults(this.state);
 
     console.log(this.resultId);
-    console.log(JSON.stringify(this.props.results));
     console.log(JSON.stringify(this.state));
   }
 
