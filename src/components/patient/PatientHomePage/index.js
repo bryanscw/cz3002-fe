@@ -58,10 +58,6 @@ class PatientHomePage extends Component {
           <CssBaseline/>
           <Typography variant="h1">Results for: {user.name}</Typography>
 
-          <Link className="btn btn-light mb-2" to="/">
-            <FontAwesomeIcon icon={faChevronLeft}/> Back to Home
-          </Link>
-
           <Typography variant="h2">Pending Test(s)</Typography>
           {
             pendingTests.length !== 0 ? (
