@@ -42,11 +42,7 @@ class GamePage extends Component {
 
     // If test has been completed
     if (result.time) {
-      return (
-          <Route path={`/game/${this.resultId}`} render={() => (
-              <Redirect to={`/result/${this.resultId}`}/>
-          )}/>
-      );
+      return <Redirect to="/"/>;
     }
 
     return (
