@@ -11,8 +11,7 @@ import {
 } from "../../../redux/ducks/users";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import Loader from "react-loader-spinner";
-
+import CircularProgress from "@material-ui/core";
 import AddBox from "@material-ui/icons/AddBox";
 import ArrowUpward from "@material-ui/icons/ArrowUpward";
 import Check from "@material-ui/icons/Check";
@@ -70,7 +69,7 @@ class AdminPage extends Component {
     };
 
     if (usersLoading) {
-      return <Loader/>;
+      return <CircularProgress/>;
     }
 
     return (
