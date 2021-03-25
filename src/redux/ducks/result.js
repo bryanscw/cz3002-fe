@@ -118,9 +118,29 @@ export const getLatestResult = () => (dispatch, getState) => {
   );
 };
 
+export const listAllPatients = () => (dispatch, getState) => {
+  dispatch(createApiAction(ENTITY_NAME, STATUSES.REQUEST, METHODS.RETRIEVE));
+
+  return (
+    axios.get(
+      `${API_URL}/result/patients`,
+      getTokenConfig(getState),
+    ).then(res => {
+      dispatch(createApiAction(ENTITY_NAME, STATUSES.SUCCESS, METHODS.RETRIEVE, res.data));
+    }).catch(err => {
+      displayError('Unable to get list of patients')(dispatch);
+      dispatch(createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.RETRIEVE));
+    })
+  );
+};
+
 // SELECTORS
-export const selectResultsLoading = state => state.resultsReducer.isLoading[METHODS.LIST]
-  === true;
-export const selectResultsFailed = state => state.resultsReducer.isLoading[METHODS.LIST]
-  === false && state.resultsReducer.hasFailed[METHODS.LIST] === true;
+export const selectResultsLoading = state => state.resultsReducer.isLoading[METHODS.LIST] === true;
+export const selectResultsFailed = state => state.resultsReducer.isLoading[METHODS.LIST] === false
+  && state.resultsReducer.hasFailed[METHODS.LIST] === true;
 export const selectResults = state => state.resultsReducer.items;
+
+export const selectPatientsLoading = state => state.resultsReducer.isLoading[METHODS.LIST] === true;
+export const selectPatientsFailed = state => state.resultsReducer.isLoading[METHODS.LIST] === false
+  && state.resultsReducer.hasFailed[METHODS.LIST] === true;
+export const selectPatients = state => state.resultsReducer.items;

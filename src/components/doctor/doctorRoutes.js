@@ -16,7 +16,12 @@ const DoctorRouter = [
   // <Route
   //     key="CreateDiagnosis"
   //     path="/submit-diagnosis/:resultId"
-  //     component={CreateDiagnosis}
+  //     component={CreateDiagnosisPage}
+  // />,
+  // <Route
+  //   key="CreateTest"
+  //   path="/create-test"
+  //   component={CreateTestPage}
   // />,
 ];
 
