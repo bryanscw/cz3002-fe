@@ -1,18 +1,13 @@
-import axios from "axios";
-import {
-  createApiAction,
-  createApiReducer,
-  METHODS,
-  STATUSES
-} from "./apiHelper";
-import {API_URL} from "../../utils/constants";
-import {displayError} from "./errors";
-import {getTokenConfig} from "./authHelper";
+import axios from 'axios';
+import { createApiAction, createApiReducer, METHODS, STATUSES } from './apiHelper';
+import { API_URL } from '../../utils/constants';
+import { displayError } from './errors';
+import { getTokenConfig } from './authHelper';
 
 const ENTITY_NAME = 'users';
 
 // REDUCER
-const usersReducer = createApiReducer(ENTITY_NAME, "email");
+const usersReducer = createApiReducer(ENTITY_NAME, 'email');
 export default usersReducer;
 
 // OPERATIONS
@@ -21,20 +16,20 @@ export const createUser = user => (dispatch, getState) => {
   dispatch(createApiAction(ENTITY_NAME, STATUSES.REQUEST, METHODS.CREATE));
 
   return (
-      axios
+    axios
       .post(
-          `${API_URL}/users/create`,
-          user,
-          getTokenConfig(getState)
+        `${API_URL}/users/create`,
+        user,
+        getTokenConfig(getState),
       )
       .then(res => {
         dispatch(createApiAction(ENTITY_NAME, STATUSES.SUCCESS, METHODS.CREATE,
-            res.data));
+          res.data));
       })
       .catch(err => {
-        displayError("Unable to create user")(dispatch);
+        displayError('Unable to create user')(dispatch);
         dispatch(
-            createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.CREATE));
+          createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.CREATE));
       })
   );
 };
@@ -43,20 +38,20 @@ export const updateUser = (newUser, oldUser) => (dispatch, getState) => {
   dispatch(createApiAction(ENTITY_NAME, STATUSES.REQUEST, METHODS.UPDATE));
 
   return (
-      axios
+    axios
       .patch(
-          `${API_URL}/users/${oldUser.email}`,
-          newUser,
-          getTokenConfig(getState)
+        `${API_URL}/users/${oldUser.email}`,
+        newUser,
+        getTokenConfig(getState),
       )
       .then(res => {
         dispatch(createApiAction(ENTITY_NAME, STATUSES.SUCCESS, METHODS.UPDATE,
-            res.data));
+          res.data));
       })
       .catch(err => {
-        displayError("Unable to update user")(dispatch);
+        displayError('Unable to update user')(dispatch);
         dispatch(
-            createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.UPDATE));
+          createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.UPDATE));
       })
   );
 };
@@ -65,19 +60,19 @@ export const deleteUser = user => (dispatch, getState) => {
   dispatch(createApiAction(ENTITY_NAME, STATUSES.REQUEST, METHODS.DELETE));
 
   return (
-      axios
+    axios
       .delete(
-          `${API_URL}/users/${user.email}`,
-          getTokenConfig(getState),
+        `${API_URL}/users/${user.email}`,
+        getTokenConfig(getState),
       )
       .then(res => {
         dispatch(createApiAction(ENTITY_NAME, STATUSES.SUCCESS, METHODS.DELETE,
-            user.email));
+          user.email));
       })
       .catch(err => {
-        displayError("Unable to delete user")(dispatch);
+        displayError('Unable to delete user')(dispatch);
         dispatch(
-            createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.DELETE));
+          createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.DELETE));
       })
   );
 };
@@ -86,17 +81,17 @@ export const listUsers = () => (dispatch, getState) => {
   dispatch(createApiAction(ENTITY_NAME, STATUSES.REQUEST, METHODS.LIST));
 
   return (
-      axios
+    axios
       .get(
-          `${API_URL}/users/`,
-          getTokenConfig(getState)
+        `${API_URL}/users/`,
+        getTokenConfig(getState),
       )
       .then((res) => {
         dispatch(createApiAction(ENTITY_NAME, STATUSES.SUCCESS, METHODS.LIST,
-            res.data));
+          res.data));
       })
       .catch(err => {
-        displayError("Unable to list users")(dispatch);
+        displayError('Unable to list users')(dispatch);
         dispatch(createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.LIST));
       })
   );
@@ -104,7 +99,7 @@ export const listUsers = () => (dispatch, getState) => {
 
 // SELECTORS
 export const selectUsersLoading = state => state.usersReducer.isLoading[METHODS.LIST]
-    === true;
+  === true;
 export const selectUsersFailed = state => state.usersReducer.isLoading[METHODS.LIST]
-    === false && state.usersReducer.hasFailed[METHODS.LIST] === true;
+  === false && state.usersReducer.hasFailed[METHODS.LIST] === true;
 export const selectUsers = state => state.usersReducer.items;

@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import {Link} from 'react-router-dom';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faEdit, faTrash} from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 /**This component is used to display an item with a title and description */
 export default function BasicCard(props) {
@@ -22,28 +22,28 @@ export default function BasicCard(props) {
   } = props;
 
   return (
-      <div className={`card${classes ? ` ${classes}` : ""}`}>
-        <div className="card-body">
-          <h3 className="card-title">
-            <Link to={link}>{title}</Link> {badge}
-          </h3>
-          <p className="card-text">{description}</p>
-          {
-            editable &&
-            <div>
-              <button className="ml-auto btn btn-success mr-2"
-                      onClick={() => handleUpdate(details)}>
-                <FontAwesomeIcon icon={faEdit}/>
-              </button>
-              <button className="ml-auto btn btn-danger"
-                      onClick={() => handleDelete(details)}>
-                <FontAwes omeIcon icon={faTrash}/>
-              </button>
-            </div>
-          }
-        </div>
+    <div className={`card${classes ? ` ${classes}` : ''}`}>
+      <div className="card-body">
+        <h3 className="card-title">
+          <Link to={link}>{title}</Link> {badge}
+        </h3>
+        <p className="card-text">{description}</p>
+        {
+          editable &&
+          <div>
+            <button className="ml-auto btn btn-success mr-2"
+              onClick={() => handleUpdate(details)}>
+              <FontAwesomeIcon icon={faEdit} />
+            </button>
+            <button className="ml-auto btn btn-danger"
+              onClick={() => handleDelete(details)}>
+              <FontAwes omeIcon icon={faTrash} />
+            </button>
+          </div>
+        }
       </div>
-  )
+    </div>
+  );
 }
 
 BasicCard.propTypes = {
@@ -55,11 +55,11 @@ BasicCard.propTypes = {
   details: PropTypes.object.isRequired,
   /** A badge for the component */
   badge: PropTypes.oneOfType(
-      [PropTypes.string, PropTypes.func, PropTypes.element]),
+    [PropTypes.string, PropTypes.func, PropTypes.element]),
   /** A string storing a link for the item title */
   link: PropTypes.string.isRequired,
   /** An action creator for handling item update request */
   handleUpdate: PropTypes.func,
   /** An action creator for handling item deletion request */
   handleDelete: PropTypes.func,
-}
+};

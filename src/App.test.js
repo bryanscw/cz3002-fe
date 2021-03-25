@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 import ReactDOM from 'react-dom';
-import Index from "./components/common/App"
+import Index from './components/common/App';
 
-it("renders without crashing", () => {
+it('renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<Index/>, div);
+  ReactDOM.render(<Index />, div);
 });
