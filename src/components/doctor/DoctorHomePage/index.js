@@ -34,12 +34,12 @@ export default function DoctorHomePage() {
             <CardContent>
               <Typography gutterBottom variant="h5"
                 component="h2">
-                Review Test(s)
+                Review Test Result
               </Typography>
             </CardContent>
             <CardActions>
               <Button assize="small" color="primary"
-                href="/create-diagnosis">
+                href="/results">
                 Go
               </Button>
             </CardActions>
