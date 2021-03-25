@@ -1,11 +1,5 @@
 import React, { Component } from 'react';
-import {
-  Button,
-  Container,
-  CssBaseline,
-  TextField,
-  Typography,
-} from '@material-ui/core';
+import { Button, Container, TextField, Typography } from '@material-ui/core';
 import { authenticateLogin } from '../../../redux/ducks/auth';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -32,7 +26,6 @@ class LoginPage extends Component {
       <div className="main" data-test="loginContainer">
         <Container component="main" maxWidth="xs" align="center"
           style={{ marginTop: 150 }}>
-          <CssBaseline />
           <div className="login-form">
             <Typography variant="h3"
               style={{ marginBottom: 20 }}>Login</Typography>

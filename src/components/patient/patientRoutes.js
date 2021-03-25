@@ -8,7 +8,7 @@ import GamePage from './GamePage';
 const PatientRouter = [
   <Route
     key="ResultHomePage"
-    path="/"
+    path="/dashboard"
     exact
     component={ResultHomePage}
   />,

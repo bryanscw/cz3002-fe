@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 import { selectUser } from '../../../redux/ducks/auth';
-import { CircularProgress, CssBaseline, Typography } from '@material-ui/core';
+import { CircularProgress, Typography } from '@material-ui/core';
 import { Alert, AlertTitle } from '@material-ui/lab';
 import ResultCard from '../ResultCard';
 import PendingTestCard from '../PendingTestCard';
@@ -53,7 +53,6 @@ class PatientHomePage extends Component {
 
     return (
       <div className="container">
-        <CssBaseline />
         <Typography variant="h1">Results for: {user.name}</Typography>
 
         <Typography variant="h2">Pending Test(s)</Typography>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { selectUser } from '../../../redux/ducks/auth';
-import { AppBar, Box, Toolbar, Typography } from '@material-ui/core';
+import { AppBar, Box, CssBaseline, Toolbar, Typography } from '@material-ui/core';
 import Link from '@material-ui/core/Link';
 import { green, red } from '@material-ui/core/colors';
 import { withStyles } from '@material-ui/core/styles';
@@ -62,10 +62,11 @@ export class Header extends Component {
 
     return (
       <AppBar position="static">
+        <CssBaseline />
         <Toolbar>
           <Typography style={{ flex: 1 }} variant="h6" color="inherit" noWrap>
-            <Link className={classes.header} href="/home">TRAIL MAKING
-                                                          TEST</Link>
+            <Link className={classes.header} href="/">TRAIL MAKING
+                                                      TEST</Link>
           </Typography>
           {user && Object.keys(user).length !== 0 ? authLinks : guestLinks}
         </Toolbar>
