@@ -65,8 +65,7 @@ export class Header extends Component {
         <CssBaseline />
         <Toolbar>
           <Typography style={{ flex: 1 }} variant="h6" color="inherit" noWrap>
-            <Link className={classes.header} href="/">TRAIL MAKING
-                                                      TEST</Link>
+            <Link className={classes.header} href="/">TRAIL MAKING TEST</Link>
           </Typography>
           {user && Object.keys(user).length !== 0 ? authLinks : guestLinks}
         </Toolbar>

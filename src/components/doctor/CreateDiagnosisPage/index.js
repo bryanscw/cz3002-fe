@@ -2,6 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 class CreateDiagnosisPage extends Component {
+  componentDidMount() {
+
+  }
+
+  ci
 
   render() {
     return(

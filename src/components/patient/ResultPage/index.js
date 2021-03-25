@@ -36,7 +36,7 @@ class ResultPage extends Component {
       diagnosis,
     } = this.props;
 
-    if (resultsLoading) {
+    if (resultsLoading || diagnosisLoading) {
       return <CircularProgress />;
     }
 
@@ -50,10 +50,6 @@ class ResultPage extends Component {
     // If no such result is found
     if (!result) {
       return <Redirect to="/not-found" />;
-    }
-
-    if (diagnosisLoading) {
-      return <CircularProgress />;
     }
 
     return (
