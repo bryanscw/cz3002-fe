@@ -9,7 +9,6 @@ import { Redirect } from 'react-router-dom';
 
 class CreateTestPage extends Component {
   componentDidMount() {
-    console.log('Hello');
     this.props.listAllPatients(this.state);
   }
 

@@ -60,7 +60,7 @@ class AppRouter extends Component {
         <Redirect
           key="LoginRedirect"
           from="/login"
-          to="/"
+          to="/dashboard"
         />,
       ];
 
