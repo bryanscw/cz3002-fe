@@ -1,28 +1,19 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 import DoctorHomePage from './DoctorHomePage';
+import CreateTestPage from './CreateTestPage';
 
 const DoctorRouter = [
   <Route
     key="DoctorHomePage"
-    path="/"
+    path="/dashboard"
     component={DoctorHomePage}
   />,
-  // <Route
-  //     key="CreateTest"
-  //     path="/view-diagnosis/:resultId"
-  //     component={ViewDiagnosisDoc}
-  // />,
-  // <Route
-  //     key="CreateDiagnosis"
-  //     path="/submit-diagnosis/:resultId"
-  //     component={CreateDiagnosisPage}
-  // />,
-  // <Route
-  //   key="CreateTest"
-  //   path="/create-test"
-  //   component={CreateTestPage}
-  // />,
+  <Route
+    key="CreateTest"
+    path="/create-test"
+    component={CreateTestPage}
+  />,
 ];
 
 export default DoctorRouter;

@@ -8,7 +8,7 @@ import {
   selectDiagnosisFailed,
   selectDiagnosisLoading,
 } from '../../../redux/ducks/diagnosis';
-import { CircularProgress, CssBaseline } from '@material-ui/core';
+import { CircularProgress } from '@material-ui/core';
 
 class DiagnosisPage extends Component {
 
@@ -35,7 +35,6 @@ class DiagnosisPage extends Component {
 
     return (
       <div className="container">
-        <CssBaseline />
         <p>{JSON.stringify(diagnosis)}</p>
       </div>
     );

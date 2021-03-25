@@ -11,7 +11,7 @@ import {
 } from '../../../redux/ducks/users';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { CircularProgress, CssBaseline } from '@material-ui/core';
+import { CircularProgress } from '@material-ui/core';
 import AddBox from '@material-ui/icons/AddBox';
 import ArrowUpward from '@material-ui/icons/ArrowUpward';
 import Check from '@material-ui/icons/Check';
@@ -76,11 +76,9 @@ class AdminPage extends Component {
     return (
       <div data-test="adminTable"
         style={{
-          height: 400,
           width: '100%',
           padding: '40px',
         }}>
-        <CssBaseline />
         <MaterialTable
           title="All Users"
           icons={tableIcons}

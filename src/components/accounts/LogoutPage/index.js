@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Button, Container, CssBaseline, Typography } from '@material-ui/core';
+import { Button, Container, Typography } from '@material-ui/core';
 import { logout } from '../../../redux/ducks/auth';
 
 /**
@@ -15,7 +15,6 @@ export class LogoutPage extends Component {
     return (
       <Container component="main" maxWidth="xs" align="center"
         style={{ marginTop: 150 }}>
-        <CssBaseline />
         <Typography variant="h4" style={{ marginBottom: 20 }}>You have logged
                                                               out</Typography>
         <Typography variant="h5" style={{ marginBottom: 20 }}>Thanks for

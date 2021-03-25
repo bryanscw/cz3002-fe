@@ -3,7 +3,7 @@ import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Alert, AlertTitle } from '@material-ui/lab';
-import { CircularProgress, CssBaseline } from '@material-ui/core';
+import { CircularProgress } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import {
   listUserResults,
@@ -45,13 +45,11 @@ class GamePage extends Component {
     if (!result.time) {
       return (
         <div className="main">
-          <CssBaseline />
         </div>
       );
     } else {
       return (
         <div className="main">
-          <CssBaseline />
           <Alert severity="success">
             <AlertTitle>Test Completed</AlertTitle>
             You have completed this test!

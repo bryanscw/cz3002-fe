@@ -8,7 +8,7 @@ import {
   selectResultsFailed,
   selectResultsLoading,
 } from '../../../redux/ducks/result';
-import { CircularProgress, CssBaseline } from '@material-ui/core';
+import { CircularProgress } from '@material-ui/core';
 import { Alert, AlertTitle } from '@material-ui/lab';
 import Button from '@material-ui/core/Button';
 
@@ -17,7 +17,6 @@ class ResultPage extends Component {
   componentDidMount() {
     this.resultId = parseInt(this.props.match.params.resultId);
     this.props.listUserResults(this.state);
-    console.log(this.resultId);
   }
 
   render() {
@@ -45,7 +44,6 @@ class ResultPage extends Component {
 
     return (
       <div className="container">
-        <CssBaseline />
         {
           // Check if user has completed the test
           result.time ? (

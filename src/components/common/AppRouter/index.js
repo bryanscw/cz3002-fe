@@ -60,7 +60,7 @@ class AppRouter extends Component {
         <Redirect
           key="LoginRedirect"
           from="/login"
-          to="/"
+          to="/dashboard"
         />,
       ];
 
@@ -87,7 +87,7 @@ class AppRouter extends Component {
         <Errors />
         <Header />
         <Switch>
-          <Route path="/home" exact component={HomePage} />
+          <Route path="/" exact component={HomePage} />
           <Route path="/about" exact component={AboutPage} />
           <Route path="/not-found" exact component={NotFoundPage} />
           <Route path="/logout" exact component={LogoutPage} />
