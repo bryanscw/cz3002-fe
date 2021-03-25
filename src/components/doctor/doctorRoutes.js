@@ -1,9 +1,10 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 import DoctorHomePage from './DoctorHomePage';
-import CreateTestPage from './CreateTestPage';
 import ResultPage from './ResultPage';
 import DiagnosisPage from './DiagnosisPage';
+import PatientsPage from './PatientsPage';
+import ResultsPage from './ResultsPage';
 
 const DoctorRouter = [
   <Route
@@ -12,9 +13,14 @@ const DoctorRouter = [
     component={DoctorHomePage}
   />,
   <Route
-    key="CreateTest"
-    path="/create-test"
-    component={CreateTestPage}
+    key="PatientsPage"
+    path="/patients"
+    component={PatientsPage}
+  />,
+  <Route
+    key="ResultsPage"
+    path="/results"
+    component={ResultsPage}
   />,
   <Route
     key="ResultPage"

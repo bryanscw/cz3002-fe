@@ -36,7 +36,7 @@ import ViewColumn from '@material-ui/icons/ViewColumn';
 import Button from '@material-ui/core/Button';
 import { connect } from 'react-redux';
 
-class CreateTestPage extends Component {
+class PatientsPage extends Component {
   componentDidMount() {
     this.props.listAllPatients(this.state);
   }
@@ -152,6 +152,16 @@ class CreateTestPage extends Component {
                 </div>
               ),
             },
+            {
+              title: 'result',
+              render: (rowData) => (
+                <div>
+                  <Button variant="outlined" color="primary" href={`/patient/${rowData.email}`}>
+                    View Results
+                  </Button>
+                </div>
+              ),
+            },
           ]}
           data={patients}
           options={{}}
@@ -223,7 +233,7 @@ class CreateTestPage extends Component {
 
 }
 
-CreateTestPage.propTypes = {
+PatientsPage.propTypes = {
   createResult: PropTypes.func.isRequired,
   listAllPatients: PropTypes.func.isRequired,
   patientsLoading: PropTypes.bool.isRequired,
@@ -242,4 +252,4 @@ const dispatchers = {
   createResult,
 };
 
-export default connect(mapStateToProps, dispatchers)(CreateTestPage);
+export default connect(mapStateToProps, dispatchers)(PatientsPage);
