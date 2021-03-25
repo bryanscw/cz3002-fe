@@ -2,10 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import {
-  listAllPatients,
-  selectPatients,
-  selectPatientsFailed,
-  selectPatientsLoading,
+  listAllPatients, selectResults, selectResultsFailed, selectResultsLoading,
 } from '../../../redux/ducks/result';
 import { CircularProgress } from '@material-ui/core';
 import { Redirect } from 'react-router-dom';
@@ -48,9 +45,9 @@ CreateTestPage.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  patientsLoading: selectPatientsLoading(state),
-  patientsFailed: selectPatientsFailed(state),
-  patients: selectPatients(state),
+  patientLoading: selectResultsLoading(state),
+  patientsFailed: selectResultsFailed(state),
+  patients: selectResults(state),
 });
 
 const dispatchers = {
