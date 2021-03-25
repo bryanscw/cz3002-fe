@@ -79,7 +79,7 @@ class ResultsPage extends Component {
           padding: '40px',
         }}>
         <MaterialTable
-          title="All Patient Results"
+          title="All Results"
           font=""
           icons={tableIcons}
           columns={[

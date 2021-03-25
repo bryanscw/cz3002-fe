@@ -153,7 +153,7 @@ class PatientsPage extends Component {
               ),
             },
             {
-              title: 'result',
+              title: 'Result(s)',
               render: (rowData) => (
                 <div>
                   <Button variant="outlined" color="primary" href={`/patient/${rowData.email}`}>

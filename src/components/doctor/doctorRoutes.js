@@ -5,6 +5,7 @@ import ResultPage from './ResultPage';
 import DiagnosisPage from './DiagnosisPage';
 import PatientsPage from './PatientsPage';
 import ResultsPage from './ResultsPage';
+import PatientResultsPage from './PatientResultsPage';
 
 const DoctorRouter = [
   <Route
@@ -16,6 +17,11 @@ const DoctorRouter = [
     key="PatientsPage"
     path="/patients"
     component={PatientsPage}
+  />,
+  <Route
+    key="PatientResultsPage"
+    path="/patient/:userEmail"
+    component={PatientResultsPage}
   />,
   <Route
     key="ResultsPage"
