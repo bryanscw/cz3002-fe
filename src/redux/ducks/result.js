@@ -139,16 +139,7 @@ export const listAllPatients = () => (dispatch, getState) => {
 };
 
 // SELECTORS
-// Technically the same thing, we they just have different variable names
-
-// results related
 export const selectResultsLoading = state => state.resultsReducer.isLoading[METHODS.LIST] === true;
 export const selectResultsFailed = state => state.resultsReducer.isLoading[METHODS.LIST] === false
   && state.resultsReducer.hasFailed[METHODS.LIST] === true;
 export const selectResults = state => state.resultsReducer.items;
-
-// patients related
-export const selectPatientsLoading = state => state.resultsReducer.isLoading[METHODS.LIST] === true;
-export const selectPatientsFailed = state => state.resultsReducer.isLoading[METHODS.LIST] === false
-  && state.resultsReducer.hasFailed[METHODS.LIST] === true;
-export const selectPatients = state => state.resultsReducer.items;
