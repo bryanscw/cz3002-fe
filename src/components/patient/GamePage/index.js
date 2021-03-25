@@ -1,16 +1,16 @@
-import React, {Component} from "react";
-import {Link, Redirect} from 'react-router-dom';
-import PropTypes from "prop-types";
-import {connect} from "react-redux";
-import {Alert, AlertTitle} from '@material-ui/lab';
-import {CircularProgress, CssBaseline} from "@material-ui/core";
-import Button from '@material-ui/core/Button'
+import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { Alert, AlertTitle } from '@material-ui/lab';
+import { CircularProgress, CssBaseline } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
 import {
   listUserResults,
   selectResults,
   selectResultsFailed,
-  selectResultsLoading
-} from "../../../redux/ducks/result";
+  selectResultsLoading,
+} from '../../../redux/ducks/result';
 
 class GamePage extends Component {
 
@@ -27,45 +27,40 @@ class GamePage extends Component {
     } = this.props;
 
     if (resultsLoading) {
-      return <CircularProgress/>;
+      return <CircularProgress />;
     }
 
     // If failed to fetch results, redirect to not-found
     if (resultsFailed) {
-      return <Redirect to="/not-found"/>;
+      return <Redirect to="/not-found" />;
     }
 
     let result = results.find(o => o.id === this.resultId);
 
     if (!result) {
-      return <Redirect to="/not-found"/>;
+      return <Redirect to="/not-found" />;
     }
 
     // If test has been completed
     if (!result.time) {
       return (
-          <div className="main">
-            <CssBaseline/>
-          </div>
+        <div className="main">
+          <CssBaseline />
+        </div>
       );
     } else {
       return (
-          <div className="main">
-            <CssBaseline/>
-            <Alert severity="success">
-              <AlertTitle>Test Completed</AlertTitle>
-              You have completed this test!
-              <Button color="primary"
-                      href={`/result/${result.id}`}>
-                View results
-              </Button>
-              <Link to="/game/1">Game 1</Link>
-              <Link to="/game/2">Game 2</Link>
-
-              <Link to="/result/1">Result 1</Link>
-              <Link to="/result/2">Result 2</Link>
-            </Alert>
-          </div>
+        <div className="main">
+          <CssBaseline />
+          <Alert severity="success">
+            <AlertTitle>Test Completed</AlertTitle>
+            You have completed this test!
+            <Button color="primary"
+              href={`/result/${result.id}`}>
+              View results
+            </Button>
+          </Alert>
+        </div>
       );
     }
   }
@@ -80,8 +75,8 @@ GamePage.propType = {
   /** A boolean to determine if the users failed to be loaded the action creator(true: still loading or failed to load, false: successful load) */
   resultsFailed: PropTypes.bool,
   /** An array of results objects loaded by the action creator */
-  results: PropTypes.array.isRequired
-}
+  results: PropTypes.array.isRequired,
+};
 
 const mapStateToProps = state => ({
   resultsLoading: selectResultsLoading(state),
@@ -90,7 +85,7 @@ const mapStateToProps = state => ({
 });
 
 const dispatchers = {
-  listUserResults
+  listUserResults,
 };
 
 export default connect(mapStateToProps, dispatchers)(GamePage);

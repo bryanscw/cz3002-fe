@@ -17,6 +17,7 @@ class ResultPage extends Component {
   componentDidMount() {
     this.resultId = parseInt(this.props.match.params.resultId);
     this.props.listUserResults(this.state);
+    console.log(this.resultId);
   }
 
   render() {

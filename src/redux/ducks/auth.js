@@ -22,7 +22,7 @@ const initialState = {
   time_token_acquired: getCurrentTime()
 };
 
-export default function (state = initialState, action) {
+export default function _auth(state = initialState, action) {
   switch (action.type) {
     case LOGIN:
       // Store refresh and access token in localStorage
