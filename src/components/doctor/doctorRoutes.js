@@ -6,6 +6,8 @@ import DiagnosisPage from './DiagnosisPage';
 import PatientsPage from './PatientsPage';
 import ResultsPage from './ResultsPage';
 import PatientResultsPage from './PatientResultsPage';
+import PendingDiagnosisPage from './PendingDiagnosisPage';
+import CreateDiagnosisPage from './CreateDiagnosisPage';
 
 const DoctorRouter = [
   <Route
@@ -34,15 +36,20 @@ const DoctorRouter = [
     component={ResultPage}
   />,
   <Route
+    key="PendingDiagnosisPage"
+    path="/diagnosis/pending"
+    component={PendingDiagnosisPage}
+  />,
+  <Route
     key="DiagnosisPage"
     path="/diagnosis/:resultId"
     component={DiagnosisPage}
   />,
-  // <Route
-  //   key="ResultPage"
-  //   path="diagnosis/:resultId/create"
-  //   component={CreateDiagnosisPage}
-  // />,
+  <Route
+    key="ResultPage"
+    path="/diagnosis/:resultId/create"
+    component={CreateDiagnosisPage}
+  />,
 ];
 
 export default DoctorRouter;

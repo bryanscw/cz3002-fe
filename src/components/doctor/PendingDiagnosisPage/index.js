@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-class CreateDiagnosisPage extends Component {
+class PendingDiagnosisPage extends Component {
 
   render() {
     return(
@@ -11,7 +11,7 @@ class CreateDiagnosisPage extends Component {
 
 }
 
-CreateDiagnosisPage.propTypes = {
+PendingDiagnosisPage.propTypes = {
 
 };
 
@@ -19,4 +19,4 @@ const mapStateToProps = state => ({});
 
 const dispatchers = {};
 
-export default connect(mapStateToProps, dispatchers)(CreateDiagnosisPage);
+export default connect(mapStateToProps, dispatchers)(PendingDiagnosisPage);

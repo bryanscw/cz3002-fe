@@ -42,6 +42,20 @@ export default function DoctorHomePage() {
             </CardActions>
           </Card>
         </Grid>
+        <Grid item xs={12} sm={6} md={4}>
+          <Card>
+            <CardContent>
+              <Typography gutterBottom variant="h5" component="h2">
+                Pending Diagnosis
+              </Typography>
+            </CardContent>
+            <CardActions>
+              <Button assize="small" color="primary" href="/diagnosis/pending">
+                Go
+              </Button>
+            </CardActions>
+          </Card>
+        </Grid>
       </Grid>
     </Container>
   );
