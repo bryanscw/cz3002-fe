@@ -13,7 +13,7 @@ export default function _errors(state = initialState, action) {
       return {
         ...state,
         errors: [...state.errors, action.payload],
-      }
+      };
 
     case ERROR_CLOSE:
       return {
@@ -28,7 +28,7 @@ export default function _errors(state = initialState, action) {
             return error;
           }
         }),
-      }
+      };
 
     default:
       return state;
@@ -41,14 +41,14 @@ function displayErrorAction(error) {
   return {
     type: ERROR_DISPLAY,
     payload: error,
-  }
+  };
 }
 
 function closeErrorAction(id) {
   return {
     type: ERROR_CLOSE,
     payload: id,
-  }
+  };
 }
 
 // OPERATIONS

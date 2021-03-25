@@ -1,16 +1,16 @@
-import React, {Component} from "react";
-import PropTypes from "prop-types";
-import {connect} from "react-redux";
-import {Redirect} from 'react-router-dom';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import {
   listUserResults,
   selectResults,
   selectResultsFailed,
-  selectResultsLoading
-} from "../../../redux/ducks/result";
-import {CircularProgress, CssBaseline} from "@material-ui/core";
-import {Alert, AlertTitle} from '@material-ui/lab';
-import Button from '@material-ui/core/Button'
+  selectResultsLoading,
+} from '../../../redux/ducks/result';
+import { CircularProgress, CssBaseline } from '@material-ui/core';
+import { Alert, AlertTitle } from '@material-ui/lab';
+import Button from '@material-ui/core/Button';
 
 class ResultPage extends Component {
 
@@ -28,42 +28,42 @@ class ResultPage extends Component {
     } = this.props;
 
     if (resultsLoading) {
-      return <CircularProgress/>;
+      return <CircularProgress />;
     }
 
     // If failed to fetch results, redirect to not-found
     if (resultsFailed) {
-      return <Redirect to="/not-found"/>;
+      return <Redirect to="/not-found" />;
     }
 
     let result = results.find(o => o.id === this.resultId);
 
     // If no such result is found
     if (!result) {
-      return <Redirect to="/not-found"/>;
+      return <Redirect to="/not-found" />;
     }
 
     return (
-        <div className="container">
-          <CssBaseline/>
-          {
-            // Check if user has completed the test
-            result.time ? (
-                <p>{JSON.stringify(result)}</p>
-            ) : (
-                <Alert severity="error">
-                  <AlertTitle>Test not completed yet</AlertTitle>
-                  <p>No result available as test has <strong>not</strong> been
-                    completed yet.</p>
-                  <Button color="primary"
-                          href={`/game/${result.id}`}>
-                    Do Test
-                  </Button>
-                </Alert>
-            )
-          }
+      <div className="container">
+        <CssBaseline />
+        {
+          // Check if user has completed the test
+          result.time ? (
+            <p>{JSON.stringify(result)}</p>
+          ) : (
+            <Alert severity="error">
+              <AlertTitle>Test not completed yet</AlertTitle>
+              <p>No result available as test has <strong>not</strong> been
+                 completed yet.</p>
+              <Button color="primary"
+                href={`/game/${result.id}`}>
+                Do Test
+              </Button>
+            </Alert>
+          )
+        }
 
-        </div>
+      </div>
     );
   }
 
@@ -78,7 +78,7 @@ ResultPage.propTypes = {
   resultsFailed: PropTypes.bool,
   /** An array of results objects loaded by the action creator */
   results: PropTypes.array.isRequired,
-}
+};
 
 const mapStateToProps = state => ({
   resultsLoading: selectResultsLoading(state),
@@ -87,7 +87,7 @@ const mapStateToProps = state => ({
 });
 
 const dispatchers = {
-  listUserResults
+  listUserResults,
 };
 
 export default connect(mapStateToProps, dispatchers)(ResultPage);

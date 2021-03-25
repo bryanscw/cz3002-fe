@@ -1,12 +1,12 @@
-import React from "react";
-import {Route} from "react-router-dom";
-import DoctorHomePage from "./DoctorHomePage";
+import React from 'react';
+import { Route } from 'react-router-dom';
+import DoctorHomePage from './DoctorHomePage';
 
 const DoctorRouter = [
   <Route
-      key="DoctorHomePage"
-      path="/"
-      component={DoctorHomePage}
+    key="DoctorHomePage"
+    path="/"
+    component={DoctorHomePage}
   />,
   // <Route
   //     key="CreateTest"
@@ -18,6 +18,6 @@ const DoctorRouter = [
   //     path="/submit-diagnosis/:resultId"
   //     component={CreateDiagnosis}
   // />,
-]
+];
 
 export default DoctorRouter;

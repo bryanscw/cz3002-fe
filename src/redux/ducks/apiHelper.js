@@ -2,7 +2,7 @@ export const STATUSES = {
   REQUEST: 'REQUEST',
   SUCCESS: 'SUCCESS',
   FAILURE: 'FAILURE',
-}
+};
 
 export const METHODS = {
   CREATE: 'CREATE',
@@ -10,17 +10,17 @@ export const METHODS = {
   UPDATE: 'UPDATE',
   DELETE: 'DELETE',
   LIST: 'LIST',
-}
+};
 
 export function createApiAction(entityName, status, method, payload) {
   return {
     type: `${entityName.toUpperCase()}_${status}_${method}`,
-    payload: payload
-  }
+    payload: payload,
+  };
 }
 
 // REDUCER
-export function createApiReducer(entityName, id = "id") {
+export function createApiReducer(entityName, id = 'id') {
   const initialState = {
     isLoading: {
       [METHODS.CREATE]: true,
@@ -47,7 +47,7 @@ export function createApiReducer(entityName, id = "id") {
     const actionMethod = match[3];
 
     if (actionEntityName !== entityName.toUpperCase() || !Object.values(
-        METHODS).includes(actionMethod)) {
+      METHODS).includes(actionMethod)) {
       return state;
     }
 
@@ -57,11 +57,11 @@ export function createApiReducer(entityName, id = "id") {
           ...state,
           isLoading: {
             ...state.isLoading,
-            [actionMethod]: true
+            [actionMethod]: true,
           },
           hasFailed: {
             ...state.isLoading,
-            [actionMethod]: false
+            [actionMethod]: false,
           },
         };
 
@@ -72,53 +72,53 @@ export function createApiReducer(entityName, id = "id") {
               ...state,
               isLoading: {
                 ...state.isLoading,
-                [actionMethod]: false
+                [actionMethod]: false,
               },
               items: [...state.items, action.payload],
-            }
+            };
 
           case METHODS.RETRIEVE:
             return {
               ...state,
               isLoading: {
                 ...state.isLoading,
-                [actionMethod]: false
+                [actionMethod]: false,
               },
               item: action.payload,
-            }
+            };
 
           case METHODS.UPDATE:
             return {
               ...state,
               isLoading: {
                 ...state.isLoading,
-                [actionMethod]: false
+                [actionMethod]: false,
               },
               items: state.items.map(
-                  item => (item[id] === action.payload[id]) ? action.payload
-                      : item),
+                item => (item[id] === action.payload[id]) ? action.payload
+                  : item),
               item: action.payload,
-            }
+            };
 
           case METHODS.DELETE:
             return {
               ...state,
               isLoading: {
                 ...state.isLoading,
-                [actionMethod]: false
+                [actionMethod]: false,
               },
               items: state.items.filter(item => item[id] !== action.payload),
-            }
+            };
 
           case METHODS.LIST:
             return {
               ...state,
               isLoading: {
                 ...state.isLoading,
-                [actionMethod]: false
+                [actionMethod]: false,
               },
-              items: action.payload.content
-            }
+              items: action.payload.content,
+            };
 
           default:
             return state;
@@ -129,16 +129,16 @@ export function createApiReducer(entityName, id = "id") {
           ...state,
           isLoading: {
             ...state.isLoading,
-            [actionMethod]: false
+            [actionMethod]: false,
           },
           hasFailed: {
             ...state.isLoading,
-            [actionMethod]: true
+            [actionMethod]: true,
           },
         };
 
       default:
         return state;
     }
-  }
+  };
 }
