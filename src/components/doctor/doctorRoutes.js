@@ -41,14 +41,14 @@ const DoctorRouter = [
     component={PendingDiagnosisPage}
   />,
   <Route
-    key="DiagnosisPage"
-    path="/diagnosis/:resultId"
-    component={DiagnosisPage}
-  />,
-  <Route
     key="ResultPage"
     path="/diagnosis/:resultId/create"
     component={CreateDiagnosisPage}
+  />,
+  <Route
+    key="DiagnosisPage"
+    path="/diagnosis/:resultId"
+    component={DiagnosisPage}
   />,
 ];
 

@@ -58,7 +58,8 @@ class ResultPage extends Component {
             <Button color="primary" href={`/diagnosis/${result.id}`}>View Diagnosis</Button>
           ) :
           (
-            <Button color="primary" href={`/diagnosis/${result.id}`}>Create Diagnosis</Button>
+            <Button color="primary"
+              href={`/diagnosis/${result.id}/create`}>Create Diagnosis</Button>
           )
       );
     }
