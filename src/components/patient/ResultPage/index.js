@@ -11,12 +11,19 @@ import {
 import { CircularProgress } from '@material-ui/core';
 import { Alert, AlertTitle } from '@material-ui/lab';
 import Button from '@material-ui/core/Button';
+import {
+  fetchDiagnosis,
+  selectDiagnosis,
+  selectDiagnosisFailed,
+  selectDiagnosisLoading,
+} from '../../../redux/ducks/diagnosis';
 
 class ResultPage extends Component {
 
   componentDidMount() {
     this.resultId = parseInt(this.props.match.params.resultId);
     this.props.listUserResults(this.state);
+    this.props.fetchDiagnosis(this.resultId);
   }
 
   render() {
@@ -24,6 +31,9 @@ class ResultPage extends Component {
       resultsLoading,
       resultsFailed,
       results,
+      diagnosisLoading,
+      diagnosisFailed,
+      diagnosis,
     } = this.props;
 
     if (resultsLoading) {
@@ -40,6 +50,10 @@ class ResultPage extends Component {
     // If no such result is found
     if (!result) {
       return <Redirect to="/not-found" />;
+    }
+
+    if (diagnosisLoading) {
+      return <CircularProgress />;
     }
 
     return (
@@ -60,6 +74,14 @@ class ResultPage extends Component {
             </Alert>
           )
         }
+        {
+          (!diagnosisFailed && diagnosis) ? (
+              <Button color="primary" href={`/diagnosis/${result.id}`}>Diagnosis</Button>
+            ) :
+            (
+              <Button color="primary" disabled>Diagnosis</Button>
+            )
+        }
 
       </div>
     );
@@ -76,16 +98,25 @@ ResultPage.propTypes = {
   resultsFailed: PropTypes.bool,
   /** An array of results objects loaded by the action creator */
   results: PropTypes.array.isRequired,
+
+  fetchDiagnosis: PropTypes.func.isRequired,
+  diagnosisLoading: PropTypes.bool.isRequired,
+  diagnosisFailed: PropTypes.bool,
+  diagnosis: PropTypes.object,
 };
 
 const mapStateToProps = state => ({
   resultsLoading: selectResultsLoading(state),
   resultsFailed: selectResultsFailed(state),
   results: selectResults(state),
+  diagnosisLoading: selectDiagnosisLoading(state),
+  diagnosisFailed: selectDiagnosisFailed(state),
+  diagnosis: selectDiagnosis(state),
 });
 
 const dispatchers = {
   listUserResults,
+  fetchDiagnosis,
 };
 
 export default connect(mapStateToProps, dispatchers)(ResultPage);
