@@ -101,7 +101,6 @@ class CreateTestPage extends Component {
       nodeNum: null,
     };
 
-
     return (
       <div data-test="adminTable"
         style={{
