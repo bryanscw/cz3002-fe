@@ -12,6 +12,30 @@ const resultsReducer = createApiReducer(ENTITY_NAME);
 export default resultsReducer;
 
 // OPERATIONS
+export const fetchResult = (resultId) => (dispatch, getState) => {
+  dispatch(createApiAction(ENTITY_NAME, STATUSES.REQUEST, METHODS.RETRIEVE));
+//let access_token = localStorage.getItem("access_token");
+  return (
+    axios
+      .post(`${API_URL}/result/${resultId}`, {},
+        getTokenConfig(getState))
+      .then((res) => {
+        dispatch(
+          createApiAction(ENTITY_NAME, STATUSES.SUCCESS, METHODS.RETRIEVE,
+            res.data),
+        );
+        // return res
+      })
+      .catch((err) => {
+        displayError('Unable to fetch result')(dispatch);
+        dispatch(
+          createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.RETRIEVE));
+      })
+
+  );
+
+};
+
 export const createResult = result => (dispatch, getState) => {
   dispatch(createApiAction(ENTITY_NAME, STATUSES.REQUEST, METHODS.CREATE));
 
@@ -138,8 +162,29 @@ export const listAllPatients = () => (dispatch, getState) => {
   );
 };
 
+export const listAllPatientResults = (userEmail) => (dispatch, getState) => {
+  dispatch(createApiAction(ENTITY_NAME, STATUSES.REQUEST, METHODS.LIST));
+
+  return (
+    axios
+      .get(
+        `${API_URL}/result/${userEmail}`,
+        getTokenConfig(getState),
+      )
+      .then(res => {
+        dispatch(createApiAction(ENTITY_NAME, STATUSES.SUCCESS, METHODS.LIST,
+          res.data));
+      })
+      .catch(err => {
+        displayError('Unable to list all patients')(dispatch);
+        dispatch(createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.LIST));
+      })
+  );
+};
+
 // SELECTORS
 export const selectResultsLoading = state => state.resultsReducer.isLoading[METHODS.LIST] === true;
 export const selectResultsFailed = state => state.resultsReducer.isLoading[METHODS.LIST] === false
   && state.resultsReducer.hasFailed[METHODS.LIST] === true;
 export const selectResults = state => state.resultsReducer.items;
+export const selectResult = state => state.diagnosisReducer.item;
