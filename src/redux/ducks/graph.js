@@ -23,7 +23,6 @@ export const fetchTime = (bins, nodeNum) => (dispatch, getState) => {
           createApiAction(ENTITY_NAME, STATUSES.SUCCESS, METHODS.RETRIEVE,
             res.data),
         );
-        // return res
       })
       .catch((err) => {
         displayError('Unable to get time graph data')(dispatch);

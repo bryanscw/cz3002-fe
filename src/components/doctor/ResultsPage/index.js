@@ -74,7 +74,7 @@ class ResultsPage extends Component {
     }
 
     return (
-      <div data-test="adminTable"
+      <div data-test="resultsTable"
         style={{
           width: '100%',
           padding: '40px',
@@ -122,11 +122,9 @@ class ResultsPage extends Component {
             {
               title: 'Result',
               render: (rowData) => (
-                <div>
-                  <Button variant="outlined" color="primary" href={`/result/${rowData.id}`}>
-                    View
-                  </Button>
-                </div>
+                <Button variant="outlined" color="primary" href={`/result/${rowData.id}`}>
+                  View
+                </Button>
               ),
             },
           ]}

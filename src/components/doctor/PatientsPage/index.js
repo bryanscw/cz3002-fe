@@ -38,9 +38,6 @@ import { connect } from 'react-redux';
 import { calculateAge } from '../../../utils/calculateAge';
 
 class PatientsPage extends Component {
-  componentDidMount() {
-    this.props.listAllPatients(this.state);
-  }
 
   constructor(props) {
     super(props);
@@ -52,6 +49,10 @@ class PatientsPage extends Component {
       patientEmail: null,
       nodeNum: null,
     };
+  }
+
+  componentDidMount() {
+    this.props.listAllPatients(this.state);
   }
 
   render() {
@@ -94,7 +95,7 @@ class PatientsPage extends Component {
       return <Redirect to="/not-found" />;
     }
 
-    let initialState = {
+    const initialState = {
       open: false,
       patientId: null,
       patientName: null,
@@ -103,7 +104,7 @@ class PatientsPage extends Component {
     };
 
     return (
-      <div data-test="adminTable"
+      <div data-test="patientsTable"
         style={{
           width: '100%',
           padding: '40px',
@@ -125,7 +126,7 @@ class PatientsPage extends Component {
             {
               title: 'Age',
               render: (rowData) => (
-                calculateAge(rowData.user.dob)
+                calculateAge(rowData.dob)
               ),
             },
             {
@@ -139,36 +140,32 @@ class PatientsPage extends Component {
             {
               title: 'Test',
               render: (rowData) => (
-                <div>
-                  <Button variant="outlined" color="primary"
-                    onClick={() => {
-                      this.setState({
-                        open: true,
-                        patientId: rowData.id,
-                        patientName: rowData.name,
-                        patientEmail: rowData.email,
-                      });
-                    }}>
-                    Create Test
-                  </Button>
-                </div>
+                <Button variant="outlined" color="primary"
+                  onClick={() => {
+                    this.setState({
+                      open: true,
+                      patientId: rowData.id,
+                      patientName: rowData.name,
+                      patientEmail: rowData.email,
+                    });
+                  }}>
+                  Create Test
+                </Button>
               ),
             },
             {
               title: 'Result(s)',
               render: (rowData) => (
-                <div>
-                  <Button variant="outlined" color="primary" href={`/patient/${rowData.email}`}>
-                    View Results
-                  </Button>
-                </div>
+                <Button variant="outlined" color="primary" href={`/patient/${rowData.email}`}>
+                  View Results
+                </Button>
               ),
             },
           ]}
           data={patients}
           options={{}}
         />
-        <Dialog open={this.state.open}
+        <Dialog fullWidth open={this.state.open}
           onClose={() => {
             this.setState(initialState);
           }}
@@ -189,18 +186,15 @@ class PatientsPage extends Component {
               <strong>Email: </strong> {this.state.patientEmail}
             </DialogContentText>
 
-            <DialogContentText>
-              Please specify the number of nodes to be used in the test.
-            </DialogContentText>
-
             <TextField
               required
               autoFocus
+              fullWidth
               margin="dense"
-              id="name"
+              id="nodeNum"
               label="Number of nodes"
               type="number"
-              fullWidth
+              helperText="Please specify the number of nodes to be used"
               onChange={event => {
                 const { value } = event.target;
                 this.setState({ nodeNum: value });
