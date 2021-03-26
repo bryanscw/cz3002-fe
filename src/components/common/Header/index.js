@@ -17,17 +17,14 @@ export class Header extends Component {
     } = this.props;
 
     const authLinks = (
-      <Box className="logout">
-        <Button color="inherit" href="/logout">
-          Logout
-        </Button>
+      <Box className="buttons">
+        <Button color="inherit" href="/dashboard">Dashboard</Button>
+        <Button color="inherit" href="/logout">Logout</Button>
       </Box>
     );
 
     const guestLinks = (
-      <Button color="inherit" href="/login">
-        Login
-      </Button>
+      <Button color="inherit" href="/login">Login</Button>
     );
 
     return (
