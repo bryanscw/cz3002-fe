@@ -19,7 +19,7 @@ export const fetchResult = resultId => (dispatch, getState) => {
       `${API_URL}/result/${resultId}`,
       {},
       getTokenConfig(getState))
-    .then(res => {
+    .then((res) => {
       dispatch(createApiAction(ENTITY_NAME, STATUSES.SUCCESS, METHODS.RETRIEVE, res.data));
     })
     .catch((err) => {
