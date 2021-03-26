@@ -30,7 +30,7 @@ class LoginPage extends Component {
     return (
       <div className="main" data-test="loginContainer">
         <Container component="main" maxWidth="xs" align="center"
-          style={{ marginTop: 150, marginBottom:30 }}>
+          style={{ marginTop: 150 }}>
           <div className="login-form">
             <Typography variant="h3"
               style={{ marginBottom: 20 }}>Login</Typography>

@@ -65,7 +65,8 @@ export class Header extends Component {
     );
 
     return (
-      <AppBar position="static">
+      <AppBar position="static"
+      style={{ marginBottom: 60}} >
         <CssBaseline />
         <Toolbar>
           <Typography style={{ flex: 1 }} variant="h6" color="inherit" noWrap>
