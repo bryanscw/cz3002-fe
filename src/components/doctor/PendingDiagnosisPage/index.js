@@ -148,7 +148,6 @@ PendingDiagnosisPage.propTypes = {
   listAllResults: PropTypes.func.isRequired,
   resultsLoading: PropTypes.bool.isRequired,
   resultsFailed: PropTypes.bool,
-  results: PropTypes.array.isRequired,
 };
 
 const mapStateToProps = state => ({

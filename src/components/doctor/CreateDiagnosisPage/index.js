@@ -10,9 +10,10 @@ import {
   selectResultsLoading,
 } from '../../../redux/ducks/result';
 import PropTypes from 'prop-types';
-import { CircularProgress, Grid, MenuItem, Paper } from '@material-ui/core';
+import { CircularProgress, Container, Grid, MenuItem, Paper } from '@material-ui/core';
 import { Redirect } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
+import { Alert, AlertTitle } from '@material-ui/lab';
 
 class CreateDiagnosisPage extends Component {
   constructor(props) {
@@ -72,61 +73,85 @@ class CreateDiagnosisPage extends Component {
       return errors;
     };
 
+    function DiagnosisForm(props) {
+      return (
+        <div style={{
+          padding: 16,
+          margin: 'auto',
+          maxWidth: 600,
+        }}>
+          <Form
+            onSubmit={onSubmit}
+            initialValues={{}}
+            validate={validate}
+            render={({
+              handleSubmit,
+              submitting,
+            }) => (
+              <form onSubmit={handleSubmit} noValidate>
+                <Paper style={{ padding: 16 }}>
+                  <Grid container alignItems="flex-start" spacing={2}>
+                    <Grid item xs={12}>
+                      <Field
+                        fullWidth
+                        name="label"
+                        component={Select}
+                        label="Select a severity"
+                        formControlProps={{ fullWidth: true }}
+                      >
+                        <MenuItem value="High">High</MenuItem>
+                        <MenuItem value="Moderate">Moderate</MenuItem>
+                        <MenuItem value="Low">Low</MenuItem>
+                      </Field>
+                    </Grid>
+                    <Grid item xs={12}>
+                      <Field
+                        fullWidth
+                        name="description"
+                        component={TextField}
+                        multiline
+                        label="Additional information about diagnosis"
+                      />
+                    </Grid>
+                    <Grid item style={{ marginTop: 16 }}>
+                      <Button
+                        variant="contained"
+                        color="primary"
+                        type="submit"
+                        disabled={submitting}
+                      >
+                        Submit
+                      </Button>
+                    </Grid>
+                  </Grid>
+                </Paper>
+              </form>
+            )}
+          />
+        </div>
+      );
+    }
+
     return (
-      <div style={{
-        padding: 16,
-        margin: 'auto',
-        maxWidth: 600,
-      }}>
-        <Form
-          onSubmit={onSubmit}
-          initialValues={{}}
-          validate={validate}
-          render={({
-            handleSubmit,
-            submitting,
-          }) => (
-            <form onSubmit={handleSubmit} noValidate>
-              <Paper style={{ padding: 16 }}>
-                <Grid container alignItems="flex-start" spacing={2}>
-                  <Grid item xs={12}>
-                    <Field
-                      fullWidth
-                      name="label"
-                      component={Select}
-                      label="Select a severity"
-                      formControlProps={{ fullWidth: true }}
-                    >
-                      <MenuItem value="High">High</MenuItem>
-                      <MenuItem value="Moderate">Moderate</MenuItem>
-                      <MenuItem value="Low">Low</MenuItem>
-                    </Field>
-                  </Grid>
-                  <Grid item xs={12}>
-                    <Field
-                      fullWidth
-                      name="description"
-                      component={TextField}
-                      multiline
-                      label="Additional information about diagnosis"
-                    />
-                  </Grid>
-                  <Grid item style={{ marginTop: 16 }}>
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      type="submit"
-                      disabled={submitting}
-                    >
-                      Submit
-                    </Button>
-                  </Grid>
-                </Grid>
-              </Paper>
-            </form>
-          )}
-        />
-      </div>
+      <Container>
+        {
+          result.time ? result.diagnosis ? (
+            <Alert severity="warning">
+              <AlertTitle>A diagnosis has already been created</AlertTitle>
+              <p>A diagnosis has already been created. Click the button below to see it.</p>
+              <Button color="primary"
+                href={`/diagnosis/${result.id}`}>
+                View Diagnosis
+              </Button>
+            </Alert>
+          ) : <DiagnosisForm /> : (
+            <Alert severity="error">
+              <AlertTitle>Test not been completed yet</AlertTitle>
+              <p><strong>Not</strong> allowed to create diagnosis until test has been completed.</p>
+            </Alert>
+          )
+        }
+      </Container>
     );
   }
 

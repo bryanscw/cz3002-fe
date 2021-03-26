@@ -124,7 +124,7 @@ export function fetchMeFailureAction() {
 
 // OPERATIONS
 export const authenticateLogin = userData => dispatch => {
-  var formdata = new FormData();
+  let formdata = new FormData();
   formdata.append('username', userData.username);
   formdata.append('password', userData.password);
   formdata.append('grant_type', 'password');

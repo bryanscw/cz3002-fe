@@ -15,10 +15,11 @@ export default resultsReducer;
 export const fetchResult = resultId => (dispatch, getState) => {
   dispatch(createApiAction(ENTITY_NAME, STATUSES.REQUEST, METHODS.RETRIEVE));
   axios
-    .get(
+    .post(
       `${API_URL}/result/${resultId}`,
+      {},
       getTokenConfig(getState))
-    .then(res => {
+    .then((res) => {
       dispatch(createApiAction(ENTITY_NAME, STATUSES.SUCCESS, METHODS.RETRIEVE, res.data));
     })
     .catch((err) => {

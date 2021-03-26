@@ -11,7 +11,7 @@ const graphReducer = createApiReducer(ENTITY_NAME);
 export default graphReducer;
 
 // OPERATIONS
-export const fetchTime = (bins, nodeNum) => (dispatch, getState) => {
+export const fetchTimeGraph = (bins, nodeNum) => (dispatch, getState) => {
   dispatch(createApiAction(ENTITY_NAME, STATUSES.REQUEST, METHODS.RETRIEVE));
   axios
     .get(
@@ -26,7 +26,7 @@ export const fetchTime = (bins, nodeNum) => (dispatch, getState) => {
     });
 };
 
-export const fetchAccuracy = (bins, nodeNum) => (dispatch, getState) => {
+export const fetchAccuracyGraph = (bins, nodeNum) => (dispatch, getState) => {
   dispatch(createApiAction(ENTITY_NAME, STATUSES.REQUEST, METHODS.RETRIEVE));
   axios
     .get(
@@ -37,7 +37,6 @@ export const fetchAccuracy = (bins, nodeNum) => (dispatch, getState) => {
         createApiAction(ENTITY_NAME, STATUSES.SUCCESS, METHODS.RETRIEVE,
           res.data),
       );
-      // return res
     })
     .catch((err) => {
       displayError('Unable to get accuracy graph data')(dispatch);
