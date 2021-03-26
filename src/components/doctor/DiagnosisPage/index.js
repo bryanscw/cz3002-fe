@@ -98,7 +98,7 @@ class DiagnosisPage extends Component {
                 fullWidth
                 select
                 margin="dense"
-                id="labe"
+                id="label"
                 name="label"
                 type="text"
                 helperText="Please input the severity"
@@ -165,7 +165,6 @@ DiagnosisPage.propType = {
   diagnosisLoad: PropTypes.bool.isRequired,
   diagnosisFailed: PropTypes.bool,
   diagnosis: PropTypes.object.isRequired,
-
 };
 
 const mapStateToProps = state => ({
