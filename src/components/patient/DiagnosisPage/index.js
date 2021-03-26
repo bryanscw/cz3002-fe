@@ -43,6 +43,7 @@ class DiagnosisPage extends Component {
 }
 
 DiagnosisPage.propType = {
+  fetchDiagnosis: PropTypes.func.isRequired,
   diagnosisLoad: PropTypes.bool.isRequired,
   diagnosisFailed: PropTypes.bool,
   diagnosis: PropTypes.object.isRequired,

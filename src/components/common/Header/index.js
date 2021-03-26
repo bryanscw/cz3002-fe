@@ -2,10 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { selectUser } from '../../../redux/ducks/auth';
 import { AppBar, Box, CssBaseline, Toolbar, Typography } from '@material-ui/core';
-import Link from '@material-ui/core/Link';
-import { green, red } from '@material-ui/core/colors';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
+import Link from '@material-ui/core/Link';
 
 const styles = theme => ({
   header: {
@@ -37,6 +36,7 @@ const styles = theme => ({
   },
 });
 
+
 /**
  * This component displays the header of the web application.
  */
@@ -52,16 +52,14 @@ export class Header extends Component {
 
     const authLinks = (
       <Box className="logout">
-        <Button className={classes.logoutButton} size="small" component={Link}
-          href="/logout">
+        <Button color="inherit" href="/logout">
           Logout
         </Button>
       </Box>
     );
 
     const guestLinks = (
-      <Button className={classes.loginButton} size="small" component={Link}
-        href="/login">
+      <Button color="inherit" href="/login">
         Login
       </Button>
     );

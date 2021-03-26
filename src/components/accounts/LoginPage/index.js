@@ -5,10 +5,15 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 class LoginPage extends Component {
-  state = {
-    username: '',
-    password: '',
-  };
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      username: '',
+      password: '',
+    };
+
+  }
 
   handleChange = e => {
     this.setState({

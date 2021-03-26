@@ -54,11 +54,10 @@ class CreateDiagnosisPage extends Component {
     }
 
     const onSubmit = async values => {
-      this.setState({
+      this.props.createDiagnosis(result.id, {
         label: values.label,
         description: values.description,
       });
-      this.props.createDiagnosis(result.id, this.state);
       window.location.replace(`/diagnosis/${result.id}`);
     };
 
