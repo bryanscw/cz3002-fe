@@ -2,62 +2,57 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import {
-  listUserResults,
-  selectResults,
-  selectResultsFailed,
-  selectResultsLoading,
-} from '../../../redux/ducks/result';
-import { CircularProgress } from '@material-ui/core';
+import { CircularProgress, Container } from '@material-ui/core';
 import { Alert, AlertTitle } from '@material-ui/lab';
 import Button from '@material-ui/core/Button';
 import {
-  fetchDiagnosis,
-  selectDiagnosis,
-  selectDiagnosisFailed,
-  selectDiagnosisLoading,
-} from '../../../redux/ducks/diagnosis';
+  fetchResult,
+  selectResult,
+  selectResultFailed,
+  selectResultLoading,
+} from '../../../redux/ducks/result';
+import { fetchTimeGraph, selectGraph } from '../../../redux/ducks/graph';
 
 class ResultPage extends Component {
 
   componentDidMount() {
-    this.resultId = parseInt(this.props.match.params.resultId);
-    this.props.listUserResults(this.state);
-    this.props.fetchDiagnosis(this.resultId);
+    const resultId = parseInt(this.props.match.params.resultId);
+    this.props.fetchResult(resultId);
+    // this.props.fetchTimeGraph(2, 15);
   }
 
   render() {
     const {
-      resultsLoading,
-      resultsFailed,
-      results,
-      diagnosisLoading,
-      diagnosisFailed,
-      diagnosis,
+      resultLoading,
+      resultFailed,
+      result,
     } = this.props;
 
-    if (resultsLoading || diagnosisLoading) {
+    if (resultLoading) {
       return <CircularProgress />;
     }
 
     // If failed to fetch results, redirect to not-found
-    if (resultsFailed) {
-      return <Redirect to="/not-found" />;
-    }
-
-    let result = results.find(o => o.id === this.resultId);
-
-    // If no such result is found
-    if (!result) {
+    if (resultFailed) {
       return <Redirect to="/not-found" />;
     }
 
     return (
-      <div className="container">
+      <Container>
         {
           // Check if user has completed the test
           result.time ? (
-            <p>{JSON.stringify(result)}</p>
+            <div>
+              <p>{JSON.stringify(result)}</p>
+              {
+                (!result.diagnosis) ? (
+                    <Button color="primary" href={`/diagnosis/${result.id}`}>Diagnosis</Button>
+                  ) :
+                  (
+                    <Button color="primary" disabled>Diagnosis</Button>
+                  )
+              }
+            </div>
           ) : (
             <Alert severity="error">
               <AlertTitle>Test not completed yet</AlertTitle>
@@ -70,49 +65,30 @@ class ResultPage extends Component {
             </Alert>
           )
         }
-        {
-          (!diagnosisFailed && diagnosis) ? (
-              <Button color="primary" href={`/diagnosis/${result.id}`}>Diagnosis</Button>
-            ) :
-            (
-              <Button color="primary" disabled>Diagnosis</Button>
-            )
-        }
-
-      </div>
+      </Container>
     );
   }
 
 }
 
 ResultPage.propTypes = {
-  /** An action creator */
-  listUserResults: PropTypes.func.isRequired,
-  /** A boolean to determine if the results are still being loaded (true: still loading, false: fully loaded) */
-  resultsLoading: PropTypes.bool.isRequired,
-  /** A boolean to determine if the users failed to be loaded the action creator(true: still loading or failed to load, false: successful load) */
-  resultsFailed: PropTypes.bool,
-  /** An array of results objects loaded by the action creator */
-  results: PropTypes.array.isRequired,
-
-  fetchDiagnosis: PropTypes.func.isRequired,
-  diagnosisLoading: PropTypes.bool.isRequired,
-  diagnosisFailed: PropTypes.bool,
-  diagnosis: PropTypes.object,
+  fetchTimeGraph: PropTypes.func.isRequired,
+  fetchResult: PropTypes.func.isRequired,
+  resultLoading: PropTypes.bool.isRequired,
+  resultFailed: PropTypes.bool,
+  result: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => ({
-  resultsLoading: selectResultsLoading(state),
-  resultsFailed: selectResultsFailed(state),
-  results: selectResults(state),
-  diagnosisLoading: selectDiagnosisLoading(state),
-  diagnosisFailed: selectDiagnosisFailed(state),
-  diagnosis: selectDiagnosis(state),
+  resultLoading: selectResultLoading(state),
+  resultFailed: selectResultFailed(state),
+  result: selectResult(state),
+  graph: selectGraph(state),
 });
 
 const dispatchers = {
-  listUserResults,
-  fetchDiagnosis,
+  fetchResult,
+  fetchTimeGraph
 };
 
 export default connect(mapStateToProps, dispatchers)(ResultPage);

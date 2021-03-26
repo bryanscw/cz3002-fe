@@ -3,58 +3,41 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import {
-  listAllResults,
-  selectResults,
-  selectResultsFailed,
-  selectResultsLoading,
+  fetchResult,
+  selectResult,
+  selectResultFailed,
+  selectResultLoading,
 } from '../../../redux/ducks/result';
 import { Box, CircularProgress } from '@material-ui/core';
-import {
-  fetchDiagnosis,
-  selectDiagnosis,
-  selectDiagnosisFailed,
-  selectDiagnosisLoading,
-} from '../../../redux/ducks/diagnosis';
 import { Alert, AlertTitle } from '@material-ui/lab';
 import Button from '@material-ui/core/Button';
 
 class ResultPage extends Component {
 
   componentDidMount() {
-    this.resultId = parseInt(this.props.match.params.resultId);
-    this.props.listAllResults(this.state);
-    this.props.fetchDiagnosis(this.resultId);
+    const resultId = parseInt(this.props.match.params.resultId);
+    this.props.fetchResult(resultId);
   }
 
   render() {
     const {
-      resultsLoading,
-      resultsFailed,
-      results,
-      diagnosisLoading,
-      diagnosisFailed,
-      diagnosis,
+      resultLoading,
+      resultFailed,
+      result,
     } = this.props;
 
-    if (resultsLoading || diagnosisLoading) {
+    if (resultLoading) {
       return <CircularProgress />;
     }
 
     // If failed to fetch results, redirect to not-found
-    if (resultsFailed) {
-      return <Redirect to="/not-found" />;
-    }
-
-    let result = results.find(o => o.id === this.resultId);
-
-    // If no such result is found
-    if (!result) {
+    if (resultFailed) {
       return <Redirect to="/not-found" />;
     }
 
     function DiagnosisButtons(props) {
       return (
-        (!diagnosisFailed && diagnosis) ? (
+        (!result.diagnosis) ? (
             <Button color="primary" href={`/diagnosis/${result.id}`}>View Diagnosis</Button>
           ) :
           (
@@ -75,13 +58,12 @@ class ResultPage extends Component {
             </Box>
           ) : (
             <Alert severity="error">
-              <AlertTitle>Test not completed yet</AlertTitle>
+              <AlertTitle>Test not been completed yet</AlertTitle>
               <p>No result available as test has <strong>not</strong> been
                  completed yet.</p>
             </Alert>
           )
         }
-
       </div>
     );
   }
@@ -89,33 +71,20 @@ class ResultPage extends Component {
 }
 
 ResultPage.propTypes = {
-  /** An action creator */
-  listAllResults: PropTypes.func.isRequired,
-  /** A boolean to determine if the results are still being loaded (true: still loading, false: fully loaded) */
-  resultsLoading: PropTypes.bool.isRequired,
-  /** A boolean to determine if the users failed to be loaded the action creator(true: still loading or failed to load, false: successful load) */
-  resultsFailed: PropTypes.bool,
-  /** An array of results objects loaded by the action creator */
-  results: PropTypes.array.isRequired,
-
-  fetchDiagnosis: PropTypes.func.isRequired,
-  diagnosisLoading: PropTypes.bool.isRequired,
-  diagnosisFailed: PropTypes.bool,
-  diagnosis: PropTypes.object,
+  fetchResult: PropTypes.func.isRequired,
+  resultLoading: PropTypes.bool.isRequired,
+  resultFailed: PropTypes.bool,
+  result: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => ({
-  resultsLoading: selectResultsLoading(state),
-  resultsFailed: selectResultsFailed(state),
-  results: selectResults(state),
-  diagnosisLoading: selectDiagnosisLoading(state),
-  diagnosisFailed: selectDiagnosisFailed(state),
-  diagnosis: selectDiagnosis(state),
+  resultLoading: selectResultLoading(state),
+  resultFailed: selectResultFailed(state),
+  result: selectResult(state),
 });
 
 const dispatchers = {
-  listAllResults,
-  fetchDiagnosis,
+  fetchResult,
 };
 
 export default connect(mapStateToProps, dispatchers)(ResultPage);

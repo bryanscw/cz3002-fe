@@ -11,47 +11,38 @@ const graphReducer = createApiReducer(ENTITY_NAME);
 export default graphReducer;
 
 // OPERATIONS
-export const fetchTime = (bins, nodeNum) => (dispatch, getState) => {
+export const fetchTimeGraph = (bins, nodeNum) => (dispatch, getState) => {
   dispatch(createApiAction(ENTITY_NAME, STATUSES.REQUEST, METHODS.RETRIEVE));
-  return (
-    axios
-      .get(
-        `${API_URL}/result/graph/time?bins=${bins}&nodeNum=${nodeNum}`,
-        getTokenConfig(getState))
-      .then((res) => {
-        dispatch(
-          createApiAction(ENTITY_NAME, STATUSES.SUCCESS, METHODS.RETRIEVE,
-            res.data),
-        );
-      })
-      .catch((err) => {
-        displayError('Unable to get time graph data')(dispatch);
-        dispatch(
-          createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.RETRIEVE));
-      })
-  );
+  axios
+    .get(
+      `${API_URL}/result/graph/time?bins=${bins}&nodeNum=${nodeNum}`,
+      getTokenConfig(getState))
+    .then((res) => {
+      dispatch(createApiAction(ENTITY_NAME, STATUSES.SUCCESS, METHODS.RETRIEVE, res.data));
+    })
+    .catch((err) => {
+      displayError('Unable to get time graph data')(dispatch);
+      dispatch(createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.RETRIEVE));
+    });
 };
 
-export const fetchAccuracy = (bins, nodeNum) => (dispatch, getState) => {
+export const fetchAccuracyGraph = (bins, nodeNum) => (dispatch, getState) => {
   dispatch(createApiAction(ENTITY_NAME, STATUSES.REQUEST, METHODS.RETRIEVE));
-  return (
-    axios
-      .get(
-        `${API_URL}/result/graph/accuracy?bins=${bins}&nodeNum=${nodeNum}`,
-        getTokenConfig(getState))
-      .then((res) => {
-        dispatch(
-          createApiAction(ENTITY_NAME, STATUSES.SUCCESS, METHODS.RETRIEVE,
-            res.data),
-        );
-        // return res
-      })
-      .catch((err) => {
-        displayError('Unable to get accuracy graph data')(dispatch);
-        dispatch(
-          createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.RETRIEVE));
-      })
-  );
+  axios
+    .get(
+      `${API_URL}/result/graph/accuracy?bins=${bins}&nodeNum=${nodeNum}`,
+      getTokenConfig(getState))
+    .then((res) => {
+      dispatch(
+        createApiAction(ENTITY_NAME, STATUSES.SUCCESS, METHODS.RETRIEVE,
+          res.data),
+      );
+    })
+    .catch((err) => {
+      displayError('Unable to get accuracy graph data')(dispatch);
+      dispatch(
+        createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.RETRIEVE));
+    });
 };
 
 export const selectGraphLoading = state => state.graphReducer.isLoading[METHODS.RETRIEVE]

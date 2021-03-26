@@ -215,8 +215,8 @@ class PatientsPage extends Component {
                   nodeNum: this.state.nodeNum,
                   user: { email: this.state.patientEmail },
                 });
-
                 this.setState(initialState);
+                window.location.reload();
               }
             }} color="primary">
               Create Test

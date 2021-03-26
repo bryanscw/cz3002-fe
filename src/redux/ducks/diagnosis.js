@@ -13,8 +13,6 @@ export default diagnosisReducer;
 // OPERATIONS
 export const fetchDiagnosis = (resultId) => (dispatch, getState) => {
   dispatch(createApiAction(ENTITY_NAME, STATUSES.REQUEST, METHODS.RETRIEVE));
-//let access_token = localStorage.getItem("access_token");
-  return (
     axios
       .post(`${API_URL}/diagnosis/${resultId}`, {},
         getTokenConfig(getState))
@@ -28,16 +26,12 @@ export const fetchDiagnosis = (resultId) => (dispatch, getState) => {
         displayError('Unable to fetch diagnosis')(dispatch);
         dispatch(
           createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.RETRIEVE));
-      })
-
-  );
-
+      });
 };
 
 export const createDiagnosis = (resultId, diagnosis) => (dispatch, getState) => {
   dispatch(createApiAction(ENTITY_NAME, STATUSES.REQUEST, METHODS.CREATE));
 
-  return (
     axios
       .post(
         `${API_URL}/diagnosis/create/${resultId}`,
@@ -63,14 +57,13 @@ export const createDiagnosis = (resultId, diagnosis) => (dispatch, getState) => 
         displayError('Unable to create diagonosis')(dispatch);
         dispatch(
           createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.CREATE));
-      })
-  );
+      });
 };
 
 export const deleteDiagnosis = (resultId, diagnosis) => (dispatch, getState) => {
   dispatch(createApiAction(ENTITY_NAME, STATUSES.REQUEST, METHODS.DELETE));
 
-  return axios
+  axios
     .delete(
       `${API_URL}/diagnosis/delete/${resultId}`,
       getTokenConfig(getState))
@@ -101,7 +94,7 @@ export const deleteDiagnosis = (resultId, diagnosis) => (dispatch, getState) => 
 export const updateDiagnosis = (resultId, diagnosis) => (dispatch, getState) => {
   dispatch(createApiAction(ENTITY_NAME, STATUSES.REQUEST, METHODS.UPDATE));
 
-  return axios
+  axios
     .post(
       `${API_URL}/diagnosis/update/${resultId}`,
       diagnosis = {
