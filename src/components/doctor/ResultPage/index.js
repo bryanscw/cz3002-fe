@@ -3,26 +3,26 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import {
-  listUserResults,
+  listAllResults,
   selectResults,
   selectResultsFailed,
   selectResultsLoading,
 } from '../../../redux/ducks/result';
-import { CircularProgress } from '@material-ui/core';
-import { Alert, AlertTitle } from '@material-ui/lab';
-import Button from '@material-ui/core/Button';
+import { Box, CircularProgress } from '@material-ui/core';
 import {
   fetchDiagnosis,
   selectDiagnosis,
   selectDiagnosisFailed,
   selectDiagnosisLoading,
 } from '../../../redux/ducks/diagnosis';
+import { Alert, AlertTitle } from '@material-ui/lab';
+import Button from '@material-ui/core/Button';
 
 class ResultPage extends Component {
 
   componentDidMount() {
     this.resultId = parseInt(this.props.match.params.resultId);
-    this.props.listUserResults(this.state);
+    this.props.listAllResults(this.state);
     this.props.fetchDiagnosis(this.resultId);
   }
 
@@ -52,31 +52,34 @@ class ResultPage extends Component {
       return <Redirect to="/not-found" />;
     }
 
+    function DiagnosisButtons(props) {
+      return (
+        (!diagnosisFailed && diagnosis) ? (
+            <Button color="primary" href={`/diagnosis/${result.id}`}>View Diagnosis</Button>
+          ) :
+          (
+            <Button color="primary"
+              href={`/diagnosis/${result.id}/create`}>Create Diagnosis</Button>
+          )
+      );
+    }
+
     return (
       <div className="container">
         {
           // Check if user has completed the test
           result.time ? (
-            <p>{JSON.stringify(result)}</p>
+            <Box component="span" m={1}>
+              <p>{JSON.stringify(result)}</p>
+              <DiagnosisButtons />
+            </Box>
           ) : (
             <Alert severity="error">
               <AlertTitle>Test not completed yet</AlertTitle>
               <p>No result available as test has <strong>not</strong> been
                  completed yet.</p>
-              <Button color="primary"
-                href={`/game/${result.id}`}>
-                Do Test
-              </Button>
             </Alert>
           )
-        }
-        {
-          (!diagnosisFailed && diagnosis) ? (
-              <Button color="primary" href={`/diagnosis/${result.id}`}>Diagnosis</Button>
-            ) :
-            (
-              <Button color="primary" disabled>Diagnosis</Button>
-            )
         }
 
       </div>
@@ -87,7 +90,7 @@ class ResultPage extends Component {
 
 ResultPage.propTypes = {
   /** An action creator */
-  listUserResults: PropTypes.func.isRequired,
+  listAllResults: PropTypes.func.isRequired,
   /** A boolean to determine if the results are still being loaded (true: still loading, false: fully loaded) */
   resultsLoading: PropTypes.bool.isRequired,
   /** A boolean to determine if the users failed to be loaded the action creator(true: still loading or failed to load, false: successful load) */
@@ -111,7 +114,7 @@ const mapStateToProps = state => ({
 });
 
 const dispatchers = {
-  listUserResults,
+  listAllResults,
   fetchDiagnosis,
 };
 

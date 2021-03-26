@@ -19,11 +19,7 @@ export default function ResultCard(props) {
         <p className="card-text">Number of nodes: {result.nodeNum}</p>
         <p className="card-text">Accuracy: {result.accuracy}%</p>
         <p className="card-text">Time taken: {result.time} seconds</p>
-        <Button color="primary" href={`/result/${result.id}`}>More
-                                                              details...</Button>
-        <br />
-        <Button color="primary"
-          href={`/diagnosis/${result.id}`}>Diagnosis</Button>
+        <Button color="primary" href={`/result/${result.id}`}>More details...</Button>
       </div>
     </div>
   );
