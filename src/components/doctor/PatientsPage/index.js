@@ -38,6 +38,7 @@ import { connect } from 'react-redux';
 import { calculateAge } from '../../../utils/calculateAge';
 
 class PatientsPage extends Component {
+
   constructor(props) {
     super(props);
 
