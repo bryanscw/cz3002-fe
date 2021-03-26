@@ -23,7 +23,6 @@ export const fetchDiagnosis = (resultId) => (dispatch, getState) => {
           createApiAction(ENTITY_NAME, STATUSES.SUCCESS, METHODS.RETRIEVE,
             res.data),
         );
-        // return res
       })
       .catch((err) => {
         displayError('Unable to fetch diagnosis')(dispatch);
@@ -38,7 +37,6 @@ export const fetchDiagnosis = (resultId) => (dispatch, getState) => {
 export const createDiagnosis = (resultId, diagnosis) => (dispatch, getState) => {
   dispatch(createApiAction(ENTITY_NAME, STATUSES.REQUEST, METHODS.CREATE));
 
-// console.log(diagnosis.resultId)
   return (
     axios
       .post(

@@ -13,7 +13,6 @@ export default graphReducer;
 // OPERATIONS
 export const fetchTime = (bins, nodeNum) => (dispatch, getState) => {
   dispatch(createApiAction(ENTITY_NAME, STATUSES.REQUEST, METHODS.RETRIEVE));
-//let access_token = localStorage.getItem("access_token");
   return (
     axios
       .get(
@@ -27,7 +26,7 @@ export const fetchTime = (bins, nodeNum) => (dispatch, getState) => {
         // return res
       })
       .catch((err) => {
-        displayError('Unable to get graph')(dispatch);
+        displayError('Unable to get time graph data')(dispatch);
         dispatch(
           createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.RETRIEVE));
       })
@@ -36,7 +35,6 @@ export const fetchTime = (bins, nodeNum) => (dispatch, getState) => {
 
 export const fetchAccuracy = (bins, nodeNum) => (dispatch, getState) => {
   dispatch(createApiAction(ENTITY_NAME, STATUSES.REQUEST, METHODS.RETRIEVE));
-  //let access_token = localStorage.getItem("access_token");
   return (
     axios
       .get(
@@ -50,7 +48,7 @@ export const fetchAccuracy = (bins, nodeNum) => (dispatch, getState) => {
         // return res
       })
       .catch((err) => {
-        displayError('Unable to get graph')(dispatch);
+        displayError('Unable to get accuracy graph data')(dispatch);
         dispatch(
           createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.RETRIEVE));
       })
