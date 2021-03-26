@@ -38,10 +38,6 @@ import { connect } from 'react-redux';
 import { calculateAge } from '../../../utils/calculateAge';
 
 class PatientsPage extends Component {
-  componentDidMount() {
-    this.props.listAllPatients(this.state);
-  }
-
   constructor(props) {
     super(props);
 
@@ -52,6 +48,10 @@ class PatientsPage extends Component {
       patientEmail: null,
       nodeNum: null,
     };
+  }
+
+  componentDidMount() {
+    this.props.listAllPatients(this.state);
   }
 
   render() {
@@ -94,7 +94,7 @@ class PatientsPage extends Component {
       return <Redirect to="/not-found" />;
     }
 
-    let initialState = {
+    const initialState = {
       open: false,
       patientId: null,
       patientName: null,

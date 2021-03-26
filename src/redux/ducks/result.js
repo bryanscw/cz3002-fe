@@ -168,7 +168,7 @@ export const listAllPatientResults = (userEmail) => (dispatch, getState) => {
   return (
     axios
       .get(
-        `${API_URL}/result/${userEmail}`,
+        `${API_URL}/result/patients/${userEmail}`,
         getTokenConfig(getState),
       )
       .then(res => {
