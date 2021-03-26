@@ -164,7 +164,7 @@ class PatientsPage extends Component {
           data={patients}
           options={{}}
         />
-        <Dialog open={this.state.open}
+        <Dialog fullWidth open={this.state.open}
           onClose={() => {
             this.setState(initialState);
           }}
@@ -185,18 +185,15 @@ class PatientsPage extends Component {
               <strong>Email: </strong> {this.state.patientEmail}
             </DialogContentText>
 
-            <DialogContentText>
-              Please specify the number of nodes to be used in the test.
-            </DialogContentText>
-
             <TextField
               required
               autoFocus
+              fullWidth
               margin="dense"
-              id="name"
+              id="nodeNum"
               label="Number of nodes"
               type="number"
-              fullWidth
+              helperText="Please specify the number of nodes to be used"
               onChange={event => {
                 const { value } = event.target;
                 this.setState({ nodeNum: value });

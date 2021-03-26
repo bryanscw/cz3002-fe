@@ -16,22 +16,12 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle,
-  FormControl,
-  Grid,
-  InputLabel,
   MenuItem,
-  Select,
   TextField,
 } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 
 class DiagnosisPage extends Component {
-
-  handleChange = (e) => {
-    this.setState({
-      [e.target.name]: e.target.value,
-    });
-  };
 
   constructor(props) {
     super(props);
@@ -42,6 +32,12 @@ class DiagnosisPage extends Component {
       description: null,
     };
   }
+
+  handleChange = (e) => {
+    this.setState({
+      [e.target.name]: e.target.value,
+    });
+  };
 
   componentDidMount() {
     const resultId = parseInt(this.props.match.params.resultId);
@@ -70,8 +66,6 @@ class DiagnosisPage extends Component {
       description: diagnosis.description,
     };
 
-    const fullWidth = true;
-
     return (
       <Container>
         <p>{JSON.stringify(diagnosis)}</p>
@@ -88,7 +82,7 @@ class DiagnosisPage extends Component {
         </Button>
 
         <Dialog
-          fullWidth={fullWidth}
+          fullWidth
           open={this.state.open}
           onClose={() => {
             this.setState(initialState);
@@ -97,42 +91,40 @@ class DiagnosisPage extends Component {
           <DialogTitle id="max-width-dialog-title">
             Modify Diagnosis
           </DialogTitle>
-          <DialogContent dividers>
-            <form noValidate>
-              <Grid container alignItems="flex-start" spacing={2}>
-                <Grid item xs={12}>
-                  <FormControl>
-                    <InputLabel id="demo-simple-select-label">Label</InputLabel>
-                    <Select
-                      autoFocus
-                      name="label"
-                      value={this.state.label}
-                      onChange={this.handleChange}
-                    >
-                      <MenuItem value="High">High</MenuItem>
-                      <MenuItem value="Moderate">Moderate</MenuItem>
-                      <MenuItem value="Low">Low</MenuItem>
-                    </Select>
-                  </FormControl>
-                </Grid>
-                <Grid item xs={12}>
-                  <FormControl>
-                    <TextField
-                      autoFocus
-                      margin="dense"
-                      id="description"
-                      name="description"
-                      label="Description"
-                      type="description"
-                      fullWidth
-                      value={this.state.description}
-                      onChange={this.handleChange}
-                    />
-                  </FormControl>
-                </Grid>
-              </Grid>
-            </form>
-          </DialogContent>
+          <form noValidate>
+            <DialogContent>
+              <TextField
+                autoFocus
+                fullWidth
+                select
+                margin="dense"
+                id="labe"
+                name="label"
+                type="text"
+                helperText="Please input the severity"
+                value={this.state.label}
+                onChange={this.handleChange}
+              >
+                <MenuItem value="High">High</MenuItem>
+                <MenuItem value="Moderate">Moderate</MenuItem>
+                <MenuItem value="Low">Low</MenuItem>
+              </TextField>
+            </DialogContent>
+            <DialogContent>
+              <TextField
+                autoFocus
+                fullWidth
+                multiline
+                margin="dense"
+                id="description"
+                name="description"
+                type="text"
+                helperText="Please input the description"
+                value={this.state.description}
+                onChange={this.handleChange}
+              />
+            </DialogContent>
+          </form>
           <DialogActions>
             <Button onClick={() => {
               this.setState(initialState);
