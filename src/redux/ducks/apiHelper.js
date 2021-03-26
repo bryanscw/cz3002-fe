@@ -117,7 +117,7 @@ export function createApiReducer(entityName, id = 'id') {
                 ...state.isLoading,
                 [actionMethod]: false,
               },
-              items: action.payload.content,
+              items: action.payload,
             };
 
           default:
