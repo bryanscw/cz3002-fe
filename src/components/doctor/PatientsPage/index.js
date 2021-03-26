@@ -35,6 +35,7 @@ import Remove from '@material-ui/icons/Remove';
 import ViewColumn from '@material-ui/icons/ViewColumn';
 import Button from '@material-ui/core/Button';
 import { connect } from 'react-redux';
+import { calculateAge } from '../../../utils/calculateAge';
 
 class PatientsPage extends Component {
   componentDidMount() {
@@ -122,9 +123,10 @@ class PatientsPage extends Component {
               field: 'email',
             },
             {
-              title: 'Date of Birth',
-              field: 'dob',
-              type: 'date',
+              title: 'Age',
+              render: (rowData) => (
+                calculateAge(rowData.user.dob)
+              ),
             },
             {
               title: 'Gender',

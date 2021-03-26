@@ -26,6 +26,7 @@ import Remove from '@material-ui/icons/Remove';
 import ViewColumn from '@material-ui/icons/ViewColumn';
 import MaterialTable from 'material-table';
 import Button from '@material-ui/core/Button';
+import { calculateAge } from '../../../utils/calculateAge';
 
 class PendingDiagnosisPage extends Component {
 
@@ -97,9 +98,10 @@ class PendingDiagnosisPage extends Component {
               field: 'user.email',
             },
             {
-              title: 'Date of Birth',
-              field: 'user.dob',
-              type: 'date',
+              title: 'Age',
+              render: (rowData) => (
+                calculateAge(rowData.user.dob)
+              ),
             },
             {
               title: 'Gender',

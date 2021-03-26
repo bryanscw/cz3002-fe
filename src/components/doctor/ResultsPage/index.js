@@ -26,6 +26,7 @@ import Remove from '@material-ui/icons/Remove';
 import ViewColumn from '@material-ui/icons/ViewColumn';
 import Button from '@material-ui/core/Button';
 import { connect } from 'react-redux';
+import { calculateAge } from '../../../utils/calculateAge';
 
 class ResultsPage extends Component {
   componentDidMount() {
@@ -93,9 +94,10 @@ class ResultsPage extends Component {
               field: 'user.email',
             },
             {
-              title: 'Date of Birth',
-              field: 'user.dob',
-              type: 'date',
+              title: 'Age',
+              render: (rowData) => (
+                calculateAge(rowData.user.dob)
+              ),
             },
             {
               title: 'Gender',
