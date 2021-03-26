@@ -5,9 +5,7 @@ import { AppBar, Box, CssBaseline, Toolbar, Typography } from '@material-ui/core
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 
-const styles = theme => ({
-
-});
+const styles = theme => ({});
 
 /**
  * This component displays the header of the web application.

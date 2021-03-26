@@ -128,7 +128,7 @@ class ResultsPage extends Component {
                   </Button>
                 </div>
               ),
-            }
+            },
           ]}
           data={results}
           options={{}}
