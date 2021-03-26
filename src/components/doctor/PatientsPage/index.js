@@ -103,7 +103,7 @@ class PatientsPage extends Component {
     };
 
     return (
-      <div data-test="adminTable"
+      <div data-test="patientsTable"
         style={{
           width: '100%',
           padding: '40px',
@@ -139,29 +139,25 @@ class PatientsPage extends Component {
             {
               title: 'Test',
               render: (rowData) => (
-                <div>
-                  <Button variant="outlined" color="primary"
-                    onClick={() => {
-                      this.setState({
-                        open: true,
-                        patientId: rowData.id,
-                        patientName: rowData.name,
-                        patientEmail: rowData.email,
-                      });
-                    }}>
-                    Create Test
-                  </Button>
-                </div>
+                <Button variant="outlined" color="primary"
+                  onClick={() => {
+                    this.setState({
+                      open: true,
+                      patientId: rowData.id,
+                      patientName: rowData.name,
+                      patientEmail: rowData.email,
+                    });
+                  }}>
+                  Create Test
+                </Button>
               ),
             },
             {
               title: 'Result(s)',
               render: (rowData) => (
-                <div>
-                  <Button variant="outlined" color="primary" href={`/patient/${rowData.email}`}>
-                    View Results
-                  </Button>
-                </div>
+                <Button variant="outlined" color="primary" href={`/patient/${rowData.email}`}>
+                  View Results
+                </Button>
               ),
             },
           ]}

@@ -78,7 +78,7 @@ class PendingDiagnosisPage extends Component {
     let pendingTests = results.filter(o => !o.diagnosis);
 
     return (
-      <div data-test="adminTable"
+      <div data-test="resultsPendingDiagnosisTable"
         style={{
           width: '100%',
           padding: '40px',
@@ -126,14 +126,12 @@ class PendingDiagnosisPage extends Component {
             {
               title: 'Diagnosis',
               render: (rowData) => (
-                <div>
-                  <Button
-                    variant="outlined"
-                    color="primary"
-                    href={`/diagnosis/${rowData.id}/create`}>
-                    Create
-                  </Button>
-                </div>
+                <Button
+                  variant="outlined"
+                  color="primary"
+                  href={`/diagnosis/${rowData.id}/create`}>
+                  Create
+                </Button>
               ),
             },
           ]}
