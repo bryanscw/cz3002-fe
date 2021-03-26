@@ -4,7 +4,6 @@ export const getTokenConfig = getState => {
   const config = {
     headers: {
       'Authorization': `bearer ${token}`,
-      // 'Content-Type': 'application/json;charset=UTF-8'
     },
   };
 

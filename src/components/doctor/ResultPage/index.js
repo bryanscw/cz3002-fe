@@ -58,7 +58,7 @@ class ResultPage extends Component {
             </Box>
           ) : (
             <Alert severity="error">
-              <AlertTitle>Test not completed yet</AlertTitle>
+              <AlertTitle>Test not been completed yet</AlertTitle>
               <p>No result available as test has <strong>not</strong> been
                  completed yet.</p>
             </Alert>
