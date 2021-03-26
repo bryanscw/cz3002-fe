@@ -11,29 +11,49 @@ import {
   selectResultFailed,
   selectResultLoading,
 } from '../../../redux/ducks/result';
-import { fetchTimeGraph, selectGraph } from '../../../redux/ducks/graph';
+import {
+  fetchAccuracyGraph,
+  fetchTimeGraph,
+  selectGraph,
+  selectGraphLoading,
+} from '../../../redux/ducks/graph';
 
 class ResultPage extends Component {
 
   componentDidMount() {
     const resultId = parseInt(this.props.match.params.resultId);
     this.props.fetchResult(resultId);
-    // this.props.fetchTimeGraph(2, 15);
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    // Result has been loaded
+    if (!prevProps.result && this.props.result) {
+      const bins = 10;
+      const nodeNum = this.props.result.nodeNum;
+      this.props.fetchAccuracyGraph(bins, nodeNum);
+      this.props.fetchTimeGraph(bins, nodeNum);
+    }
   }
 
   render() {
     const {
       resultLoading,
       resultFailed,
+      accGraphLoading,
+      accGraphFailed,
+      timeGraphLoading,
+      timeGraphFailed,
       result,
+      accGraph,
+      timeGraph,
     } = this.props;
 
-    if (resultLoading) {
+    if (resultLoading || accGraphLoading || timeGraphLoading) {
       return <CircularProgress />;
     }
 
-    // If failed to fetch results, redirect to not-found
-    if (resultFailed) {
+    // If failed to fetch resources, redirect to not-found
+    if (resultFailed || accGraphFailed || timeGraphFailed) {
       return <Redirect to="/not-found" />;
     }
 
@@ -44,6 +64,8 @@ class ResultPage extends Component {
           result.time ? (
             <div>
               <p>{JSON.stringify(result)}</p>
+              <p>{JSON.stringify(accGraph)}</p>
+              <p>{JSON.stringify(timeGraph)}</p>
               {
                 (!result.diagnosis) ? (
                     <Button color="primary" href={`/diagnosis/${result.id}`}>Diagnosis</Button>
@@ -71,24 +93,37 @@ class ResultPage extends Component {
 
 }
 
-ResultPage.propTypes = {
-  fetchTimeGraph: PropTypes.func.isRequired,
+ResultPage.propType = {
   fetchResult: PropTypes.func.isRequired,
+  fetchAccuracyGraph: PropTypes.func.isRequired,
+  fetchTimeGraph: PropTypes.func.isRequired,
   resultLoading: PropTypes.bool.isRequired,
   resultFailed: PropTypes.bool,
+  accGraphLoading: PropTypes.bool.isRequired,
+  accGraphFailed: PropTypes.bool,
+  timeGraphLoading: PropTypes.bool.isRequired,
+  timeGraphFailed: PropTypes.bool,
   result: PropTypes.object.isRequired,
+  accGraph: PropTypes.object.isRequired,
+  timeGraph: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => ({
   resultLoading: selectResultLoading(state),
   resultFailed: selectResultFailed(state),
+  accGraphLoading: selectGraphLoading(state),
+  accGraphFailed: selectGraphLoading(state),
+  timeGraphLoading: selectGraphLoading(state),
+  timeGraphFailed: selectGraphLoading(state),
   result: selectResult(state),
-  graph: selectGraph(state),
+  accGraph: selectGraph(state),
+  timeGraph: selectGraph(state),
 });
 
 const dispatchers = {
   fetchResult,
-  fetchTimeGraph
+  fetchAccuracyGraph,
+  fetchTimeGraph,
 };
 
 export default connect(mapStateToProps, dispatchers)(ResultPage);

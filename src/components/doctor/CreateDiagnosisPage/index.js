@@ -134,23 +134,23 @@ class CreateDiagnosisPage extends Component {
 
     return (
       <Container>
-      {
-        result.time ? result.diagnosis ? (
-          <Alert severity="warning">
-            <AlertTitle>A diagnosis has already been created</AlertTitle>
-            <p>A diagnosis has already been created. Click the button below to see it.</p>
-            <Button color="primary"
-              href={`/diagnosis/${result.id}`}>
-              View Diagnosis
-            </Button>
-          </Alert>
-        ) : <DiagnosisForm/> : (
-          <Alert severity="error">
-            <AlertTitle>Test not been completed yet</AlertTitle>
-            <p><strong>Not</strong> allowed to create diagnosis until test has been completed.</p>
-          </Alert>
-        )
-      }
+        {
+          result.time ? result.diagnosis ? (
+            <Alert severity="warning">
+              <AlertTitle>A diagnosis has already been created</AlertTitle>
+              <p>A diagnosis has already been created. Click the button below to see it.</p>
+              <Button color="primary"
+                href={`/diagnosis/${result.id}`}>
+                View Diagnosis
+              </Button>
+            </Alert>
+          ) : <DiagnosisForm /> : (
+            <Alert severity="error">
+              <AlertTitle>Test not been completed yet</AlertTitle>
+              <p><strong>Not</strong> allowed to create diagnosis until test has been completed.</p>
+            </Alert>
+          )
+        }
       </Container>
     );
   }
