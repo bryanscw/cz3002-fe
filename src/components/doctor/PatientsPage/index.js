@@ -125,7 +125,7 @@ class PatientsPage extends Component {
             {
               title: 'Age',
               render: (rowData) => (
-                calculateAge(rowData.user.dob)
+                calculateAge(rowData.dob)
               ),
             },
             {
