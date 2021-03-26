@@ -11,13 +11,12 @@ const graphReducer = createApiReducer(ENTITY_NAME);
 export default graphReducer;
 
 // OPERATIONS
-export const fetchTime = (graph) => (dispatch, getState) => {
+export const fetchTime = (bins, nodeNum) => (dispatch, getState) => {
   dispatch(createApiAction(ENTITY_NAME, STATUSES.REQUEST, METHODS.RETRIEVE));
-//let access_token = localStorage.getItem("access_token");
   return (
     axios
       .get(
-        `${API_URL}/result/graph/time?bins=${graph.number_of_bins}`,
+        `${API_URL}/result/graph/time?bins=${bins}&nodeNum=${nodeNum}`,
         getTokenConfig(getState))
       .then((res) => {
         dispatch(
@@ -27,22 +26,19 @@ export const fetchTime = (graph) => (dispatch, getState) => {
         // return res
       })
       .catch((err) => {
-        displayError('Unable to get graph')(dispatch);
+        displayError('Unable to get time graph data')(dispatch);
         dispatch(
           createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.RETRIEVE));
       })
-
   );
-
 };
 
-export const fetchAccuracy = (graph) => (dispatch, getState) => {
+export const fetchAccuracy = (bins, nodeNum) => (dispatch, getState) => {
   dispatch(createApiAction(ENTITY_NAME, STATUSES.REQUEST, METHODS.RETRIEVE));
-  //let access_token = localStorage.getItem("access_token");
   return (
     axios
       .get(
-        `${API_URL}/result/graph/accuracy?bins=${graph.number_of_bins}`,
+        `${API_URL}/result/graph/accuracy?bins=${bins}&nodeNum=${nodeNum}`,
         getTokenConfig(getState))
       .then((res) => {
         dispatch(
@@ -52,13 +48,11 @@ export const fetchAccuracy = (graph) => (dispatch, getState) => {
         // return res
       })
       .catch((err) => {
-        displayError('Unable to get graph')(dispatch);
+        displayError('Unable to get accuracy graph data')(dispatch);
         dispatch(
           createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.RETRIEVE));
       })
-
   );
-
 };
 
 export const selectGraphLoading = state => state.graphReducer.isLoading[METHODS.RETRIEVE]
