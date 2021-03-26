@@ -25,7 +25,7 @@ class LoginPage extends Component {
     return (
       <div className="main" data-test="loginContainer">
         <Container component="main" maxWidth="xs" align="center"
-          style={{ marginTop: 150 }}>
+          style={{ marginTop: 150, marginBottom:30 }}>
           <div className="login-form">
             <Typography variant="h3"
               style={{ marginBottom: 20 }}>Login</Typography>
@@ -69,7 +69,7 @@ class LoginPage extends Component {
                   fullWidth
                   variant="contained"
                   color="secondary"
-                  style={{ marginTop: 20 }}
+                  style={{ marginTop: 20, height:40, fontSize:16 }}
                 >Login</Button>
               </div>
             </form>

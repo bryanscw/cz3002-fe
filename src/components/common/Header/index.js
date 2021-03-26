@@ -9,24 +9,30 @@ import Button from '@material-ui/core/Button';
 
 const styles = theme => ({
   header: {
-    '-webkit-text-fill-color': '#cccccc',
+    '-webkit-text-fill-color': '#ffffff',
   },
 
   loginButton: {
+    fontSize: 16,
+    width: 100,
+    height:35,
     float: 'right',
-    color: theme.palette.getContrastText(green[500]),
-    backgroundColor: green[500],
+    color:'#ffffff',
+    backgroundColor:'#009688',
     '&:hover': {
-      backgroundColor: green[700],
+      backgroundColor:'#4db6ac',
     },
   },
 
   logoutButton: {
+    fontSize: 16,
+    width: 100,
+    height:35,
     float: 'right',
-    color: theme.palette.getContrastText(red[500]),
-    backgroundColor: red[500],
+    color:'#ffffff',
+    backgroundColor:'#e91e63',
     '&:hover': {
-      backgroundColor: red[700],
+      backgroundColor:'#f06292',
     },
   },
 });
@@ -65,7 +71,7 @@ export class Header extends Component {
         <CssBaseline />
         <Toolbar>
           <Typography style={{ flex: 1 }} variant="h6" color="inherit" noWrap>
-            <Link className={classes.header} href="/">TRAIL MAKING
+            <Link style={{ colour:'white'}} className={classes.header} href="/">TRAIL MAKING
                                                       TEST</Link>
           </Typography>
           {user && Object.keys(user).length !== 0 ? authLinks : guestLinks}

@@ -70,14 +70,16 @@ class AdminPage extends Component {
     };
 
     if (usersLoading) {
-      return <CircularProgress />;
+
+      return <CircularProgress align="center" style={{ marginTop: 200, marginLeft:860 }} />;
+
     }
 
     return (
       <div data-test="adminTable"
         style={{
           width: '100%',
-          padding: '40px',
+          padding: '40px'
         }}>
         <MaterialTable
           title="All Users"
