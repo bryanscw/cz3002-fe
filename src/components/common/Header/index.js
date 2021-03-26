@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { selectUser } from '../../../redux/ducks/auth';
 import { AppBar, Box, CssBaseline, Toolbar, Typography } from '@material-ui/core';
-import Link from '@material-ui/core/Link';
-import { green, red } from '@material-ui/core/colors';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 
@@ -18,10 +16,6 @@ export class Header extends Component {
   render() {
     const {
       user,
-    } = this.props;
-
-    const {
-      classes,
     } = this.props;
 
     const authLinks = (
