@@ -13,7 +13,6 @@ export default diagnosisReducer;
 // OPERATIONS
 export const fetchDiagnosis = (resultId) => (dispatch, getState) => {
   dispatch(createApiAction(ENTITY_NAME, STATUSES.REQUEST, METHODS.RETRIEVE));
-//let access_token = localStorage.getItem("access_token");
   return (
     axios
       .post(`${API_URL}/diagnosis/${resultId}`, {},

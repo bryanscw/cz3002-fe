@@ -19,15 +19,11 @@ export const fetchTime = (bins, nodeNum) => (dispatch, getState) => {
         `${API_URL}/result/graph/time?bins=${bins}&nodeNum=${nodeNum}`,
         getTokenConfig(getState))
       .then((res) => {
-        dispatch(
-          createApiAction(ENTITY_NAME, STATUSES.SUCCESS, METHODS.RETRIEVE,
-            res.data),
-        );
+        dispatch(createApiAction(ENTITY_NAME, STATUSES.SUCCESS, METHODS.RETRIEVE,res.data),);
       })
       .catch((err) => {
         displayError('Unable to get time graph data')(dispatch);
-        dispatch(
-          createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.RETRIEVE));
+        dispatch(createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.RETRIEVE));
       })
   );
 };
