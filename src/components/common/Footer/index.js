@@ -1,6 +1,5 @@
 import React from 'react';
-import Link from '@material-ui/core/Link';
-import { Typography, Container } from '@material-ui/core';
+import { Typography, Container, Link } from '@material-ui/core';
 import './index.css';
 
 /**
