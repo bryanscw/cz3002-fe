@@ -37,6 +37,10 @@ class DiagnosisPage extends Component {
     if (!prevProps.diagnosis && this.props.diagnosis) {
       // Diagnosis has been loaded
       this.props.fetchResult(this.props.diagnosis.result);
+    } else if (!this.props.diagnosisLoading && this.props.diagnosisFailed) {
+      this.props.history.push("/not-found")
+    } else if (!this.props.resultLoading && this.props.resultFailed) {
+      this.props.history.push("/not-found")
     } else if (!prevProps.result && this.props.result) {
       // Result has been loaded
       const bins = 10;
@@ -68,6 +72,7 @@ class DiagnosisPage extends Component {
     }
 
     // If failed to fetch resources, redirect to not-found
+    // Some check is done in componentDidMount, do a check again to be safe
     if (diagnosisFailed || resultFailed || accGraphFailed || timeGraphFailed) {
       return <Redirect to="/not-found" />;
     }
