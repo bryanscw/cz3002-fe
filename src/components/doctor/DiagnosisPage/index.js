@@ -20,7 +20,12 @@ import {
   TextField,
 } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
-import { fetchResult, selectResultFailed, selectResultLoading } from '../../../redux/ducks/result';
+import {
+  fetchResult,
+  selectResult,
+  selectResultFailed,
+  selectResultLoading,
+} from '../../../redux/ducks/result';
 import {
   fetchAccuracyGraph,
   selectAccGraph,
@@ -61,16 +66,16 @@ class DiagnosisPage extends Component {
     if (!prevProps.diagnosis && this.props.diagnosis) {
       // Diagnosis has been loaded
       this.props.fetchResult(this.props.diagnosis.result);
-    } else if (!this.props.diagnosisLoading && this.props.diagnosisFailed) {
-      this.props.history.push('/not-found');
-    } else if (!this.props.resultLoading && this.props.resultFailed) {
-      this.props.history.push('/not-found');
     } else if (!prevProps.result && this.props.result) {
       // Result has been loaded
       const bins = 10;
       const nodeNum = this.props.result.nodeNum;
       this.props.fetchAccuracyGraph(bins, nodeNum);
       this.props.fetchTimeGraph(bins, nodeNum);
+    } else if (!this.props.diagnosisLoading && this.props.diagnosisFailed) {
+      this.props.history.push('/not-found');
+    } else if (!this.props.resultLoading && this.props.resultFailed) {
+      this.props.history.push('/not-found');
     }
   }
 
@@ -230,6 +235,7 @@ const mapStateToProps = state => ({
   timeGraphLoading: selectTimeGraphLoading(state),
   timeGraphFailed: selectTimeGraphFailed(state),
   diagnosis: selectDiagnosis(state),
+  result: selectResult(state),
   accGraph: selectAccGraph(state),
   timeGraph: selectTimeGraph(state),
 });
@@ -237,7 +243,6 @@ const mapStateToProps = state => ({
 const dispatchers = {
   fetchDiagnosis,
   fetchResult,
-  updateDiagnosis,
   fetchAccuracyGraph,
   fetchTimeGraph,
 };
