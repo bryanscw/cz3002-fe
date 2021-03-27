@@ -16,13 +16,15 @@ import {
   selectResultLoading,
 } from '../../../redux/ducks/result';
 import {
-  fetchAccuracyGraph, selectAccGraph,
+  fetchAccuracyGraph,
+  selectAccGraph,
   selectAccGraphFailed,
   selectAccGraphLoading,
 } from '../../../redux/ducks/accGraph';
 import {
   fetchTimeGraph,
-  selectTimeGraph, selectTimeGraphFailed,
+  selectTimeGraph,
+  selectTimeGraphFailed,
   selectTimeGraphLoading,
 } from '../../../redux/ducks/timeGraph';
 
@@ -38,9 +40,9 @@ class DiagnosisPage extends Component {
       // Diagnosis has been loaded
       this.props.fetchResult(this.props.diagnosis.result);
     } else if (!this.props.diagnosisLoading && this.props.diagnosisFailed) {
-      this.props.history.push("/not-found")
+      this.props.history.push('/not-found');
     } else if (!this.props.resultLoading && this.props.resultFailed) {
-      this.props.history.push("/not-found")
+      this.props.history.push('/not-found');
     } else if (!prevProps.result && this.props.result) {
       // Result has been loaded
       const bins = 10;

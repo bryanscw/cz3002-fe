@@ -13,11 +13,13 @@ import {
 } from '../../../redux/ducks/result';
 import {
   fetchAccuracyGraph,
-  selectAccGraph, selectAccGraphFailed,
+  selectAccGraph,
+  selectAccGraphFailed,
   selectAccGraphLoading,
 } from '../../../redux/ducks/accGraph';
 import {
-  fetchTimeGraph, selectTimeGraph,
+  fetchTimeGraph,
+  selectTimeGraph,
   selectTimeGraphFailed,
   selectTimeGraphLoading,
 } from '../../../redux/ducks/timeGraph';
@@ -37,7 +39,7 @@ class ResultPage extends Component {
       this.props.fetchAccuracyGraph(bins, nodeNum);
       this.props.fetchTimeGraph(bins, nodeNum);
     } else if (!this.props.resultLoading && this.props.resultFailed) {
-      this.props.history.push("/not-found")
+      this.props.history.push('/not-found');
     }
   }
 

@@ -38,7 +38,7 @@ class ResultPage extends Component {
       this.props.fetchAccuracyGraph(bins, nodeNum);
       this.props.fetchTimeGraph(bins, nodeNum);
     } else if (!this.props.resultLoading && this.props.resultFailed) {
-      this.props.history.push("/not-found")
+      this.props.history.push('/not-found');
     }
   }
 
