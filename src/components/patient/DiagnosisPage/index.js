@@ -39,16 +39,16 @@ class DiagnosisPage extends Component {
     if (!prevProps.diagnosis && this.props.diagnosis) {
       // Diagnosis has been loaded
       this.props.fetchResult(this.props.diagnosis.result);
-    } else if (!this.props.diagnosisLoading && this.props.diagnosisFailed) {
-      this.props.history.push('/not-found');
-    } else if (!this.props.resultLoading && this.props.resultFailed) {
-      this.props.history.push('/not-found');
     } else if (!prevProps.result && this.props.result) {
       // Result has been loaded
       const bins = 10;
       const nodeNum = this.props.result.nodeNum;
       this.props.fetchAccuracyGraph(bins, nodeNum);
       this.props.fetchTimeGraph(bins, nodeNum);
+    } else if (!this.props.diagnosisLoading && this.props.diagnosisFailed) {
+      this.props.history.push('/not-found');
+    } else if (!this.props.resultLoading && this.props.resultFailed) {
+      this.props.history.push('/not-found');
     }
   }
 
