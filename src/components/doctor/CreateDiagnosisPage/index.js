@@ -28,7 +28,7 @@ class CreateDiagnosisPage extends Component {
 
   componentDidMount() {
     this.setState({ resultId: parseInt(this.props.match.params.resultId) });
-    this.props.listAllResults(this.state);
+    this.props.fetchResult(this.state.resultId);
   }
 
 
