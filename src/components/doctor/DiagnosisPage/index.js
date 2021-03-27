@@ -24,12 +24,19 @@ import Button from '@material-ui/core/Button';
 import Moment from 'moment';
 import {
   fetchAccuracyGraph,
-  fetchTimeGraph,
-  selectGraph,
-  selectGraphLoading,
-} from '../../../redux/ducks/graph';
+  selectAccGraph,
+  selectAccGraphFailed,
+  selectAccGraphLoading,
+} from '../../../redux/ducks/accGraph';
+
 import { Bar } from "react-chartjs-2";
 import { fetchResult,selectResult, selectResultFailed, selectResultLoading } from '../../../redux/ducks/result';
+import {
+  fetchTimeGraph,
+  selectTimeGraph,
+  selectTimeGraphFailed,
+  selectTimeGraphLoading,
+} from '../../../redux/ducks/timeGraph';
 
 class DiagnosisPage extends Component {
 
@@ -294,14 +301,14 @@ const mapStateToProps = state => ({
   diagnosisFailed: selectDiagnosisFailed(state),
   resultLoading: selectResultLoading(state),
   resultFailed: selectResultFailed(state),
-  accGraphLoading: selectGraphLoading(state),
-  accGraphFailed: selectGraphLoading(state),
-  timeGraphLoading: selectGraphLoading(state),
-  timeGraphFailed: selectGraphLoading(state),
+  accGraphLoading: selectAccGraphLoading(state),
+  accGraphFailed: selectAccGraphFailed(state),
+  timeGraphLoading: selectTimeGraphLoading(state),
+  timeGraphFailed: selectTimeGraphFailed(state),
   diagnosis: selectDiagnosis(state),
-  accGraph: selectGraph(state),
-  timeGraph: selectGraph(state),
   result:selectResult(state),
+  accGraph: selectAccGraph(state),
+  timeGraph: selectTimeGraph(state),
 });
 
 const dispatchers = {
