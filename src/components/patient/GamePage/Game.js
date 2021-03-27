@@ -2,6 +2,7 @@ import React from "react";
 import Result from './Result';
 import Control from './Control' 
 import ListDot from './ListDot'
+import Line from './Line'
 
 const Game = (props) => {
   const {time,accuracy,nodeNum} = props;

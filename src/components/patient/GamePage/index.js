@@ -12,7 +12,6 @@ import {
   selectResultsLoading,
 } from '../../../redux/ducks/result';
 import Game from './Game';
-import Result from './Result';
 
 class GamePage extends Component {
 

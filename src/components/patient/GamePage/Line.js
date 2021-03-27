@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 
-const App= (props) => {
-  const {valX , valY, count} = props ;
+const Line= (props) => {
+  const {valX , valY, nodeNum} = props ;
   const canvas = useRef();
   let ctx = null;
   useEffect(() => {
@@ -11,7 +11,7 @@ const App= (props) => {
     ctx = canvasEle.getContext("2d");
   });
 
-  let nodenumber=count-1; 
+  let nodenumber=nodeNum; 
 
   useEffect(() => {
     for (let i=1;i<nodenumber;i++){
@@ -32,18 +32,18 @@ const App= (props) => {
   }
 
   const canvasStyle={
-    width: "1193px",
-    height: "502px",
+    width: "1200px",
+    height: "500px",
     backgroundColor: "#f5f5f5",
-    border: "1px solid",
-    borderRadius: "4px"  
+    border: "0px",
+    borderRadius: "0px"  
   }
 
   return (
     <div className="App">
-      <canvas style={canvasStyle}></canvas>
+      <canvas ref={canvas} style={canvasStyle}></canvas>
     </div>
   );
 }
 
-export default App; 
+export default Line; 

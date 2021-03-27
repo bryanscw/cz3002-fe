@@ -1,10 +1,9 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import Fab from '@material-ui/core/Fab';
 
 
 const Dot = (props) => {
-    const {color, x, y, size, index, onClick, randomnumber } = props;    
+    const {color, x, y, size, func, randomnumber } = props;    
     const dotStyle = {
         backgroundColor: color,
         height: `${size}px`,
@@ -14,7 +13,13 @@ const Dot = (props) => {
         position:"absolute",
     };
     return (
-        <Fab className="dot" color={color} style={dotStyle}>{randomnumber}</Fab>
+        <Fab className="dot" 
+        color = {color} 
+        style = {dotStyle}
+        onClick = {() => func(randomnumber)}
+        >
+            {randomnumber}
+        </Fab>
     );
 };
 
