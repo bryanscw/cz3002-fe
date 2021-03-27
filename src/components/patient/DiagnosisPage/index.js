@@ -16,13 +16,15 @@ import {
   selectResultLoading,
 } from '../../../redux/ducks/result';
 import {
-  fetchAccuracyGraph, selectAccGraph,
+  fetchAccuracyGraph,
+  selectAccGraph,
   selectAccGraphFailed,
   selectAccGraphLoading,
 } from '../../../redux/ducks/accGraph';
 import {
   fetchTimeGraph,
-  selectTimeGraph, selectTimeGraphFailed,
+  selectTimeGraph,
+  selectTimeGraphFailed,
   selectTimeGraphLoading,
 } from '../../../redux/ducks/timeGraph';
 import { Bar } from "react-chartjs-2";
@@ -45,6 +47,10 @@ class DiagnosisPage extends Component {
       const nodeNum = this.props.result.nodeNum;
       this.props.fetchAccuracyGraph(bins, nodeNum);
       this.props.fetchTimeGraph(bins, nodeNum);
+    } else if (!this.props.diagnosisLoading && this.props.diagnosisFailed) {
+      this.props.history.push('/not-found');
+    } else if (!this.props.resultLoading && this.props.resultFailed) {
+      this.props.history.push('/not-found');
     }
   }
 
@@ -69,6 +75,7 @@ class DiagnosisPage extends Component {
     }
 
     // If failed to fetch resources, redirect to not-found
+    // Some check is done in componentDidMount, do a check again to be safe
     if (diagnosisFailed || resultFailed || accGraphFailed || timeGraphFailed) {
       return <Redirect to="/not-found" />;
     }
@@ -174,9 +181,9 @@ DiagnosisPage.propType = {
   timeGraphLoading: PropTypes.bool.isRequired,
   timeGraphFailed: PropTypes.bool,
   diagnosis: PropTypes.object.isRequired,
+  result: PropTypes.object.isRequired,
   accGraph: PropTypes.object.isRequired,
   timeGraph: PropTypes.object.isRequired,
-
 };
 
 const mapStateToProps = state => ({
