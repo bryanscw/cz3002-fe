@@ -37,6 +37,8 @@ class ResultPage extends Component {
       const nodeNum = this.props.result.nodeNum;
       this.props.fetchAccuracyGraph(bins, nodeNum);
       this.props.fetchTimeGraph(bins, nodeNum);
+    } else if (!this.props.resultLoading && this.props.resultFailed) {
+      this.props.history.push('/not-found');
     }
   }
 
@@ -58,6 +60,7 @@ class ResultPage extends Component {
     }
 
     // If failed to fetch resources, redirect to not-found
+    // Some check is done in componentDidMount, do a check again to be safe
     if (resultFailed || accGraphFailed || timeGraphFailed) {
       return <Redirect to="/not-found" />;
     }
