@@ -63,7 +63,6 @@ class DiagnosisPage extends Component {
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
-    console.log(this.props);
     if (!prevProps.diagnosis && this.props.diagnosis) {
       // Diagnosis has been loaded
       this.props.fetchResult(this.props.diagnosis.result);
