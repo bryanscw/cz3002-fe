@@ -1,4 +1,4 @@
-import { API_URL } from '../../utils/constants';
+import { API_URL, MAX_ACCESS_TOKEN_AGE } from '../../utils/constants';
 import axios from 'axios';
 import { displayError } from './errors';
 import { getCurrentTime } from '../../utils/getCurrentTime';
@@ -19,7 +19,7 @@ const initialState = {
   access_token: localStorage.getItem('access_token'),
   refresh_token: localStorage.getItem('refresh_token'),
   expires_in: localStorage.getItem('expires_in'),
-  time_token_acquired: getCurrentTime(),
+  time_token_acquired: localStorage.getItem('time_token_acquired'),
 };
 
 export default function _auth(state = initialState, action) {
@@ -97,15 +97,17 @@ export function loginAction(payload) {
   };
 }
 
+
 export function logoutAction() {
   return {
     type: LOGOUT,
   };
 }
 
-export function fetchMeRequestAction() {
+export function fetchMeRequestAction(payload) {
   return {
     type: FETCH_ME_REQUEST,
+    payload: payload,
   };
 }
 
@@ -146,24 +148,32 @@ export const authenticateLogin = userData => dispatch => {
 };
 
 export const refreshTokenLogin = () => (dispatch, getState) => {
-  var formdata = new FormData();
-  formdata.append('refresh_token', getState().authReducer.refresh_token);
-  formdata.append('grant_type', 'refresh_token');
+  let timeAcquiredToken = Date.parse(getState().authReducer.time_token_acquired);
 
-  axios
-    .post(`${API_URL}/oauth/token`, formdata, {
-      headers: {
-        Authorization: `Basic ${btoa('my-client:my-secret')}`,
-      },
-    })
-    .then((res) => {
-      fetchMe(res.data.access_token)(dispatch);
-      dispatch(loginAction(res.data));
-    })
-    .catch((err) => {
-      displayError('Unable to login')(dispatch);
-      dispatch(fetchMeFailureAction());
-    });
+  if (new Date() - timeAcquiredToken > MAX_ACCESS_TOKEN_AGE) {
+    let formdata = new FormData();
+    formdata.append('refresh_token', getState().authReducer.refresh_token);
+    formdata.append('grant_type', 'refresh_token');
+
+    axios
+      .post(`${API_URL}/oauth/token`, formdata, {
+        headers: {
+          Authorization: `Basic ${btoa('my-client:my-secret')}`,
+        },
+      })
+      .then((res) => {
+        fetchMe(res.data.access_token)(dispatch);
+        dispatch(loginAction(res.data));
+      })
+      .catch((err) => {
+        displayError('Unable to login')(dispatch);
+        dispatch(fetchMeFailureAction());
+      });
+  } else {
+    fetchMe(getState().authReducer.access_token)(dispatch);
+    dispatch(fetchMeRequestAction());
+  }
+
 };
 
 export const logout = () => (dispatch, getState) => {
