@@ -8,7 +8,7 @@ import {
   selectResultFailed,
   selectResultLoading,
 } from '../../../redux/ducks/result';
-import { Box, CircularProgress, Container } from '@material-ui/core';
+import { Box, CircularProgress, Container,Paper ,Divider,Typography,Breadcrumbs,Link} from '@material-ui/core';
 import { Alert, AlertTitle } from '@material-ui/lab';
 import Button from '@material-ui/core/Button';
 import {
@@ -17,6 +17,8 @@ import {
   selectGraph,
   selectGraphLoading,
 } from '../../../redux/ducks/graph';
+import { Bar } from "react-chartjs-2";
+import { calculateAge } from '../../../utils/calculateAge';
 
 class ResultPage extends Component {
   componentDidMount() {
@@ -33,7 +35,7 @@ class ResultPage extends Component {
       this.props.fetchTimeGraph(bins, nodeNum);
     }
   }
-
+ 
   render() {
     const {
       resultLoading,
@@ -46,7 +48,8 @@ class ResultPage extends Component {
       accGraph,
       timeGraph,
     } = this.props;
-
+  
+    
     if (resultLoading || accGraphLoading || timeGraphLoading) {
       return <CircularProgress />;
     }
@@ -58,26 +61,107 @@ class ResultPage extends Component {
 
     function DiagnosisButtons(props) {
       return (
-        (!result.diagnosis) ? (
-            <Button color="primary" href={`/diagnosis/${result.id}`}>View Diagnosis</Button>
+        (result.diagnosis) ? (
+            <Button color="primary" variant="contained" href={`/diagnosis/${result.id}`}>View Diagnosis</Button>
           ) :
           (
-            <Button color="primary"
+            <Button color="primary" variant="contained"
               href={`/diagnosis/${result.id}/create`}>Create Diagnosis</Button>
           )
       );
     }
-
+    const aGraph = {
+      labels: accGraph.labels,
+      datasets: [
+        {
+          label: "accuracy",
+          data: accGraph.data,
+          fill: true,
+          lineTension: 0,
+          backgroundColor: "#115293",
+          borderColor: "rgba(75,192,192,1)"
+        },
+        
+      ],
+    
+    };
+    const tGraph = {
+      labels: timeGraph.labels,
+      datasets: [
+        {
+          label: "time",
+          data: timeGraph.data,
+          fill: true,
+          lineTension: 0,
+          backgroundColor: "#115293",
+          borderColor: "rgba(75,192,192,1)"
+        },
+        
+      ],
+    
+    };
+   
     return (
-      <Container>
+      <Container style={{width:900}}>
         {
           // Check if user has completed the test
           result.time ? (
             <Box component="span" m={1}>
-              <p>{JSON.stringify(result)}</p>
-              <p>{JSON.stringify(accGraph)}</p>
-              <p>{JSON.stringify(timeGraph)}</p>
-              <DiagnosisButtons />
+              <Breadcrumbs style={{marginLeft:1}} separator="›" aria-label="breadcrumb">
+                <Link color="inherit" href="/results" >
+                Result
+                </Link>
+                <Typography color="textPrimary">Result Detail</Typography>
+              </Breadcrumbs>
+              
+              <Paper style={{ padding:50, justifyContent: "center",margin:"auto",width:850}}>
+                <h1 style={{textAlign: "center"}}>Result</h1>
+                <div>
+                 
+                      <Bar data={aGraph} />
+                </div>
+                <div>
+                 
+                 <Bar data={tGraph} />
+           </div>
+              
+                <label>
+                    <div style={{marginTop: 30}}><Typography  style={{fontSize: 20,fontWeight: 600}} >Patient </Typography></div>
+                    <div><Typography style={{marginTop: 10,fontSize:18}} > {result.user.name}</Typography></div>
+                    <Divider />
+                </label>
+                <label>
+                    <div style={{marginTop: 25}}><Typography  style={{fontSize: 20,fontWeight: 600}} >Patient Email  </Typography></div>
+                    <div><Typography style={{marginTop: 10,fontSize:18}} > {result.user.email}</Typography></div>
+                    <Divider />
+                </label>
+                <label>
+                    <div style={{marginTop: 25}}><Typography  style={{fontSize: 20,fontWeight: 600}} >Age </Typography></div>
+                    <div><Typography style={{marginTop: 10,fontSize:18}} > {calculateAge(result.user.dob)}</Typography></div>
+                    <Divider />
+                </label>
+                <label>
+                    <div style={{marginTop: 25}}><Typography  style={{fontSize: 20,fontWeight: 600}} >Accuracy  </Typography></div>
+                    <div><Typography style={{marginTop: 10,fontSize:18}} > {result.accuracy}</Typography></div>
+                    <Divider />
+                </label>
+                <label>
+                    <div style={{marginTop: 25}}><Typography  style={{fontSize: 20,fontWeight: 600}} >Time </Typography></div>
+                    <div><Typography style={{marginTop: 10,fontSize:18}} > {result.time}</Typography></div>
+                    <Divider />
+                </label>
+                <label>
+                    <div style={{marginTop: 25}}><Typography  style={{fontSize: 20,fontWeight: 600}} >Number Of Nodes</Typography></div>
+                    <div><Typography style={{marginTop: 10,fontSize:18}} > {result.nodeNum}</Typography></div>
+                    <Divider />
+                </label>
+
+              </Paper>
+         
+              <div style={{ display: 'flex', justifyContent: 'center',marginTop:20 }}>
+                <DiagnosisButtons />
+              </div>
+              
             </Box>
           ) : (
             <Alert severity="error">

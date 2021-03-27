@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import { CircularProgress, Container } from '@material-ui/core';
+import { CircularProgress, Container,Paper,Typography,Divider,Breadcrumbs,Link } from '@material-ui/core';
 import { Alert, AlertTitle } from '@material-ui/lab';
 import Button from '@material-ui/core/Button';
+import { calculateAge } from '../../../utils/calculateAge';
+import { Bar } from "react-chartjs-2";
 import {
   fetchResult,
   selectResult,
@@ -56,22 +58,94 @@ class ResultPage extends Component {
     if (resultFailed || accGraphFailed || timeGraphFailed) {
       return <Redirect to="/not-found" />;
     }
-
+    const barData = {
+      labels: accGraph.labels,
+      datasets: [
+        {
+          label: "dataset",
+          data: accGraph.data,
+          fill: true,
+          lineTension: 0,
+          backgroundColor: "#115293",
+          borderColor: "rgba(75,192,192,1)"
+        },
+        
+      ],
+      labels: timeGraph.labels,
+      datasets: [
+        {
+          label: "dataset",
+          data: timeGraph.data,
+          fill: true,
+          lineTension: 0,
+          backgroundColor: "#115210",
+          borderColor: "rgba(75,192,192,1)"
+        },
+        
+      ]
+    };
     return (
-      <Container>
+      <Container style={{width:900}}>
         {
           // Check if user has completed the test
           result.time ? (
             <div>
-              <p>{JSON.stringify(result)}</p>
-              <p>{JSON.stringify(accGraph)}</p>
-              <p>{JSON.stringify(timeGraph)}</p>
+               <Breadcrumbs style={{marginLeft:1}} separator="›" aria-label="breadcrumb">
+                <Link color="inherit" href="/dashboard" >
+                Result
+                </Link>
+                <Typography color="textPrimary"> Result Detail</Typography>
+              </Breadcrumbs>
+              <Paper style={{ padding:50, justifyContent: "center",margin:"auto",width:850}}>
+                <h1 style={{textAlign: "center"}}>Result</h1>
+                <div>
+                      <Bar data={barData} />
+                </div>
+              
+                <label>
+                    <div style={{marginTop: 30}}><Typography  style={{fontSize: 20,fontWeight: 600}} >Patient </Typography></div>
+                    <div><Typography style={{marginTop: 10,fontSize:18}} > {result.user.name}</Typography></div>
+                    <Divider />
+                </label>
+                <label>
+                    <div style={{marginTop: 25}}><Typography  style={{fontSize: 20,fontWeight: 600}} >Patient Email  </Typography></div>
+                    <div><Typography style={{marginTop: 10,fontSize:18}} > {result.user.email}</Typography></div>
+                    <Divider />
+                </label>
+                <label>
+                    <div style={{marginTop: 25}}><Typography  style={{fontSize: 20,fontWeight: 600}} >Age </Typography></div>
+                    <div><Typography style={{marginTop: 10,fontSize:18}} > {calculateAge(result.user.dob)}</Typography></div>
+                    <Divider />
+                </label>
+                <label>
+                    <div style={{marginTop: 25}}><Typography  style={{fontSize: 20,fontWeight: 600}} >Accuracy  </Typography></div>
+                    <div><Typography style={{marginTop: 10,fontSize:18}} > {result.accuracy}</Typography></div>
+                    <Divider />
+                </label>
+                <label>
+                    <div style={{marginTop: 25}}><Typography  style={{fontSize: 20,fontWeight: 600}} >Time </Typography></div>
+                    <div><Typography style={{marginTop: 10,fontSize:18}} > {result.time}</Typography></div>
+                    <Divider />
+                </label>
+                <label>
+                    <div style={{marginTop: 25}}><Typography  style={{fontSize: 20,fontWeight: 600}} >Number Of Nodes</Typography></div>
+                    <div><Typography style={{marginTop: 10,fontSize:18}} > {result.nodeNum}</Typography></div>
+                    <Divider />
+                </label>
+
+              </Paper>
+              {/* <p>{JSON.stringify(accGraph)}</p>
+              <p>{JSON.stringify(timeGraph)}</p> */}
               {
-                (!result.diagnosis) ? (
-                    <Button color="primary" href={`/diagnosis/${result.id}`}>Diagnosis</Button>
+                (result.diagnosis) ? (
+                  <div style={{ display: 'flex', justifyContent: 'center',marginTop:20 }}>
+                    <Button color="primary" variant="contained"  href={`/diagnosis/${result.id}`}>Diagnosis</Button>
+                  </div>
                   ) :
                   (
-                    <Button color="primary" disabled>Diagnosis</Button>
+                    <div style={{ display: 'flex', justifyContent: 'center',marginTop:20 }}>
+                      <Button color="primary" variant="contained"  disabled>Diagnosis</Button>
+                    </div>
                   )
               }
             </div>
