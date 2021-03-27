@@ -62,11 +62,11 @@ class ResultPage extends Component {
     if (resultFailed || accGraphFailed || timeGraphFailed) {
       return <Redirect to="/not-found" />;
     }
-    const barData = {
+    const aGraph = {
       labels: accGraph.labels,
       datasets: [
         {
-          label: "dataset",
+          label: "accuracy",
           data: accGraph.data,
           fill: true,
           lineTension: 0,
@@ -75,18 +75,22 @@ class ResultPage extends Component {
         },
         
       ],
+    
+    };
+    const tGraph = {
       labels: timeGraph.labels,
       datasets: [
         {
-          label: "dataset",
+          label: "time",
           data: timeGraph.data,
           fill: true,
           lineTension: 0,
-          backgroundColor: "#115210",
+          backgroundColor: "#115293",
           borderColor: "rgba(75,192,192,1)"
         },
         
-      ]
+      ],
+    
     };
     return (
       <Container style={{width:900}}>
@@ -103,9 +107,11 @@ class ResultPage extends Component {
               <Paper style={{ padding:50, justifyContent: "center",margin:"auto",width:850}}>
                 <h1 style={{textAlign: "center"}}>Result</h1>
                 <div>
-                      <Bar data={barData} />
+                      <Bar data={aGraph} />
                 </div>
-              
+                <div>
+                      <Bar data={tGraph} />
+                </div>
                 <label>
                     <div style={{marginTop: 30}}><Typography  style={{fontSize: 20,fontWeight: 600}} >Patient </Typography></div>
                     <div><Typography style={{marginTop: 10,fontSize:18}} > {result.user.name}</Typography></div>

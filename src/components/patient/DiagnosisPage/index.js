@@ -60,7 +60,6 @@ class DiagnosisPage extends Component {
       timeGraphLoading,
       timeGraphFailed,
       diagnosis,
-      result,
       accGraph,
       timeGraph,
     } = this.props;
@@ -73,11 +72,11 @@ class DiagnosisPage extends Component {
     if (diagnosisFailed || resultFailed || accGraphFailed || timeGraphFailed) {
       return <Redirect to="/not-found" />;
     }
-    const barData = {
+    const aGraph = {
       labels: accGraph.labels,
       datasets: [
         {
-          label: "Accuracy",
+          label: "accuracy",
           data: accGraph.data,
           fill: true,
           lineTension: 0,
@@ -86,18 +85,22 @@ class DiagnosisPage extends Component {
         },
         
       ],
+    
+    };
+    const tGraph = {
       labels: timeGraph.labels,
       datasets: [
         {
-          label: "Time",
+          label: "time",
           data: timeGraph.data,
           fill: true,
           lineTension: 0,
-          backgroundColor: "#115133",
+          backgroundColor: "#115293",
           borderColor: "rgba(75,192,192,1)"
         },
         
-      ]
+      ],
+    
     };
     return (
       <Container style={{width:900}}>
@@ -113,7 +116,10 @@ class DiagnosisPage extends Component {
         <Paper style={{ padding:50, justifyContent: "center",margin:"auto",width:850}}>
          <h1 style={{textAlign: "center"}}>Diagnosis</h1>
          <div>
-              <Bar data={barData} />
+              <Bar data={aGraph} />
+         </div>
+         <div>
+              <Bar data={tGraph} />
          </div>
          
          <label>
