@@ -6,6 +6,8 @@ import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Link from '@material-ui/core/Link';
 
+import AccountCircle from '@material-ui/icons/AccountCircle';
+
 const styles = theme => ({
   header: {
     '-webkit-text-fill-color': '#ffffff',
@@ -49,9 +51,14 @@ export class Header extends Component {
     const {
       classes,
     } = this.props;
+   
+
 
     const authLinks = (
-      <Box className="buttons">
+      <Box className="buttons">                       
+       
+      <Button color="inherit" disableRipple disableFocusRipple >  
+      <AccountCircle style={{ fontSize:30  }} /> &nbsp;Hello, {user.name}</Button> 
         <Button color="inherit" href="/dashboard">Dashboard</Button>
         <Button color="inherit" href="/logout">Logout</Button>
       </Box>

@@ -99,7 +99,7 @@ class PatientsPage extends Component {
     };
 
     if (patientsLoading) {
-      return <CircularProgress />;
+      return <CircularProgress align="center" style={{ marginTop: 200, marginLeft: 860 }} />;
     }
 
     if (patientsFailed) {
@@ -174,7 +174,18 @@ class PatientsPage extends Component {
             },
           ]}
           data={patients}
-          options={{}}
+          options={{
+
+            cellStyle: {
+              fontFamily: 'Helvetica',
+              fontSize: 15,
+            },
+            headerStyle: {
+              backgroundColor: '#3f51b5',
+              color: '#FFF',
+              fontSize: 17,
+            },
+          }}
         />
         <Dialog fullWidth open={this.state.open}
           onClose={() => {

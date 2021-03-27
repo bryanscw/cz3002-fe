@@ -56,7 +56,7 @@ class ResultPage extends Component {
     } = this.props;
 
     if (resultLoading || accGraphLoading || timeGraphLoading) {
-      return <CircularProgress />;
+      return <CircularProgress align="center" style={{ marginTop: 200, marginLeft: 860 }} />;
     }
 
     // If failed to fetch resources, redirect to not-found

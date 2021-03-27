@@ -40,7 +40,7 @@ class CreateDiagnosisPage extends Component {
     } = this.props;
 
     if (resultsLoading) {
-      return <CircularProgress />;
+      return <CircularProgress align="center" style={{ marginTop: 200, marginLeft: 860 }} />;
     }
 
     if (resultsFailed) {

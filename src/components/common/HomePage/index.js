@@ -31,7 +31,7 @@ export class HomePage extends Component {
           </Typography>
           {
             user && Object.keys(user).length !== 0 ? (
-              <Button variant="contained" style={{ width: 200, height: 50, fontSize: 17, marginTop: 30, marginBottom: 30 }} color="primary" href="/dashboard">
+              <Button variant="contained" style={{ width: 200, height: 50, fontSize: 17, marginTop: 50, marginBottom: 30 }} color="primary" href="/dashboard">
                 To Dashboard
               </Button>
             ) : null

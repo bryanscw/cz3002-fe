@@ -66,7 +66,7 @@ class ResultsPage extends Component {
     };
 
     if (resultsLoading) {
-      return <CircularProgress />;
+      return <CircularProgress align="center" style={{ marginTop: 200, marginLeft: 860 }} />;
     }
 
     if (resultsFailed) {
@@ -129,7 +129,18 @@ class ResultsPage extends Component {
             },
           ]}
           data={results}
-          options={{}}
+          options={{
+
+            cellStyle: {
+              fontFamily: 'Helvetica',
+              fontSize: 15,
+            },
+            headerStyle: {
+              backgroundColor: '#3f51b5',
+              color: '#FFF',
+              fontSize: 17,
+            },
+          }}
         />
       </div>
     );
