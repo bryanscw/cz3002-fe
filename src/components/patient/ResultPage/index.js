@@ -76,7 +76,7 @@ class ResultPage extends Component {
               <p>{JSON.stringify(accGraph)}</p>
               <p>{JSON.stringify(timeGraph)}</p>
               {
-                (!result.diagnosis) ? (
+                (result.diagnosis) ? (
                     <Button color="primary" href={`/diagnosis/${result.id}`}>Diagnosis</Button>
                   ) :
                   (

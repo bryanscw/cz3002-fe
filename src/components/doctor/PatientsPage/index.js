@@ -55,6 +55,17 @@ class PatientsPage extends Component {
     this.props.listAllPatients(this.state);
   }
 
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    // Reload page upon submit
+    // This implementation allows sufficient time for request to be built and sent
+    // Check for 0 length ignores the first change when patients is loaded
+    if (prevProps.patients.length !== 0
+      && prevProps.patients.length !== this.props.patients.length) {
+      this.props.patients.slice(0, prevProps.length);
+      window.location.reload();
+    }
+  }
+
   render() {
     const {
       patientsLoading,
@@ -216,7 +227,6 @@ class PatientsPage extends Component {
                   user: { email: this.state.patientEmail },
                 });
                 this.setState(initialState);
-                window.location.reload();
               }
             }} color="primary">
               Create Test

@@ -54,7 +54,8 @@ class AppRouter extends Component {
     ];
 
     // Check if a valid user is logged in
-    if (!userFailed && user && Object.keys(user).length !== 0
+    if (
+      !userFailed && user && Object.keys(user).length !== 0
       && user.constructor === Object) {
       routes = [
         <Redirect

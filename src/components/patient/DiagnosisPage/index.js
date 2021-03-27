@@ -103,9 +103,9 @@ DiagnosisPage.propType = {
   timeGraphLoading: PropTypes.bool.isRequired,
   timeGraphFailed: PropTypes.bool,
   diagnosis: PropTypes.object.isRequired,
+  result: PropTypes.object.isRequired,
   accGraph: PropTypes.object.isRequired,
   timeGraph: PropTypes.object.isRequired,
-
 };
 
 const mapStateToProps = state => ({

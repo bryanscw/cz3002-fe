@@ -9,16 +9,6 @@ import {
   selectDiagnosisLoading,
   updateDiagnosis,
 } from '../../../redux/ducks/diagnosis';
-import {
-  CircularProgress,
-  Container,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogTitle,
-  MenuItem,
-  TextField,
-} from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import {
   fetchResult,
@@ -38,6 +28,16 @@ import {
   selectTimeGraphFailed,
   selectTimeGraphLoading,
 } from '../../../redux/ducks/timeGraph';
+import {
+  CircularProgress,
+  Container,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  MenuItem,
+  TextField,
+} from '@material-ui/core';
 
 class DiagnosisPage extends Component {
 
@@ -221,6 +221,7 @@ DiagnosisPage.propType = {
   timeGraphLoading: PropTypes.bool.isRequired,
   timeGraphFailed: PropTypes.bool,
   diagnosis: PropTypes.object.isRequired,
+  result: PropTypes.object.isRequired,
   accGraph: PropTypes.object.isRequired,
   timeGraph: PropTypes.object.isRequired,
 };
@@ -243,6 +244,7 @@ const mapStateToProps = state => ({
 const dispatchers = {
   fetchDiagnosis,
   fetchResult,
+  updateDiagnosis,
   fetchAccuracyGraph,
   fetchTimeGraph,
 };
