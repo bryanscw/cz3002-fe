@@ -242,6 +242,7 @@ const mapStateToProps = state => ({
 
 const dispatchers = {
   fetchDiagnosis,
+  updateDiagnosis,
   fetchResult,
   fetchAccuracyGraph,
   fetchTimeGraph,

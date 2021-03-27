@@ -19,3 +19,6 @@ export const COLORS = ['#ffffff00'];
 
 // size vales for dots to pick from list
 export const SIZES = [35];
+
+// max ms before access_token is refreshed
+export const MAX_ACCESS_TOKEN_AGE = 3600000;
