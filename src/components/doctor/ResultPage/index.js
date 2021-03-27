@@ -13,10 +13,16 @@ import { Alert, AlertTitle } from '@material-ui/lab';
 import Button from '@material-ui/core/Button';
 import {
   fetchAccuracyGraph,
+  selectAccGraph,
+  selectAccGraphFailed,
+  selectAccGraphLoading,
+} from '../../../redux/ducks/accGraph';
+import {
   fetchTimeGraph,
-  selectGraph,
-  selectGraphLoading,
-} from '../../../redux/ducks/graph';
+  selectTimeGraph,
+  selectTimeGraphFailed,
+  selectTimeGraphLoading,
+} from '../../../redux/ducks/timeGraph';
 
 class ResultPage extends Component {
   componentDidMount() {
@@ -111,13 +117,13 @@ ResultPage.propType = {
 const mapStateToProps = state => ({
   resultLoading: selectResultLoading(state),
   resultFailed: selectResultFailed(state),
-  accGraphLoading: selectGraphLoading(state),
-  accGraphFailed: selectGraphLoading(state),
-  timeGraphLoading: selectGraphLoading(state),
-  timeGraphFailed: selectGraphLoading(state),
+  accGraphLoading: selectAccGraphLoading(state),
+  accGraphFailed: selectAccGraphFailed(state),
+  timeGraphLoading: selectTimeGraphLoading(state),
+  timeGraphFailed: selectTimeGraphFailed(state),
   result: selectResult(state),
-  accGraph: selectGraph(state),
-  timeGraph: selectGraph(state),
+  accGraph: selectAccGraph(state),
+  timeGraph: selectTimeGraph(state),
 });
 
 const dispatchers = {

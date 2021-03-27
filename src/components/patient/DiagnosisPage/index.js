@@ -10,17 +10,21 @@ import {
 } from '../../../redux/ducks/diagnosis';
 import { CircularProgress, Container } from '@material-ui/core';
 import {
-  fetchAccuracyGraph,
-  fetchTimeGraph,
-  selectGraph,
-  selectGraphLoading,
-} from '../../../redux/ducks/graph';
-import {
   fetchResult,
   selectResult,
   selectResultFailed,
   selectResultLoading,
 } from '../../../redux/ducks/result';
+import {
+  fetchAccuracyGraph, selectAccGraph,
+  selectAccGraphFailed,
+  selectAccGraphLoading,
+} from '../../../redux/ducks/accGraph';
+import {
+  fetchTimeGraph,
+  selectTimeGraph, selectTimeGraphFailed,
+  selectTimeGraphLoading,
+} from '../../../redux/ducks/timeGraph';
 
 class DiagnosisPage extends Component {
 
@@ -102,14 +106,14 @@ const mapStateToProps = state => ({
   diagnosisFailed: selectDiagnosisFailed(state),
   resultLoading: selectResultLoading(state),
   resultFailed: selectResultFailed(state),
-  accGraphLoading: selectGraphLoading(state),
-  accGraphFailed: selectGraphLoading(state),
-  timeGraphLoading: selectGraphLoading(state),
-  timeGraphFailed: selectGraphLoading(state),
+  accGraphLoading: selectAccGraphLoading(state),
+  accGraphFailed: selectAccGraphFailed(state),
+  timeGraphLoading: selectTimeGraphLoading(state),
+  timeGraphFailed: selectTimeGraphFailed(state),
   diagnosis: selectDiagnosis(state),
   result: selectResult(state),
-  accGraph: selectGraph(state),
-  timeGraph: selectGraph(state),
+  accGraph: selectAccGraph(state),
+  timeGraph: selectTimeGraph(state),
 });
 
 const dispatchers = {

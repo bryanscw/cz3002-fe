@@ -5,7 +5,8 @@ import usersReducer from './ducks/users';
 import errorsReducer from './ducks/errors';
 import resultsReducer from './ducks/result';
 import diagnosisReducer from './ducks/diagnosis';
-import graphReducer from './ducks/graph';
+import timeGraphReducer from './ducks/timeGraph';
+import accGraphReducer from './ducks/accGraph';
 
 export default combineReducers({
   authReducer,
@@ -13,5 +14,6 @@ export default combineReducers({
   errorsReducer,
   resultsReducer,
   diagnosisReducer,
-  graphReducer,
+  accGraphReducer,
+  timeGraphReducer,
 });
