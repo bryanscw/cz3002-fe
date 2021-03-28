@@ -10,7 +10,17 @@ import {
   selectResultLoading,
 } from '../../../redux/ducks/result';
 import PropTypes from 'prop-types';
-import { CircularProgress, Container, Grid, MenuItem, Paper, Box } from '@material-ui/core';
+import {
+  Box,
+  Breadcrumbs,
+  CircularProgress,
+  Container,
+  Grid,
+  Link,
+  MenuItem,
+  Paper,
+  Typography,
+} from '@material-ui/core';
 import { Redirect } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import { Alert, AlertTitle } from '@material-ui/lab';
@@ -78,6 +88,15 @@ class CreateDiagnosisPage extends Component {
           margin: 'auto',
           maxWidth: 600,
         }}>
+          <Breadcrumbs style={{ marginLeft: 1 }} separator="›" aria-label="breadcrumb">
+            <Link color="inherit" href="/results">
+              Result
+            </Link>
+            <Link color="inherit" href={`/result/${result.id}`}>
+              {result.id}
+            </Link>
+            <Typography color="textPrimary"> Create Diagnosis</Typography>
+          </Breadcrumbs>
           <Form
             onSubmit={onSubmit}
             initialValues={{}}
@@ -142,16 +161,27 @@ class CreateDiagnosisPage extends Component {
                 View Diagnosis
               </Button>
             </Alert>
-          ) : <DiagnosisForm /> : ( 
+          ) : <DiagnosisForm /> : (
             <Box>
-           <Alert severity="error">
-              <AlertTitle>Test has not been completed yet</AlertTitle>
-              <p><strong>Not</strong> allowed to create diagnosis until test has been completed.</p>
-            </Alert>
-            <Button variant="contained" style={{ width: 300, height: 50, fontSize: 17, marginTop: 50, marginBottom: 30, marginLeft:460 }} color="primary" href="/diagnosis/pending">
-          <ArrowBackIosIcon/> Back to Diagnosis Page
-          </Button>
-            </Box>            
+              <Alert severity="error">
+                <AlertTitle>Test has not been completed yet</AlertTitle>
+                <p><strong>Not</strong> allowed to create diagnosis until test has been completed.
+                </p>
+              </Alert>
+              <Button variant="contained"
+                style={{
+                  width: 300,
+                  height: 50,
+                  fontSize: 17,
+                  marginTop: 50,
+                  marginBottom: 30,
+                  marginLeft: 460,
+                }}
+                color="primary"
+                href="/diagnosis/pending">
+                <ArrowBackIosIcon /> Back to Diagnosis Page
+              </Button>
+            </Box>
           )
         }
       </Container>

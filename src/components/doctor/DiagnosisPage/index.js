@@ -11,13 +11,14 @@ import {
 } from '../../../redux/ducks/diagnosis';
 import {
   Breadcrumbs,
+  Chip,
   CircularProgress,
   Container,
   Dialog,
   DialogActions,
   DialogContent,
   DialogTitle,
-  Divider,
+  Grid,
   Link,
   MenuItem,
   Paper,
@@ -26,28 +27,26 @@ import {
 } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import Moment from 'moment';
+import { withStyles } from '@material-ui/core/styles';
 
-import {
-  fetchAccuracyGraph,
-  selectAccGraph,
-  selectAccGraphFailed,
-  selectAccGraphLoading,
-} from '../../../redux/ducks/accGraph';
-
-import { Bar } from 'react-chartjs-2';
-import {
-  fetchResult,
-  selectResult,
-  selectResultFailed,
-  selectResultLoading,
-} from '../../../redux/ducks/result';
-import {
-  fetchTimeGraph,
-  selectTimeGraph,
-  selectTimeGraphFailed,
-  selectTimeGraphLoading,
-} from '../../../redux/ducks/timeGraph';
-
+const styles = theme => ({
+  breadcrumbs: {
+    marginLeft: 1,
+  },
+  chip: {
+    margin: theme.spacing(0.5),
+  },
+  paper: {
+    padding: 50,
+    justifyContent: 'center',
+    margin: 'auto',
+  },
+  divButton: {
+    display: 'flex',
+    justifyContent: 'center',
+    marginTop: 50,
+  },
+});
 
 class DiagnosisPage extends Component {
 
@@ -72,50 +71,22 @@ class DiagnosisPage extends Component {
     this.props.fetchDiagnosis(resultId);
   }
 
-  componentDidUpdate(prevProps, prevState, snapshot) {
-    if (!prevProps.diagnosis && this.props.diagnosis) {
-      // Diagnosis has been loaded
-      this.props.fetchResult(this.props.diagnosis.result);
-    } else if (!prevProps.result && this.props.result) {
-      // Result has been loaded
-      const bins = 10;
-      const nodeNum = this.props.result.nodeNum;
-      this.props.fetchAccuracyGraph(bins, nodeNum);
-      this.props.fetchTimeGraph(bins, nodeNum);
-    } else if (!this.props.diagnosisLoading && this.props.diagnosisFailed) {
-      this.props.history.push('/not-found');
-    } else if (!this.props.resultLoading && this.props.resultFailed) {
-      this.props.history.push('/not-found');
-    }
-  }
-
   render() {
 
     const {
+      classes,
       diagnosisLoading,
       diagnosisFailed,
-      resultLoading,
-      resultFailed,
-      accGraphLoading,
-      accGraphFailed,
-      timeGraphLoading,
-      timeGraphFailed,
       diagnosis,
-      accGraph,
-      timeGraph,
     } = this.props;
 
-    if (diagnosisLoading || resultLoading || accGraphLoading || timeGraphLoading) {
-      return <CircularProgress align="center"
-        style={{
-          marginTop: 200,
-          marginLeft: 860,
-        }} />;
+    if (diagnosisLoading) {
+      return <CircularProgress />;
     }
 
     // If failed to fetch resources, redirect to not-found
     // Some check is done in componentDidMount, do a check again to be safe
-    if (diagnosisFailed || resultFailed || accGraphFailed || timeGraphFailed) {
+    if (diagnosisFailed) {
       return <Redirect to="/not-found" />;
     }
 
@@ -125,150 +96,86 @@ class DiagnosisPage extends Component {
       description: diagnosis.description,
     };
 
-    const aGraph = {
-      labels: accGraph.labels,
-      datasets: [
-        {
-          label: 'accuracy',
-          data: accGraph.data,
-          fill: true,
-          lineTension: 0,
-          backgroundColor: '#115293',
-          borderColor: 'rgba(75,192,192,1)',
-        },
-
-      ],
-
-    };
-    const tGraph = {
-      labels: timeGraph.labels,
-      datasets: [
-        {
-          label: 'time',
-          data: timeGraph.data,
-          fill: true,
-          lineTension: 0,
-          backgroundColor: '#115293',
-          borderColor: 'rgba(75,192,192,1)',
-        },
-
-      ],
-
-    };
+    const labels = ['High', 'Moderate', 'Low'];
     return (
-
       <Container>
-        <Breadcrumbs style={{ marginLeft: 1 }} separator="›" aria-label="breadcrumb">
+        <Breadcrumbs className={classes.breadcrumbs} separator="›" aria-label="breadcrumb">
           <Link color="inherit" href="/results">
             Result
           </Link>
           <Link color="inherit" href={`/result/${diagnosis.result}`}>
-            Result Detail
+            {diagnosis.result}
           </Link>
           <Typography color="textPrimary">Diagnosis</Typography>
         </Breadcrumbs>
-        <Paper style={{
-          padding: 50,
-          justifyContent: 'center',
-          margin: 'auto',
-        }}>
-          <h1 style={{ textAlign: 'center' }}>Diagnosis</h1>
-          <div>
-            <Bar data={aGraph} />
-          </div>
-          <div>
-            <Bar data={tGraph} />
-          </div>
+        <Paper className={classes.paper}>
+          <Grid container spacing={3}>
+            <Grid item xs={6}>
+              <Typography gutterBottom>Created By</Typography>
+              <Typography variant="subtitle1" color="textSecondary">
+                {diagnosis.createdBy}
+              </Typography>
+            </Grid>
 
-          <label>
-            <div style={{ marginTop: 30 }}><Typography style={{
-              fontSize: 20,
-              fontWeight: 600,
-            }}>CreatedBy : </Typography></div>
-            <div><Typography style={{
-              marginTop: 10,
-              fontSize: 18,
-            }}> {diagnosis.createdBy}</Typography></div>
-            <Divider />
-          </label>
-          <label>
-            <div style={{ marginTop: 25 }}><Typography style={{
-              fontSize: 20,
-              fontWeight: 600,
-            }}>Created Date: </Typography></div>
-            <div><Typography style={{
-              marginTop: 10,
-              fontSize: 18,
-            }}> {Moment(diagnosis.createdDate).format('DD-MM-YYYY')}</Typography></div>
-            <Divider />
-          </label>
-          <label>
-            <div style={{ marginTop: 25 }}><Typography style={{
-              fontSize: 20,
-              fontWeight: 600,
-            }}>Category : </Typography></div>
-            <div><Typography style={{
-              marginTop: 10,
-              fontSize: 18,
-            }}> {diagnosis.label}</Typography></div>
-            <Divider />
-          </label>
-          <label>
-            <div style={{ marginTop: 25 }}><Typography style={{
-              fontSize: 20,
-              fontWeight: 600,
-            }}>Comments : </Typography></div>
-            <div><Typography style={{
-              marginTop: 10,
-              fontSize: 18,
-            }}> {diagnosis.description}</Typography></div>
-            <Divider />
-          </label>
-          <label>
-            <div style={{ marginTop: 25 }}><Typography style={{
-              fontSize: 20,
-              fontWeight: 600,
-            }}>last modified by: </Typography></div>
-            <div><Typography style={{
-              marginTop: 10,
-              fontSize: 18,
-            }}> {diagnosis.lastModifiedBy}</Typography></div>
-            <Divider />
-          </label>
-          <label>
-            <div style={{ marginTop: 25 }}><Typography style={{
-              fontSize: 20,
-              fontWeight: 600,
-            }}>last modified date: </Typography></div>
-            <div><Typography style={{
-              marginTop: 10,
-              fontSize: 18,
-            }}> {Moment(diagnosis.lastModifiedDate).format('DD-MM-YYYY')}</Typography></div>
-            <Divider />
-          </label>
+            <Grid item xs={6}>
+              <Typography gutterBottom>Created Date</Typography>
+              <Typography variant="subtitle1" color="textSecondary">
+                {Moment(diagnosis.createdDate).format('DD-MM-YYYY')}
+              </Typography>
+            </Grid>
 
+            <Grid item xs={6}>
+              <Typography gutterBottom>Last Modified By</Typography>
+              <Typography variant="subtitle1" color="textSecondary">
+                {diagnosis.lastModifiedBy}
+              </Typography>
+            </Grid>
+
+            <Grid item xs={6}>
+              <Typography gutterBottom>Last Modified Date</Typography>
+              <Typography variant="subtitle1" color="textSecondary">
+                {Moment(diagnosis.lastModifiedDate).format('DD-MM-YYYY')}
+              </Typography>
+            </Grid>
+
+            <Grid item xs={6}>
+              <Typography gutterBottom>Label</Typography>
+              <div>
+                {
+                  labels.map(
+                    label => (
+                      label === diagnosis.label
+                        ?
+                        <Chip key={label} className={classes.chip} label={label} color="primary" />
+                        :
+                        <Chip key={label} className={classes.chip} label={label} />
+                    ),
+                  )
+                }
+              </div>
+            </Grid>
+
+            <Grid item xs={6}>
+              <Typography gutterBottom>Diagnosis Description</Typography>
+              <Typography variant="subtitle1" color="textSecondary">
+                {diagnosis.description}
+              </Typography>
+            </Grid>
+          </Grid>
+
+          <div className={classes.divButton}>
+            <Button variant="contained" color="primary"
+              onClick={() => {
+                this.setState({
+                  open: true,
+                  label: diagnosis.label,
+                  description: diagnosis.description,
+                });
+              }}>
+              Edit Diagnosis
+            </Button>
+          </div>
         </Paper>
-
-        {/* <p>{JSON.stringify(result)}</p> */}
-
-        {/* <p>{JSON.stringify(accGraph)}</p>
-        <p>{JSON.stringify(timeGraph)}</p> */}
-        <div style={{
-          display: 'flex',
-          justifyContent: 'center',
-          marginTop: 20,
-        }}>
-          <Button variant="contained" color="primary"
-            onClick={() => {
-              this.setState({
-                open: true,
-                label: diagnosis.label,
-                description: diagnosis.description,
-              });
-            }}>
-            Edit Diagnosis
-          </Button>
-        </div>
 
         <Dialog
           fullWidth
@@ -321,7 +228,6 @@ class DiagnosisPage extends Component {
               Cancel
             </Button>
             <Button onClick={() => {
-
               if (!this.state.label) {
                 alert('Label cannot be empty!');
               } else if (!this.state.description) {
@@ -336,7 +242,6 @@ class DiagnosisPage extends Component {
                   });
                 window.location.replace(`/diagnosis/${diagnosis.result}`);
               }
-
             }} color="primary">
               Submit
             </Button>
@@ -345,48 +250,25 @@ class DiagnosisPage extends Component {
       </Container>
     );
   }
-
 }
 
 DiagnosisPage.propType = {
   fetchDiagnosis: PropTypes.func.isRequired,
   updateDiagnosis: PropTypes.func.isRequired,
-  fetchResult: PropTypes.func.isRequired,
-  fetchAccuracyGraph: PropTypes.func.isRequired,
-  fetchTimeGraph: PropTypes.func.isRequired,
   diagnosisLoading: PropTypes.bool.isRequired,
   diagnosisFailed: PropTypes.bool,
-  accGraphLoading: PropTypes.bool.isRequired,
-  accGraphFailed: PropTypes.bool,
-  timeGraphLoading: PropTypes.bool.isRequired,
-  timeGraphFailed: PropTypes.bool,
   diagnosis: PropTypes.object.isRequired,
-  accGraph: PropTypes.object.isRequired,
-  timeGraph: PropTypes.object.isRequired,
-  result: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => ({
   diagnosisLoading: selectDiagnosisLoading(state),
   diagnosisFailed: selectDiagnosisFailed(state),
-  resultLoading: selectResultLoading(state),
-  resultFailed: selectResultFailed(state),
-  accGraphLoading: selectAccGraphLoading(state),
-  accGraphFailed: selectAccGraphFailed(state),
-  timeGraphLoading: selectTimeGraphLoading(state),
-  timeGraphFailed: selectTimeGraphFailed(state),
   diagnosis: selectDiagnosis(state),
-  result: selectResult(state),
-  accGraph: selectAccGraph(state),
-  timeGraph: selectTimeGraph(state),
 });
 
 const dispatchers = {
   fetchDiagnosis,
-  fetchResult,
   updateDiagnosis,
-  fetchAccuracyGraph,
-  fetchTimeGraph,
 };
 
-export default connect(mapStateToProps, dispatchers)(DiagnosisPage);
+export default connect(mapStateToProps, dispatchers)(withStyles(styles)(DiagnosisPage));

@@ -1,6 +1,7 @@
 import React, { Component, forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import {
+  deleteResult,
   listAllPatientResults,
   selectResults,
   selectResultsFailed,
@@ -41,6 +42,7 @@ class PatientResultsPage extends Component {
       resultsLoading,
       resultsFailed,
       results,
+      deleteResult,
     } = this.props;
 
     const tableIcons = {
@@ -153,7 +155,6 @@ class PatientResultsPage extends Component {
           ]}
           data={results}
           options={{
-
             cellStyle: {
               fontFamily: 'Helvetica',
               fontSize: 15,
@@ -164,6 +165,13 @@ class PatientResultsPage extends Component {
               fontSize: 17,
             },
           }}
+          editable={{
+            onRowDelete: (oldData) =>
+              new Promise((resolve, reject) => {
+                deleteResult(oldData.id)
+                  .then(this.setState(results, () => resolve()));
+              }),
+          }}
         />
       </div>
     );
@@ -173,6 +181,7 @@ class PatientResultsPage extends Component {
 
 PatientResultsPage.propTypes = {
   listAllPatientResults: PropTypes.func.isRequired,
+  deleteResult: PropTypes.func.isRequired,
   resultsLoading: PropTypes.bool.isRequired,
   resultsFailed: PropTypes.bool,
   results: PropTypes.array.isRequired,
@@ -186,6 +195,7 @@ const mapStateToProps = state => ({
 
 const dispatchers = {
   listAllPatientResults,
+  deleteResult,
 };
 
 export default connect(mapStateToProps, dispatchers)(PatientResultsPage);

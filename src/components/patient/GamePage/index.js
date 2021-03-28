@@ -11,7 +11,7 @@ import {
   selectResultFailed,
   selectResultLoading,
 } from '../../../redux/ducks/result';
-import Game from './Game';
+import Game from './game/Game';
 
 class GamePage extends Component {
 
@@ -44,7 +44,10 @@ class GamePage extends Component {
     if (!result.time) {
       return (
         <div className="main">
-          <Game time={result.time} accuracy={result.accuracy} nodeNum={result.nodeNum} />
+          <Game time={result.time}
+            accuracy={result.accuracy}
+            nodeNum={result.nodeNum}
+            id={result.id} />
         </div>
       );
     } else {

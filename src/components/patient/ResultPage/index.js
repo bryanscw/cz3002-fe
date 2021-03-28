@@ -4,15 +4,14 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import {
   Breadcrumbs,
+  Button,
   CircularProgress,
   Container,
-  Divider,
+  Grid,
   Link,
   Paper,
   Typography,
 } from '@material-ui/core';
-import { Alert, AlertTitle } from '@material-ui/lab';
-import Button from '@material-ui/core/Button';
 import { calculateAge } from '../../../utils/calculateAge';
 import { Bar } from 'react-chartjs-2';
 import {
@@ -33,6 +32,34 @@ import {
   selectTimeGraphFailed,
   selectTimeGraphLoading,
 } from '../../../redux/ducks/timeGraph';
+import { getBarColors } from '../../../utils/getBarColors';
+import { Alert, AlertTitle } from '@material-ui/lab';
+import { withStyles } from '@material-ui/core/styles';
+
+const styles = theme => ({
+  circularProgress: {
+    marginTop: 200,
+    marginLeft: 860,
+  },
+  breadcrumbs: {
+    marginLeft: 1,
+  },
+  graph: {
+    width: '50%',
+    float: 'left',
+    marginBottom: 30,
+  },
+  paper: {
+    padding: 50,
+    justifyContent: 'center',
+    margin: 'auto',
+  },
+  divDiagnosis: {
+    display: 'flex',
+    justifyContent: 'center',
+    marginTop: 50,
+  },
+});
 
 class ResultPage extends Component {
 
@@ -55,6 +82,7 @@ class ResultPage extends Component {
 
   render() {
     const {
+      classes,
       resultLoading,
       resultFailed,
       accGraphLoading,
@@ -67,11 +95,7 @@ class ResultPage extends Component {
     } = this.props;
 
     if (resultLoading || accGraphLoading || timeGraphLoading) {
-      return <CircularProgress align="center"
-        style={{
-          marginTop: 200,
-          marginLeft: 860,
-        }} />;
+      return <CircularProgress className={classes.circularProgress} align="center" />;
     }
 
     // If failed to fetch resources, redirect to not-found
@@ -79,6 +103,9 @@ class ResultPage extends Component {
     if (resultFailed || accGraphFailed || timeGraphFailed) {
       return <Redirect to="/not-found" />;
     }
+    const aColors = getBarColors(accGraph, result.accuracy, '#115293', '#ff7961');
+    const bColors = getBarColors(timeGraph, result.time, '#115293', '#ff7961');
+
     const aGraph = {
       labels: accGraph.labels,
       datasets: [
@@ -87,13 +114,12 @@ class ResultPage extends Component {
           data: accGraph.data,
           fill: true,
           lineTension: 0,
-          backgroundColor: '#115293',
+          backgroundColor: aColors,
           borderColor: 'rgba(75,192,192,1)',
         },
-
       ],
-
     };
+
     const tGraph = {
       labels: timeGraph.labels,
       datasets: [
@@ -102,127 +128,91 @@ class ResultPage extends Component {
           data: timeGraph.data,
           fill: true,
           lineTension: 0,
-          backgroundColor: '#115293',
+          backgroundColor: bColors,
           borderColor: 'rgba(75,192,192,1)',
         },
-
       ],
-
     };
+
     return (
       <Container>
         {
           // Check if user has completed the test
           result.time ? (
             <div>
-              <Breadcrumbs style={{ marginLeft: 1 }} separator="›" aria-label="breadcrumb">
+              <Breadcrumbs className={classes.breadcrumbs} separator="›" aria-label="breadcrumb">
                 <Link color="inherit" href="/dashboard">
                   Result
                 </Link>
-                <Typography color="textPrimary"> Result Detail</Typography>
+                <Typography color="textPrimary">{result.id}</Typography>
               </Breadcrumbs>
-              <Paper style={{
-                padding: 50,
-                justifyContent: 'center',
-                margin: 'auto',
-              }}>
-                <h1 style={{ textAlign: 'center' }}>Result</h1>
-                <div>
+              <Paper className={classes.paper}>
+                <div className={classes.graph}>
                   <Bar data={aGraph} />
                 </div>
-                <div>
+                <div className={classes.graph}>
                   <Bar data={tGraph} />
                 </div>
-                <label>
-                  <div style={{ marginTop: 30 }}><Typography style={{
-                    fontSize: 20,
-                    fontWeight: 600,
-                  }}>Patient </Typography></div>
-                  <div><Typography style={{
-                    marginTop: 10,
-                    fontSize: 18,
-                  }}> {result.user.name}</Typography></div>
-                  <Divider />
-                </label>
-                <label>
-                  <div style={{ marginTop: 25 }}><Typography style={{
-                    fontSize: 20,
-                    fontWeight: 600,
-                  }}>Patient Email </Typography></div>
-                  <div><Typography style={{
-                    marginTop: 10,
-                    fontSize: 18,
-                  }}> {result.user.email}</Typography></div>
-                  <Divider />
-                </label>
-                <label>
-                  <div style={{ marginTop: 25 }}><Typography style={{
-                    fontSize: 20,
-                    fontWeight: 600,
-                  }}>Age </Typography></div>
-                  <div><Typography style={{
-                    marginTop: 10,
-                    fontSize: 18,
-                  }}> {calculateAge(result.user.dob)}</Typography></div>
-                  <Divider />
-                </label>
-                <label>
-                  <div style={{ marginTop: 25 }}><Typography style={{
-                    fontSize: 20,
-                    fontWeight: 600,
-                  }}>Accuracy </Typography></div>
-                  <div><Typography style={{
-                    marginTop: 10,
-                    fontSize: 18,
-                  }}> {result.accuracy}</Typography></div>
-                  <Divider />
-                </label>
-                <label>
-                  <div style={{ marginTop: 25 }}><Typography style={{
-                    fontSize: 20,
-                    fontWeight: 600,
-                  }}>Time </Typography></div>
-                  <div><Typography style={{
-                    marginTop: 10,
-                    fontSize: 18,
-                  }}> {result.time}</Typography></div>
-                  <Divider />
-                </label>
-                <label>
-                  <div style={{ marginTop: 25 }}><Typography style={{
-                    fontSize: 20,
-                    fontWeight: 600,
-                  }}>Number Of Nodes</Typography></div>
-                  <div><Typography style={{
-                    marginTop: 10,
-                    fontSize: 18,
-                  }}> {result.nodeNum}</Typography></div>
-                  <Divider />
-                </label>
+                <Grid container spacing={3}>
+                  <Grid item xs={6}>
+                    <Typography gutterBottom>Patient</Typography>
+                    <Typography variant="subtitle1" color="textSecondary">
+                      {result.user.name}
+                    </Typography>
+                  </Grid>
 
+                  <Grid item xs={6}>
+                    <Typography gutterBottom>Patient Email</Typography>
+                    <Typography variant="subtitle1" color="textSecondary">
+                      {result.user.email}
+                    </Typography>
+                  </Grid>
+
+                  <Grid item xs={6}>
+                    <Typography gutterBottom>Age</Typography>
+                    <Typography variant="subtitle1" color="textSecondary">
+                      {calculateAge(result.user.dob)}
+                    </Typography>
+                  </Grid>
+
+                  <Grid item xs={6}>
+                    <Typography gutterBottom>Accuracy</Typography>
+                    <Typography variant="subtitle1" color="textSecondary">
+                      {result.accuracy}
+                    </Typography>
+                  </Grid>
+
+                  <Grid item xs={6}>
+                    <Typography gutterBottom>Time</Typography>
+                    <Typography variant="subtitle1" color="textSecondary">
+                      {result.time}
+                    </Typography>
+                  </Grid>
+
+                  <Grid item xs={6}>
+                    <Typography gutterBottom>Number Of Nodes</Typography>
+                    <Typography variant="subtitle1" color="textSecondary">
+                      {result.nodeNum}
+                    </Typography>
+                  </Grid>
+                </Grid>
+
+
+                {
+                  (result.diagnosis) ? (
+                      <div className={classes.divDiagnosis}>
+                        <Button color="primary"
+                          variant="contained"
+                          href={`/diagnosis/${result.id}`}>Diagnosis</Button>
+                      </div>
+                    ) :
+                    (
+                      <div className={classes.divDiagnosis}>
+                        <Button color="primary" variant="contained" disabled>Diagnosis</Button>
+                      </div>
+                    )
+                }
               </Paper>
-              {
-                (result.diagnosis) ? (
-                    <div style={{
-                      display: 'flex',
-                      justifyContent: 'center',
-                      marginTop: 20,
-                    }}>
-                      <Button color="primary"
-                        variant="contained"
-                        href={`/diagnosis/${result.id}`}>Diagnosis</Button>
-                    </div>
-                  ) :
-                  (
-                    <div style={{
-                      display: 'flex',
-                      justifyContent: 'center',
-                      marginTop: 20,
-                    }}>
-                      <Button color="primary" variant="contained" disabled>Diagnosis</Button>
-                    </div>
-                  )
-              }
             </div>
           ) : (
             <Alert severity="error">
@@ -275,4 +265,4 @@ const dispatchers = {
   fetchTimeGraph,
 };
 
-export default connect(mapStateToProps, dispatchers)(ResultPage);
+export default connect(mapStateToProps, dispatchers)(withStyles(styles)(ResultPage));
