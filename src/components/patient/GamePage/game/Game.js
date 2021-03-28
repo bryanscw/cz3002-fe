@@ -130,7 +130,6 @@ class Game extends Component {
 }
 
 Game.propTypes = {
-  /** An action creator for authenticating login */
   updateResult: PropTypes.func.isRequired,
 };
 
