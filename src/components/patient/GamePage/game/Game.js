@@ -3,8 +3,12 @@ import Result from './Result';
 import Control from './Control';
 import ListDot from './ListDot';
 import './game.css';
+import { connect } from 'react-redux'
 import Line from './Line';
-import { List } from "@material-ui/core";
+import {
+    updateResult
+  } from '../../../../redux/ducks/result';
+import PropTypes from "prop-types";
 
 class Game extends Component {
 
@@ -13,6 +17,7 @@ class Game extends Component {
         super(props);
 
         this.state = {
+          id: props.id,
           valX: [],
           valY: [],
           count: 1,
@@ -20,9 +25,20 @@ class Game extends Component {
           accuracy: 0,
           time: 0,
           mistake: 0,
+          nodeNum: props.nodeNum,
         };
 
         this.ListDot = React.createRef();
+        this.handleSubmit = this.handleSubmit.bind(this);
+
+    }
+
+    handleSubmit(event){
+
+        event.preventDefault();
+        this.props.updateResult(this.state);
+        console.log(localStorage.getItem("acessToken"));
+        window.location.reload(false);
 
     }
 
@@ -100,8 +116,8 @@ class Game extends Component {
 
         <div className="main">
         <div className="panel">
-            <Control start = {this.start} clear = {this.clear}/>
-            <Result time={this.state.time} accuracy={this.state.accuracy}/>
+            <Control start = {this.start} clear = {this.clear} submit = {this.handleSubmit}/>
+            <Result time={this.state.time} accuracy={this.state.accuracy} completed = {this.state.count-1} progress={(this.state.count-1)/this.state.nodeNum*100}/>
         </div>
         <div className="field">
             <ListDot nodeNum = { this.props.nodeNum } func = { this.click } ref = {this.ListDot}/>
@@ -112,7 +128,16 @@ class Game extends Component {
       )
   }
 }
-export default Game;
 
+Game.propTypes = {
+    /** An action creator for authenticating login */
+    updateResult: PropTypes.func.isRequired
+  };
+  
+  const dispatchers = {
+    updateResult
+  };
+  
+export default connect(() => ({}), dispatchers)(Game)
 
 

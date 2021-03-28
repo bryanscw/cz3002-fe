@@ -10,11 +10,11 @@ const Control = (props) => {
     return (
 
         <div className="result">
-            <form>
+            <form onSubmit={submit}>
                 <ButtonGroup variant="text" color="primary" aria-label="text primary button group">
                 <Button onClick = {start}> START </Button>
                 <Button onClick = {clear}> CLEAR </Button>
-                <Button onClick = {submit}> SUBMIT </Button>
+                <Button type = 'submit'> SUBMIT </Button>
                 </ButtonGroup>  
             </form>    
         </div>

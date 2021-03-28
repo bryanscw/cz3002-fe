@@ -1,4 +1,5 @@
 import React, { useRef, useEffect } from 'react';
+import './game.css';
 
 const Line= (props) => {
   const {valX , valY, count} = props ;
@@ -31,17 +32,9 @@ const Line= (props) => {
     ctx.stroke();
   }
 
-  const canvasStyle={
-    width: "1200px",
-    height: "500px",
-    backgroundColor: "#f5f5f5",
-    border: "0px",
-    borderRadius: "0px"  
-  }
-
   return (
-    <div className="App">
-      <canvas ref={canvas} style={canvasStyle}></canvas>
+    <div className = "App">
+      <canvas className = "canvas" ref={canvas}></canvas>
     </div>
   );
 }
