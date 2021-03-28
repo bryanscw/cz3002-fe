@@ -12,7 +12,7 @@ export default function Footer() {
        {/* //   style={{  position: "relative", bottom: "0", width:"100%" }} */}
       <Typography className="footer" variant="body2" color="textSecondary" align="center">
         {'Copyright © '}
-        <Link color="inherit" href="/about">
+        <Link color="inherit" underline="always" href="/about">
           QWERTY
         </Link>{' '}
         {new Date().getFullYear()}

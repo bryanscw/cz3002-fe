@@ -10,10 +10,11 @@ import {
   selectResultsLoading,
 } from '../../../redux/ducks/result';
 import PropTypes from 'prop-types';
-import { CircularProgress, Container, Grid, MenuItem, Paper } from '@material-ui/core';
+import { CircularProgress, Container, Grid, MenuItem, Paper, Box } from '@material-ui/core';
 import { Redirect } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import { Alert, AlertTitle } from '@material-ui/lab';
+import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 
 class CreateDiagnosisPage extends Component {
   constructor(props) {
@@ -144,11 +145,16 @@ class CreateDiagnosisPage extends Component {
                 View Diagnosis
               </Button>
             </Alert>
-          ) : <DiagnosisForm /> : (
-            <Alert severity="error">
-              <AlertTitle>Test not been completed yet</AlertTitle>
+          ) : <DiagnosisForm /> : ( 
+            <Box>
+           <Alert severity="error">
+              <AlertTitle>Test has not been completed yet</AlertTitle>
               <p><strong>Not</strong> allowed to create diagnosis until test has been completed.</p>
             </Alert>
+            <Button variant="contained" style={{ width: 300, height: 50, fontSize: 17, marginTop: 50, marginBottom: 30, marginLeft:460 }} color="primary" href="/diagnosis/pending">
+          <ArrowBackIosIcon/> Back to Diagnosis Page
+          </Button>
+            </Box>            
           )
         }
       </Container>

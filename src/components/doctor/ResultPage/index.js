@@ -35,6 +35,7 @@ import {
   selectTimeGraphFailed,
   selectTimeGraphLoading,
 } from '../../../redux/ducks/timeGraph';
+import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 
 class ResultPage extends Component {
   componentDidMount() {
@@ -230,11 +231,16 @@ class ResultPage extends Component {
 
             </Box>
           ) : (
+            <Box>
             <Alert severity="error">
               <AlertTitle>Test not been completed yet</AlertTitle>
               <p>No result available as test has <strong>not</strong> been
                  completed yet.</p>
             </Alert>
+            <Button variant="contained" style={{ width: 290, height: 50, fontSize: 17, marginTop: 50, marginBottom: 30, marginLeft:460 }} color="primary" href="/results">
+          <ArrowBackIosIcon/> Back to Result Page
+          </Button>
+            </Box>
           )
         }
       </Container>
