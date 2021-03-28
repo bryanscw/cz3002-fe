@@ -82,10 +82,13 @@ class CreateDiagnosisPage extends Component {
           maxWidth: 600,
         }}>
           <Breadcrumbs style={{ marginLeft: 1 }} separator="›" aria-label="breadcrumb">
-          <Link color="inherit" href="/diagnosis/pending">
-           Pending Diagnosis 
+          <Link color="inherit" href="/results">
+            Result
           </Link>
-          <Typography color="textPrimary">create Diagnosis</Typography>
+          <Link color="inherit" href={`/result/${result.id}`}>
+          {result.id}
+          </Link>
+          <Typography color="textPrimary"> create Diagnosis</Typography>
         </Breadcrumbs>
           <Form
             onSubmit={onSubmit}
