@@ -14,8 +14,6 @@ import {
   CircularProgress,
   Container,
   Grid,
-  GridList,
-  GridListTile,
   Link,
   Paper,
   Typography,
@@ -156,64 +154,57 @@ class DiagnosisPage extends Component {
           <div className={classes.graph}>
             <Bar data={tGraph} />
           </div>
-          <GridList cellHeight={110} cols={2}>
-            <GridListTile>
-              <Grid item xs={12}>
-                <Typography gutterBottom>Created By</Typography>
-                <Typography variant="subtitle1" color="textSecondary">
-                  {diagnosis.createdBy}
-                </Typography>
-              </Grid>
-            </GridListTile>
-            <GridListTile>
-              <Grid item xs={12}>
-                <Typography gutterBottom>Created Date</Typography>
-                <Typography variant="subtitle1" color="textSecondary">
-                  {Moment(diagnosis.createdDate).format('DD-MM-YYYY')}
-                </Typography>
-              </Grid>
-            </GridListTile>
-            <GridListTile>
-              <Grid item xs={12}>
-                <Typography gutterBottom>Last Modified By</Typography>
-                <Typography variant="subtitle1" color="textSecondary">
-                  {diagnosis.lastModifiedBy}
-                </Typography>
-              </Grid>
-            </GridListTile>
-            <GridListTile>
-              <Grid item xs={12}>
-                <Typography gutterBottom>Last Modified Date</Typography>
-                <Typography variant="subtitle1" color="textSecondary">
-                  {Moment(diagnosis.lastModifiedDate).format('DD-MM-YYYY')}
-                </Typography>
-              </Grid>
-            </GridListTile>
-            <GridListTile>
-              <Grid item xs={12}>
-                <Typography gutterBottom>Label</Typography>
-                <div>
-                  {
-                    labels.map(
-                      label => (
-                        label === diagnosis.label ?
-                          <Chip className={classes.chip} label={label} color="primary" /> :
-                          <Chip className={classes.chip} label={label} />
-                      ),
-                    )
-                  }
-                </div>
-              </Grid>
-            </GridListTile>
-            <GridListTile>
-              <Grid item xs={12}>
-                <Typography gutterBottom>Diagnosis Description</Typography>
-                <Typography variant="subtitle1" color="textSecondary">
-                  {diagnosis.description}
-                </Typography>
-              </Grid>
-            </GridListTile>
-          </GridList>
+          <Grid container spacing={3}>
+            <Grid item xs={6}>
+              <Typography gutterBottom>Created By</Typography>
+              <Typography variant="subtitle1" color="textSecondary">
+                {diagnosis.createdBy}
+              </Typography>
+            </Grid>
+
+            <Grid item xs={6}>
+              <Typography gutterBottom>Created Date</Typography>
+              <Typography variant="subtitle1" color="textSecondary">
+                {Moment(diagnosis.createdDate).format('DD-MM-YYYY')}
+              </Typography>
+            </Grid>
+
+            <Grid item xs={6}>
+              <Typography gutterBottom>Last Modified By</Typography>
+              <Typography variant="subtitle1" color="textSecondary">
+                {diagnosis.lastModifiedBy}
+              </Typography>
+            </Grid>
+
+            <Grid item xs={6}>
+              <Typography gutterBottom>Last Modified Date</Typography>
+              <Typography variant="subtitle1" color="textSecondary">
+                {Moment(diagnosis.lastModifiedDate).format('DD-MM-YYYY')}
+              </Typography>
+            </Grid>
+
+            <Grid item xs={6}>
+              <Typography gutterBottom>Label</Typography>
+              <div>
+                {
+                  labels.map(
+                    label => (
+                      label === diagnosis.label ?
+                        <Chip className={classes.chip} label={label} color="primary" /> :
+                        <Chip className={classes.chip} label={label} />
+                    ),
+                  )
+                }
+              </div>
+            </Grid>
+
+            <Grid item xs={6}>
+              <Typography gutterBottom>Diagnosis Description</Typography>
+              <Typography variant="subtitle1" color="textSecondary">
+                {diagnosis.description}
+              </Typography>
+            </Grid>
+          </Grid>
         </Paper>
       </Container>
     );
