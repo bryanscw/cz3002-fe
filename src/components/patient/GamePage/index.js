@@ -46,7 +46,10 @@ class GamePage extends Component {
     if (!result.time) {
       return (
         <div className="main">
-          <Game time={result.time} accuracy={result.accuracy} nodeNum={result.nodeNum} id={result.id}/>
+          <Game time={result.time}
+            accuracy={result.accuracy}
+            nodeNum={result.nodeNum}
+            id={result.id} />
         </div>
       );
     } else {
