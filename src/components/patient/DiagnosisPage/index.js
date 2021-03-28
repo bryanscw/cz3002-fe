@@ -18,36 +18,12 @@ import {
   Paper,
   Typography,
 } from '@material-ui/core';
-import {
-  fetchResult,
-  selectResult,
-  selectResultFailed,
-  selectResultLoading,
-} from '../../../redux/ducks/result';
-import {
-  fetchAccuracyGraph,
-  selectAccGraph,
-  selectAccGraphFailed,
-  selectAccGraphLoading,
-} from '../../../redux/ducks/accGraph';
-import {
-  fetchTimeGraph,
-  selectTimeGraph,
-  selectTimeGraphFailed,
-  selectTimeGraphLoading,
-} from '../../../redux/ducks/timeGraph';
-import { Bar } from 'react-chartjs-2';
 import Moment from 'moment';
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
   chip: {
     margin: theme.spacing(0.5),
-  },
-  graph: {
-    width: '50%',
-    float: 'left',
-    marginBottom: 30,
   },
   paper: {
     padding: 50,
@@ -62,94 +38,23 @@ class DiagnosisPage extends Component {
     this.props.fetchDiagnosis(resultId);
   }
 
-  componentDidUpdate(prevProps, prevState, snapshot) {
-    if (!prevProps.diagnosis && this.props.diagnosis) {
-      // Diagnosis has been loaded
-      this.props.fetchResult(this.props.diagnosis.result);
-    } else if (!prevProps.result && this.props.result) {
-      // Result has been loaded
-      const bins = 10;
-      const nodeNum = this.props.result.nodeNum;
-      this.props.fetchAccuracyGraph(bins, nodeNum);
-      this.props.fetchTimeGraph(bins, nodeNum);
-    } else if (!this.props.diagnosisLoading && this.props.diagnosisFailed) {
-      this.props.history.push('/not-found');
-    } else if (!this.props.resultLoading && this.props.resultFailed) {
-      this.props.history.push('/not-found');
-    }
-  }
-
   render() {
-
     const {
       classes,
       diagnosisLoading,
       diagnosisFailed,
-      resultLoading,
-      resultFailed,
-      accGraphLoading,
-      accGraphFailed,
-      timeGraphLoading,
-      timeGraphFailed,
       diagnosis,
-      accGraph,
-      timeGraph,
-      result,
     } = this.props;
 
-    if (diagnosisLoading || resultLoading || accGraphLoading || timeGraphLoading) {
+    if (diagnosisLoading) {
       return <CircularProgress />;
     }
 
     // If failed to fetch resources, redirect to not-found
     // Some check is done in componentDidMount, do a check again to be safe
-    if (diagnosisFailed || resultFailed || accGraphFailed || timeGraphFailed) {
+    if (diagnosisFailed) {
       return <Redirect to="/not-found" />;
     }
-    const aColors = [];
-    for (var i = 0; i < accGraph.labels.length; i++) {
-      if (accGraph.labels[i].indexOf(result.accuracy) > -1) {
-        aColors[i] = '#ff7961';
-      } else {
-        aColors[i] = '#115293';
-      }
-    }
-    const bColors = [];
-    for (var j = 0; j < timeGraph.labels.length; j++) {
-      if (timeGraph.labels[j].indexOf(result.time) > -1) {
-        bColors[j] = '#ff7961';
-      } else {
-        bColors[j] = '#115293';
-      }
-    }
-    const aGraph = {
-      labels: accGraph.labels,
-      datasets: [
-        {
-          label: 'accuracy',
-          data: accGraph.data,
-          fill: true,
-          lineTension: 0,
-          backgroundColor: aColors,
-          borderColor: 'rgba(75,192,192,1)',
-        },
-      ],
-    };
-
-    const tGraph = {
-      labels: timeGraph.labels,
-      datasets: [
-        {
-          label: 'time',
-          data: timeGraph.data,
-          fill: true,
-          lineTension: 0,
-          backgroundColor: bColors,
-          borderColor: 'rgba(75,192,192,1)',
-        },
-
-      ],
-    };
 
     const labels = ['High', 'Moderate', 'Low'];
 
@@ -165,12 +70,6 @@ class DiagnosisPage extends Component {
           <Typography color="textPrimary">Diagnosis</Typography>
         </Breadcrumbs>
         <Paper className={classes.paper}>
-          <div className={classes.graph}>
-            <Bar data={aGraph} />
-          </div>
-          <div className={classes.graph}>
-            <Bar data={tGraph} />
-          </div>
           <Grid container spacing={3}>
             <Grid item xs={6}>
               <Typography gutterBottom>Created By</Typography>
@@ -206,9 +105,11 @@ class DiagnosisPage extends Component {
                 {
                   labels.map(
                     label => (
-                      label === diagnosis.label ?
-                        <Chip className={classes.chip} label={label} color="primary" /> :
-                        <Chip className={classes.chip} label={label} />
+                      label === diagnosis.label
+                        ?
+                        <Chip key={label} className={classes.chip} label={label} color="primary" />
+                        :
+                        <Chip key={label} className={classes.chip} label={label} />
                     ),
                   )
                 }
@@ -231,41 +132,19 @@ class DiagnosisPage extends Component {
 
 DiagnosisPage.propType = {
   fetchDiagnosis: PropTypes.func.isRequired,
-  fetchResult: PropTypes.func.isRequired,
-  fetchAccuracyGraph: PropTypes.func.isRequired,
-  fetchTimeGraph: PropTypes.func.isRequired,
   diagnosisLoading: PropTypes.bool.isRequired,
   diagnosisFailed: PropTypes.bool,
-  accGraphLoading: PropTypes.bool.isRequired,
-  accGraphFailed: PropTypes.bool,
-  timeGraphLoading: PropTypes.bool.isRequired,
-  timeGraphFailed: PropTypes.bool,
   diagnosis: PropTypes.object.isRequired,
-  result: PropTypes.object.isRequired,
-  accGraph: PropTypes.object.isRequired,
-  timeGraph: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => ({
   diagnosisLoading: selectDiagnosisLoading(state),
   diagnosisFailed: selectDiagnosisFailed(state),
-  resultLoading: selectResultLoading(state),
-  resultFailed: selectResultFailed(state),
-  accGraphLoading: selectAccGraphLoading(state),
-  accGraphFailed: selectAccGraphFailed(state),
-  timeGraphLoading: selectTimeGraphLoading(state),
-  timeGraphFailed: selectTimeGraphFailed(state),
   diagnosis: selectDiagnosis(state),
-  result: selectResult(state),
-  accGraph: selectAccGraph(state),
-  timeGraph: selectTimeGraph(state),
 });
 
 const dispatchers = {
   fetchDiagnosis,
-  fetchResult,
-  fetchAccuracyGraph,
-  fetchTimeGraph,
 };
 
 export default connect(mapStateToProps, dispatchers)(withStyles(styles)(DiagnosisPage));

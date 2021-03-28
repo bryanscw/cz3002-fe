@@ -37,9 +37,12 @@ import {
 } from '../../../redux/ducks/timeGraph';
 
 import { withStyles } from '@material-ui/core/styles';
+import { getBarColors } from '../../../utils/getBarColors';
 
 const styles = theme => ({
-
+  breadcrumbs: {
+    marginLeft: 1,
+  },
   graph: {
     width: '50%',
     float: 'left',
@@ -49,6 +52,11 @@ const styles = theme => ({
     padding: 50,
     justifyContent: 'center',
     margin: 'auto',
+  },
+  divDiagnosisButtons: {
+    display: 'flex',
+    justifyContent: 'center',
+    marginTop: 50,
   },
 });
 
@@ -109,22 +117,9 @@ class ResultPage extends Component {
       );
     }
 
-    const aColors = [];
-    for (var i = 0; i < accGraph.labels.length; i++) {
-      if (accGraph.labels[i].indexOf(result.accuracy) > -1) {
-        aColors[i] = '#ff7961';
-      } else {
-        aColors[i] = '#115293';
-      }
-    }
-    const bColors = [];
-    for (var j = 0; j < timeGraph.labels.length; j++) {
-      if (timeGraph.labels[j].indexOf(result.time) > -1) {
-        bColors[j] = '#ff7961';
-      } else {
-        bColors[j] = '#115293';
-      }
-    }
+    const aColors = getBarColors(accGraph, result.accuracy, '#115293', '#ff7961');
+    const bColors = getBarColors(timeGraph, result.time, '#115293', '#ff7961');
+
     const aGraph = {
       labels: accGraph.labels,
       datasets: [
@@ -136,10 +131,9 @@ class ResultPage extends Component {
           backgroundColor: aColors,
           borderColor: 'rgba(75,192,192,1)',
         },
-
       ],
-
     };
+
     const tGraph = {
       labels: timeGraph.labels,
       datasets: [
@@ -151,13 +145,8 @@ class ResultPage extends Component {
           backgroundColor: bColors,
           borderColor: 'rgba(75,192,192,1)',
         },
-
       ],
-
     };
-
-    // const bars = aGraph.datasets[0].bars;
-
 
     return (
       <Container>
@@ -165,7 +154,7 @@ class ResultPage extends Component {
           // Check if user has completed the test
           result.time ? (
             <Box component="span" m={1}>
-              <Breadcrumbs style={{ marginLeft: 1 }} separator="›" aria-label="breadcrumb">
+              <Breadcrumbs className={classes.breadcrumbs} separator="›" aria-label="breadcrumb">
                 <Link color="inherit" href="/results">
                   Result
                 </Link>
@@ -181,42 +170,42 @@ class ResultPage extends Component {
                 </div>
                 <Grid container spacing={3}>
                   <Grid item xs={6}>
-                    <Typography gutterBottom>Patient :</Typography>
+                    <Typography gutterBottom>Patient</Typography>
                     <Typography variant="subtitle1" color="textSecondary">
                       {result.user.name}
                     </Typography>
                   </Grid>
 
                   <Grid item xs={6}>
-                    <Typography gutterBottom>Patient Email :</Typography>
+                    <Typography gutterBottom>Patient Email</Typography>
                     <Typography variant="subtitle1" color="textSecondary">
                       {result.user.email}
                     </Typography>
                   </Grid>
 
                   <Grid item xs={6}>
-                    <Typography gutterBottom>Age :</Typography>
+                    <Typography gutterBottom>Age</Typography>
                     <Typography variant="subtitle1" color="textSecondary">
                       {calculateAge(result.user.dob)}
                     </Typography>
                   </Grid>
 
                   <Grid item xs={6}>
-                    <Typography gutterBottom>Accuracy : </Typography>
+                    <Typography gutterBottom>Accuracy</Typography>
                     <Typography variant="subtitle1" color="textSecondary">
                       {result.accuracy}
                     </Typography>
                   </Grid>
 
                   <Grid item xs={6}>
-                    <Typography gutterBottom>Time : </Typography>
+                    <Typography gutterBottom>Time</Typography>
                     <Typography variant="subtitle1" color="textSecondary">
                       {result.time}
                     </Typography>
                   </Grid>
 
                   <Grid item xs={6}>
-                    <Typography gutterBottom>Number Of Nodes : </Typography>
+                    <Typography gutterBottom>Number Of Nodes</Typography>
                     <Typography variant="subtitle1" color="textSecondary">
                       {result.nodeNum}
                     </Typography>
@@ -224,11 +213,7 @@ class ResultPage extends Component {
                 </Grid>
 
 
-                <div style={{
-                  display: 'flex',
-                  justifyContent: 'center',
-                  marginTop: 50,
-                }}>
+                <div className={classes.divDiagnosisButtons}>
                   <DiagnosisButtons />
                 </div>
               </Paper>

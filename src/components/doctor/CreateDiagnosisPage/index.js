@@ -97,7 +97,7 @@ class CreateDiagnosisPage extends Component {
             <Link color="inherit" href={`/result/${result.id}`}>
               {result.id}
             </Link>
-            <Typography color="textPrimary"> create Diagnosis</Typography>
+            <Typography color="textPrimary"> Create Diagnosis</Typography>
           </Breadcrumbs>
           <Form
             onSubmit={onSubmit}
