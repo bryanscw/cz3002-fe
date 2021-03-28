@@ -11,19 +11,19 @@ import {
 } from '../../../redux/ducks/diagnosis';
 import {
   Breadcrumbs,
+  Chip,
   CircularProgress,
   Container,
   Dialog,
   DialogActions,
   DialogContent,
   DialogTitle,
+  Grid,
   Link,
   MenuItem,
   Paper,
   TextField,
   Typography,
-  Chip,
-  Grid
 } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import Moment from 'moment';
@@ -140,23 +140,21 @@ class DiagnosisPage extends Component {
       description: diagnosis.description,
     };
     const aColors = [];
-    for (var i=0;i< accGraph.labels.length;i++){
+    for (var i = 0; i < accGraph.labels.length; i++) {
       if (accGraph.labels[i].indexOf(result.accuracy) > -1) {
-        aColors[i]='#ff7961';
+        aColors[i] = '#ff7961';
+      } else {
+        aColors[i] = '#115293';
       }
-      else{
-        aColors[i]='#115293';
+    }
+    const bColors = [];
+    for (var j = 0; j < timeGraph.labels.length; j++) {
+      if (timeGraph.labels[j].indexOf(result.time) > -1) {
+        bColors[j] = '#ff7961';
+      } else {
+        bColors[j] = '#115293';
       }
-   }
-   const bColors = [];
-   for (var j=0;j< timeGraph.labels.length;j++){
-    if (timeGraph.labels[j].indexOf(result.time) > -1) {
-      bColors[j]='#ff7961';
     }
-    else{
-      bColors[j]='#115293';
-    }
- }
     const aGraph = {
       labels: accGraph.labels,
       datasets: [
@@ -197,7 +195,7 @@ class DiagnosisPage extends Component {
             Result
           </Link>
           <Link color="inherit" href={`/result/${diagnosis.result}`}>
-          {diagnosis.result}
+            {diagnosis.result}
           </Link>
           <Typography color="textPrimary">Diagnosis</Typography>
         </Breadcrumbs>
@@ -259,25 +257,24 @@ class DiagnosisPage extends Component {
               </Typography>
             </Grid>
           </Grid>
-        
 
-      
-        <div style={{
-          display: 'flex',
-          justifyContent: 'center',
-          marginTop: 50,
-        }}>
-          <Button variant="contained" color="primary"
-            onClick={() => {
-              this.setState({
-                open: true,
-                label: diagnosis.label,
-                description: diagnosis.description,
-              });
-            }}>
-            Edit Diagnosis
-          </Button>
-        </div>
+
+          <div style={{
+            display: 'flex',
+            justifyContent: 'center',
+            marginTop: 50,
+          }}>
+            <Button variant="contained" color="primary"
+              onClick={() => {
+                this.setState({
+                  open: true,
+                  label: diagnosis.label,
+                  description: diagnosis.description,
+                });
+              }}>
+              Edit Diagnosis
+            </Button>
+          </div>
         </Paper>
 
         <Dialog

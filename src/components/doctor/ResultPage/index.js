@@ -13,10 +13,10 @@ import {
   Breadcrumbs,
   CircularProgress,
   Container,
+  Grid,
   Link,
   Paper,
   Typography,
-  Grid,
 } from '@material-ui/core';
 import { Alert, AlertTitle } from '@material-ui/lab';
 import Button from '@material-ui/core/Button';
@@ -37,8 +37,9 @@ import {
 } from '../../../redux/ducks/timeGraph';
 
 import { withStyles } from '@material-ui/core/styles';
+
 const styles = theme => ({
- 
+
   graph: {
     width: '50%',
     float: 'left',
@@ -107,24 +108,23 @@ class ResultPage extends Component {
           )
       );
     }
+
     const aColors = [];
-    for (var i=0;i< accGraph.labels.length;i++){
+    for (var i = 0; i < accGraph.labels.length; i++) {
       if (accGraph.labels[i].indexOf(result.accuracy) > -1) {
-        aColors[i]='#ff7961';
+        aColors[i] = '#ff7961';
+      } else {
+        aColors[i] = '#115293';
       }
-      else{
-        aColors[i]='#115293';
+    }
+    const bColors = [];
+    for (var j = 0; j < timeGraph.labels.length; j++) {
+      if (timeGraph.labels[j].indexOf(result.time) > -1) {
+        bColors[j] = '#ff7961';
+      } else {
+        bColors[j] = '#115293';
       }
-   }
-   const bColors = [];
-   for (var j=0;j< timeGraph.labels.length;j++){
-    if (timeGraph.labels[j].indexOf(result.time) > -1) {
-      bColors[j]='#ff7961';
     }
-    else{
-      bColors[j]='#115293';
-    }
- }
     const aGraph = {
       labels: accGraph.labels,
       datasets: [
@@ -157,9 +157,8 @@ class ResultPage extends Component {
     };
 
     // const bars = aGraph.datasets[0].bars;
-    
-    
- 
+
+
     return (
       <Container>
         {
@@ -184,54 +183,54 @@ class ResultPage extends Component {
                   <Grid item xs={6}>
                     <Typography gutterBottom>Patient :</Typography>
                     <Typography variant="subtitle1" color="textSecondary">
-                    {result.user.name}
+                      {result.user.name}
                     </Typography>
                   </Grid>
 
                   <Grid item xs={6}>
                     <Typography gutterBottom>Patient Email :</Typography>
                     <Typography variant="subtitle1" color="textSecondary">
-                    {result.user.email}
+                      {result.user.email}
                     </Typography>
                   </Grid>
 
                   <Grid item xs={6}>
                     <Typography gutterBottom>Age :</Typography>
                     <Typography variant="subtitle1" color="textSecondary">
-                    {calculateAge(result.user.dob)}
+                      {calculateAge(result.user.dob)}
                     </Typography>
                   </Grid>
 
                   <Grid item xs={6}>
                     <Typography gutterBottom>Accuracy : </Typography>
                     <Typography variant="subtitle1" color="textSecondary">
-                    {result.accuracy}
+                      {result.accuracy}
                     </Typography>
                   </Grid>
 
                   <Grid item xs={6}>
                     <Typography gutterBottom>Time : </Typography>
                     <Typography variant="subtitle1" color="textSecondary">
-                    {result.time}
+                      {result.time}
                     </Typography>
                   </Grid>
 
                   <Grid item xs={6}>
                     <Typography gutterBottom>Number Of Nodes : </Typography>
                     <Typography variant="subtitle1" color="textSecondary">
-                    {result.nodeNum}
+                      {result.nodeNum}
                     </Typography>
                   </Grid>
                 </Grid>
-              
 
-              <div style={{
-                display: 'flex',
-                justifyContent: 'center',
-                marginTop: 50,
-              }}>
-                <DiagnosisButtons />
-              </div>
+
+                <div style={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  marginTop: 50,
+                }}>
+                  <DiagnosisButtons />
+                </div>
               </Paper>
             </Box>
           ) : (

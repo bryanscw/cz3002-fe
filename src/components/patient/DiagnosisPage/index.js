@@ -107,23 +107,21 @@ class DiagnosisPage extends Component {
       return <Redirect to="/not-found" />;
     }
     const aColors = [];
-    for (var i=0;i< accGraph.labels.length;i++){
+    for (var i = 0; i < accGraph.labels.length; i++) {
       if (accGraph.labels[i].indexOf(result.accuracy) > -1) {
-        aColors[i]='#ff7961';
+        aColors[i] = '#ff7961';
+      } else {
+        aColors[i] = '#115293';
       }
-      else{
-        aColors[i]='#115293';
+    }
+    const bColors = [];
+    for (var j = 0; j < timeGraph.labels.length; j++) {
+      if (timeGraph.labels[j].indexOf(result.time) > -1) {
+        bColors[j] = '#ff7961';
+      } else {
+        bColors[j] = '#115293';
       }
-   }
-   const bColors = [];
-   for (var j=0;j< timeGraph.labels.length;j++){
-    if (timeGraph.labels[j].indexOf(result.time) > -1) {
-      bColors[j]='#ff7961';
     }
-    else{
-      bColors[j]='#115293';
-    }
- }
     const aGraph = {
       labels: accGraph.labels,
       datasets: [
