@@ -201,14 +201,14 @@ class ResultPage extends Component {
                     </Typography>
                   </Grid>
                 </Grid>
-              </Paper>
+              
 
               {
                 (result.diagnosis) ? (
                     <div style={{
                       display: 'flex',
                       justifyContent: 'center',
-                      marginTop: 20,
+                      marginTop: 50,
                     }}>
                       <Button color="primary"
                         variant="contained"
@@ -219,12 +219,13 @@ class ResultPage extends Component {
                     <div style={{
                       display: 'flex',
                       justifyContent: 'center',
-                      marginTop: 20,
+                      marginTop: 50,
                     }}>
                       <Button color="primary" variant="contained" disabled>Diagnosis</Button>
                     </div>
                   )
               }
+              </Paper>
             </div>
           ) : (
             <Alert severity="error">
@@ -238,6 +239,7 @@ class ResultPage extends Component {
             </Alert>
           )
         }
+        
       </Container>
     );
   }

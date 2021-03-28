@@ -259,13 +259,13 @@ class DiagnosisPage extends Component {
               </Typography>
             </Grid>
           </Grid>
-        </Paper>
+        
 
       
         <div style={{
           display: 'flex',
           justifyContent: 'center',
-          marginTop: 20,
+          marginTop: 50,
         }}>
           <Button variant="contained" color="primary"
             onClick={() => {
@@ -278,6 +278,7 @@ class DiagnosisPage extends Component {
             Edit Diagnosis
           </Button>
         </div>
+        </Paper>
 
         <Dialog
           fullWidth

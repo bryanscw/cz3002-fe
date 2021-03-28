@@ -223,16 +223,16 @@ class ResultPage extends Component {
                     </Typography>
                   </Grid>
                 </Grid>
-              </Paper>
+              
 
               <div style={{
                 display: 'flex',
                 justifyContent: 'center',
-                marginTop: 20,
+                marginTop: 50,
               }}>
                 <DiagnosisButtons />
               </div>
-
+              </Paper>
             </Box>
           ) : (
             <Alert severity="error">
