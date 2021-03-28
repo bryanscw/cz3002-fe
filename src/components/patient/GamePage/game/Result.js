@@ -5,8 +5,8 @@ const Result = (props) => {
 
     return (
         <div className="result">
-            <p>{`Time: ${time}`}</p>
-            <p>{`Accuracy: ${accuracy}`}</p>
+            <p>{`Time: ${time}s`}</p>
+            <p>{`Accuracy: ${accuracy}%`}</p>
         </div>
     );
 };

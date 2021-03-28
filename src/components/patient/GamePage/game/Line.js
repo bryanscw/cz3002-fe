@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 
 const Line= (props) => {
-  const {valX , valY, nodeNum} = props ;
+  const {valX , valY, count} = props ;
   const canvas = useRef();
   let ctx = null;
   useEffect(() => {
@@ -11,7 +11,7 @@ const Line= (props) => {
     ctx = canvasEle.getContext("2d");
   });
 
-  let nodenumber=nodeNum; 
+  let nodenumber = count-1;
 
   useEffect(() => {
     for (let i=1;i<nodenumber;i++){
