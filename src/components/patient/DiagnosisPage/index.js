@@ -8,7 +8,15 @@ import {
   selectDiagnosisFailed,
   selectDiagnosisLoading,
 } from '../../../redux/ducks/diagnosis';
-import { CircularProgress, Container,Paper,Typography,Divider ,Link,Breadcrumbs} from '@material-ui/core';
+import {
+  Breadcrumbs,
+  CircularProgress,
+  Container,
+  Divider,
+  Link,
+  Paper,
+  Typography,
+} from '@material-ui/core';
 import {
   fetchResult,
   selectResult,
@@ -27,7 +35,7 @@ import {
   selectTimeGraphFailed,
   selectTimeGraphLoading,
 } from '../../../redux/ducks/timeGraph';
-import { Bar } from "react-chartjs-2";
+import { Bar } from 'react-chartjs-2';
 import Moment from 'moment';
 
 class DiagnosisPage extends Component {
@@ -83,84 +91,124 @@ class DiagnosisPage extends Component {
       labels: accGraph.labels,
       datasets: [
         {
-          label: "accuracy",
+          label: 'accuracy',
           data: accGraph.data,
           fill: true,
           lineTension: 0,
-          backgroundColor: "#115293",
-          borderColor: "rgba(75,192,192,1)"
+          backgroundColor: '#115293',
+          borderColor: 'rgba(75,192,192,1)',
         },
-        
+
       ],
-    
+
     };
     const tGraph = {
       labels: timeGraph.labels,
       datasets: [
         {
-          label: "time",
+          label: 'time',
           data: timeGraph.data,
           fill: true,
           lineTension: 0,
-          backgroundColor: "#115293",
-          borderColor: "rgba(75,192,192,1)"
+          backgroundColor: '#115293',
+          borderColor: 'rgba(75,192,192,1)',
         },
-        
+
       ],
-    
+
     };
     return (
-      <Container style={{width:900}}>
-        <Breadcrumbs style={{marginLeft:1}} separator="›" aria-label="breadcrumb">
-          <Link color="inherit" href="/dashboard" >
-           Result
+      <Container>
+        <Breadcrumbs style={{ marginLeft: 1 }} separator="›" aria-label="breadcrumb">
+          <Link color="inherit" href="/dashboard">
+            Result
           </Link>
           <Link color="inherit" href={`/result/${diagnosis.result}`}>
-           Result Detail
+            Result Detail
           </Link>
           <Typography color="textPrimary">Diagnosis</Typography>
         </Breadcrumbs>
-        <Paper style={{ padding:50, justifyContent: "center",margin:"auto",width:850}}>
-         <h1 style={{textAlign: "center"}}>Diagnosis</h1>
-         <div>
-              <Bar data={aGraph} />
-         </div>
-         <div>
-              <Bar data={tGraph} />
-         </div>
-         
-         <label>
-            <div style={{marginTop: 30}}><Typography  style={{fontSize: 20,fontWeight: 600}} >CreatedBy :  </Typography></div>
-            <div><Typography style={{marginTop: 10,fontSize:18}} > {diagnosis.createdBy}</Typography></div>
-            <Divider />
-         </label>
-         <label>
-            <div style={{marginTop: 25}}><Typography  style={{fontSize: 20,fontWeight: 600}} >Created Date:    </Typography></div>
-            <div><Typography style={{marginTop: 10,fontSize:18}} > {Moment(diagnosis.createdDate).format('DD-MM-YYYY')}</Typography></div>
-            <Divider />
-         </label>
-         <label>
-            <div style={{marginTop: 25}}><Typography  style={{fontSize: 20,fontWeight: 600}} >Category :   </Typography></div>
-            <div><Typography style={{marginTop: 10,fontSize:18}} > {diagnosis.label}</Typography></div>
-            <Divider />
-         </label>
-         <label>
-            <div style={{marginTop: 25}}><Typography  style={{fontSize: 20,fontWeight: 600}} >Comments : </Typography></div>
-            <div><Typography style={{marginTop: 10,fontSize:18}} > {diagnosis.description}</Typography></div>
-            <Divider />
-         </label>
-         <label>
-            <div style={{marginTop: 25}}><Typography  style={{fontSize: 20,fontWeight: 600}} >last modified by:   </Typography></div>
-            <div><Typography style={{marginTop: 10,fontSize:18}} > {diagnosis.lastModifiedBy}</Typography></div>
-            <Divider />
-         </label>
-         <label>
-            <div style={{marginTop: 25}}><Typography  style={{fontSize: 20,fontWeight: 600}} >last modified date:   </Typography></div>
-            <div><Typography style={{marginTop: 10,fontSize:18}} > {Moment(diagnosis.lastModifiedDate).format('DD-MM-YYYY')}</Typography></div>
-            <Divider />
-         </label>
+        <Paper style={{
+          padding: 50,
+          justifyContent: 'center',
+          margin: 'auto',
+        }}>
+          <h1 style={{ textAlign: 'center' }}>Diagnosis</h1>
+          <div>
+            <Bar data={aGraph} />
+          </div>
+          <div>
+            <Bar data={tGraph} />
+          </div>
 
-         </Paper>
+          <label>
+            <div style={{ marginTop: 30 }}><Typography style={{
+              fontSize: 20,
+              fontWeight: 600,
+            }}>CreatedBy : </Typography></div>
+            <div><Typography style={{
+              marginTop: 10,
+              fontSize: 18,
+            }}> {diagnosis.createdBy}</Typography></div>
+            <Divider />
+          </label>
+          <label>
+            <div style={{ marginTop: 25 }}><Typography style={{
+              fontSize: 20,
+              fontWeight: 600,
+            }}>Created Date: </Typography></div>
+            <div><Typography style={{
+              marginTop: 10,
+              fontSize: 18,
+            }}> {Moment(diagnosis.createdDate).format('DD-MM-YYYY')}</Typography></div>
+            <Divider />
+          </label>
+          <label>
+            <div style={{ marginTop: 25 }}><Typography style={{
+              fontSize: 20,
+              fontWeight: 600,
+            }}>Category : </Typography></div>
+            <div><Typography style={{
+              marginTop: 10,
+              fontSize: 18,
+            }}> {diagnosis.label}</Typography></div>
+            <Divider />
+          </label>
+          <label>
+            <div style={{ marginTop: 25 }}><Typography style={{
+              fontSize: 20,
+              fontWeight: 600,
+            }}>Comments : </Typography></div>
+            <div><Typography style={{
+              marginTop: 10,
+              fontSize: 18,
+            }}> {diagnosis.description}</Typography></div>
+            <Divider />
+          </label>
+          <label>
+            <div style={{ marginTop: 25 }}><Typography style={{
+              fontSize: 20,
+              fontWeight: 600,
+            }}>last modified by: </Typography></div>
+            <div><Typography style={{
+              marginTop: 10,
+              fontSize: 18,
+            }}> {diagnosis.lastModifiedBy}</Typography></div>
+            <Divider />
+          </label>
+          <label>
+            <div style={{ marginTop: 25 }}><Typography style={{
+              fontSize: 20,
+              fontWeight: 600,
+            }}>last modified date: </Typography></div>
+            <div><Typography style={{
+              marginTop: 10,
+              fontSize: 18,
+            }}> {Moment(diagnosis.lastModifiedDate).format('DD-MM-YYYY')}</Typography></div>
+            <Divider />
+          </label>
+
+        </Paper>
         {/* <p>{JSON.stringify(accGraph)}</p>
         <p>{JSON.stringify(timeGraph)}</p> */}
       </Container>
