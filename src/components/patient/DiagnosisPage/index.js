@@ -94,6 +94,7 @@ class DiagnosisPage extends Component {
       diagnosis,
       accGraph,
       timeGraph,
+      result,
     } = this.props;
 
     if (diagnosisLoading || resultLoading || accGraphLoading || timeGraphLoading) {
@@ -105,6 +106,24 @@ class DiagnosisPage extends Component {
     if (diagnosisFailed || resultFailed || accGraphFailed || timeGraphFailed) {
       return <Redirect to="/not-found" />;
     }
+    const aColors = [];
+    for (var i=0;i< accGraph.labels.length;i++){
+      if (accGraph.labels[i].indexOf(result.accuracy) > -1) {
+        aColors[i]='#ff7961';
+      }
+      else{
+        aColors[i]='#115293';
+      }
+   }
+   const bColors = [];
+   for (var j=0;j< timeGraph.labels.length;j++){
+    if (timeGraph.labels[j].indexOf(result.time) > -1) {
+      bColors[j]='#ff7961';
+    }
+    else{
+      bColors[j]='#115293';
+    }
+ }
     const aGraph = {
       labels: accGraph.labels,
       datasets: [
@@ -113,7 +132,7 @@ class DiagnosisPage extends Component {
           data: accGraph.data,
           fill: true,
           lineTension: 0,
-          backgroundColor: '#115293',
+          backgroundColor: aColors,
           borderColor: 'rgba(75,192,192,1)',
         },
       ],
@@ -127,7 +146,7 @@ class DiagnosisPage extends Component {
           data: timeGraph.data,
           fill: true,
           lineTension: 0,
-          backgroundColor: '#115293',
+          backgroundColor: bColors,
           borderColor: 'rgba(75,192,192,1)',
         },
 
