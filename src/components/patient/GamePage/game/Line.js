@@ -13,7 +13,7 @@ const Line = (props) => {
     const canvasEle = canvas.current;
     canvasEle.width = canvasEle.clientWidth;
     canvasEle.height = canvasEle.clientHeight;
-    ctx.current = canvasEle.getContext("2d");
+    ctx.current = canvasEle.getContext('2d');
   });
 
   let nodenumber = count - 1;
