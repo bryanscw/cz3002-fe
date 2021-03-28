@@ -8,7 +8,7 @@ import './index.css';
 export default function Footer() {
   return (
     <div className="footer">
-      <Container component="main" maxWidth="s" align="center">
+      <Container component="main"  align="center">
        {/* //   style={{  position: "relative", bottom: "0", width:"100%" }} */}
       <Typography className="footer" variant="body2" color="textSecondary" align="center">
         {'Copyright © '}

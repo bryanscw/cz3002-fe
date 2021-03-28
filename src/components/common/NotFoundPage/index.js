@@ -7,7 +7,7 @@ import ReportProblemRoundedIcon from '@material-ui/icons/ReportProblemRounded';
 export default function NotFoundPage() {
   return (
     <div className="container">
-      <Container component="main" maxWidth="s" align="center"    >
+      <Container component="main" align="center"    >
 
         <Typography variant="h2" style={{ marginBottom: 20, fontSize: 80 }}><ReportProblemRoundedIcon style={{ fontSize: 50 }} />    404 Not Found</Typography>
         <Typography variant="h5" style={{ marginBottom: 20 }}>Sorry, the page you are looking for can't be found.</Typography>

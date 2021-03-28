@@ -59,7 +59,8 @@ export class Header extends Component {
        
       <Button color="inherit" disableRipple disableFocusRipple >  
       <AccountCircle style={{ fontSize:30  }} /> &nbsp;Hello, {user.name}</Button> 
-        <Button color="inherit" href="/dashboard">Dashboard</Button>
+              <Button color="inherit" href="/dashboard">Dashboard</Button>
+              <Button color="inherit" href="/dashboard">About Us</Button>
         <Button color="inherit" href="/logout">Logout</Button>
       </Box>
     );

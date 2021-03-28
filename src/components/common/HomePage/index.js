@@ -16,7 +16,7 @@ export class HomePage extends Component {
 
     return (
       <div className="main">
-        <Container component="main" maxWidth="s" align="center">
+        <Container component="main" align="center">
           <Typography component="h1" variant="h2" color="textPrimary" gutterBottom>
             <Box fontSize={90} borderRadius={16}
               textAlign="center" letterSpacing={2} >
