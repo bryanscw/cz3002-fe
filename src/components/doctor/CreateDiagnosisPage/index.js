@@ -10,7 +10,16 @@ import {
   selectResultLoading,
 } from '../../../redux/ducks/result';
 import PropTypes from 'prop-types';
-import { CircularProgress, Container, Grid, MenuItem, Paper } from '@material-ui/core';
+import {
+  Breadcrumbs,
+  CircularProgress,
+  Container,
+  Grid,
+  Link,
+  MenuItem,
+  Paper,
+  Typography,
+} from '@material-ui/core';
 import { Redirect } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import { Alert, AlertTitle } from '@material-ui/lab';
@@ -68,11 +77,21 @@ class CreateDiagnosisPage extends Component {
 
     function DiagnosisForm(props) {
       return (
+
         <div style={{
           padding: 16,
           margin: 'auto',
           maxWidth: 600,
         }}>
+          <Breadcrumbs style={{ marginLeft: 1 }} separator="›" aria-label="breadcrumb">
+            <Link color="inherit" href="/results">
+              Result
+            </Link>
+            <Link color="inherit" href={`/result/${result.id}`}>
+              {result.id}
+            </Link>
+            <Typography color="textPrimary"> Create Diagnosis</Typography>
+          </Breadcrumbs>
           <Form
             onSubmit={onSubmit}
             initialValues={{}}

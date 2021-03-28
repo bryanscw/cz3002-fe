@@ -8,7 +8,16 @@ import {
   selectResultFailed,
   selectResultLoading,
 } from '../../../redux/ducks/result';
-import { Box, CircularProgress, Container } from '@material-ui/core';
+import {
+  Box,
+  Breadcrumbs,
+  CircularProgress,
+  Container,
+  Grid,
+  Link,
+  Paper,
+  Typography,
+} from '@material-ui/core';
 import { Alert, AlertTitle } from '@material-ui/lab';
 import Button from '@material-ui/core/Button';
 import {
@@ -17,12 +26,39 @@ import {
   selectAccGraphFailed,
   selectAccGraphLoading,
 } from '../../../redux/ducks/accGraph';
+
+import { Bar } from 'react-chartjs-2';
+import { calculateAge } from '../../../utils/calculateAge';
 import {
   fetchTimeGraph,
   selectTimeGraph,
   selectTimeGraphFailed,
   selectTimeGraphLoading,
 } from '../../../redux/ducks/timeGraph';
+
+import { withStyles } from '@material-ui/core/styles';
+import { getBarColors } from '../../../utils/getBarColors';
+
+const styles = theme => ({
+  breadcrumbs: {
+    marginLeft: 1,
+  },
+  graph: {
+    width: '50%',
+    float: 'left',
+    marginBottom: 30,
+  },
+  paper: {
+    padding: 50,
+    justifyContent: 'center',
+    margin: 'auto',
+  },
+  divDiagnosisButtons: {
+    display: 'flex',
+    justifyContent: 'center',
+    marginTop: 50,
+  },
+});
 
 class ResultPage extends Component {
   componentDidMount() {
@@ -44,6 +80,7 @@ class ResultPage extends Component {
 
   render() {
     const {
+      classes,
       resultLoading,
       resultFailed,
       accGraphLoading,
@@ -54,6 +91,7 @@ class ResultPage extends Component {
       accGraph,
       timeGraph,
     } = this.props;
+
 
     if (resultLoading || accGraphLoading || timeGraphLoading) {
       return <CircularProgress />;
@@ -67,15 +105,48 @@ class ResultPage extends Component {
 
     function DiagnosisButtons(props) {
       return (
-        (!result.diagnosis) ? (
-            <Button color="primary" href={`/diagnosis/${result.id}`}>View Diagnosis</Button>
+        (result.diagnosis) ? (
+            <Button color="primary"
+              variant="contained"
+              href={`/diagnosis/${result.id}`}>View Diagnosis</Button>
           ) :
           (
-            <Button color="primary"
+            <Button color="primary" variant="contained"
               href={`/diagnosis/${result.id}/create`}>Create Diagnosis</Button>
           )
       );
     }
+
+    const aColors = getBarColors(accGraph, result.accuracy, '#115293', '#ff7961');
+    const bColors = getBarColors(timeGraph, result.time, '#115293', '#ff7961');
+
+    const aGraph = {
+      labels: accGraph.labels,
+      datasets: [
+        {
+          label: 'accuracy',
+          data: accGraph.data,
+          fill: true,
+          lineTension: 0,
+          backgroundColor: aColors,
+          borderColor: 'rgba(75,192,192,1)',
+        },
+      ],
+    };
+
+    const tGraph = {
+      labels: timeGraph.labels,
+      datasets: [
+        {
+          label: 'time',
+          data: timeGraph.data,
+          fill: true,
+          lineTension: 0,
+          backgroundColor: bColors,
+          borderColor: 'rgba(75,192,192,1)',
+        },
+      ],
+    };
 
     return (
       <Container>
@@ -83,10 +154,69 @@ class ResultPage extends Component {
           // Check if user has completed the test
           result.time ? (
             <Box component="span" m={1}>
-              <p>{JSON.stringify(result)}</p>
-              <p>{JSON.stringify(accGraph)}</p>
-              <p>{JSON.stringify(timeGraph)}</p>
-              <DiagnosisButtons />
+              <Breadcrumbs className={classes.breadcrumbs} separator="›" aria-label="breadcrumb">
+                <Link color="inherit" href="/results">
+                  Result
+                </Link>
+                <Typography color="textPrimary">{result.id} </Typography>
+              </Breadcrumbs>
+
+              <Paper className={classes.paper}>
+                <div className={classes.graph}>
+                  <Bar data={aGraph} />
+                </div>
+                <div className={classes.graph}>
+                  <Bar data={tGraph} />
+                </div>
+                <Grid container spacing={3}>
+                  <Grid item xs={6}>
+                    <Typography gutterBottom>Patient</Typography>
+                    <Typography variant="subtitle1" color="textSecondary">
+                      {result.user.name}
+                    </Typography>
+                  </Grid>
+
+                  <Grid item xs={6}>
+                    <Typography gutterBottom>Patient Email</Typography>
+                    <Typography variant="subtitle1" color="textSecondary">
+                      {result.user.email}
+                    </Typography>
+                  </Grid>
+
+                  <Grid item xs={6}>
+                    <Typography gutterBottom>Age</Typography>
+                    <Typography variant="subtitle1" color="textSecondary">
+                      {calculateAge(result.user.dob)}
+                    </Typography>
+                  </Grid>
+
+                  <Grid item xs={6}>
+                    <Typography gutterBottom>Accuracy</Typography>
+                    <Typography variant="subtitle1" color="textSecondary">
+                      {result.accuracy}
+                    </Typography>
+                  </Grid>
+
+                  <Grid item xs={6}>
+                    <Typography gutterBottom>Time</Typography>
+                    <Typography variant="subtitle1" color="textSecondary">
+                      {result.time}
+                    </Typography>
+                  </Grid>
+
+                  <Grid item xs={6}>
+                    <Typography gutterBottom>Number Of Nodes</Typography>
+                    <Typography variant="subtitle1" color="textSecondary">
+                      {result.nodeNum}
+                    </Typography>
+                  </Grid>
+                </Grid>
+
+
+                <div className={classes.divDiagnosisButtons}>
+                  <DiagnosisButtons />
+                </div>
+              </Paper>
             </Box>
           ) : (
             <Alert severity="error">
@@ -135,4 +265,5 @@ const dispatchers = {
   fetchTimeGraph,
 };
 
-export default connect(mapStateToProps, dispatchers)(ResultPage);
+
+export default connect(mapStateToProps, dispatchers)(withStyles(styles)(ResultPage));
