@@ -25,4 +25,4 @@ export const getBarColors = (histogramData, xLabelOfInterest, defaultColor, inte
     }
   }
   return colors;
-}
+};
