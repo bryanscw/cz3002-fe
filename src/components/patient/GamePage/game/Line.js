@@ -8,12 +8,12 @@ const Line = (props) => {
     count,
   } = props;
   const canvas = useRef();
-  let ctx = null;
+  let ctx = useRef(null);
   useEffect(() => {
     const canvasEle = canvas.current;
     canvasEle.width = canvasEle.clientWidth;
     canvasEle.height = canvasEle.clientHeight;
-    ctx = canvasEle.getContext('2d');
+    ctx.current = canvasEle.getContext("2d");
   });
 
   let nodenumber = count - 1;
@@ -41,12 +41,12 @@ const Line = (props) => {
       width = 1,
     } = style;
 
-    ctx.beginPath();
-    ctx.moveTo(x, y);
-    ctx.lineTo(x1, y1);
-    ctx.strokeStyle = color;
-    ctx.lineWidth = width;
-    ctx.stroke();
+    ctx.current.beginPath();
+    ctx.current.moveTo(x, y);
+    ctx.current.lineTo(x1, y1);
+    ctx.current.strokeStyle = color;
+    ctx.current.lineWidth = width;
+    ctx.current.stroke();
   };
 
   return (
