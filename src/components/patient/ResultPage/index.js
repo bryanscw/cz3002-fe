@@ -130,11 +130,11 @@ class ResultPage extends Component {
                 <h1 style={{ textAlign: 'center' }}>Result</h1>
                 <div  style={{ width:'50%' ,float:'left',marginBottom:30}} >
                   <Bar data={aGraph} />
-                
+
                 </div>
                 <div style={{ width:'50%', float:'right',marginBottom:30}}>
                   <Bar  data={tGraph} />
-                
+
                 </div>
                 <GridList cellHeight={110}   cols={2}>
                   <GridListTile  style={{width:'5%'}} >
@@ -142,7 +142,7 @@ class ResultPage extends Component {
 
                       <FontAwesomeIcon icon={faHospitalUser} style={{color: "#115293",marginTop:10}}size = '3x' variant="contained" color="primary" />
                       </Grid>
-                  
+
                   </GridListTile>
                   <GridListTile style={{width:'45%'}} >
                       <Grid item  xs={12}>
@@ -150,7 +150,7 @@ class ResultPage extends Component {
                       <Typography style={{fontSize: 20,fontWeight: 600,}}>Patient : </Typography>
                       <Typography style={{marginTop: 10,fontSize: 18,}}> {result.user.name}</Typography>
                       </Grid>
-                  
+
                   </GridListTile>
 
                   <GridListTile  style={{width:'5%'}} >
@@ -158,7 +158,7 @@ class ResultPage extends Component {
 
                       <FontAwesomeIcon icon={faEnvelopeOpenText} style={{color: "#115293",marginTop:10}}size = '3x' variant="contained" color="primary" />
                       </Grid>
-                  
+
                   </GridListTile>
                   <GridListTile style={{width:'45%'}} >
                       <Grid item  xs={12}>
@@ -166,15 +166,15 @@ class ResultPage extends Component {
                       <Typography style={{fontSize: 20,fontWeight: 600,}}>Patient Email : </Typography>
                       <Typography style={{marginTop: 10,fontSize: 18,}}> {result.user.email}</Typography>
                       </Grid>
-                  
+
                   </GridListTile>
 
                   <GridListTile  style={{width:'5%'}} >
                       <Grid item  xs={12}>
 
-                      <FontAwesomeIcon icon={faIdCard} style={{color: "#115293",marginTop:10}}size = '3x' variant="contained" color="primary" />
+                      <FontAwesomeIcon icon={faIdCard} style={{color: "#115293",marginTop:10}} size = '3x' variant="contained" color="primary" />
                       </Grid>
-                  
+
                   </GridListTile>
                   <GridListTile style={{width:'45%'}} >
                       <Grid item  xs={12}>
@@ -182,7 +182,7 @@ class ResultPage extends Component {
                       <Typography style={{fontSize: 20,fontWeight: 600,}}>Age : </Typography>
                       <Typography style={{marginTop: 10,fontSize: 18,}}>  {calculateAge(result.user.dob)}</Typography>
                       </Grid>
-                  
+
                   </GridListTile>
 
                   <GridListTile  style={{width:'5%'}} >
@@ -190,7 +190,7 @@ class ResultPage extends Component {
 
                       <FontAwesomeIcon icon={faUserCheck} style={{color: "#115293",marginTop:10}}size = '3x' variant="contained" color="primary" />
                       </Grid>
-                  
+
                   </GridListTile>
                   <GridListTile style={{width:'45%'}} >
                       <Grid item  xs={12}>
@@ -198,16 +198,16 @@ class ResultPage extends Component {
                       <Typography style={{fontSize: 20,fontWeight: 600,}}>Accuracy : </Typography>
                       <Typography style={{marginTop: 10,fontSize: 18,}}>{result.accuracy}</Typography>
                       </Grid>
-                  
+
                   </GridListTile>
 
-                  
+
                   <GridListTile  style={{width:'5%'}} >
                       <Grid item  xs={12}>
 
                       <FontAwesomeIcon icon={faStopwatch} style={{color: "#115293",marginTop:10}}size = '3x' variant="contained" color="primary" />
                       </Grid>
-                  
+
                   </GridListTile>
                   <GridListTile style={{width:'45%'}} >
                       <Grid item  xs={12}>
@@ -215,7 +215,7 @@ class ResultPage extends Component {
                       <Typography style={{fontSize: 20,fontWeight: 600,}}>Time : </Typography>
                       <Typography style={{marginTop: 10,fontSize: 18,}}>{result.time}</Typography>
                       </Grid>
-                  
+
                   </GridListTile>
 
                   <GridListTile  style={{width:'5%'}} >
@@ -223,7 +223,7 @@ class ResultPage extends Component {
 
                       <FontAwesomeIcon icon={faQuestionCircle} style={{color: "#115293",marginTop:10}}size = '3x' variant="contained" color="primary" />
                       </Grid>
-                  
+
                   </GridListTile>
                   <GridListTile style={{width:'45%'}} >
                       <Grid item  xs={12}>
@@ -231,7 +231,7 @@ class ResultPage extends Component {
                       <Typography style={{fontSize: 20,fontWeight: 600,}}>Number Of Nodes : </Typography>
                       <Typography style={{marginTop: 10,fontSize: 18,}}>{result.nodeNum}</Typography>
                       </Grid>
-                  
+
                   </GridListTile>
                 </GridList>
 
