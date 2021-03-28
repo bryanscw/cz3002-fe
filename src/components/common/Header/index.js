@@ -16,24 +16,24 @@ const styles = theme => ({
   loginButton: {
     fontSize: 16,
     width: 100,
-    height:35,
+    height: 35,
     float: 'right',
-    color:'#ffffff',
-    backgroundColor:'#009688',
+    color: '#ffffff',
+    backgroundColor: '#009688',
     '&:hover': {
-      backgroundColor:'#4db6ac',
+      backgroundColor: '#4db6ac',
     },
   },
 
   logoutButton: {
     fontSize: 16,
     width: 100,
-    height:35,
+    height: 35,
     float: 'right',
-    color:'#ffffff',
-    backgroundColor:'#e91e63',
+    color: '#ffffff',
+    backgroundColor: '#e91e63',
     '&:hover': {
-      backgroundColor:'#f06292',
+      backgroundColor: '#f06292',
     },
   },
 });
@@ -51,16 +51,14 @@ export class Header extends Component {
     const {
       classes,
     } = this.props;
-   
 
 
     const authLinks = (
-      <Box className="buttons">                       
-       
-      <Button color="inherit" disableRipple disableFocusRipple >  
-      <AccountCircle style={{ fontSize:30  }} /> &nbsp;Hello, {user.name}</Button> 
-              <Button color="inherit" href="/dashboard">Dashboard</Button>
-              <Button color="inherit" href="/dashboard">About Us</Button>
+      <Box className="buttons">
+        <Button color="inherit" disableRipple disableFocusRipple>
+          <AccountCircle style={{ fontSize: 30 }} /> &nbsp; {user.name}
+        </Button>
+        <Button color="inherit" href="/dashboard">Dashboard</Button>
         <Button color="inherit" href="/logout">Logout</Button>
       </Box>
     );
@@ -71,12 +69,13 @@ export class Header extends Component {
 
     return (
       <AppBar position="static"
-      style={{ marginBottom: 60}} >
+        style={{ marginBottom: 60 }}>
         <CssBaseline />
         <Toolbar>
           <Typography style={{ flex: 1 }} variant="h6" color="inherit" noWrap>
-            <Link style={{ colour:'white'}} className={classes.header} href="/">TRAIL MAKING
-                                                      TEST</Link>
+            <Link style={{ colour: 'white' }}
+              className={classes.header}
+              href="/">TRAIL MAKING TEST</Link>
           </Typography>
           {user && Object.keys(user).length !== 0 ? authLinks : guestLinks}
         </Toolbar>

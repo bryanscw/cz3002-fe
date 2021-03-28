@@ -28,7 +28,11 @@ class PatientHomePage extends Component {
     } = this.props;
 
     if (resultsLoading) {
-      return <CircularProgress align="center" style={{ marginTop: 200, marginLeft: 860 }} />;
+      return <CircularProgress align="center"
+        style={{
+          marginTop: 200,
+          marginLeft: 860,
+        }} />;
     }
 
     if (resultsFailed) {

@@ -27,8 +27,9 @@ export class LogoutPage extends Component {
           variant="contained"
           color="secondary"
           style={{
-            marginTop: 20,           
-            height:40, fontSize:16
+            marginTop: 20,
+            height: 40,
+            fontSize: 16,
           }}
         >Go back to Login</Button>
 

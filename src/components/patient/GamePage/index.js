@@ -6,39 +6,37 @@ import { Alert, AlertTitle } from '@material-ui/lab';
 import { CircularProgress } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import {
-  listUserResults,
-  selectResults,
-  selectResultsFailed,
-  selectResultsLoading,
+  fetchResult,
+  selectResult,
+  selectResultFailed,
+  selectResultLoading,
 } from '../../../redux/ducks/result';
 import Game from './Game';
 
 class GamePage extends Component {
 
   componentDidMount() {
-    this.resultId = parseInt(this.props.match.params.resultId);
-    this.props.listUserResults(this.state);
+    const resultId = parseInt(this.props.match.params.resultId);
+    this.props.fetchResult(resultId);
   }
 
   render() {
     const {
-      resultsLoading,
-      resultsFailed,
-      results,
+      resultLoading,
+      resultFailed,
+      result,
     } = this.props;
 
-    if (resultsLoading) {
-      return <CircularProgress align="center" style={{ marginTop: 200, marginLeft: 860 }} />;
+    if (resultLoading) {
+      return <CircularProgress align="center"
+        style={{
+          marginTop: 200,
+          marginLeft: 860,
+        }} />;
     }
 
     // If failed to fetch results, redirect to not-found
-    if (resultsFailed) {
-      return <Redirect to="/not-found" />;
-    }
-
-    let result = results.find(o => o.id === this.resultId);
-
-    if (!result) {
+    if (resultFailed) {
       return <Redirect to="/not-found" />;
     }
 
@@ -46,7 +44,7 @@ class GamePage extends Component {
     if (!result.time) {
       return (
         <div className="main">
-          <Game time={result.time} accuracy={result.accuracy} nodeNum={result.nodeNum}/>
+          <Game time={result.time} accuracy={result.accuracy} nodeNum={result.nodeNum} />
         </div>
       );
     } else {
@@ -68,24 +66,20 @@ class GamePage extends Component {
 }
 
 GamePage.propType = {
-  /** An action creator */
-  listUserResults: PropTypes.func.isRequired,
-  /** A boolean to determine if the results are still being loaded (true: still loading, false: fully loaded) */
-  resultsLoading: PropTypes.bool.isRequired,
-  /** A boolean to determine if the users failed to be loaded the action creator(true: still loading or failed to load, false: successful load) */
-  resultsFailed: PropTypes.bool,
-  /** An array of results objects loaded by the action creator */
-  results: PropTypes.array.isRequired,
+  fetchResult: PropTypes.func.isRequired,
+  resultLoading: PropTypes.bool.isRequired,
+  resultFailed: PropTypes.bool,
+  result: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => ({
-  resultsLoading: selectResultsLoading(state),
-  resultsFailed: selectResultsFailed(state),
-  results: selectResults(state),
+  resultLoading: selectResultLoading(state),
+  resultFailed: selectResultFailed(state),
+  result: selectResult(state),
 });
 
 const dispatchers = {
-  listUserResults,
+  fetchResult,
 };
 
 export default connect(mapStateToProps, dispatchers)(GamePage);

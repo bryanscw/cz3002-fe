@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Container, Typography, Box } from '@material-ui/core';
+import { Box, Container, Typography } from '@material-ui/core';
 import { selectUser } from '../../../redux/ducks/auth';
 import Button from '@material-ui/core/Button';
 
@@ -19,9 +19,9 @@ export class HomePage extends Component {
         <Container component="main" align="center">
           <Typography component="h1" variant="h2" color="textPrimary" gutterBottom>
             <Box fontSize={90} borderRadius={16}
-              textAlign="center" letterSpacing={2} >
+              textAlign="center" letterSpacing={2}>
               Trail Making Test
-        </Box>
+            </Box>
           </Typography>
           <Typography variant="h5" align="center"
             color="textSecondary" style={{ marginTop: 40 }} paragraph>
@@ -31,7 +31,16 @@ export class HomePage extends Component {
           </Typography>
           {
             user && Object.keys(user).length !== 0 ? (
-              <Button variant="contained" style={{ width: 200, height: 50, fontSize: 17, marginTop: 50, marginBottom: 30 }} color="primary" href="/dashboard">
+              <Button variant="contained"
+                style={{
+                  width: 200,
+                  height: 50,
+                  fontSize: 17,
+                  marginTop: 50,
+                  marginBottom: 30,
+                }}
+                color="primary"
+                href="/dashboard">
                 To Dashboard
               </Button>
             ) : null

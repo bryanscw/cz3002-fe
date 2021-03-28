@@ -4,10 +4,10 @@ import { Field, Form } from 'react-final-form';
 import { Select, TextField } from 'final-form-material-ui';
 import { createDiagnosis } from '../../../redux/ducks/diagnosis';
 import {
-  listAllResults,
-  selectResults,
-  selectResultsFailed,
-  selectResultsLoading,
+  fetchResult,
+  selectResult,
+  selectResultFailed,
+  selectResultLoading,
 } from '../../../redux/ducks/result';
 import PropTypes from 'prop-types';
 import { CircularProgress, Container, Grid, MenuItem, Paper, Box } from '@material-ui/core';
@@ -29,29 +29,26 @@ class CreateDiagnosisPage extends Component {
 
   componentDidMount() {
     this.setState({ resultId: parseInt(this.props.match.params.resultId) });
-    this.props.listAllResults(this.state);
+    this.props.fetchResult(this.state.resultId);
   }
 
 
   render() {
     const {
-      resultsLoading,
-      resultsFailed,
-      results,
+      resultLoading,
+      resultFailed,
+      result,
     } = this.props;
 
-    if (resultsLoading) {
-      return <CircularProgress align="center" style={{ marginTop: 200, marginLeft: 860 }} />;
+    if (resultLoading) {
+      return <CircularProgress align="center"
+        style={{
+          marginTop: 200,
+          marginLeft: 860,
+        }} />;
     }
 
-    if (resultsFailed) {
-      return <Redirect to="/not-found" />;
-    }
-
-    let result = results.find(o => o.id === this.state.resultId);
-
-    // If no such result is found
-    if (!result) {
+    if (resultFailed) {
       return <Redirect to="/not-found" />;
     }
 
@@ -164,20 +161,20 @@ class CreateDiagnosisPage extends Component {
 }
 
 CreateDiagnosisPage.propTypes = {
-  listAllResults: PropTypes.func.isRequired,
-  resultsLoading: PropTypes.bool.isRequired,
-  resultsFailed: PropTypes.bool,
-  results: PropTypes.array.isRequired,
+  fetchResult: PropTypes.func.isRequired,
+  resultLoading: PropTypes.bool.isRequired,
+  resultFailed: PropTypes.bool,
+  result: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => ({
-  resultsLoading: selectResultsLoading(state),
-  resultsFailed: selectResultsFailed(state),
-  results: selectResults(state),
+  resultLoading: selectResultLoading(state),
+  resultFailed: selectResultFailed(state),
+  result: selectResult(state),
 });
 
 const dispatchers = {
-  listAllResults,
+  fetchResult,
   createDiagnosis,
 };
 

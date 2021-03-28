@@ -1,10 +1,11 @@
 import React from 'react';
-import { Container, Typography, Box, Grid, CardContent, Button } from '@material-ui/core';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
+import { Box, Button, CardContent, Container, Grid, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 import SupervisedUserCircleIcon from '@material-ui/icons/SupervisedUserCircle';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+
 /**
  * This component displays the about page of the web application.
  */
@@ -17,149 +18,104 @@ const useStyles = makeStyles({
     colour: '#9e9e9e',
   },
   name: {
-     fontSize: 23,
+    fontSize: 23,
   },
 });
 export default function AboutPage() {
   const classes = useStyles();
 
+  const teamMembers = [
+    {
+      name: 'Cassidy Lee Zi Hui',
+      role: 'Front-end Developer',
+      github: 'https://github.com/casslzh',
+    },
+    {
+      name: 'Heng Cheng Kiat',
+      role: 'Lead Developer',
+      github: 'https://github.com/hengchengkiat',
+    },
+    {
+      name: 'Ng Man Chun',
+      role: 'QA Engineer',
+      github: 'https://github.com/jay-ng-mc',
+    },
+    {
+      name: 'Niu Jianan',
+      role: 'Project Manager',
+      github: 'https://github.com/niujianan',
+    },
+    {
+      name: 'Su Voon Hou',
+      role: 'Project Manager',
+      github: 'https://github.com/voonhous',
+    },
+    {
+      name: 'Sin Chong Wen Bryan',
+      role: 'Backend Developer',
+      github: 'https://github.com/bryanscw',
+    },
+    {
+      name: 'Ye Ruiyi',
+      role: 'Project Manager',
+      github: 'https://github.com/yeruiyi',
+    },
+  ];
+
   return (
     <div className="main">
-      <Container component="main" >
+      <Container component="main">
         <Typography component="h1" variant="h2" borderRadius={16} color="textPrimary"
           gutterBottom>
           <Box fontSize={110} m={1} borderRadius={16}
-            textAlign="center" letterSpacing={8} >
+            textAlign="center" letterSpacing={8}>
             QWERTY
-        </Box>
-        </Typography>
-        <Typography component="h4" textAlign="center" variant="h2" style={{ marginTop: 15 }} color="black" gutterBottom>
-          <Box fontSize={70} textAlign="center" color="textSecondary" letterSpacing={1} >
-            <SupervisedUserCircleIcon style={{ fontSize: 123, color: '#616161' }} /><br />
           </Box>
-          <Box fontSize={60} textAlign="center" letterSpacing={1} >
-            Meet the Team
-        </Box>
         </Typography>
-        <Grid container direction="row" justify="center"
-          alignItems="center" spacing={3} style={{ marginTop: 30 }}>
-          <Grid item xs={11} sm={1} md={3}>
-            <Card style={{ width: 280 }}>
-              <CardContent>
-                <Typography gutterBottom variant="h5" className={classes.name} component="h2">
-                  Su Voon Hou<br />
-                </Typography>
-                <p className={classes.pos}>
-                  Project Manager
-                  </p>
+        <Typography component="h4"
+          textAlign="center"
+          variant="h2"
+          style={{ marginTop: 15 }}
+          color="black"
+          gutterBottom>
+          <Box fontSize={70} textAlign="center" color="textSecondary" letterSpacing={1}>
+            <SupervisedUserCircleIcon style={{
+              fontSize: 123,
+              color: '#616161',
+            }} /><br />
+          </Box>
+          <Box fontSize={60} textAlign="center" letterSpacing={1}>
+            Meet the Team
+          </Box>
+        </Typography>
+        <Grid container
+          direction="row"
+          justify="center"
+          alignItems="center"
+          spacing={3}
+          style={{ marginTop: 30 }}>
+          {
+            teamMembers.map(member => (
+              <Grid item xs={11} sm={1} md={3}>
+                <Card style={{ width: 280 }}>
+                  <CardContent>
+                    <Typography gutterBottom
+                      variant="h5"
+                      className={classes.name}
+                      component="h2">{member.name}</Typography>
+                    <Typography variant="body2" color="textSecondary" component="p">
+                      {member.role}
+                    </Typography>
                   </CardContent>
                   <CardActions>
-                  <Button size="small" href="https://github.com/voonhous" color="primary">
-                  Profile</Button>
+                    <Button size="small" href={member.github} color="primary">
+                      Github
+                    </Button>
                   </CardActions>
-            </Card>
-          </Grid>
-          <Grid item xs={11} sm={4} md={3}>
-            <Card style={{ width: 280 }}>
-              <CardContent>
-                <Typography gutterBottom variant="h5" className={classes.name}  component="h2">
-                  Heng Cheng Kiat<br />
-                </Typography>
-                <p className={classes.pos} >
-                  Lead Developer
-                  </p>
-                  </CardContent>
-                  <CardActions>
-                  <Button size="small" href="https://github.com/voonhous" color="primary">
-                  Profile</Button>
-                  </CardActions>
-            </Card>
-          </Grid>
-          <Grid item xs={12} sm={6} md={3}>
-            <Card style={{ width: 280 }}>
-              <CardContent>
-                <Typography gutterBottom variant="h5" className={classes.name} component="h2">
-                  Ye Ruiyi<br />
-                </Typography>
-                <p className={classes.pos} >
-                  Release Engineer/Manager
-                  </p>
-                  </CardContent>
-                  <CardActions>
-                  <Button size="small" href="https://github.com/yeruiyi" color="primary">
-                  Profile</Button>
-                  </CardActions>
-                  
-            </Card>
-          </Grid>
-          <Grid item xs={1} sm={1} md={3}>
-            <Card style={{ width: 280 }}>
-              <CardContent>
-                <Typography gutterBottom variant="h5" className={classes.name}  component="h2">
-                  Sin Chong Wen Bryan<br />
-                </Typography>
-                <p  className={classes.pos}>
-                  Back-end Developer
-                  </p>
-                  </CardContent>
-                  <CardActions>
-                  <Button size="small" href="https://github.com/bryanscw" color="primary">
-                  Profile</Button>
-                  </CardActions>
-                 
-            </Card>
-          </Grid>
-          <Grid item xs={1} sm={1} md={3}>
-            <Card style={{ width: 280 }}>
-              <CardContent>
-                <Typography gutterBottom variant="h5" className={classes.name}  component="h2">
-                  Cassidy Lee Zi Hui<br />
-                </Typography>
-                <p  className={classes.pos}>
-                  Front-end Developer
-                  </p>
-                  </CardContent>
-                  <CardActions>
-                  <Button size="small" href="https://github.com/casslzh" color="primary">
-                  Profile</Button>
-                  </CardActions>
-                  
-            </Card>
-          </Grid>
-          <Grid item xs={1} sm={1} md={3}>
-            <Card style={{ width: 280 }}>
-              <CardContent>
-                <Typography gutterBottom variant="h5" className={classes.name}  component="h2">
-                  Ng Man Chun, Jay<br />
-                </Typography>
-                <p className={classes.pos}>
-                  QA Engineer
-                  </p>
-                  </CardContent>
-                  <CardActions>
-                  <Button size="small" href="https://github.com/jay-ng-mc" color="primary">
-                  Profile</Button>
-                  </CardActions>
-                    
-            </Card>
-          </Grid>
-          <Grid item xs={1} sm={1} md={4}>
-            <Card style={{ width: 280 }}>
-              <CardContent>
-                <Typography gutterBottom variant="h5" className={classes.name}  component="h2">
-                  Niu Jianan<br />
-                </Typography>
-                <p className={classes.pos}>
-                  QA Manager
-                  </p>
-                  </CardContent>
-                  <CardActions>
-                  <Button size="small" href="https://github.com/niujianan" color="primary">
-                  Profile</Button>
-                  </CardActions>              
-            </Card>
-          </Grid>
-
+                </Card>
+              </Grid>
+            ))
+          }
         </Grid>
       </Container>
     </div>
