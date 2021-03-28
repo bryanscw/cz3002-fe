@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Line from './Line';
 import { createDot } from './util';
 
 class ListDot extends Component {
