@@ -1,10 +1,10 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import './game.css';
 
 const Line = (props) => {
   const {
-    valX, 
-    valY, 
+    valX,
+    valY,
     count,
   } = props;
   const canvas = useRef();
@@ -30,15 +30,15 @@ const Line = (props) => {
   });
 
   const drawLine = (info, style = {}) => {
-    const { 
+    const {
       x,
       y,
       x1,
       y1,
     } = info;
-    const { 
-      color = 'black', 
-      width = 1, 
+    const {
+      color = 'black',
+      width = 1,
     } = style;
 
     ctx.current.beginPath();
@@ -47,7 +47,7 @@ const Line = (props) => {
     ctx.current.strokeStyle = color;
     ctx.current.lineWidth = width;
     ctx.current.stroke();
-  }
+  };
 
   return (
     <div className="App">
