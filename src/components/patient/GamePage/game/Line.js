@@ -16,7 +16,12 @@ const Line= (props) => {
 
   useEffect(() => {
     for (let i=1;i<nodenumber;i++){
-        drawLine({ x: valX[i-1], y: valY[i-1], x1: valX[i], y1: valY[i] });
+        drawLine({ 
+          x: valX[i-1], 
+          y: valY[i-1], 
+          x1: valX[i], 
+          y1: valY[i] 
+        });
     }
   });
 

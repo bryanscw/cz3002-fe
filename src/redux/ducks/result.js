@@ -30,32 +30,32 @@ export const fetchResult = resultId => (dispatch, getState) => {
 
 export const updateResult = (result) => (dispatch, getState) => {
   dispatch(createApiAction(ENTITY_NAME, STATUSES.REQUEST, METHODS.UPDATE));
-  console.log("object:",result);
+  console.log('object:', result);
   axios
     .post(
       `${API_URL}/result/update/${result.id}`,
       result = {
-        "id" : null,
-        "createdBy" : null,
-        "createdDate" : null,
-        "lastModifiedBy" : null,
-        "lastModifiedDate" : null,
-        "user" : {
-          "email" : "create-candidate@test.com",
-          "role" : null,
-          "name" : null,
-          "dob" : null,
-          "gender" : null
+        'id': null,
+        'createdBy': null,
+        'createdDate': null,
+        'lastModifiedBy': null,
+        'lastModifiedDate': null,
+        'user': {
+          'email': 'create-candidate@test.com',
+          'role': null,
+          'name': null,
+          'dob': null,
+          'gender': null,
         },
-        "accuracy" : result.accuracy,
-        "time" : result.time,
-        "nodeNum" : result.nodeNum,
-        "diagnosis" : null
+        'accuracy': result.accuracy,
+        'time': result.time,
+        'nodeNum': result.nodeNum,
+        'diagnosis': null,
       },
       getTokenConfig(getState),
     )
     .then(res => {
-      dispatch(createApiAction(ENTITY_NAME, STATUSES.SUCCESS, METHODS.UPDATE,res.data));
+      dispatch(createApiAction(ENTITY_NAME, STATUSES.SUCCESS, METHODS.UPDATE, res.data));
     })
     .catch(err => {
       displayError('Unable to create result')(dispatch);
