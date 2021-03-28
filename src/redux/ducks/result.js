@@ -83,16 +83,15 @@ export const createResult = result => (dispatch, getState) => {
     });
 };
 
-export const deleteResult = result => (dispatch, getState) => {
+export const deleteResult = resultId => (dispatch, getState) => {
   dispatch(createApiAction(ENTITY_NAME, STATUSES.REQUEST, METHODS.DELETE));
   axios
     .delete(
-      `${API_URL}/result/${result.id}`,
+      `${API_URL}/result/delete/${resultId}`,
       getTokenConfig(getState),
     )
     .then(res => {
-      dispatch(createApiAction(ENTITY_NAME, STATUSES.SUCCESS, METHODS.DELETE,
-        result.id));
+      dispatch(createApiAction(ENTITY_NAME, STATUSES.SUCCESS, METHODS.DELETE, resultId));
     })
     .catch(err => {
       displayError('Unable to delete result')(dispatch);
