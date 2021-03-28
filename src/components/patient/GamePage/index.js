@@ -28,7 +28,11 @@ class GamePage extends Component {
     } = this.props;
 
     if (resultLoading) {
-      return <CircularProgress />;
+      return <CircularProgress align="center"
+        style={{
+          marginTop: 200,
+          marginLeft: 860,
+        }} />;
     }
 
     // If failed to fetch results, redirect to not-found

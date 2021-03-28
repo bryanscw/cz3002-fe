@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import {
   Breadcrumbs,
@@ -33,10 +34,13 @@ import {
 } from '../../../redux/ducks/timeGraph';
 import { getBarColors } from '../../../utils/getBarColors';
 import { Alert, AlertTitle } from '@material-ui/lab';
-import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
+  circularProgress: {
+    marginTop: 200,
+    marginLeft: 860,
+  },
   breadcrumbs: {
     marginLeft: 1,
   },
@@ -56,7 +60,6 @@ const styles = theme => ({
     marginTop: 50,
   },
 });
-
 
 class ResultPage extends Component {
 
@@ -92,7 +95,7 @@ class ResultPage extends Component {
     } = this.props;
 
     if (resultLoading || accGraphLoading || timeGraphLoading) {
-      return <CircularProgress />;
+      return <CircularProgress className={classes.circularProgress} align="center" />;
     }
 
     // If failed to fetch resources, redirect to not-found
@@ -223,7 +226,6 @@ class ResultPage extends Component {
             </Alert>
           )
         }
-
       </Container>
     );
   }

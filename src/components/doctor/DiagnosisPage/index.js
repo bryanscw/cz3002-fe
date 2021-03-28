@@ -31,7 +31,7 @@ import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
   breadcrumbs: {
-    marginLeft: 1
+    marginLeft: 1,
   },
   chip: {
     margin: theme.spacing(0.5),
@@ -270,6 +270,5 @@ const dispatchers = {
   fetchDiagnosis,
   updateDiagnosis,
 };
-
 
 export default connect(mapStateToProps, dispatchers)(withStyles(styles)(DiagnosisPage));

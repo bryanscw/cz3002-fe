@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
-
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert from '@material-ui/lab/Alert';
 import { closeError, selectErrors } from '../../../redux/ducks/errors';
 import './styles.css';
 
@@ -16,6 +15,12 @@ export class Errors extends Component {
       errors,
     } = this.props;
 
+
+    function Alert(props) {
+      return <MuiAlert
+        elevation={6} variant="filled" {...props} />;
+    }
+
     return (
       <div className="error-wrapper">
         {
@@ -23,16 +28,18 @@ export class Errors extends Component {
             <div className={`toast ${error.isVisible ? 'error-shown'
               : 'error-hidden'}`} key={error.id}>
               <div className="toast-header">
-                <strong className="mr-auto text-danger">
-                  <FontAwesomeIcon icon={faExclamationTriangle} /> Error
-                </strong>
-                <button className="ml-2 mb-1 close" data-dismiss="toast"
-                  aria-label="Close"
-                  onClick={() => this.props.closeError(error.id)}>
-                  <span aria-hidden="true">&times;</span>
-                </button>
+                <Snackbar open={error.id}
+                  autoHideDuration={6000}
+                  onClose={() => this.props.closeError(error.id)}>
+                  <Alert style={{
+                    height: 50,
+                    fontSize: 15,
+                    fontFamily: 'Helvetica',
+                  }} onClose={() => this.props.closeError(error.id)} severity="error">
+                    {error.message}
+                  </Alert>
+                </Snackbar>
               </div>
-              <div className="toast-body">{error.message}</div>
             </div>
           ))
         }

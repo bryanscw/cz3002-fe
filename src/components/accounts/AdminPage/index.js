@@ -70,7 +70,13 @@ class AdminPage extends Component {
     };
 
     if (usersLoading) {
-      return <CircularProgress />;
+
+      return <CircularProgress align="center"
+        style={{
+          marginTop: 200,
+          marginLeft: 860,
+        }} />;
+
     }
 
     return (

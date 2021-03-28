@@ -74,7 +74,11 @@ class LoginPage extends Component {
                   fullWidth
                   variant="contained"
                   color="secondary"
-                  style={{ marginTop: 20 }}
+                  style={{
+                    marginTop: 20,
+                    height: 40,
+                    fontSize: 16,
+                  }}
                 >Login</Button>
               </div>
             </form>

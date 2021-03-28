@@ -45,7 +45,11 @@ class AppRouter extends Component {
     } = this.props;
 
     if (userLoading && refresh_token) {
-      return <CircularProgress />;
+      return <CircularProgress align="center"
+        style={{
+          marginTop: 200,
+          marginLeft: 860,
+        }} />;
     }
 
     let routes = [
@@ -84,6 +88,7 @@ class AppRouter extends Component {
     }
 
     return (
+
       <BrowserRouter>
         <Errors />
         <Header />
@@ -95,8 +100,10 @@ class AppRouter extends Component {
           {routes}
           <Redirect from="/" to="/not-found" />
         </Switch>
+
         <Footer />
       </BrowserRouter>
+
     );
   }
 

@@ -11,7 +11,8 @@ import {
 
 export default function DoctorHomePage() {
   return (
-    <Container maxWidth="md">
+    <Container maxWidth="md" align="center"
+      style={{ marginTop: 200 }}>
       <Grid container direction="row" justify="center"
         alignItems="center" spacing={4}>
         <Grid item xs={12} sm={6} md={4}>
@@ -28,6 +29,7 @@ export default function DoctorHomePage() {
             </CardActions>
           </Card>
         </Grid>
+
         <Grid item xs={12} sm={6} md={4}>
           <Card>
             <CardContent>

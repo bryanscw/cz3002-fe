@@ -26,7 +26,6 @@ import {
   selectAccGraphFailed,
   selectAccGraphLoading,
 } from '../../../redux/ducks/accGraph';
-
 import { Bar } from 'react-chartjs-2';
 import { calculateAge } from '../../../utils/calculateAge';
 import {
@@ -35,6 +34,7 @@ import {
   selectTimeGraphFailed,
   selectTimeGraphLoading,
 } from '../../../redux/ducks/timeGraph';
+import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 
 import { withStyles } from '@material-ui/core/styles';
 import { getBarColors } from '../../../utils/getBarColors';
@@ -92,9 +92,12 @@ class ResultPage extends Component {
       timeGraph,
     } = this.props;
 
-
     if (resultLoading || accGraphLoading || timeGraphLoading) {
-      return <CircularProgress />;
+      return <CircularProgress align="center"
+        style={{
+          marginTop: 200,
+          marginLeft: 860,
+        }} />;
     }
 
     // If failed to fetch resources, redirect to not-found
@@ -219,11 +222,26 @@ class ResultPage extends Component {
               </Paper>
             </Box>
           ) : (
-            <Alert severity="error">
-              <AlertTitle>Test not been completed yet</AlertTitle>
-              <p>No result available as test has <strong>not</strong> been
-                 completed yet.</p>
-            </Alert>
+            <Box>
+              <Alert severity="error">
+                <AlertTitle>Test not been completed yet</AlertTitle>
+                <p>No result available as test has <strong>not</strong> been
+                   completed yet.</p>
+              </Alert>
+              <Button variant="contained"
+                style={{
+                  width: 290,
+                  height: 50,
+                  fontSize: 17,
+                  marginTop: 50,
+                  marginBottom: 30,
+                  marginLeft: 460,
+                }}
+                color="primary"
+                href="/results">
+                <ArrowBackIosIcon /> Back to Result Page
+              </Button>
+            </Box>
           )
         }
       </Container>
@@ -264,6 +282,5 @@ const dispatchers = {
   fetchAccuracyGraph,
   fetchTimeGraph,
 };
-
 
 export default connect(mapStateToProps, dispatchers)(withStyles(styles)(ResultPage));
