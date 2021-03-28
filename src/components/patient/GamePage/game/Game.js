@@ -130,17 +130,6 @@ class Game extends Component {
 }
 
 Game.propTypes = {
-<<<<<<< HEAD
-    /** An action creator for authenticating login */
-    updateResult: PropTypes.func.isRequired
-  };
-  
-  const dispatchers = {
-    updateResult
-  };
-  
-export default connect(() => ({}), dispatchers)(Game)
-=======
   /** An action creator for authenticating login */
   updateResult: PropTypes.func.isRequired,
 };
@@ -150,6 +139,5 @@ const dispatchers = {
 };
 
 export default connect(() => ({}), dispatchers)(Game);
->>>>>>> 799920a05a939cfa24f474c32b49da571e75cfda
 
 
