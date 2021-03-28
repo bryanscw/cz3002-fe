@@ -257,7 +257,7 @@ class DiagnosisPage extends Component {
           <GridListTile style={{width:'45%'}}>
               <Grid item  xs={12}>
 
-              <Typography style={{fontSize: 20,fontWeight: 600,}}>last modified by: </Typography>
+              <Typography style={{fontSize: 20,fontWeight: 600,}}>Last Modified By: </Typography>
               <Typography style={{marginTop: 10,fontSize: 18,}}> {diagnosis.lastModifiedBy}</Typography>
               </Grid>
              
@@ -273,7 +273,7 @@ class DiagnosisPage extends Component {
           <GridListTile style={{width:'45%'}}>
               <Grid item  xs={12}>
 
-              <Typography style={{fontSize: 20,fontWeight: 600,}}>last modified date: </Typography>
+              <Typography style={{fontSize: 20,fontWeight: 600,}}>Last Modified Date: </Typography>
               <Typography style={{marginTop: 10,fontSize: 18,}}> {Moment(diagnosis.lastModifiedDate).format('DD-MM-YYYY')}</Typography>
               </Grid>
              

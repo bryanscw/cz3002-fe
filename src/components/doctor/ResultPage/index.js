@@ -128,7 +128,13 @@ class ResultPage extends Component {
       ],
 
     };
-
+    // for (var i=0;i<accGraph.labels.length;i++){
+    //    if (accGraph.labels[i][0] == result.accuracy || accGraph.labels[i][1] == result.accuracy) {
+    //     accGraph.backgroundColor ="#000000";
+    //    }
+    // }
+    
+ 
     return (
       <Container>
         {
@@ -149,6 +155,7 @@ class ResultPage extends Component {
               }}>
                 <h1 style={{ textAlign: 'center' }}>Result</h1>
                 <div  style={{ width:'50%' ,float:'left',marginBottom:30}} >
+                  
                   <Bar data={aGraph} />
                 
                 </div>
