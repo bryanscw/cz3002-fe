@@ -9,9 +9,7 @@ import {
   Link,
   Paper,
   Typography,
-  GridList,
   Grid,
-  GridListTile
 } from '@material-ui/core';
 import { Alert, AlertTitle } from '@material-ui/lab';
 import Button from '@material-ui/core/Button';
@@ -35,8 +33,20 @@ import {
   selectTimeGraphFailed,
   selectTimeGraphLoading,
 } from '../../../redux/ducks/timeGraph';
-import { faHospitalUser,faEnvelopeOpenText,faIdCard,faUserCheck,faStopwatch,faQuestionCircle} from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { withStyles } from '@material-ui/core/styles';
+const styles = theme => ({
+ 
+  graph: {
+    width: '50%',
+    float: 'left',
+    marginBottom: 30,
+  },
+  paper: {
+    padding: 50,
+    justifyContent: 'center',
+    margin: 'auto',
+  },
+});
 
 
 class ResultPage extends Component {
@@ -60,6 +70,7 @@ class ResultPage extends Component {
 
   render() {
     const {
+      classes,
       resultLoading,
       resultFailed,
       accGraphLoading,
@@ -120,122 +131,60 @@ class ResultPage extends Component {
                 <Link color="inherit" href="/dashboard">
                   Result
                 </Link>
-                <Typography color="textPrimary">  Result ID: {result.id} Detail </Typography>
+                <Typography color="textPrimary">   {result.id}  </Typography>
               </Breadcrumbs>
-              <Paper style={{
-                padding: 50,
-                justifyContent: 'center',
-                margin: 'auto',
-              }}>
-                <h1 style={{ textAlign: 'center' }}>Result</h1>
-                <div  style={{ width:'50%' ,float:'left',marginBottom:30}} >
+              <Paper className={classes.paper}>
+                <div className={classes.graph}>
                   <Bar data={aGraph} />
-
                 </div>
-                <div style={{ width:'50%', float:'right',marginBottom:30}}>
-                  <Bar  data={tGraph} />
-
+                <div className={classes.graph}>
+                  <Bar data={tGraph} />
                 </div>
-                <GridList cellHeight={110}   cols={2}>
-                  <GridListTile  style={{width:'5%'}} >
-                      <Grid item  xs={12}>
+                <Grid container spacing={3}>
+                  <Grid item xs={6}>
+                    <Typography gutterBottom>Patient :</Typography>
+                    <Typography variant="subtitle1" color="textSecondary">
+                    {result.user.name}
+                    </Typography>
+                  </Grid>
 
-                      <FontAwesomeIcon icon={faHospitalUser} style={{color: "#115293",marginTop:10}}size = '3x' variant="contained" color="primary" />
-                      </Grid>
+                  <Grid item xs={6}>
+                    <Typography gutterBottom>Patient Email :</Typography>
+                    <Typography variant="subtitle1" color="textSecondary">
+                    {result.user.email}
+                    </Typography>
+                  </Grid>
 
-                  </GridListTile>
-                  <GridListTile style={{width:'45%'}} >
-                      <Grid item  xs={12}>
+                  <Grid item xs={6}>
+                    <Typography gutterBottom>Age :</Typography>
+                    <Typography variant="subtitle1" color="textSecondary">
+                    {calculateAge(result.user.dob)}
+                    </Typography>
+                  </Grid>
 
-                      <Typography style={{fontSize: 20,fontWeight: 600,}}>Patient : </Typography>
-                      <Typography style={{marginTop: 10,fontSize: 18,}}> {result.user.name}</Typography>
-                      </Grid>
+                  <Grid item xs={6}>
+                    <Typography gutterBottom>Accuracy : </Typography>
+                    <Typography variant="subtitle1" color="textSecondary">
+                    {result.accuracy}
+                    </Typography>
+                  </Grid>
 
-                  </GridListTile>
+                  <Grid item xs={6}>
+                    <Typography gutterBottom>Time : </Typography>
+                    <Typography variant="subtitle1" color="textSecondary">
+                    {result.time}
+                    </Typography>
+                  </Grid>
 
-                  <GridListTile  style={{width:'5%'}} >
-                      <Grid item  xs={12}>
-
-                      <FontAwesomeIcon icon={faEnvelopeOpenText} style={{color: "#115293",marginTop:10}}size = '3x' variant="contained" color="primary" />
-                      </Grid>
-
-                  </GridListTile>
-                  <GridListTile style={{width:'45%'}} >
-                      <Grid item  xs={12}>
-
-                      <Typography style={{fontSize: 20,fontWeight: 600,}}>Patient Email : </Typography>
-                      <Typography style={{marginTop: 10,fontSize: 18,}}> {result.user.email}</Typography>
-                      </Grid>
-
-                  </GridListTile>
-
-                  <GridListTile  style={{width:'5%'}} >
-                      <Grid item  xs={12}>
-
-                      <FontAwesomeIcon icon={faIdCard} style={{color: "#115293",marginTop:10}} size = '3x' variant="contained" color="primary" />
-                      </Grid>
-
-                  </GridListTile>
-                  <GridListTile style={{width:'45%'}} >
-                      <Grid item  xs={12}>
-
-                      <Typography style={{fontSize: 20,fontWeight: 600,}}>Age : </Typography>
-                      <Typography style={{marginTop: 10,fontSize: 18,}}>  {calculateAge(result.user.dob)}</Typography>
-                      </Grid>
-
-                  </GridListTile>
-
-                  <GridListTile  style={{width:'5%'}} >
-                      <Grid item  xs={12}>
-
-                      <FontAwesomeIcon icon={faUserCheck} style={{color: "#115293",marginTop:10}}size = '3x' variant="contained" color="primary" />
-                      </Grid>
-
-                  </GridListTile>
-                  <GridListTile style={{width:'45%'}} >
-                      <Grid item  xs={12}>
-
-                      <Typography style={{fontSize: 20,fontWeight: 600,}}>Accuracy : </Typography>
-                      <Typography style={{marginTop: 10,fontSize: 18,}}>{result.accuracy}</Typography>
-                      </Grid>
-
-                  </GridListTile>
-
-
-                  <GridListTile  style={{width:'5%'}} >
-                      <Grid item  xs={12}>
-
-                      <FontAwesomeIcon icon={faStopwatch} style={{color: "#115293",marginTop:10}}size = '3x' variant="contained" color="primary" />
-                      </Grid>
-
-                  </GridListTile>
-                  <GridListTile style={{width:'45%'}} >
-                      <Grid item  xs={12}>
-
-                      <Typography style={{fontSize: 20,fontWeight: 600,}}>Time : </Typography>
-                      <Typography style={{marginTop: 10,fontSize: 18,}}>{result.time}</Typography>
-                      </Grid>
-
-                  </GridListTile>
-
-                  <GridListTile  style={{width:'5%'}} >
-                      <Grid item  xs={12}>
-
-                      <FontAwesomeIcon icon={faQuestionCircle} style={{color: "#115293",marginTop:10}}size = '3x' variant="contained" color="primary" />
-                      </Grid>
-
-                  </GridListTile>
-                  <GridListTile style={{width:'45%'}} >
-                      <Grid item  xs={12}>
-
-                      <Typography style={{fontSize: 20,fontWeight: 600,}}>Number Of Nodes : </Typography>
-                      <Typography style={{marginTop: 10,fontSize: 18,}}>{result.nodeNum}</Typography>
-                      </Grid>
-
-                  </GridListTile>
-                </GridList>
-
+                  <Grid item xs={6}>
+                    <Typography gutterBottom>Number Of Nodes : </Typography>
+                    <Typography variant="subtitle1" color="textSecondary">
+                    {result.nodeNum}
+                    </Typography>
+                  </Grid>
+                </Grid>
               </Paper>
+
               {
                 (result.diagnosis) ? (
                     <div style={{
@@ -309,5 +258,4 @@ const dispatchers = {
   fetchAccuracyGraph,
   fetchTimeGraph,
 };
-
-export default connect(mapStateToProps, dispatchers)(ResultPage);
+export default connect(mapStateToProps, dispatchers)(withStyles(styles)(ResultPage));

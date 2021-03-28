@@ -22,8 +22,7 @@ import {
   Paper,
   TextField,
   Typography,
-  GridList,
-  GridListTile,
+  Chip,
   Grid
 } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
@@ -49,8 +48,23 @@ import {
   selectTimeGraphFailed,
   selectTimeGraphLoading,
 } from '../../../redux/ducks/timeGraph';
-import { faUserMd,faCalendarCheck,faUserTag,faStethoscope} from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { withStyles } from '@material-ui/core/styles';
+
+const styles = theme => ({
+  chip: {
+    margin: theme.spacing(0.5),
+  },
+  graph: {
+    width: '50%',
+    float: 'left',
+    marginBottom: 30,
+  },
+  paper: {
+    padding: 50,
+    justifyContent: 'center',
+    margin: 'auto',
+  },
+});
 
 class DiagnosisPage extends Component {
 
@@ -95,6 +109,7 @@ class DiagnosisPage extends Component {
   render() {
 
     const {
+      classes,
       diagnosisLoading,
       diagnosisFailed,
       resultLoading,
@@ -154,6 +169,8 @@ class DiagnosisPage extends Component {
       ],
 
     };
+
+    const labels = ['High', 'Moderate', 'Low'];
     return (
 
       <Container>
@@ -162,127 +179,68 @@ class DiagnosisPage extends Component {
             Result
           </Link>
           <Link color="inherit" href={`/result/${diagnosis.result}`}>
-          Result ID: {diagnosis.result} Detail 
+          {diagnosis.result}
           </Link>
           <Typography color="textPrimary">Diagnosis</Typography>
         </Breadcrumbs>
-        <Paper style={{
-          padding: 50,
-          justifyContent: 'center',
-          margin: 'auto',
-        }}>
-          <h1 style={{ textAlign: 'center' }}>Diagnosis</h1>
-          <div  style={{ width:'50%' ,float:'left',marginBottom:30}} >
+        <Paper className={classes.paper}>
+          <div className={classes.graph}>
             <Bar data={aGraph} />
-           
           </div>
-          <div style={{ width:'50%', float:'right',marginBottom:30}}>
-            <Bar  data={tGraph} />
-           
+          <div className={classes.graph}>
+            <Bar data={tGraph} />
           </div>
-        
-          <GridList cellHeight={110}   cols={2}>
-          <GridListTile  style={{width:'5%'}} >
-              <Grid item  xs={12}>
+          <Grid container spacing={3}>
+            <Grid item xs={6}>
+              <Typography gutterBottom>Created By</Typography>
+              <Typography variant="subtitle1" color="textSecondary">
+                {diagnosis.createdBy}
+              </Typography>
+            </Grid>
 
-              <FontAwesomeIcon icon={faUserMd} style={{color: "#115293",marginTop:10}}size = '3x' variant="contained" color="primary" />
-              </Grid>
-           
-          </GridListTile>
-          <GridListTile style={{width:'45%'}} >
-              <Grid item  xs={12}>
+            <Grid item xs={6}>
+              <Typography gutterBottom>Created Date</Typography>
+              <Typography variant="subtitle1" color="textSecondary">
+                {Moment(diagnosis.createdDate).format('DD-MM-YYYY')}
+              </Typography>
+            </Grid>
 
-              <Typography style={{fontSize: 20,fontWeight: 600,}}>CreatedBy : </Typography>
-              <Typography style={{marginTop: 10,fontSize: 18,}}> {diagnosis.createdBy}</Typography>
-              </Grid>
-           
-          </GridListTile>
+            <Grid item xs={6}>
+              <Typography gutterBottom>Last Modified By</Typography>
+              <Typography variant="subtitle1" color="textSecondary">
+                {diagnosis.lastModifiedBy}
+              </Typography>
+            </Grid>
 
-          <GridListTile style={{width:'5%'}} >
-              <Grid item  xs={12}  >
+            <Grid item xs={6}>
+              <Typography gutterBottom>Last Modified Date</Typography>
+              <Typography variant="subtitle1" color="textSecondary">
+                {Moment(diagnosis.lastModifiedDate).format('DD-MM-YYYY')}
+              </Typography>
+            </Grid>
 
-              <FontAwesomeIcon icon={faCalendarCheck} style={{color: "#115293",marginTop:10}}size = '3x' variant="contained" color="primary" />
-              </Grid>
-           
-          </GridListTile>
-          <GridListTile style={{width:'45%'}}>
-              <Grid item  xs={12}>
+            <Grid item xs={6}>
+              <Typography gutterBottom>Label</Typography>
+              <div>
+                {
+                  labels.map(
+                    label => (
+                      label === diagnosis.label ?
+                        <Chip className={classes.chip} label={label} color="primary" /> :
+                        <Chip className={classes.chip} label={label} />
+                    ),
+                  )
+                }
+              </div>
+            </Grid>
 
-              <Typography style={{fontSize: 20,fontWeight: 600,}}>Created Date:  </Typography>
-              <Typography style={{marginTop: 10,fontSize: 18,}}>  {Moment(diagnosis.createdDate).format('DD-MM-YYYY')}</Typography>
-              </Grid>
-              
-          </GridListTile>
-
-          <GridListTile style={{width:'5%'}} >
-              <Grid item  xs={12}  >
-
-              <FontAwesomeIcon icon={faUserTag} style={{color: "#115293",marginTop:10}}size = '3x' variant="contained" color="primary" />
-              </Grid>
-           
-          </GridListTile>
-          <GridListTile style={{width:'45%'}}>
-              <Grid item  xs={12}>
-
-              <Typography style={{fontSize: 20,fontWeight: 600,}}>Category :  </Typography>
-              <Typography style={{marginTop: 10,fontSize: 18,}}> {diagnosis.label}</Typography>
-              </Grid>
-              
-          </GridListTile>
-
-          <GridListTile style={{width:'5%'}} >
-              <Grid item  xs={12}  >
-
-              <FontAwesomeIcon icon={faStethoscope} style={{color: "#115293",marginTop:10}}size = '3x' variant="contained" color="primary" />
-              </Grid>
-           
-          </GridListTile>
-          <GridListTile style={{width:'45%'}}>
-              <Grid item  xs={12}>
-
-              <Typography style={{fontSize: 20,fontWeight: 600,}}>Comment:  </Typography>
-              <Typography style={{marginTop: 10,fontSize: 18,}}> {diagnosis.description}</Typography>
-              </Grid>
-              
-          </GridListTile>
-
-         
-          <GridListTile style={{width:'5%'}} >
-              <Grid item  xs={12}  >
-
-              <FontAwesomeIcon icon={faUserMd} style={{color: "#115293",marginTop:10}}size = '3x' variant="contained" color="primary" />
-              </Grid>
-           
-          </GridListTile>
-          <GridListTile style={{width:'45%'}}>
-              <Grid item  xs={12}>
-
-              <Typography style={{fontSize: 20,fontWeight: 600,}}>Last Modified By: </Typography>
-              <Typography style={{marginTop: 10,fontSize: 18,}}> {diagnosis.lastModifiedBy}</Typography>
-              </Grid>
-             
-          </GridListTile>
-
-          <GridListTile style={{width:'5%'}} >
-              <Grid item  xs={12}  >
-
-              <FontAwesomeIcon icon={faCalendarCheck} style={{color: "#115293",marginTop:10}}size = '3x' variant="contained" color="primary" />
-              </Grid>
-           
-          </GridListTile>
-          <GridListTile style={{width:'45%'}}>
-              <Grid item  xs={12}>
-
-              <Typography style={{fontSize: 20,fontWeight: 600,}}>Last Modified Date: </Typography>
-              <Typography style={{marginTop: 10,fontSize: 18,}}> {Moment(diagnosis.lastModifiedDate).format('DD-MM-YYYY')}</Typography>
-              </Grid>
-             
-          </GridListTile>
-
-
-          </GridList>
-          
-        
+            <Grid item xs={6}>
+              <Typography gutterBottom>Diagnosis Description</Typography>
+              <Typography variant="subtitle1" color="textSecondary">
+                {diagnosis.description}
+              </Typography>
+            </Grid>
+          </Grid>
         </Paper>
 
       
@@ -422,4 +380,5 @@ const dispatchers = {
   fetchTimeGraph,
 };
 
-export default connect(mapStateToProps, dispatchers)(DiagnosisPage);
+
+export default connect(mapStateToProps, dispatchers)(withStyles(styles)(DiagnosisPage));
