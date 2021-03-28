@@ -17,12 +17,14 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle,
-  Divider,
   Link,
   MenuItem,
   Paper,
   TextField,
   Typography,
+  GridList,
+  GridListTile,
+  Grid
 } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import Moment from 'moment';
@@ -47,7 +49,8 @@ import {
   selectTimeGraphFailed,
   selectTimeGraphLoading,
 } from '../../../redux/ducks/timeGraph';
-
+import { faUserMd,faCalendarCheck,faUserTag,faStethoscope} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 class DiagnosisPage extends Component {
 
@@ -159,7 +162,7 @@ class DiagnosisPage extends Component {
             Result
           </Link>
           <Link color="inherit" href={`/result/${diagnosis.result}`}>
-            Result Detail
+          Result ID: {diagnosis.result} Detail 
           </Link>
           <Typography color="textPrimary">Diagnosis</Typography>
         </Breadcrumbs>
@@ -169,86 +172,120 @@ class DiagnosisPage extends Component {
           margin: 'auto',
         }}>
           <h1 style={{ textAlign: 'center' }}>Diagnosis</h1>
-          <div>
+          <div  style={{ width:'50%' ,float:'left',marginBottom:30}} >
             <Bar data={aGraph} />
+           
           </div>
-          <div>
-            <Bar data={tGraph} />
+          <div style={{ width:'50%', float:'right',marginBottom:30}}>
+            <Bar  data={tGraph} />
+           
           </div>
+        
+          <GridList cellHeight={110}   cols={2}>
+          <GridListTile  style={{width:'5%'}} >
+              <Grid item  xs={12}>
 
-          <label>
-            <div style={{ marginTop: 30 }}><Typography style={{
-              fontSize: 20,
-              fontWeight: 600,
-            }}>CreatedBy : </Typography></div>
-            <div><Typography style={{
-              marginTop: 10,
-              fontSize: 18,
-            }}> {diagnosis.createdBy}</Typography></div>
-            <Divider />
-          </label>
-          <label>
-            <div style={{ marginTop: 25 }}><Typography style={{
-              fontSize: 20,
-              fontWeight: 600,
-            }}>Created Date: </Typography></div>
-            <div><Typography style={{
-              marginTop: 10,
-              fontSize: 18,
-            }}> {Moment(diagnosis.createdDate).format('DD-MM-YYYY')}</Typography></div>
-            <Divider />
-          </label>
-          <label>
-            <div style={{ marginTop: 25 }}><Typography style={{
-              fontSize: 20,
-              fontWeight: 600,
-            }}>Category : </Typography></div>
-            <div><Typography style={{
-              marginTop: 10,
-              fontSize: 18,
-            }}> {diagnosis.label}</Typography></div>
-            <Divider />
-          </label>
-          <label>
-            <div style={{ marginTop: 25 }}><Typography style={{
-              fontSize: 20,
-              fontWeight: 600,
-            }}>Comments : </Typography></div>
-            <div><Typography style={{
-              marginTop: 10,
-              fontSize: 18,
-            }}> {diagnosis.description}</Typography></div>
-            <Divider />
-          </label>
-          <label>
-            <div style={{ marginTop: 25 }}><Typography style={{
-              fontSize: 20,
-              fontWeight: 600,
-            }}>last modified by: </Typography></div>
-            <div><Typography style={{
-              marginTop: 10,
-              fontSize: 18,
-            }}> {diagnosis.lastModifiedBy}</Typography></div>
-            <Divider />
-          </label>
-          <label>
-            <div style={{ marginTop: 25 }}><Typography style={{
-              fontSize: 20,
-              fontWeight: 600,
-            }}>last modified date: </Typography></div>
-            <div><Typography style={{
-              marginTop: 10,
-              fontSize: 18,
-            }}> {Moment(diagnosis.lastModifiedDate).format('DD-MM-YYYY')}</Typography></div>
-            <Divider />
-          </label>
+              <FontAwesomeIcon icon={faUserMd} style={{color: "#115293",marginTop:10}}size = '3x' variant="contained" color="primary" />
+              </Grid>
+           
+          </GridListTile>
+          <GridListTile style={{width:'45%'}} >
+              <Grid item  xs={12}>
 
+              <Typography style={{fontSize: 20,fontWeight: 600,}}>CreatedBy : </Typography>
+              <Typography style={{marginTop: 10,fontSize: 18,}}> {diagnosis.createdBy}</Typography>
+              </Grid>
+           
+          </GridListTile>
+
+          <GridListTile style={{width:'5%'}} >
+              <Grid item  xs={12}  >
+
+              <FontAwesomeIcon icon={faCalendarCheck} style={{color: "#115293",marginTop:10}}size = '3x' variant="contained" color="primary" />
+              </Grid>
+           
+          </GridListTile>
+          <GridListTile style={{width:'45%'}}>
+              <Grid item  xs={12}>
+
+              <Typography style={{fontSize: 20,fontWeight: 600,}}>Created Date:  </Typography>
+              <Typography style={{marginTop: 10,fontSize: 18,}}>  {Moment(diagnosis.createdDate).format('DD-MM-YYYY')}</Typography>
+              </Grid>
+              
+          </GridListTile>
+
+          <GridListTile style={{width:'5%'}} >
+              <Grid item  xs={12}  >
+
+              <FontAwesomeIcon icon={faUserTag} style={{color: "#115293",marginTop:10}}size = '3x' variant="contained" color="primary" />
+              </Grid>
+           
+          </GridListTile>
+          <GridListTile style={{width:'45%'}}>
+              <Grid item  xs={12}>
+
+              <Typography style={{fontSize: 20,fontWeight: 600,}}>Category :  </Typography>
+              <Typography style={{marginTop: 10,fontSize: 18,}}> {diagnosis.label}</Typography>
+              </Grid>
+              
+          </GridListTile>
+
+          <GridListTile style={{width:'5%'}} >
+              <Grid item  xs={12}  >
+
+              <FontAwesomeIcon icon={faStethoscope} style={{color: "#115293",marginTop:10}}size = '3x' variant="contained" color="primary" />
+              </Grid>
+           
+          </GridListTile>
+          <GridListTile style={{width:'45%'}}>
+              <Grid item  xs={12}>
+
+              <Typography style={{fontSize: 20,fontWeight: 600,}}>Comment:  </Typography>
+              <Typography style={{marginTop: 10,fontSize: 18,}}> {diagnosis.description}</Typography>
+              </Grid>
+              
+          </GridListTile>
+
+         
+          <GridListTile style={{width:'5%'}} >
+              <Grid item  xs={12}  >
+
+              <FontAwesomeIcon icon={faUserMd} style={{color: "#115293",marginTop:10}}size = '3x' variant="contained" color="primary" />
+              </Grid>
+           
+          </GridListTile>
+          <GridListTile style={{width:'45%'}}>
+              <Grid item  xs={12}>
+
+              <Typography style={{fontSize: 20,fontWeight: 600,}}>last modified by: </Typography>
+              <Typography style={{marginTop: 10,fontSize: 18,}}> {diagnosis.lastModifiedBy}</Typography>
+              </Grid>
+             
+          </GridListTile>
+
+          <GridListTile style={{width:'5%'}} >
+              <Grid item  xs={12}  >
+
+              <FontAwesomeIcon icon={faCalendarCheck} style={{color: "#115293",marginTop:10}}size = '3x' variant="contained" color="primary" />
+              </Grid>
+           
+          </GridListTile>
+          <GridListTile style={{width:'45%'}}>
+              <Grid item  xs={12}>
+
+              <Typography style={{fontSize: 20,fontWeight: 600,}}>last modified date: </Typography>
+              <Typography style={{marginTop: 10,fontSize: 18,}}> {Moment(diagnosis.lastModifiedDate).format('DD-MM-YYYY')}</Typography>
+              </Grid>
+             
+          </GridListTile>
+
+
+          </GridList>
+          
+        
         </Paper>
 
-        {/* <p>{JSON.stringify(result)}</p> */}
-
-        {/* <p>{JSON.stringify(accGraph)}</p>
-        <p>{JSON.stringify(timeGraph)}</p> */}
+      
         <div style={{
           display: 'flex',
           justifyContent: 'center',
