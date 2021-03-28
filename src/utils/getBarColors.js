@@ -18,7 +18,11 @@ export const getBarColors = (histogramData, xLabelOfInterest, defaultColor, inte
     let start = parseFloat(delimiters[0]);
     let end = parseFloat(delimiters[1]);
 
-    if (_xLabelOfInterest > start && _xLabelOfInterest <= end) {
+    if (_xLabelOfInterest >= start && _xLabelOfInterest < end) {
+      colors.push(interestColor);
+    } else if (histogramData.labels.indexOf(label) === histogramData.labels.length - 1
+      && _xLabelOfInterest >= start
+      && _xLabelOfInterest <= end) {
       colors.push(interestColor);
     } else {
       colors.push(defaultColor);
