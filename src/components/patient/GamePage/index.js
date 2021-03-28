@@ -28,7 +28,11 @@ class GamePage extends Component {
     } = this.props;
 
     if (resultsLoading) {
-      return <CircularProgress align="center" style={{ marginTop: 200, marginLeft: 860 }} />;
+      return <CircularProgress align="center"
+        style={{
+          marginTop: 200,
+          marginLeft: 860,
+        }} />;
     }
 
     // If failed to fetch results, redirect to not-found
@@ -46,7 +50,7 @@ class GamePage extends Component {
     if (!result.time) {
       return (
         <div className="main">
-          <Game time={result.time} accuracy={result.accuracy} nodeNum={result.nodeNum}/>
+          <Game time={result.time} accuracy={result.accuracy} nodeNum={result.nodeNum} />
         </div>
       );
     } else {

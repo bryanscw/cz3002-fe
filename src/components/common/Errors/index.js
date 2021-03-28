@@ -20,6 +20,7 @@ export class Errors extends Component {
       return <MuiAlert
         elevation={6} variant="filled" {...props} />;
     }
+
     return (
       <div className="error-wrapper">
         {
@@ -27,8 +28,14 @@ export class Errors extends Component {
             <div className={`toast ${error.isVisible ? 'error-shown'
               : 'error-hidden'}`} key={error.id}>
               <div className="toast-header">
-                <Snackbar open={error.id} autoHideDuration={6000} onClose={() => this.props.closeError(error.id)}>
-                  <Alert style={{  height: 50, fontSize: 15, fontFamily: 'Helvetica' }} onClose={() => this.props.closeError(error.id)} severity="error">
+                <Snackbar open={error.id}
+                  autoHideDuration={6000}
+                  onClose={() => this.props.closeError(error.id)}>
+                  <Alert style={{
+                    height: 50,
+                    fontSize: 15,
+                    fontFamily: 'Helvetica',
+                  }} onClose={() => this.props.closeError(error.id)} severity="error">
                     {error.message}
                   </Alert>
                 </Snackbar>
