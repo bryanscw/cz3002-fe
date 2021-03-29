@@ -39,7 +39,7 @@ class ResultsPage extends Component {
       resultsLoading,
       resultsFailed,
       results,
-      deleteResult
+      deleteResult,
     } = this.props;
 
     const tableIcons = {
@@ -177,7 +177,7 @@ const mapStateToProps = state => ({
 
 const dispatchers = {
   listAllResults,
-  deleteResult
+  deleteResult,
 };
 
 export default connect(mapStateToProps, dispatchers)(ResultsPage);

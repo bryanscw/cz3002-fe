@@ -45,8 +45,8 @@ class Game extends Component {
   click = (i) => {
 
     const c = this.state.count;
-    var m = this.state.mistake;
-    var t = this.state.total;
+    let m = this.state.mistake;
+    let t = this.state.total;
 
     if (this.state.count === i) {
       this.setState({
@@ -130,7 +130,6 @@ class Game extends Component {
 }
 
 Game.propTypes = {
-  /** An action creator for authenticating login */
   updateResult: PropTypes.func.isRequired,
 };
 
