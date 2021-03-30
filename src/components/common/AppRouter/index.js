@@ -47,8 +47,8 @@ class AppRouter extends Component {
     if (userLoading && refresh_token) {
       return <CircularProgress align="center"
         style={{
-          marginTop: 200,
-          marginLeft: 860,
+          marginTop:300,
+          marginLeft: 690,
         }} />;
     }
 

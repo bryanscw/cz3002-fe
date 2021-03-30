@@ -95,8 +95,8 @@ class ResultPage extends Component {
     if (resultLoading || accGraphLoading || timeGraphLoading) {
       return <CircularProgress align="center"
         style={{
-          marginTop: 200,
-          marginLeft: 860,
+          marginTop:190,
+          marginLeft: 690,
         }} />;
     }
 
