@@ -24,7 +24,6 @@ class PatientHomePage extends Component {
             resultsLoading,
             resultsFailed,
             results,
-            user,
         } = this.props;
 
         if (resultsLoading) {
