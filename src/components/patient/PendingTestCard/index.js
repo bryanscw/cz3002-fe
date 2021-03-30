@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
+import MaterialTable from 'material-table';
 
 /**This component is used to display an item with a title and description */
 export default function PendingTestCard(props) {
@@ -10,16 +11,59 @@ export default function PendingTestCard(props) {
   } = props;
 
   return (
-    <div className={`card${classes ? ` ${classes}` : ''}`}>
-      <div className="card-body">
-        <h3 className="card-title">
-          Test id: {result.id}
-        </h3>
-        <p className="card-text">Number of nodes: {result.nodeNum}</p>
-        <br />
-        <Button color="primary" href={`/game/${result.id}`}>Do Test</Button>
+      <div className={`card${classes ? ` ${classes}` : ''}`}
+           style={{
+             width: '100%',
+             padding: '40px',
+           }}>
+        <MaterialTable
+            title='Pending tests'
+            font=""
+            columns={[
+              {
+                title: 'ID',
+                field: 'id',
+              },
+              {
+                title: 'Accuracy',
+                field: 'accuracy',
+              },
+              {
+                title: 'Time',
+                field: 'time',
+              },
+              {
+                title: 'Number of Nodes',
+                field: 'nodeNum',
+              },
+              {
+                title: 'Result',
+                render: (result) => (
+                    <Button
+                        color="primary"
+                        href={`/game/${result.id}`}
+                        variant='outlined'
+                    >Do Test
+                    </Button>
+                ),
+              },
+            ]}
+            data={[result]}
+            options={{
+              search: false,
+              paging: false,
+              cellStyle: {
+                fontFamily: 'Helvetica',
+                fontSize: 15,
+              },
+              headerStyle: {
+                backgroundColor: '#d32f2f',
+                color: '#FFF',
+                fontSize: 17,
+              },
+            }}
+        />
       </div>
-    </div>
   );
 }
 
