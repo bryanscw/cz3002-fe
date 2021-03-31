@@ -7,7 +7,7 @@ import MaterialTable from 'material-table';
 export default function ResultCard(props) {
   const {
     classes,
-    result,
+    results,
   } = props;
 
   return (
@@ -48,7 +48,7 @@ export default function ResultCard(props) {
                 ),
               },
             ]}
-            data={result}
+            data={results}
             options={{
               paginationType: 'stepped',
               showFirstLastPageButtons: false,
@@ -73,8 +73,7 @@ ResultCard.propTypes = {
   /** A string storing the html to be included in the component */
   classes: PropTypes.string,
   /** An object containing the item's title and description */
-  result: PropTypes.object.isRequired,
+  results: PropTypes.array.isRequired,
   /** A badge for the component */
-  badge: PropTypes.oneOfType(
-      [PropTypes.string, PropTypes.func, PropTypes.element]),
+  badge: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.element]),
 };

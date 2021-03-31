@@ -38,10 +38,9 @@ class CreateDiagnosisPage extends Component {
   }
 
   componentDidMount() {
-    this.setState({ resultId: parseInt(this.props.match.params.resultId) });
-    this.props.fetchResult(this.state.resultId);
+    const resultId = parseInt(this.props.match.params.resultId);
+    this.props.fetchResult(resultId);
   }
-
 
   render() {
     const {
@@ -190,7 +189,7 @@ class CreateDiagnosisPage extends Component {
 
 }
 
-CreateDiagnosisPage.propTypes = {
+CreateDiagnosisPage.propType = {
   fetchResult: PropTypes.func.isRequired,
   resultLoading: PropTypes.bool.isRequired,
   resultFailed: PropTypes.bool,

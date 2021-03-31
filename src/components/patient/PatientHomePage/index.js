@@ -82,7 +82,7 @@ class PatientHomePage extends Component {
             <ResultCard
               key={completedTests.id}
               classes="mb-4"
-              result={completedTests}
+              results={completedTests}
               badge={completedTests.accuracy && completedTests.time ?
                 <span
                   className="badge badge-success">Completed</span>
