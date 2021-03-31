@@ -30,7 +30,7 @@ class PatientHomePage extends Component {
       return <CircularProgress align="center"
         style={{
           marginTop: 190,
-          marginLeft: 690,
+          marginLeft: '50%'
         }} />;
     }
 

@@ -48,7 +48,7 @@ class AppRouter extends Component {
       return <CircularProgress align="center"
         style={{
           marginTop: 300,
-          marginLeft: 690,
+          marginLeft: '50%'
         }} />;
     }
 
