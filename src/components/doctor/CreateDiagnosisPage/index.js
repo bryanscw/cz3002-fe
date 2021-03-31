@@ -66,7 +66,7 @@ class CreateDiagnosisPage extends Component {
         label: values.label,
         description: values.description,
       });
-      window.location.replace(`/diagnosis/${result.id}`);
+      this.props.history.push(`/diagnosis/${result.id}`);
     };
 
     const validate = values => {
