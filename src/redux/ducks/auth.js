@@ -142,8 +142,7 @@ export const authenticateLogin = userData => dispatch => {
       dispatch(loginAction(res.data));
     })
     .catch((err) => {
-      let message = err.response.data.status + ": " + err.response.data.message;
-      displayError(message)(dispatch);
+      displayError('Unable to login')(dispatch);
       dispatch(fetchMeFailureAction());
     });
 };
@@ -167,8 +166,7 @@ export const refreshTokenLogin = () => (dispatch, getState) => {
         dispatch(loginAction(res.data));
       })
       .catch((err) => {
-        let message = err.response.data.status + ": " + err.response.data.message;
-        displayError(message)(dispatch);
+        displayError('Unable to login')(dispatch);
         dispatch(fetchMeFailureAction());
       });
   } else {
@@ -185,8 +183,7 @@ export const logout = () => (dispatch, getState) => {
       dispatch(logoutAction());
     })
     .catch((err) => {
-      let message = err.response.data.status + ": " + err.response.data.message;
-      displayError(message)(dispatch);
+      displayError('Unable to logout')(dispatch);
     });
 };
 
@@ -207,8 +204,7 @@ export const fetchMe = (access_token) => (dispatch) => {
       dispatch(fetchMeSuccessAction(res.data));
     })
     .catch((err) => {
-      let message = err.response.data.status + ": " + err.response.data.message;
-      displayError(message)(dispatch);
+      displayError('Unable to fetch current user information')(dispatch);
       dispatch(fetchMeFailureAction());
     });
 };

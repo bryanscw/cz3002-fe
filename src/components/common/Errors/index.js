@@ -28,7 +28,7 @@ export class Errors extends Component {
             <div className={`toast ${error.isVisible ? 'error-shown'
               : 'error-hidden'}`} key={error.id}>
               <div className="toast-header">
-                <Snackbar open={error.id}
+                <Snackbar open
                   autoHideDuration={6000}
                   onClose={() => this.props.closeError(error.id)}>
                   <Alert style={{

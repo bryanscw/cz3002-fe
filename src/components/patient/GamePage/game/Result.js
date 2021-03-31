@@ -3,7 +3,7 @@ import { Button, LinearProgress } from '@material-ui/core';
 import './game.css';
 import PropTypes from 'prop-types';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
-import { createMuiTheme } from '@material-ui/core/styles'
+import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 
 const Result = (props) => {
@@ -19,9 +19,9 @@ const Result = (props) => {
     palette: {
       action: {
         disabledBackground: 'black',
-        disabled: 'black'
-      }
-    }
+        disabled: 'black',
+      },
+    },
   });
 
   return (
@@ -29,10 +29,10 @@ const Result = (props) => {
       <ThemeProvider theme={theme}>
         <ButtonGroup style={{
           margin: '0 0 20px 0',
-          }} size="small" aria-label="outlined button group">
-            <Button disabled>{`Time: ${time}s`}</Button>
-            <Button disabled>{`Accuracy: ${accuracy}%`}</Button>
-            <Button disabled>{`Completed: ${completed} / ${nodeNum}`}</Button>
+        }} size="small" aria-label="outlined button group">
+          <Button disabled>{`Time: ${time}s`}</Button>
+          <Button disabled>{`Accuracy: ${accuracy}%`}</Button>
+          <Button disabled>{`Completed: ${completed} / ${nodeNum}`}</Button>
         </ButtonGroup>
         <LinearProgress variant="determinate" value={progress} />
       </ThemeProvider>

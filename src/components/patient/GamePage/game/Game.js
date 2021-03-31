@@ -18,7 +18,7 @@ class Game extends Component {
     super(props);
 
     this.state = {
-      id: props.id,
+      id: props.result.id,
       valX: [],
       valY: [],
       count: 1,
@@ -26,8 +26,8 @@ class Game extends Component {
       accuracy: 0,
       time: 0,
       mistake: 0,
-      finished:false,
-      nodeNum: props.nodeNum,
+      finished: false,
+      nodeNum: props.result.nodeNum,
     };
 
     this.ListDot = React.createRef();
@@ -38,8 +38,10 @@ class Game extends Component {
   handleSubmit(event) {
 
     event.preventDefault();
-    this.props.updateResult(this.state);
-    window.location.reload(false);
+    this.props.result.time = this.state.time;
+    this.props.result.accuracy = this.state.accuracy;
+    this.props.updateResult(this.props.result);
+    // window.location.reload(false);
 
   }
 
@@ -56,7 +58,7 @@ class Game extends Component {
       if(this.state.count === this.state.nodeNum){
         clearInterval(this.clock);
         this.setState({
-          finished:true,
+          finished: true,
         })
       }
     } else {
@@ -100,7 +102,7 @@ class Game extends Component {
       accuracy: 0,
       time: 0,
       mistake: 0,
-      finished:false,
+      finished: false,
     });
 
   };
