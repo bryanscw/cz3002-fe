@@ -52,7 +52,7 @@ class Game extends Component {
       this.setState({
         count: c + 1,
       });
-      if(this.state.count == this.state.nodeNum){
+      if(this.state.count === this.state.nodeNum){
         clearInterval(this.clock);
       }
     } else {
