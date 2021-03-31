@@ -31,7 +31,6 @@ export const fetchResult = resultId => (dispatch, getState) => {
 
 export const updateResult = (result) => (dispatch, getState) => {
   dispatch(createApiAction(ENTITY_NAME, STATUSES.REQUEST, METHODS.UPDATE));
-  console.log('object:', result);
   axios
     .post(
       `${API_URL}/result/update/${result.id}`,
