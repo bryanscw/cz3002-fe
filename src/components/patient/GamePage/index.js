@@ -30,8 +30,8 @@ class GamePage extends Component {
     if (resultLoading) {
       return <CircularProgress align="center"
         style={{
-          marginTop:190,
-        marginLeft: 690,
+          marginTop: 190,
+          marginLeft: 690,
         }} />;
     }
 

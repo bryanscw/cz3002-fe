@@ -70,7 +70,7 @@ class ResultsPage extends Component {
     if (resultsLoading) {
       return <CircularProgress align="center"
         style={{
-          marginTop:190,
+          marginTop: 190,
           marginLeft: 690,
         }} />;
     }

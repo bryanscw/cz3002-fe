@@ -101,7 +101,7 @@ class PatientsPage extends Component {
     if (patientsLoading) {
       return <CircularProgress align="center"
         style={{
-          marginTop:190,
+          marginTop: 190,
           marginLeft: 690,
         }} />;
     }
