@@ -41,7 +41,7 @@ class Game extends Component {
     this.props.result.time = this.state.time;
     this.props.result.accuracy = this.state.accuracy;
     this.props.updateResult(this.props.result);
-    // window.location.reload(false);
+    window.location.reload();
 
   }
 
