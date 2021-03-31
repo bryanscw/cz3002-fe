@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 import { selectUser } from '../../../redux/ducks/auth';
-import { CircularProgress } from '@material-ui/core';
+import { CircularProgress, Container } from '@material-ui/core';
 import { Alert, AlertTitle } from '@material-ui/lab';
 import ResultCard from '../ResultCard';
 import PendingTestCard from '../PendingTestCard';
@@ -55,52 +55,62 @@ class PatientHomePage extends Component {
     );
 
     return (
-      <div className="container">
+      <Container>
 
         {
           pendingTests.length !== 0 ? (
-            pendingTests.map(
-              result =>
-                <PendingTestCard
-                  key={result.id}
-                  classes="mb-4"
-                  result={result}
-                />,
+              pendingTests.map(
+                result =>
+                  <PendingTestCard
+                    key={result.id}
+                    classes="mb-4"
+                    result={result}
+                  />,
+              )
             )
-          )
             :
             (
-              <Alert severity="info">
-                <AlertTitle>Info</AlertTitle>
-                <strong>No</strong> pending test(s) found
-              </Alert>
+              <div style={{
+                width: '100%',
+                padding: '40px',
+              }}>
+                <Alert severity="info">
+                  <AlertTitle>Info</AlertTitle>
+                  <strong>No</strong> pending test(s) found
+                </Alert>
+              </div>
             )
         }
 
         {
           completedTests.length !== 0 ? (
-            <ResultCard
-              key={completedTests.id}
-              classes="mb-4"
-              results={completedTests}
-              badge={completedTests.accuracy && completedTests.time ?
-                <span
-                  className="badge badge-success">Completed</span>
-                :
-                <span
-                  className="badge badge-secondary">Not Completed</span>}
-            />
-          )
+              <ResultCard
+                key={completedTests.id}
+                classes="mb-4"
+                results={completedTests}
+                badge={completedTests.accuracy && completedTests.time ?
+                  <span
+                    className="badge badge-success">Completed</span>
+                  :
+                  <span
+                    className="badge badge-secondary">Not Completed</span>}
+              />
+            )
             :
             (
-              <Alert severity="info">
-                <AlertTitle>Info</AlertTitle>
-                <strong>No</strong> result(s) found
-              </Alert>
+              <div style={{
+                width: '100%',
+                padding: '40px',
+              }}>
+                <Alert severity="info">
+                  <AlertTitle>Info</AlertTitle>
+                  <strong>No</strong> result(s) found
+                </Alert>
+              </div>
             )
         }
 
-      </div>
+      </Container>
     );
   }
 }

@@ -51,7 +51,7 @@ const Line = (props) => {
 
   return (
     <div className="App">
-      <canvas className="canvas" ref={canvas}></canvas>
+      <canvas className="canvas" ref={canvas}/>
     </div>
   );
 };

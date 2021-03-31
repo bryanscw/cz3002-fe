@@ -60,6 +60,6 @@ class ListDot extends Component {
       this.dots.map((dot) => <ul>{dot}</ul>),
     ]);
   }
-};
+}
 
 export default ListDot;
