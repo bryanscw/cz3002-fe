@@ -21,7 +21,8 @@ export const fetchTimeGraph = (bins, nodeNum) => (dispatch, getState) => {
       dispatch(createApiAction(ENTITY_NAME, STATUSES.SUCCESS, METHODS.RETRIEVE, res.data));
     })
     .catch((err) => {
-      displayError('Unable to get time graph data')(dispatch);
+      let message = err.response.data.status + ": " + err.response.data.message;
+      displayError(message)(dispatch);
       dispatch(createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.RETRIEVE));
     });
 };
