@@ -24,7 +24,7 @@ export const fetchAccuracyGraph = (bins, nodeNum) => (dispatch, getState) => {
       );
     })
     .catch((err) => {
-      let message = err.response.data.status + ": " + err.response.data.message;
+      let message = err.response.data.status + ': ' + err.response.data.message;
       displayError(message)(dispatch);
       dispatch(createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.RETRIEVE));
     });

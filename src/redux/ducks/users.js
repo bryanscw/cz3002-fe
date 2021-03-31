@@ -27,7 +27,7 @@ export const createUser = user => (dispatch, getState) => {
           res.data));
       })
       .catch(err => {
-        let message = err.response.data.status + ": " + err.response.data.message;
+        let message = err.response.data.status + ': ' + err.response.data.message;
         displayError(message)(dispatch);
         dispatch(createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.CREATE));
       })
@@ -49,7 +49,7 @@ export const updateUser = (newUser, oldUser) => (dispatch, getState) => {
           res.data));
       })
       .catch(err => {
-        let message = err.response.data.status + ": " + err.response.data.message;
+        let message = err.response.data.status + ': ' + err.response.data.message;
         displayError(message)(dispatch);
         dispatch(createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.UPDATE));
       })
@@ -70,7 +70,7 @@ export const deleteUser = user => (dispatch, getState) => {
           user.email));
       })
       .catch(err => {
-        let message = err.response.data.status + ": " + err.response.data.message;
+        let message = err.response.data.status + ': ' + err.response.data.message;
         displayError(message)(dispatch);
         dispatch(createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.DELETE));
       })
@@ -91,7 +91,7 @@ export const listUsers = () => (dispatch, getState) => {
           res.data));
       })
       .catch(err => {
-        let message = err.response.data.status + ": " + err.response.data.message;
+        let message = err.response.data.status + ': ' + err.response.data.message;
         displayError(message)(dispatch);
         dispatch(createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.LIST));
       })

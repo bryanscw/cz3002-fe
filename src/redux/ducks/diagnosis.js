@@ -23,7 +23,7 @@ export const fetchDiagnosis = (resultId) => (dispatch, getState) => {
       );
     })
     .catch((err) => {
-      let message = err.response.data.status + ": " + err.response.data.message;
+      let message = err.response.data.status + ': ' + err.response.data.message;
       displayError(message)(dispatch);
       dispatch(createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.RETRIEVE));
     });
@@ -54,7 +54,7 @@ export const createDiagnosis = (resultId, diagnosis) => (dispatch, getState) => 
       );
     })
     .catch((err) => {
-      let message = err.response.data.status + ": " + err.response.data.message;
+      let message = err.response.data.status + ': ' + err.response.data.message;
       displayError(message)(dispatch);
       dispatch(createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.CREATE));
     });
@@ -86,7 +86,7 @@ export const deleteDiagnosis = (resultId, diagnosis) => (dispatch, getState) => 
       }
     })
     .catch((err) => {
-      let message = err.response.data.status + ": " + err.response.data.message;
+      let message = err.response.data.status + ': ' + err.response.data.message;
       displayError(message)(dispatch);
       dispatch(createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.DELETE));
     });
@@ -117,7 +117,7 @@ export const updateDiagnosis = (resultId, diagnosis) => (dispatch, getState) => 
       );
     })
     .catch((err) => {
-      let message = err.response.data.status + ": " + err.response.data.message;
+      let message = err.response.data.status + ': ' + err.response.data.message;
       displayError(message)(dispatch);
       dispatch(createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.UPDATE));
     });

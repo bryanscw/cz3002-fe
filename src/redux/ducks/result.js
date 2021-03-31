@@ -23,7 +23,7 @@ export const fetchResult = resultId => (dispatch, getState) => {
       dispatch(createApiAction(ENTITY_NAME, STATUSES.SUCCESS, METHODS.RETRIEVE, res.data));
     })
     .catch((err) => {
-      let message = err.response.data.status + ": " + err.response.data.message;
+      let message = err.response.data.status + ': ' + err.response.data.message;
       displayError(message)(dispatch);
       dispatch(createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.RETRIEVE));
     });
@@ -45,7 +45,7 @@ export const updateResult = (result) => (dispatch, getState) => {
       dispatch(createApiAction(ENTITY_NAME, STATUSES.SUCCESS, METHODS.UPDATE, res.data));
     })
     .catch(err => {
-      let message = err.response.data.status + ": " + err.response.data.message;
+      let message = err.response.data.status + ': ' + err.response.data.message;
       displayError(message)(dispatch);
       dispatch(createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.UPDATE));
     });
@@ -64,7 +64,7 @@ export const createResult = result => (dispatch, getState) => {
         res.data));
     })
     .catch(err => {
-      let message = err.response.data.status + ": " + err.response.data.message;
+      let message = err.response.data.status + ': ' + err.response.data.message;
       displayError(message)(dispatch);
       dispatch(createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.CREATE));
     });
@@ -81,7 +81,7 @@ export const deleteResult = resultId => (dispatch, getState) => {
       dispatch(createApiAction(ENTITY_NAME, STATUSES.SUCCESS, METHODS.DELETE, resultId));
     })
     .catch(err => {
-      let message = err.response.data.status + ": " + err.response.data.message;
+      let message = err.response.data.status + ': ' + err.response.data.message;
       displayError(message)(dispatch);
       dispatch(createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.DELETE));
     });
@@ -99,7 +99,7 @@ export const listAllResults = () => (dispatch, getState) => {
         res.data));
     })
     .catch(err => {
-      let message = err.response.data.status + ": " + err.response.data.message;
+      let message = err.response.data.status + ': ' + err.response.data.message;
       displayError(message)(dispatch);
       dispatch(createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.LIST));
     });
@@ -118,7 +118,7 @@ export const listUserResults = () => (dispatch, getState) => {
         res.data));
     })
     .catch(err => {
-      let message = err.response.data.status + ": " + err.response.data.message;
+      let message = err.response.data.status + ': ' + err.response.data.message;
       displayError(message)(dispatch);
       dispatch(createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.LIST));
     });
@@ -137,7 +137,7 @@ export const getLatestResult = () => (dispatch, getState) => {
           res.data));
     })
     .catch(err => {
-      let message = err.response.data.status + ": " + err.response.data.message;
+      let message = err.response.data.status + ': ' + err.response.data.message;
       displayError(message)(dispatch);
       dispatch(createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.RETRIEVE));
     });
@@ -155,7 +155,7 @@ export const listAllPatients = () => (dispatch, getState) => {
         res.data));
     })
     .catch(err => {
-      let message = err.response.data.status + ": " + err.response.data.message;
+      let message = err.response.data.status + ': ' + err.response.data.message;
       displayError(message)(dispatch);
       dispatch(createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.LIST));
     });
@@ -173,7 +173,7 @@ export const listAllPatientResults = (userEmail) => (dispatch, getState) => {
         res.data));
     })
     .catch(err => {
-      let message = err.response.data.status + ": " + err.response.data.message;
+      let message = err.response.data.status + ': ' + err.response.data.message;
       displayError(message)(dispatch);
       dispatch(createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.LIST));
     });
