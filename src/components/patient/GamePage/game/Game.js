@@ -26,6 +26,7 @@ class Game extends Component {
       accuracy: 0,
       time: 0,
       mistake: 0,
+      finished:false,
       nodeNum: props.nodeNum,
     };
 
@@ -54,6 +55,9 @@ class Game extends Component {
       });
       if(this.state.count === this.state.nodeNum){
         clearInterval(this.clock);
+        this.setState({
+          finished:true,
+        })
       }
     } else {
       // alert("Wrong");
@@ -116,7 +120,7 @@ class Game extends Component {
       <Container>
         <Card>
           <div className="panel">
-            <Control start={this.start} clear={this.clear} submit={this.handleSubmit} />
+            <Control start={this.start} clear={this.clear} submit={this.handleSubmit} finished={this.state.finished}/>
             <Result time={this.state.time}
               accuracy={this.state.accuracy}
               completed={this.state.count - 1}
