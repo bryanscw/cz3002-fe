@@ -73,8 +73,8 @@ class AdminPage extends Component {
 
       return <CircularProgress align="center"
         style={{
-          marginTop: 200,
-          marginLeft: 860,
+          marginTop:190,
+          marginLeft: 690,
         }} />;
 
     }

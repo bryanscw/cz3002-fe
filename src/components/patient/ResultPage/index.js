@@ -38,8 +38,8 @@ import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
   circularProgress: {
-    marginTop: 200,
-    marginLeft: 860,
+    marginTop:190,
+    marginLeft: 690,
   },
   breadcrumbs: {
     marginLeft: 1,

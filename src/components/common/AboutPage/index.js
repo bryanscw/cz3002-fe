@@ -26,36 +26,43 @@ export default function AboutPage() {
 
   const teamMembers = [
     {
+      id: 1,
       name: 'Cassidy Lee Zi Hui',
       role: 'Front-end Developer',
       github: 'https://github.com/casslzh',
     },
     {
+      id: 2,
       name: 'Heng Cheng Kiat',
       role: 'Lead Developer',
       github: 'https://github.com/hengchengkiat',
     },
     {
+      id: 3,
       name: 'Ng Man Chun',
       role: 'QA Engineer',
       github: 'https://github.com/jay-ng-mc',
     },
     {
+      id: 4,
       name: 'Niu Jianan',
       role: 'Project Manager',
       github: 'https://github.com/niujianan',
     },
     {
+      id: 5,
       name: 'Su Voon Hou',
       role: 'Project Manager',
       github: 'https://github.com/voonhous',
     },
     {
+      id: 6,
       name: 'Sin Chong Wen Bryan',
       role: 'Backend Developer',
       github: 'https://github.com/bryanscw',
     },
     {
+      id: 7,
       name: 'Ye Ruiyi',
       role: 'Project Manager',
       github: 'https://github.com/yeruiyi',
@@ -65,18 +72,18 @@ export default function AboutPage() {
   return (
     <div className="main">
       <Container component="main">
-        <Typography component="h1" variant="h2" borderRadius={16} color="textPrimary"
+        <Typography component="h1" variant="h2" color="textPrimary"
           gutterBottom>
-          <Box fontSize={110} m={1} borderRadius={16}
-            textAlign="center" letterSpacing={8}>
+          <Box fontSize={110} m={1} textAlign="center"
+            letterSpacing={8}>
             QWERTY
           </Box>
         </Typography>
         <Typography component="h4"
-          textAlign="center"
+
           variant="h2"
           style={{ marginTop: 15 }}
-          color="black"
+          color="textPrimary"
           gutterBottom>
           <Box fontSize={70} textAlign="center" color="textSecondary" letterSpacing={1}>
             <SupervisedUserCircleIcon style={{
@@ -96,7 +103,7 @@ export default function AboutPage() {
           style={{ marginTop: 30 }}>
           {
             teamMembers.map(member => (
-              <Grid item xs={11} sm={1} md={3}>
+              <Grid key={member.id} item xs={11} sm={1} md={3}>
                 <Card style={{ width: 280 }}>
                   <CardContent>
                     <Typography gutterBottom

@@ -47,7 +47,11 @@ class DiagnosisPage extends Component {
     } = this.props;
 
     if (diagnosisLoading) {
-      return <CircularProgress />;
+      return <CircularProgress align="center"
+      style={{
+        marginTop:190,
+        marginLeft: 650,
+      }} />;
     }
 
     // If failed to fetch resources, redirect to not-found

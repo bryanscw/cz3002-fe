@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import Line from './Line';
 import { updateResult } from '../../../../redux/ducks/result';
 import PropTypes from 'prop-types';
+import { Card, Container, Divider } from '@material-ui/core';
 
 class Game extends Component {
 
@@ -37,7 +38,6 @@ class Game extends Component {
 
     event.preventDefault();
     this.props.updateResult(this.state);
-    console.log(localStorage.getItem('acessToken'));
     window.location.reload(false);
 
   }
@@ -69,7 +69,6 @@ class Game extends Component {
   };
 
   start = () => {
-
     if (this.ListDot.current.dots.length !== 0) {
       return;
     }
@@ -111,26 +110,30 @@ class Game extends Component {
 
     return (
 
-      <div className="main">
-        <div className="panel">
-          <Control start={this.start} clear={this.clear} submit={this.handleSubmit} />
-          <Result time={this.state.time}
-            accuracy={this.state.accuracy}
-            completed={this.state.count - 1}
-            progress={(this.state.count - 1) / this.state.nodeNum * 100} />
-        </div>
-        <div className="field">
-          <ListDot nodeNum={this.props.nodeNum} func={this.click} ref={this.ListDot} />
-          <Line valX={this.state.valX} valY={this.state.valY} count={this.state.count} />
-        </div>
-      </div>
+      <Container>
+        <Card>
+          <div className="panel">
+            <Control start={this.start} clear={this.clear} submit={this.handleSubmit} />
+            <Result time={this.state.time}
+              accuracy={this.state.accuracy}
+              completed={this.state.count - 1}
+              nodeNum={this.props.nodeNum}
+              progress={(this.state.count - 1) / this.state.nodeNum * 100} />
+          </div>
+          <Divider style={{margin: '40px 20px 40px 20px'}} light />
+          <div className="field">
+            <ListDot nodeNum={this.props.nodeNum} func={this.click} ref={this.ListDot} />
+            <Line valX={this.state.valX} valY={this.state.valY} count={this.state.count} />
+          </div>
+        </Card>
+      </Container>
 
     );
   }
 }
 
-Game.propTypes = {
-  updateResult: PropTypes.func.isRequired,
+Game.propType = {
+  accuracy: PropTypes.func.isRequired,
 };
 
 const dispatchers = {
