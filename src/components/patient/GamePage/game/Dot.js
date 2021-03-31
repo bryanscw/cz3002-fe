@@ -9,7 +9,7 @@ const Dot = (props) => {
     y,
     size,
     func,
-    randomnumber,
+    randomNumber,
   } = props;
   const dotStyle = {
     backgroundColor: color,
@@ -23,9 +23,9 @@ const Dot = (props) => {
     <Fab className="dot"
       color={color}
       style={dotStyle}
-      onClick={() => func(randomnumber)}
+      onClick={() => func(randomNumber)}
     >
-      {randomnumber}
+      {randomNumber}
     </Fab>
   );
 };

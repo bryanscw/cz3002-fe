@@ -9,7 +9,7 @@ class ListDot extends Component {
 
   generateDots() {
 
-    for (var i = 0; i < this.dotNum; i++) {
+    for (let i = 0; i < this.dotNum; i++) {
       const dot = createDot(i + 1, this.props.func);
       if (this.valX.length === 0) {
         this.valX.push(dot.props.x);
@@ -17,8 +17,8 @@ class ListDot extends Component {
         this.dots.push(dot);
         continue;
       }
-      var overlap = false;
-      for (var j = 0; j < this.valX.length; j++) {
+      let overlap = false;
+      for (let j = 0; j < this.valX.length; j++) {
         if (Math.abs(dot.props.x - this.valX[j]) < 33) {
           overlap = true;
           break;
@@ -28,7 +28,7 @@ class ListDot extends Component {
         i--;
         continue;
       }
-      for (var z = 0; z < this.valY.length; z++) {
+      for (let z = 0; z < this.valY.length; z++) {
         if (Math.abs(dot.props.y - this.valY[z]) < 90) {
           break;
         }
@@ -47,7 +47,7 @@ class ListDot extends Component {
   }
 
   clearDots = () => {
-    for (var i = 0; i < this.props.nodeNum; i++) {
+    for (let i = 0; i < this.props.nodeNum; i++) {
       this.valX.pop();
       this.valY.pop();
       this.dots.pop();
@@ -60,6 +60,6 @@ class ListDot extends Component {
       this.dots.map((dot) => <ul>{dot}</ul>),
     ]);
   }
-};
+}
 
 export default ListDot;

@@ -1,6 +1,6 @@
 export const getCurrentTime = () => {
-  var newDate = new Date();
-  var currentDate = new Date(
+  let newDate = new Date();
+  let currentDate = new Date(
     newDate.getFullYear(),
     newDate.getMonth(),
     newDate.getDate(),

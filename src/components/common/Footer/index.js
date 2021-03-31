@@ -1,6 +1,5 @@
 import React from 'react';
-import Link from '@material-ui/core/Link';
-import { Typography } from '@material-ui/core';
+import { Button, Container, Typography } from '@material-ui/core';
 import './index.css';
 
 /**
@@ -9,14 +8,18 @@ import './index.css';
 export default function Footer() {
   return (
     <div className="footer">
-      <Typography className="footer" variant="body2" color="textSecondary" align="center">
-        {'Copyright © '}
-        <Link color="inherit" href="/about">
-          QWERTY
-        </Link>{' '}
-        {new Date().getFullYear()}
-        {'.'}
-      </Typography>
+      <Container component="main" align="center">
+        <Typography className="footer" variant="body2" color="textSecondary" align="center">
+          {'Copyright © '}
+          <Button style={{ height: 30 }}
+            variant="outlined"
+            color="inherit"
+            href="/about">QWERTY</Button>
+          {' '}
+          {new Date().getFullYear()}
+          {'.'}
+        </Typography>
+      </Container>
     </div>
   );
 }

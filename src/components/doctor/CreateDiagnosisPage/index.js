@@ -10,10 +10,21 @@ import {
   selectResultLoading,
 } from '../../../redux/ducks/result';
 import PropTypes from 'prop-types';
-import { CircularProgress, Container, Grid, MenuItem, Paper } from '@material-ui/core';
+import {
+  Box,
+  Breadcrumbs,
+  CircularProgress,
+  Container,
+  Grid,
+  Link,
+  MenuItem,
+  Paper,
+  Typography,
+} from '@material-ui/core';
 import { Redirect } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import { Alert, AlertTitle } from '@material-ui/lab';
+import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 
 class CreateDiagnosisPage extends Component {
   constructor(props) {
@@ -27,10 +38,9 @@ class CreateDiagnosisPage extends Component {
   }
 
   componentDidMount() {
-    this.setState({ resultId: parseInt(this.props.match.params.resultId) });
-    this.props.fetchResult(this.state.resultId);
+    const resultId = parseInt(this.props.match.params.resultId);
+    this.props.fetchResult(resultId);
   }
-
 
   render() {
     const {
@@ -40,7 +50,11 @@ class CreateDiagnosisPage extends Component {
     } = this.props;
 
     if (resultLoading) {
-      return <CircularProgress />;
+      return <CircularProgress align="center"
+        style={{
+          marginTop: 190,
+          marginLeft: 690,
+        }} />;
     }
 
     if (resultFailed) {
@@ -73,6 +87,15 @@ class CreateDiagnosisPage extends Component {
           margin: 'auto',
           maxWidth: 600,
         }}>
+          <Breadcrumbs style={{ marginLeft: 1 }} separator="›" aria-label="breadcrumb">
+            <Link color="inherit" href="/results">
+              Result
+            </Link>
+            <Link color="inherit" href={`/result/${result.id}`}>
+              {result.id}
+            </Link>
+            <Typography color="textPrimary"> Create Diagnosis</Typography>
+          </Breadcrumbs>
           <Form
             onSubmit={onSubmit}
             initialValues={{}}
@@ -138,10 +161,26 @@ class CreateDiagnosisPage extends Component {
               </Button>
             </Alert>
           ) : <DiagnosisForm /> : (
-            <Alert severity="error">
-              <AlertTitle>Test not been completed yet</AlertTitle>
-              <p><strong>Not</strong> allowed to create diagnosis until test has been completed.</p>
-            </Alert>
+            <Box>
+              <Alert severity="error">
+                <AlertTitle>Test has not been completed yet</AlertTitle>
+                <p><strong>Not</strong> allowed to create diagnosis until test has been completed.
+                </p>
+              </Alert>
+              <Button variant="contained"
+                style={{
+                  width: 300,
+                  height: 50,
+                  fontSize: 17,
+                  marginTop: 50,
+                  marginBottom: 30,
+                  marginLeft: 460,
+                }}
+                color="primary"
+                href="/diagnosis/pending">
+                <ArrowBackIosIcon /> Back to Diagnosis Page
+              </Button>
+            </Box>
           )
         }
       </Container>
@@ -150,7 +189,7 @@ class CreateDiagnosisPage extends Component {
 
 }
 
-CreateDiagnosisPage.propTypes = {
+CreateDiagnosisPage.propType = {
   fetchResult: PropTypes.func.isRequired,
   resultLoading: PropTypes.bool.isRequired,
   resultFailed: PropTypes.bool,

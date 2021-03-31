@@ -28,8 +28,8 @@ export class LogoutPage extends Component {
           color="secondary"
           style={{
             marginTop: 20,
-            height: 50,
-            fontsize: 30,
+            height: 40,
+            fontSize: 16,
           }}
         >Go back to Login</Button>
 
