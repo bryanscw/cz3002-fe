@@ -100,6 +100,7 @@ class Game extends Component {
       accuracy: 0,
       time: 0,
       mistake: 0,
+      finished:false,
     });
 
   };
