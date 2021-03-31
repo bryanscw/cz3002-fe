@@ -58,7 +58,7 @@ class GamePage extends Component {
             You have completed this test!
             <Button color="primary"
               href={`/result/${result.id}`}>
-              View results
+              View resultsπ
             </Button>
           </Alert>
         </Container>

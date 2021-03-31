@@ -25,11 +25,11 @@ export default function ResultCard(props) {
                 field: 'id',
               },
               {
-                title: 'Accuracy',
+                title: 'Accuracy (%)',
                 field: 'accuracy',
               },
               {
-                title: 'Time',
+                title: 'Time Taken (s)',
                 field: 'time',
               },
               {

@@ -5,6 +5,8 @@ import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
 import { closeError, selectErrors } from '../../../redux/ducks/errors';
 import './styles.css';
+import { Box } from '@material-ui/core';
+import { AlertTitle } from '@material-ui/lab';
 
 /**
  * This component is used to display errors.
@@ -30,13 +32,28 @@ export class Errors extends Component {
               <div className="toast-header">
                 <Snackbar open
                   autoHideDuration={6000}
-                  onClose={() => this.props.closeError(error.id)}>
-                  <Alert style={{
-                    height: 50,
-                    fontSize: 15,
-                    fontFamily: 'Helvetica',
-                  }} onClose={() => this.props.closeError(error.id)} severity="error">
-                    {error.message}
+                  onClose={() => this.props.closeError(error.id)}
+                >
+                  <Alert
+                    style={{
+                      fontSize: 15,
+                      fontFamily: 'Helvetica',
+                    }} onClose={() => this.props.closeError(error.id)}
+                    severity="error">
+                    <AlertTitle>Error</AlertTitle>
+                    <div style={{
+                      maxWidth: 400,
+                      whiteSpace: 'nowrap',
+                    }}>
+                      <Box
+                        component="div"
+                        my={2}
+                        textOverflow="ellipsis"
+                        overflow="hidden"
+                      >
+                        {error.message}
+                      </Box>
+                    </div>
                   </Alert>
                 </Snackbar>
               </div>

@@ -114,12 +114,12 @@ class ResultsPage extends Component {
               },
             },
             {
-              title: 'Time Taken',
-              field: 'time',
+              title: 'Accuracy (%)',
+              field: 'accuracy',
             },
             {
-              title: 'Accuracy',
-              field: 'accuracy',
+              title: 'Time Taken (s)',
+              field: 'time',
             },
             {
               title: 'Number of Nodes',

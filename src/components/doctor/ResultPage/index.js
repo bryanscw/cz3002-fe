@@ -194,14 +194,14 @@ class ResultPage extends Component {
                   </Grid>
 
                   <Grid item xs={6}>
-                    <Typography gutterBottom>Accuracy</Typography>
+                    <Typography gutterBottom>Accuracy (%)</Typography>
                     <Typography variant="subtitle1" color="textSecondary">
                       {result.accuracy}
                     </Typography>
                   </Grid>
 
                   <Grid item xs={6}>
-                    <Typography gutterBottom>Time</Typography>
+                    <Typography gutterBottom>Time (seconds)</Typography>
                     <Typography variant="subtitle1" color="textSecondary">
                       {result.time}
                     </Typography>

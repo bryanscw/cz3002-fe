@@ -245,7 +245,7 @@ class DiagnosisPage extends Component {
                     label: this.state.label,
                     description: this.state.description,
                   });
-                window.location.replace(`/diagnosis/${diagnosis.result}`);
+                this.props.history.push(`/diagnosis/${diagnosis.result}`);
               }
             }} color="primary">
               Submit
