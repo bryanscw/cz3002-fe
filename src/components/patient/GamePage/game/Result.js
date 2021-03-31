@@ -30,7 +30,7 @@ const Result = (props) => {
         <ButtonGroup style={{
           margin: '0 0 20px 0',
           }} size="small" aria-label="outlined button group">
-            <Button style={{}}disabled>{`Time: ${time}s`}</Button>
+            <Button disabled>{`Time: ${time}s`}</Button>
             <Button disabled>{`Accuracy: ${accuracy}%`}</Button>
             <Button disabled>{`Completed: ${completed} / ${nodeNum}`}</Button>
         </ButtonGroup>
