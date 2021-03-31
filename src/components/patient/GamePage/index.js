@@ -3,7 +3,7 @@ import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Alert, AlertTitle } from '@material-ui/lab';
-import { CircularProgress } from '@material-ui/core';
+import { CircularProgress, Container } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import {
   fetchResult,
@@ -31,7 +31,7 @@ class GamePage extends Component {
       return <CircularProgress align="center"
         style={{
           marginTop: 190,
-          marginLeft: 690,
+          marginLeft: '50%'
         }} />;
     }
 
@@ -43,25 +43,25 @@ class GamePage extends Component {
     // If test has been completed
     if (!result.time) {
       return (
-        <div className="main">
+        <Container>
           <Game time={result.time}
             accuracy={result.accuracy}
             nodeNum={result.nodeNum}
-            id={result.id} />
-        </div>
+            result={result} />
+        </Container>
       );
     } else {
       return (
-        <div className="main">
+        <Container>
           <Alert severity="success">
             <AlertTitle>Test Completed</AlertTitle>
             You have completed this test!
             <Button color="primary"
               href={`/result/${result.id}`}>
-              View results
+              View resultsπ
             </Button>
           </Alert>
-        </div>
+        </Container>
       );
     }
   }

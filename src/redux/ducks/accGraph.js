@@ -24,9 +24,9 @@ export const fetchAccuracyGraph = (bins, nodeNum) => (dispatch, getState) => {
       );
     })
     .catch((err) => {
-      displayError('Unable to get accuracy graph data')(dispatch);
-      dispatch(
-        createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.RETRIEVE));
+      let message = err.response.data.status + ': ' + err.response.data.message;
+      displayError(message)(dispatch);
+      dispatch(createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.RETRIEVE));
     });
 };
 

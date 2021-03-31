@@ -27,9 +27,9 @@ export const createUser = user => (dispatch, getState) => {
           res.data));
       })
       .catch(err => {
-        displayError('Unable to create user')(dispatch);
-        dispatch(
-          createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.CREATE));
+        let message = err.response.data.status + ': ' + err.response.data.message;
+        displayError(message)(dispatch);
+        dispatch(createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.CREATE));
       })
   );
 };
@@ -49,9 +49,9 @@ export const updateUser = (newUser, oldUser) => (dispatch, getState) => {
           res.data));
       })
       .catch(err => {
-        displayError('Unable to update user')(dispatch);
-        dispatch(
-          createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.UPDATE));
+        let message = err.response.data.status + ': ' + err.response.data.message;
+        displayError(message)(dispatch);
+        dispatch(createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.UPDATE));
       })
   );
 };
@@ -70,9 +70,9 @@ export const deleteUser = user => (dispatch, getState) => {
           user.email));
       })
       .catch(err => {
-        displayError('Unable to delete user')(dispatch);
-        dispatch(
-          createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.DELETE));
+        let message = err.response.data.status + ': ' + err.response.data.message;
+        displayError(message)(dispatch);
+        dispatch(createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.DELETE));
       })
   );
 };
@@ -91,7 +91,8 @@ export const listUsers = () => (dispatch, getState) => {
           res.data));
       })
       .catch(err => {
-        displayError('Unable to list users')(dispatch);
+        let message = err.response.data.status + ': ' + err.response.data.message;
+        displayError(message)(dispatch);
         dispatch(createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.LIST));
       })
   );

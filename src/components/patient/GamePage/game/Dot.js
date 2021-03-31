@@ -11,6 +11,7 @@ const Dot = (props) => {
     func,
     randomNumber,
   } = props;
+
   const dotStyle = {
     backgroundColor: color,
     height: `${size}px`,
@@ -19,6 +20,7 @@ const Dot = (props) => {
     top: `${y}px`,
     position: 'absolute',
   };
+
   return (
     <Fab className="dot"
       color={color}

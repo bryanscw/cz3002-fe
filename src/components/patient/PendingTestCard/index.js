@@ -25,11 +25,11 @@ export default function PendingTestCard(props) {
                 field: 'id',
               },
               {
-                title: 'Accuracy',
+                title: 'Accuracy (%)',
                 field: 'accuracy',
               },
               {
-                title: 'Time',
+                title: 'Time Taken (s)',
                 field: 'time',
               },
               {

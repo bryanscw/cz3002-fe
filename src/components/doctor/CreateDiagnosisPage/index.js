@@ -53,7 +53,7 @@ class CreateDiagnosisPage extends Component {
       return <CircularProgress align="center"
         style={{
           marginTop: 190,
-          marginLeft: 690,
+          marginLeft: '50%'
         }} />;
     }
 
@@ -66,7 +66,8 @@ class CreateDiagnosisPage extends Component {
         label: values.label,
         description: values.description,
       });
-      window.location.replace(`/diagnosis/${result.id}`);
+      this.props.history.push(`/diagnosis/${result.id}`);
+      // window.location.replace(`/diagnosis/${result.id}`);
     };
 
     const validate = values => {

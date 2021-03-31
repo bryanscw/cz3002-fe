@@ -57,7 +57,7 @@ class ListDot extends Component {
 
   render() {
     return ([
-      this.dots.map((dot) => <ul>{dot}</ul>),
+      this.dots.map((dot,i) => <ul key={i}>{dot}</ul>),
     ]);
   }
 }

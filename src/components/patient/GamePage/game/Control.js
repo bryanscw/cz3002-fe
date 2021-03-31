@@ -9,6 +9,7 @@ const Control = (props) => {
     start,
     clear,
     submit,
+    finished
   } = props;
 
   return (
@@ -18,7 +19,7 @@ const Control = (props) => {
         <ButtonGroup variant="text" color="primary" aria-label="text primary button group">
           <Button onClick={start}> START </Button>
           <Button onClick={clear}> CLEAR </Button>
-          <Button type="submit"> SUBMIT </Button>
+          <Button type="submit" disabled={!finished}> SUBMIT </Button>
         </ButtonGroup>
       </form>
     </div>

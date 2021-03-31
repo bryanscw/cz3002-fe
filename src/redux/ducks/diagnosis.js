@@ -23,7 +23,8 @@ export const fetchDiagnosis = (resultId) => (dispatch, getState) => {
       );
     })
     .catch((err) => {
-      displayError('Unable to fetch diagnosis')(dispatch);
+      let message = err.response.data.status + ': ' + err.response.data.message;
+      displayError(message)(dispatch);
       dispatch(createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.RETRIEVE));
     });
 };
@@ -53,9 +54,9 @@ export const createDiagnosis = (resultId, diagnosis) => (dispatch, getState) => 
       );
     })
     .catch((err) => {
-      displayError('Unable to create diagonosis')(dispatch);
-      dispatch(
-        createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.CREATE));
+      let message = err.response.data.status + ': ' + err.response.data.message;
+      displayError(message)(dispatch);
+      dispatch(createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.CREATE));
     });
 };
 
@@ -85,7 +86,8 @@ export const deleteDiagnosis = (resultId, diagnosis) => (dispatch, getState) => 
       }
     })
     .catch((err) => {
-      displayError('Unable to delete diagnosis')(dispatch);
+      let message = err.response.data.status + ': ' + err.response.data.message;
+      displayError(message)(dispatch);
       dispatch(createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.DELETE));
     });
 };
@@ -115,7 +117,8 @@ export const updateDiagnosis = (resultId, diagnosis) => (dispatch, getState) => 
       );
     })
     .catch((err) => {
-      displayError('Unable to update diagnosis')(dispatch);
+      let message = err.response.data.status + ': ' + err.response.data.message;
+      displayError(message)(dispatch);
       dispatch(createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.UPDATE));
     });
 };

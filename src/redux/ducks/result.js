@@ -23,34 +23,21 @@ export const fetchResult = resultId => (dispatch, getState) => {
       dispatch(createApiAction(ENTITY_NAME, STATUSES.SUCCESS, METHODS.RETRIEVE, res.data));
     })
     .catch((err) => {
-      displayError('Unable to fetch result')(dispatch);
+      let message = err.response.data.status + ': ' + err.response.data.message;
+      displayError(message)(dispatch);
       dispatch(createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.RETRIEVE));
     });
 };
 
 export const updateResult = (result) => (dispatch, getState) => {
   dispatch(createApiAction(ENTITY_NAME, STATUSES.REQUEST, METHODS.UPDATE));
-  console.log('object:', result);
   axios
     .post(
       `${API_URL}/result/update/${result.id}`,
       result = {
-        'id': null,
-        'createdBy': null,
-        'createdDate': null,
-        'lastModifiedBy': null,
-        'lastModifiedDate': null,
-        'user': {
-          'email': 'create-candidate@test.com',
-          'role': null,
-          'name': null,
-          'dob': null,
-          'gender': null,
-        },
         'accuracy': result.accuracy,
         'time': result.time,
         'nodeNum': result.nodeNum,
-        'diagnosis': null,
       },
       getTokenConfig(getState),
     )
@@ -58,9 +45,9 @@ export const updateResult = (result) => (dispatch, getState) => {
       dispatch(createApiAction(ENTITY_NAME, STATUSES.SUCCESS, METHODS.UPDATE, res.data));
     })
     .catch(err => {
-      displayError('Unable to create result')(dispatch);
-      dispatch(
-        createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.UPDATE));
+      let message = err.response.data.status + ': ' + err.response.data.message;
+      displayError(message)(dispatch);
+      dispatch(createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.UPDATE));
     });
 };
 
@@ -77,9 +64,9 @@ export const createResult = result => (dispatch, getState) => {
         res.data));
     })
     .catch(err => {
-      displayError('Unable to create result')(dispatch);
-      dispatch(
-        createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.CREATE));
+      let message = err.response.data.status + ': ' + err.response.data.message;
+      displayError(message)(dispatch);
+      dispatch(createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.CREATE));
     });
 };
 
@@ -94,9 +81,9 @@ export const deleteResult = resultId => (dispatch, getState) => {
       dispatch(createApiAction(ENTITY_NAME, STATUSES.SUCCESS, METHODS.DELETE, resultId));
     })
     .catch(err => {
-      displayError('Unable to delete result')(dispatch);
-      dispatch(
-        createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.DELETE));
+      let message = err.response.data.status + ': ' + err.response.data.message;
+      displayError(message)(dispatch);
+      dispatch(createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.DELETE));
     });
 };
 
@@ -112,7 +99,8 @@ export const listAllResults = () => (dispatch, getState) => {
         res.data));
     })
     .catch(err => {
-      displayError('Unable to list all results')(dispatch);
+      let message = err.response.data.status + ': ' + err.response.data.message;
+      displayError(message)(dispatch);
       dispatch(createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.LIST));
     });
 };
@@ -130,7 +118,8 @@ export const listUserResults = () => (dispatch, getState) => {
         res.data));
     })
     .catch(err => {
-      displayError('Unable to list all user results')(dispatch);
+      let message = err.response.data.status + ': ' + err.response.data.message;
+      displayError(message)(dispatch);
       dispatch(createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.LIST));
     });
 };
@@ -148,9 +137,9 @@ export const getLatestResult = () => (dispatch, getState) => {
           res.data));
     })
     .catch(err => {
-      displayError('Unable to get latest user result')(dispatch);
-      dispatch(
-        createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.RETRIEVE));
+      let message = err.response.data.status + ': ' + err.response.data.message;
+      displayError(message)(dispatch);
+      dispatch(createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.RETRIEVE));
     });
 };
 
@@ -166,7 +155,8 @@ export const listAllPatients = () => (dispatch, getState) => {
         res.data));
     })
     .catch(err => {
-      displayError('Unable to list all patients')(dispatch);
+      let message = err.response.data.status + ': ' + err.response.data.message;
+      displayError(message)(dispatch);
       dispatch(createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.LIST));
     });
 };
@@ -183,7 +173,8 @@ export const listAllPatientResults = (userEmail) => (dispatch, getState) => {
         res.data));
     })
     .catch(err => {
-      displayError('Unable to list all patients')(dispatch);
+      let message = err.response.data.status + ': ' + err.response.data.message;
+      displayError(message)(dispatch);
       dispatch(createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.LIST));
     });
 };

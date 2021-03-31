@@ -18,7 +18,7 @@ class Game extends Component {
     super(props);
 
     this.state = {
-      id: props.id,
+      id: props.result.id,
       valX: [],
       valY: [],
       count: 1,
@@ -26,7 +26,8 @@ class Game extends Component {
       accuracy: 0,
       time: 0,
       mistake: 0,
-      nodeNum: props.nodeNum,
+      finished: false,
+      nodeNum: props.result.nodeNum,
     };
 
     this.ListDot = React.createRef();
@@ -37,8 +38,9 @@ class Game extends Component {
   handleSubmit(event) {
 
     event.preventDefault();
-    this.props.updateResult(this.state);
-    window.location.reload(false);
+    this.props.result.time = this.state.time;
+    this.props.result.accuracy = this.state.accuracy;
+    this.props.updateResult(this.props.result);
 
   }
 
@@ -52,6 +54,12 @@ class Game extends Component {
       this.setState({
         count: c + 1,
       });
+      if(this.state.count === this.state.nodeNum){
+        clearInterval(this.clock);
+        this.setState({
+          finished: true,
+        })
+      }
     } else {
       // alert("Wrong");
       this.setState({
@@ -93,6 +101,7 @@ class Game extends Component {
       accuracy: 0,
       time: 0,
       mistake: 0,
+      finished: false,
     });
 
   };
@@ -113,7 +122,7 @@ class Game extends Component {
       <Container>
         <Card>
           <div className="panel">
-            <Control start={this.start} clear={this.clear} submit={this.handleSubmit} />
+            <Control start={this.start} clear={this.clear} submit={this.handleSubmit} finished={this.state.finished}/>
             <Result time={this.state.time}
               accuracy={this.state.accuracy}
               completed={this.state.count - 1}

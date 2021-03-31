@@ -39,7 +39,7 @@ import { withStyles } from '@material-ui/core/styles';
 const styles = theme => ({
   circularProgress: {
     marginTop:190,
-    marginLeft: 690,
+    marginLeft: '50%'
   },
   breadcrumbs: {
     marginLeft: 1,
@@ -176,14 +176,14 @@ class ResultPage extends Component {
                   </Grid>
 
                   <Grid item xs={6}>
-                    <Typography gutterBottom>Accuracy</Typography>
+                    <Typography gutterBottom>Accuracy (%)</Typography>
                     <Typography variant="subtitle1" color="textSecondary">
                       {result.accuracy}
                     </Typography>
                   </Grid>
 
                   <Grid item xs={6}>
-                    <Typography gutterBottom>Time</Typography>
+                    <Typography gutterBottom>Time (seconds)</Typography>
                     <Typography variant="subtitle1" color="textSecondary">
                       {result.time}
                     </Typography>

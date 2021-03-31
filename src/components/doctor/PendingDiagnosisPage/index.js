@@ -70,7 +70,7 @@ class PendingDiagnosisPage extends Component {
       return <CircularProgress align="center"
         style={{
           marginTop: 190,
-          marginLeft: 690,
+          marginLeft: '50%'
         }} />;
     }
 
@@ -116,12 +116,12 @@ class PendingDiagnosisPage extends Component {
               },
             },
             {
-              title: 'Time Taken',
-              field: 'time',
+              title: 'Accuracy (%)',
+              field: 'accuracy',
             },
             {
-              title: 'Accuracy',
-              field: 'accuracy',
+              title: 'Time Taken (s)',
+              field: 'time',
             },
             {
               title: 'Number of Nodes',
