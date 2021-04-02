@@ -1,0 +1,343 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches previous snapshot 1`] = `
+<LogoutPage
+  logout={[Function]}
+>
+  <WithStyles(ForwardRef(Container))
+    align="center"
+    component="main"
+    maxWidth="xs"
+    style={
+      Object {
+        "marginTop": 150,
+      }
+    }
+  >
+    <ForwardRef(Container)
+      align="center"
+      classes={
+        Object {
+          "disableGutters": "MuiContainer-disableGutters",
+          "fixed": "MuiContainer-fixed",
+          "maxWidthLg": "MuiContainer-maxWidthLg",
+          "maxWidthMd": "MuiContainer-maxWidthMd",
+          "maxWidthSm": "MuiContainer-maxWidthSm",
+          "maxWidthXl": "MuiContainer-maxWidthXl",
+          "maxWidthXs": "MuiContainer-maxWidthXs",
+          "root": "MuiContainer-root",
+        }
+      }
+      component="main"
+      maxWidth="xs"
+      style={
+        Object {
+          "marginTop": 150,
+        }
+      }
+    >
+      <main
+        align="center"
+        className="MuiContainer-root MuiContainer-maxWidthXs"
+        style={
+          Object {
+            "marginTop": 150,
+          }
+        }
+      >
+        <WithStyles(ForwardRef(Typography))
+          style={
+            Object {
+              "marginBottom": 20,
+            }
+          }
+          variant="h4"
+        >
+          <ForwardRef(Typography)
+            classes={
+              Object {
+                "alignCenter": "MuiTypography-alignCenter",
+                "alignJustify": "MuiTypography-alignJustify",
+                "alignLeft": "MuiTypography-alignLeft",
+                "alignRight": "MuiTypography-alignRight",
+                "body1": "MuiTypography-body1",
+                "body2": "MuiTypography-body2",
+                "button": "MuiTypography-button",
+                "caption": "MuiTypography-caption",
+                "colorError": "MuiTypography-colorError",
+                "colorInherit": "MuiTypography-colorInherit",
+                "colorPrimary": "MuiTypography-colorPrimary",
+                "colorSecondary": "MuiTypography-colorSecondary",
+                "colorTextPrimary": "MuiTypography-colorTextPrimary",
+                "colorTextSecondary": "MuiTypography-colorTextSecondary",
+                "displayBlock": "MuiTypography-displayBlock",
+                "displayInline": "MuiTypography-displayInline",
+                "gutterBottom": "MuiTypography-gutterBottom",
+                "h1": "MuiTypography-h1",
+                "h2": "MuiTypography-h2",
+                "h3": "MuiTypography-h3",
+                "h4": "MuiTypography-h4",
+                "h5": "MuiTypography-h5",
+                "h6": "MuiTypography-h6",
+                "noWrap": "MuiTypography-noWrap",
+                "overline": "MuiTypography-overline",
+                "paragraph": "MuiTypography-paragraph",
+                "root": "MuiTypography-root",
+                "srOnly": "MuiTypography-srOnly",
+                "subtitle1": "MuiTypography-subtitle1",
+                "subtitle2": "MuiTypography-subtitle2",
+              }
+            }
+            style={
+              Object {
+                "marginBottom": 20,
+              }
+            }
+            variant="h4"
+          >
+            <h4
+              className="MuiTypography-root MuiTypography-h4"
+              style={
+                Object {
+                  "marginBottom": 20,
+                }
+              }
+            >
+              You have logged out
+            </h4>
+          </ForwardRef(Typography)>
+        </WithStyles(ForwardRef(Typography))>
+        <WithStyles(ForwardRef(Typography))
+          style={
+            Object {
+              "marginBottom": 20,
+            }
+          }
+          variant="h5"
+        >
+          <ForwardRef(Typography)
+            classes={
+              Object {
+                "alignCenter": "MuiTypography-alignCenter",
+                "alignJustify": "MuiTypography-alignJustify",
+                "alignLeft": "MuiTypography-alignLeft",
+                "alignRight": "MuiTypography-alignRight",
+                "body1": "MuiTypography-body1",
+                "body2": "MuiTypography-body2",
+                "button": "MuiTypography-button",
+                "caption": "MuiTypography-caption",
+                "colorError": "MuiTypography-colorError",
+                "colorInherit": "MuiTypography-colorInherit",
+                "colorPrimary": "MuiTypography-colorPrimary",
+                "colorSecondary": "MuiTypography-colorSecondary",
+                "colorTextPrimary": "MuiTypography-colorTextPrimary",
+                "colorTextSecondary": "MuiTypography-colorTextSecondary",
+                "displayBlock": "MuiTypography-displayBlock",
+                "displayInline": "MuiTypography-displayInline",
+                "gutterBottom": "MuiTypography-gutterBottom",
+                "h1": "MuiTypography-h1",
+                "h2": "MuiTypography-h2",
+                "h3": "MuiTypography-h3",
+                "h4": "MuiTypography-h4",
+                "h5": "MuiTypography-h5",
+                "h6": "MuiTypography-h6",
+                "noWrap": "MuiTypography-noWrap",
+                "overline": "MuiTypography-overline",
+                "paragraph": "MuiTypography-paragraph",
+                "root": "MuiTypography-root",
+                "srOnly": "MuiTypography-srOnly",
+                "subtitle1": "MuiTypography-subtitle1",
+                "subtitle2": "MuiTypography-subtitle2",
+              }
+            }
+            style={
+              Object {
+                "marginBottom": 20,
+              }
+            }
+            variant="h5"
+          >
+            <h5
+              className="MuiTypography-root MuiTypography-h5"
+              style={
+                Object {
+                  "marginBottom": 20,
+                }
+              }
+            >
+              Thanks for visiting.
+            </h5>
+          </ForwardRef(Typography)>
+        </WithStyles(ForwardRef(Typography))>
+        <WithStyles(ForwardRef(Button))
+          color="secondary"
+          data-testid="loginButton"
+          fullWidth={true}
+          href="/login"
+          style={
+            Object {
+              "fontSize": 16,
+              "height": 40,
+              "marginTop": 20,
+            }
+          }
+          type="submit"
+          variant="contained"
+        >
+          <ForwardRef(Button)
+            classes={
+              Object {
+                "colorInherit": "MuiButton-colorInherit",
+                "contained": "MuiButton-contained",
+                "containedPrimary": "MuiButton-containedPrimary",
+                "containedSecondary": "MuiButton-containedSecondary",
+                "containedSizeLarge": "MuiButton-containedSizeLarge",
+                "containedSizeSmall": "MuiButton-containedSizeSmall",
+                "disableElevation": "MuiButton-disableElevation",
+                "disabled": "Mui-disabled",
+                "endIcon": "MuiButton-endIcon",
+                "focusVisible": "Mui-focusVisible",
+                "fullWidth": "MuiButton-fullWidth",
+                "iconSizeLarge": "MuiButton-iconSizeLarge",
+                "iconSizeMedium": "MuiButton-iconSizeMedium",
+                "iconSizeSmall": "MuiButton-iconSizeSmall",
+                "label": "MuiButton-label",
+                "outlined": "MuiButton-outlined",
+                "outlinedPrimary": "MuiButton-outlinedPrimary",
+                "outlinedSecondary": "MuiButton-outlinedSecondary",
+                "outlinedSizeLarge": "MuiButton-outlinedSizeLarge",
+                "outlinedSizeSmall": "MuiButton-outlinedSizeSmall",
+                "root": "MuiButton-root",
+                "sizeLarge": "MuiButton-sizeLarge",
+                "sizeSmall": "MuiButton-sizeSmall",
+                "startIcon": "MuiButton-startIcon",
+                "text": "MuiButton-text",
+                "textPrimary": "MuiButton-textPrimary",
+                "textSecondary": "MuiButton-textSecondary",
+                "textSizeLarge": "MuiButton-textSizeLarge",
+                "textSizeSmall": "MuiButton-textSizeSmall",
+              }
+            }
+            color="secondary"
+            data-testid="loginButton"
+            fullWidth={true}
+            href="/login"
+            style={
+              Object {
+                "fontSize": 16,
+                "height": 40,
+                "marginTop": 20,
+              }
+            }
+            type="submit"
+            variant="contained"
+          >
+            <WithStyles(ForwardRef(ButtonBase))
+              className="MuiButton-root MuiButton-contained MuiButton-containedSecondary MuiButton-fullWidth"
+              component="button"
+              data-testid="loginButton"
+              disabled={false}
+              focusRipple={true}
+              focusVisibleClassName="Mui-focusVisible"
+              href="/login"
+              style={
+                Object {
+                  "fontSize": 16,
+                  "height": 40,
+                  "marginTop": 20,
+                }
+              }
+              type="submit"
+            >
+              <ForwardRef(ButtonBase)
+                className="MuiButton-root MuiButton-contained MuiButton-containedSecondary MuiButton-fullWidth"
+                classes={
+                  Object {
+                    "disabled": "Mui-disabled",
+                    "focusVisible": "Mui-focusVisible",
+                    "root": "MuiButtonBase-root",
+                  }
+                }
+                component="button"
+                data-testid="loginButton"
+                disabled={false}
+                focusRipple={true}
+                focusVisibleClassName="Mui-focusVisible"
+                href="/login"
+                style={
+                  Object {
+                    "fontSize": 16,
+                    "height": 40,
+                    "marginTop": 20,
+                  }
+                }
+                type="submit"
+              >
+                <a
+                  aria-disabled={false}
+                  className="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedSecondary MuiButton-fullWidth"
+                  data-testid="loginButton"
+                  href="/login"
+                  onBlur={[Function]}
+                  onDragLeave={[Function]}
+                  onFocus={[Function]}
+                  onKeyDown={[Function]}
+                  onKeyUp={[Function]}
+                  onMouseDown={[Function]}
+                  onMouseLeave={[Function]}
+                  onMouseUp={[Function]}
+                  onTouchEnd={[Function]}
+                  onTouchMove={[Function]}
+                  onTouchStart={[Function]}
+                  style={
+                    Object {
+                      "fontSize": 16,
+                      "height": 40,
+                      "marginTop": 20,
+                    }
+                  }
+                  tabIndex={0}
+                >
+                  <span
+                    className="MuiButton-label"
+                  >
+                    Go back to Login
+                  </span>
+                  <WithStyles(memo)
+                    center={false}
+                  >
+                    <ForwardRef(TouchRipple)
+                      center={false}
+                      classes={
+                        Object {
+                          "child": "MuiTouchRipple-child",
+                          "childLeaving": "MuiTouchRipple-childLeaving",
+                          "childPulsate": "MuiTouchRipple-childPulsate",
+                          "ripple": "MuiTouchRipple-ripple",
+                          "ripplePulsate": "MuiTouchRipple-ripplePulsate",
+                          "rippleVisible": "MuiTouchRipple-rippleVisible",
+                          "root": "MuiTouchRipple-root",
+                        }
+                      }
+                    >
+                      <span
+                        className="MuiTouchRipple-root"
+                      >
+                        <TransitionGroup
+                          childFactory={[Function]}
+                          component={null}
+                          exit={true}
+                        />
+                      </span>
+                    </ForwardRef(TouchRipple)>
+                  </WithStyles(memo)>
+                </a>
+              </ForwardRef(ButtonBase)>
+            </WithStyles(ForwardRef(ButtonBase))>
+          </ForwardRef(Button)>
+        </WithStyles(ForwardRef(Button))>
+      </main>
+    </ForwardRef(Container)>
+  </WithStyles(ForwardRef(Container))>
+</LogoutPage>
+`;
