@@ -1,0 +1,352 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches previous snapshot 1`] = `
+<HomePage
+  dispatch={[Function]}
+  user={
+    Object {
+      "dob": "2005-05-02T00:00:00.000+00:00",
+      "email": "admin1@test.com",
+      "gender": "MALE",
+      "name": "admin1",
+      "role": "ROLE_ADMIN",
+    }
+  }
+>
+  <div
+    className="main"
+  >
+    <WithStyles(ForwardRef(Container))
+      align="center"
+      component="main"
+    >
+      <ForwardRef(Container)
+        align="center"
+        classes={
+          Object {
+            "disableGutters": "MuiContainer-disableGutters",
+            "fixed": "MuiContainer-fixed",
+            "maxWidthLg": "MuiContainer-maxWidthLg",
+            "maxWidthMd": "MuiContainer-maxWidthMd",
+            "maxWidthSm": "MuiContainer-maxWidthSm",
+            "maxWidthXl": "MuiContainer-maxWidthXl",
+            "maxWidthXs": "MuiContainer-maxWidthXs",
+            "root": "MuiContainer-root",
+          }
+        }
+        component="main"
+      >
+        <main
+          align="center"
+          className="MuiContainer-root MuiContainer-maxWidthLg"
+        >
+          <WithStyles(ForwardRef(Typography))
+            color="textPrimary"
+            component="h1"
+            gutterBottom={true}
+            variant="h2"
+          >
+            <ForwardRef(Typography)
+              classes={
+                Object {
+                  "alignCenter": "MuiTypography-alignCenter",
+                  "alignJustify": "MuiTypography-alignJustify",
+                  "alignLeft": "MuiTypography-alignLeft",
+                  "alignRight": "MuiTypography-alignRight",
+                  "body1": "MuiTypography-body1",
+                  "body2": "MuiTypography-body2",
+                  "button": "MuiTypography-button",
+                  "caption": "MuiTypography-caption",
+                  "colorError": "MuiTypography-colorError",
+                  "colorInherit": "MuiTypography-colorInherit",
+                  "colorPrimary": "MuiTypography-colorPrimary",
+                  "colorSecondary": "MuiTypography-colorSecondary",
+                  "colorTextPrimary": "MuiTypography-colorTextPrimary",
+                  "colorTextSecondary": "MuiTypography-colorTextSecondary",
+                  "displayBlock": "MuiTypography-displayBlock",
+                  "displayInline": "MuiTypography-displayInline",
+                  "gutterBottom": "MuiTypography-gutterBottom",
+                  "h1": "MuiTypography-h1",
+                  "h2": "MuiTypography-h2",
+                  "h3": "MuiTypography-h3",
+                  "h4": "MuiTypography-h4",
+                  "h5": "MuiTypography-h5",
+                  "h6": "MuiTypography-h6",
+                  "noWrap": "MuiTypography-noWrap",
+                  "overline": "MuiTypography-overline",
+                  "paragraph": "MuiTypography-paragraph",
+                  "root": "MuiTypography-root",
+                  "srOnly": "MuiTypography-srOnly",
+                  "subtitle1": "MuiTypography-subtitle1",
+                  "subtitle2": "MuiTypography-subtitle2",
+                }
+              }
+              color="textPrimary"
+              component="h1"
+              gutterBottom={true}
+              variant="h2"
+            >
+              <h1
+                className="MuiTypography-root MuiTypography-h2 MuiTypography-colorTextPrimary MuiTypography-gutterBottom"
+              >
+                <Styled(MuiBox)
+                  borderRadius={16}
+                  fontSize={90}
+                  letterSpacing={2}
+                  textAlign="center"
+                >
+                  <div
+                    className="MuiBox-root MuiBox-root-1"
+                  >
+                    Trail Making Test
+                  </div>
+                </Styled(MuiBox)>
+              </h1>
+            </ForwardRef(Typography)>
+          </WithStyles(ForwardRef(Typography))>
+          <WithStyles(ForwardRef(Typography))
+            align="center"
+            color="textSecondary"
+            paragraph={true}
+            style={
+              Object {
+                "marginTop": 40,
+              }
+            }
+            variant="h5"
+          >
+            <ForwardRef(Typography)
+              align="center"
+              classes={
+                Object {
+                  "alignCenter": "MuiTypography-alignCenter",
+                  "alignJustify": "MuiTypography-alignJustify",
+                  "alignLeft": "MuiTypography-alignLeft",
+                  "alignRight": "MuiTypography-alignRight",
+                  "body1": "MuiTypography-body1",
+                  "body2": "MuiTypography-body2",
+                  "button": "MuiTypography-button",
+                  "caption": "MuiTypography-caption",
+                  "colorError": "MuiTypography-colorError",
+                  "colorInherit": "MuiTypography-colorInherit",
+                  "colorPrimary": "MuiTypography-colorPrimary",
+                  "colorSecondary": "MuiTypography-colorSecondary",
+                  "colorTextPrimary": "MuiTypography-colorTextPrimary",
+                  "colorTextSecondary": "MuiTypography-colorTextSecondary",
+                  "displayBlock": "MuiTypography-displayBlock",
+                  "displayInline": "MuiTypography-displayInline",
+                  "gutterBottom": "MuiTypography-gutterBottom",
+                  "h1": "MuiTypography-h1",
+                  "h2": "MuiTypography-h2",
+                  "h3": "MuiTypography-h3",
+                  "h4": "MuiTypography-h4",
+                  "h5": "MuiTypography-h5",
+                  "h6": "MuiTypography-h6",
+                  "noWrap": "MuiTypography-noWrap",
+                  "overline": "MuiTypography-overline",
+                  "paragraph": "MuiTypography-paragraph",
+                  "root": "MuiTypography-root",
+                  "srOnly": "MuiTypography-srOnly",
+                  "subtitle1": "MuiTypography-subtitle1",
+                  "subtitle2": "MuiTypography-subtitle2",
+                }
+              }
+              color="textSecondary"
+              paragraph={true}
+              style={
+                Object {
+                  "marginTop": 40,
+                }
+              }
+              variant="h5"
+            >
+              <p
+                className="MuiTypography-root MuiTypography-h5 MuiTypography-colorTextSecondary MuiTypography-paragraph MuiTypography-alignCenter"
+                style={
+                  Object {
+                    "marginTop": 40,
+                  }
+                }
+              >
+                Trail Making Test is a simple neuropsychological 
+                <br />
+                 test of cognitive processes, including attention, 
+                <br />
+                 visual search and scanning, and psychomotor speed.
+              </p>
+            </ForwardRef(Typography)>
+          </WithStyles(ForwardRef(Typography))>
+          <WithStyles(ForwardRef(Button))
+            color="primary"
+            href="/dashboard"
+            style={
+              Object {
+                "fontSize": 17,
+                "height": 50,
+                "marginBottom": 30,
+                "marginTop": 50,
+                "width": 200,
+              }
+            }
+            variant="contained"
+          >
+            <ForwardRef(Button)
+              classes={
+                Object {
+                  "colorInherit": "MuiButton-colorInherit",
+                  "contained": "MuiButton-contained",
+                  "containedPrimary": "MuiButton-containedPrimary",
+                  "containedSecondary": "MuiButton-containedSecondary",
+                  "containedSizeLarge": "MuiButton-containedSizeLarge",
+                  "containedSizeSmall": "MuiButton-containedSizeSmall",
+                  "disableElevation": "MuiButton-disableElevation",
+                  "disabled": "Mui-disabled",
+                  "endIcon": "MuiButton-endIcon",
+                  "focusVisible": "Mui-focusVisible",
+                  "fullWidth": "MuiButton-fullWidth",
+                  "iconSizeLarge": "MuiButton-iconSizeLarge",
+                  "iconSizeMedium": "MuiButton-iconSizeMedium",
+                  "iconSizeSmall": "MuiButton-iconSizeSmall",
+                  "label": "MuiButton-label",
+                  "outlined": "MuiButton-outlined",
+                  "outlinedPrimary": "MuiButton-outlinedPrimary",
+                  "outlinedSecondary": "MuiButton-outlinedSecondary",
+                  "outlinedSizeLarge": "MuiButton-outlinedSizeLarge",
+                  "outlinedSizeSmall": "MuiButton-outlinedSizeSmall",
+                  "root": "MuiButton-root",
+                  "sizeLarge": "MuiButton-sizeLarge",
+                  "sizeSmall": "MuiButton-sizeSmall",
+                  "startIcon": "MuiButton-startIcon",
+                  "text": "MuiButton-text",
+                  "textPrimary": "MuiButton-textPrimary",
+                  "textSecondary": "MuiButton-textSecondary",
+                  "textSizeLarge": "MuiButton-textSizeLarge",
+                  "textSizeSmall": "MuiButton-textSizeSmall",
+                }
+              }
+              color="primary"
+              href="/dashboard"
+              style={
+                Object {
+                  "fontSize": 17,
+                  "height": 50,
+                  "marginBottom": 30,
+                  "marginTop": 50,
+                  "width": 200,
+                }
+              }
+              variant="contained"
+            >
+              <WithStyles(ForwardRef(ButtonBase))
+                className="MuiButton-root MuiButton-contained MuiButton-containedPrimary"
+                component="button"
+                disabled={false}
+                focusRipple={true}
+                focusVisibleClassName="Mui-focusVisible"
+                href="/dashboard"
+                style={
+                  Object {
+                    "fontSize": 17,
+                    "height": 50,
+                    "marginBottom": 30,
+                    "marginTop": 50,
+                    "width": 200,
+                  }
+                }
+                type="button"
+              >
+                <ForwardRef(ButtonBase)
+                  className="MuiButton-root MuiButton-contained MuiButton-containedPrimary"
+                  classes={
+                    Object {
+                      "disabled": "Mui-disabled",
+                      "focusVisible": "Mui-focusVisible",
+                      "root": "MuiButtonBase-root",
+                    }
+                  }
+                  component="button"
+                  disabled={false}
+                  focusRipple={true}
+                  focusVisibleClassName="Mui-focusVisible"
+                  href="/dashboard"
+                  style={
+                    Object {
+                      "fontSize": 17,
+                      "height": 50,
+                      "marginBottom": 30,
+                      "marginTop": 50,
+                      "width": 200,
+                    }
+                  }
+                  type="button"
+                >
+                  <a
+                    aria-disabled={false}
+                    className="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary"
+                    href="/dashboard"
+                    onBlur={[Function]}
+                    onDragLeave={[Function]}
+                    onFocus={[Function]}
+                    onKeyDown={[Function]}
+                    onKeyUp={[Function]}
+                    onMouseDown={[Function]}
+                    onMouseLeave={[Function]}
+                    onMouseUp={[Function]}
+                    onTouchEnd={[Function]}
+                    onTouchMove={[Function]}
+                    onTouchStart={[Function]}
+                    style={
+                      Object {
+                        "fontSize": 17,
+                        "height": 50,
+                        "marginBottom": 30,
+                        "marginTop": 50,
+                        "width": 200,
+                      }
+                    }
+                    tabIndex={0}
+                  >
+                    <span
+                      className="MuiButton-label"
+                    >
+                      To Dashboard
+                    </span>
+                    <WithStyles(memo)
+                      center={false}
+                    >
+                      <ForwardRef(TouchRipple)
+                        center={false}
+                        classes={
+                          Object {
+                            "child": "MuiTouchRipple-child",
+                            "childLeaving": "MuiTouchRipple-childLeaving",
+                            "childPulsate": "MuiTouchRipple-childPulsate",
+                            "ripple": "MuiTouchRipple-ripple",
+                            "ripplePulsate": "MuiTouchRipple-ripplePulsate",
+                            "rippleVisible": "MuiTouchRipple-rippleVisible",
+                            "root": "MuiTouchRipple-root",
+                          }
+                        }
+                      >
+                        <span
+                          className="MuiTouchRipple-root"
+                        >
+                          <TransitionGroup
+                            childFactory={[Function]}
+                            component={null}
+                            exit={true}
+                          />
+                        </span>
+                      </ForwardRef(TouchRipple)>
+                    </WithStyles(memo)>
+                  </a>
+                </ForwardRef(ButtonBase)>
+              </WithStyles(ForwardRef(ButtonBase))>
+            </ForwardRef(Button)>
+          </WithStyles(ForwardRef(Button))>
+        </main>
+      </ForwardRef(Container)>
+    </WithStyles(ForwardRef(Container))>
+  </div>
+</HomePage>
+`;

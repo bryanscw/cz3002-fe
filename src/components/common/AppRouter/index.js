@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
+import { Redirect, Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import {
   refreshTokenLogin,
@@ -23,7 +23,7 @@ import { CircularProgress } from '@material-ui/core';
 import HomePage from '../HomePage';
 import AboutPage from '../AboutPage';
 
-/** This component handles the routing for the app */
+/** This component actually only exports the routes for the app, the router is in App/index.js */
 class AppRouter extends Component {
   componentDidMount() {
     const {
@@ -89,7 +89,7 @@ class AppRouter extends Component {
 
     return (
 
-      <BrowserRouter>
+      <>
         <Errors />
         <Header />
         <Switch>
@@ -102,7 +102,7 @@ class AppRouter extends Component {
         </Switch>
 
         <Footer />
-      </BrowserRouter>
+      </>
 
     );
   }
