@@ -40,13 +40,13 @@ export default function AboutPage() {
     {
       id: 3,
       name: 'Ng Man Chun',
-      role: 'QA Engineer',
+      role: 'QA Manager',
       github: 'https://github.com/jay-ng-mc',
     },
     {
       id: 4,
       name: 'Niu Jianan',
-      role: 'Project Manager',
+      role: 'Front-end Developer',
       github: 'https://github.com/niujianan',
     },
     {
@@ -64,7 +64,7 @@ export default function AboutPage() {
     {
       id: 7,
       name: 'Ye Ruiyi',
-      role: 'Project Manager',
+      role: 'Front-end Developer',
       github: 'https://github.com/yeruiyi',
     },
   ];
